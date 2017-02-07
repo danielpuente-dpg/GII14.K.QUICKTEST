@@ -1,0 +1,1453 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Gettext Test\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-05 22:40+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Rodrigo Polo <rodrigo.polo@gmail.com>\n"
+"Language-Team: \n"
+"Language: es_GT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-KeywordsList: _p:1,2;_e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.7.7\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\_QuickTest_TFG\n"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/controller/Cuestionario_Resolver_Controller.php:687
+msgid "Has sido MUY RÁPIDO respondiendo, has conseguido"
+msgstr "You have been very quick responding, you've got"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/controller/Cuestionario_Resolver_Controller.php:688
+msgid "MUY RÁPIDO"
+msgstr "VERY FAST"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/controller/Cuestionario_Resolver_Controller.php:694
+msgid "Has sido RÁPIDO respondiendo, has conseguido"
+msgstr "You have been QUICK responding, you've got"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/controller/Cuestionario_Resolver_Controller.php:698
+msgid "RÁPIDO"
+msgstr "QUICK"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/controller/Cuestionario_Resolver_Controller.php:702
+msgid "Has sido de los ÚLTIMOS en responder, has obtenido una penalización de:"
+msgstr "You've been the LAST to respond, you've earned a penalty of:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/controller/Cuestionario_Resolver_Controller.php:706
+msgid "LENTO"
+msgstr "SLOW"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:10
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Duplicar_View.php:10
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:11
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:11
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:10
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/accesoDenegado_View.php:39
+msgid "QuickTest"
+msgstr "QuickTest"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:87
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:74
+msgid "Añadir pregunta"
+msgstr "Add Question"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:93
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:81
+msgid "Guardar cuestionario"
+msgstr "Save test"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:102
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Duplicar_View.php:62
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:91
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:54
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Resolver_View.php:86
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:64
+msgid "Salir QuickTest"
+msgstr "Exit QuickTest"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:126
+msgid "Crear nuevo cuestionario"
+msgstr "Create new test"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:142
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:216
+msgid "Título del cuestionario"
+msgstr "Title test"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:146
+msgid "Escribe un título para el cuestionario"
+msgstr "Enter a title for the test"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:162
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:235
+msgid "Configurar comodín verde"
+msgstr "Set green wildcard"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:178
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:237
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:251
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:317
+msgid "Penalizar respuesta correcta"
+msgstr "Penalize correct answer"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:180
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:201
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:239
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:256
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:281
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:323
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:36
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:39
+msgid "Muy poco"
+msgstr "Very little"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:182
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:202
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:258
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:258
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:282
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:349
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:37
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:40
+msgid "Poco"
+msgstr "A little"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:184
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:260
+msgid "Normal (recomendado)"
+msgstr "Normal (recommended)"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:186
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:242
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:260
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:262
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:327
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:351
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:39
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:42
+msgid "Mucho"
+msgstr "Much"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:191
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:208
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:247
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:264
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:267
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:288
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:332
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:355
+msgid "La calificación se verá reducida, pero la nota final será  "
+msgstr "The score will be reduced, but the final score will be "
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:192
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:248
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:268
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:333
+msgid "positiva"
+msgstr "positive"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:199
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:255
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:275
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:341
+msgid "Penalizar respuesta incorrecta"
+msgstr "Penalize wrong answer"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:203
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:241
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:259
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:283
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:325
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:350
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:38
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:41
+msgid "Normal"
+msgstr "Normal"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:204
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:284
+msgid "Mucho (recomendado)"
+msgstr "Much (recommended)"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:209
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:265
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:289
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:356
+msgid "negativa"
+msgstr "negative"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:222
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:302
+msgid "Configurar comodín ámbar"
+msgstr "Set amber wildcard"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:240
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:324
+msgid "Poco (recomendado)"
+msgstr "A bit (recommended)"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:257
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:348
+msgid "Muy poco (recomendado)"
+msgstr "Very little (recommended)"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:277
+msgid "idAsignatura"
+msgstr "idAsignatura"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:283
+msgid "Nombre asignatura"
+msgstr "Name course"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:289
+msgid "Es profesor"
+msgstr "He is teacher"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:295
+msgid "Nombre profesor"
+msgstr "Professor's name"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:301
+msgid "Apellido Profesor"
+msgstr "Professor's surname"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:307
+msgid "id Usuario"
+msgstr "id Usuario"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:314
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:200
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:246
+msgid "lang"
+msgstr "lang"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:321
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:253
+msgid "email"
+msgstr "email"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:328
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:274
+msgid "launch_presentation_return_url"
+msgstr "launch_presentation_return_url"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:348
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:371
+msgid "Pregunta 1"
+msgstr "Question 1"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:352
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:387
+msgid "Puntuacion max"
+msgstr "High score"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:371
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:407
+msgid "Escribe el enunciado de la pregunta"
+msgstr "Write the wording of the question"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:389
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:436
+msgid "Respuesta"
+msgstr "Answer"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:395
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:444
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:35
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:36
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:38
+msgid "Es correcta"
+msgstr "It's correct"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:406
+msgid "Escribe una respuesta"
+msgstr "Write an answer"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:406
+msgid "Respuesta 1"
+msgstr "Answer 1"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:432
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:490
+msgid "Añadir Respuesta"
+msgstr "Add answer"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:451
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:516
+msgid "Nueva pregunta"
+msgstr "New question"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php:457
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Resolver_View.php:252
+msgid "Guardar"
+msgstr "Save"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Duplicar_View.php:101
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Duplicar_View.php:117
+msgid "Duplicar cuestionario"
+msgstr "Duplicate test"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Duplicar_View.php:124
+msgid "Está a punto de realizar una copia de"
+msgstr "You will make a copy of"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Duplicar_View.php:134
+msgid "Si lo desea, puede"
+msgstr "If you want, you can"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Duplicar_View.php:136
+msgid "modificar el título"
+msgstr "change the title"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Duplicar_View.php:137
+msgid "o mantener el actual."
+msgstr "or continue with the current."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Duplicar_View.php:145
+msgid "Nuevo título"
+msgstr "New tittle"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Duplicar_View.php:159
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:655
+msgid "Duplicar"
+msgstr "Duplicate"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:119
+msgid "Editar cuestionario"
+msgstr "Edit test"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:383
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Resolver_View.php:154
+msgid "Pregunta"
+msgstr "Question "
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:524
+msgid "Guardar cambios"
+msgstr "Save changes"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Editar_View.php:533
+msgid "Descartar cambios"
+msgstr "Discard changes"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:92
+msgid "Usuario"
+msgstr "User"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:100
+msgid "Más detalles"
+msgstr "More details"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:113
+msgid "Clave del cliente"
+msgstr "Key customer"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:127
+msgid "Nombre"
+msgstr "Name"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:132
+msgid "Apellidos"
+msgstr "Surname"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:137
+msgid "Email"
+msgstr "Email"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:142
+msgid "Rol"
+msgstr "Role"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:143
+msgid "Profesor"
+msgstr "Professor"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:147
+msgid "Idioma"
+msgstr "Language"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:173
+msgid "Cuestionarios"
+msgstr "Tests"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:180
+msgid "Ver cuestionarios"
+msgstr "View tests"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:198
+msgid "¿Quieres crear un nuevo cuestionario?"
+msgstr "Do you want to create a new test?"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:260
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:398
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:560
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/pasosParaPublicar.php:19
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:123
+msgid "Clave de cliente"
+msgstr "Client key"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:267
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:397
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:559
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/pasosParaPublicar.php:18
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:122
+msgid "URL de inicio"
+msgstr "Home URL"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:290
+msgid "Click para crear uno nuevo"
+msgstr "Click to create a new one"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:309
+msgid "¿Necesitas ayuda para publicar un cuestionario?"
+msgstr "Need help to publish a test?"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:315
+msgid "FAQ"
+msgstr "FAQ"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:334
+msgid "Ver cuestionarios ya creados"
+msgstr "See test already created"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:358
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:520
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:89
+msgid "Publicar cuestionario"
+msgstr "Post test"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:378
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:540
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/pasosParaPublicar.php:3
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:103
+msgid "Para publicar, sigue estos pasos:"
+msgstr "To publish, follow these steps:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:383
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:545
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/pasosParaPublicar.php:8
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:108
+msgid "Crea una actividad desde tu plataforma LTI de tipo:"
+msgstr "Create an activity from your LTI platform type:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:387
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:549
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/pasosParaPublicar.php:12
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:113
+msgid "Actividad externa"
+msgstr "External tool"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:391
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:553
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:116
+msgid "Y copia estos datos en las casillas correspondientes"
+msgstr "And copy the data in the appropriate boxes"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:399
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:561
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/pasosParaPublicar.php:20
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:124
+msgid "Shared secret"
+msgstr "Shared secret"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:400
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:562
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/pasosParaPublicar.php:21
+msgid "Parámetros personalizados"
+msgstr "Custom settings"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:414
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:576
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:140
+msgid "Tu contraseña de QuickTest"
+msgstr "QuickTest password"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:424
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:586
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:147
+msgid "IMPORTANTE"
+msgstr "IMPORTANT"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:426
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:588
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:149
+msgid "En la pestaña 'privacidad', no olvides marcar:"
+msgstr "In the 'Privacy' tab, do not forget to dial:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:433
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:444
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:595
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:606
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:155
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:166
+msgid "Aceptar calificaciones desde la herramienta"
+msgstr "Allow Ratings from the tool"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:438
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:600
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:160
+msgid "Compartir el e-mail del usuario con la herramienta"
+msgstr "Share the e-mail user with the tool"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:452
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:614
+msgid "Tras seguir estos pasos, deberías tener algo similar a esto:"
+msgstr "After following these steps, you should have something like this:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:488
+msgid "Aún no existen cuestionarios creados"
+msgstr "No test created"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:648
+msgid "Editar"
+msgstr "Edit"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Gestionar_View.php:663
+msgid "Eliminar"
+msgstr "Remove"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Resolver_View.php:117
+msgid "El cuestionario comenzará en :"
+msgstr "The test will start in:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Resolver_View.php:122
+msgid "segundos"
+msgstr "seconds"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Resolver_View.php:134
+msgid "Guardar y enviar"
+msgstr "Save and send"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Resolver_View.php:162
+msgid "Punt max "
+msgstr "High score"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/cuestionarioView/cuestionario_Resolver_View.php:273
+msgid "Finalizar cuestionario y enviar para calificación"
+msgstr "Finish and save"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:12
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:14
+msgid "Comodín usado:"
+msgstr "Wildcard used:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:13
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:95
+msgid "Ámbar"
+msgstr "Amber"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:18
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:18
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:20
+msgid "Supongamos una pregunta, cuya puntuación máxima es:"
+msgstr "Assume a question, the maximum score is:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:24
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:24
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:26
+msgid "10"
+msgstr "10"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:27
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:29
+msgid ""
+"Siempre que utilizas un comodín, se aplican unos correctores, previamente "
+"configurados por el profesor:"
+msgstr ""
+"Whenever you use a wildcard, a correction, previously set by the teacher "
+"apply:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:48
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:44
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:51
+msgid "SÍ"
+msgstr "YES"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:52
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:81
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:55
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:83
+msgid "20%"
+msgstr "20%"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:56
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:90
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:59
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:89
+msgid "25%"
+msgstr "25%"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:59
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:84
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:66
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:105
+msgid "recomendado"
+msgstr "recommended"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:63
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:96
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:63
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:95
+msgid "33%"
+msgstr "33%"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:69
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:103
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:71
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:102
+msgid "50%"
+msgstr "50%"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:76
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:56
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:78
+msgid "NO"
+msgstr "NO"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:113
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:114
+msgid ""
+"Observa que si te equivocas usando un comodín, los correctores tienen un "
+"valor negativo"
+msgstr ""
+"Note that if you screw using a wildcard, the correction has a negative value"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:123
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:83
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:124
+msgid "Ejemplo 1. "
+msgstr "Example 1."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:124
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:84
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:125
+msgid "Respuesta correcta."
+msgstr "Correct answer."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:125
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:152
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:126
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:153
+msgid "(valores de los correctores por defecto):"
+msgstr "(correction values by default):"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:138
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:166
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:139
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:167
+msgid "Puntuación total= Puntuación máxima X corrector "
+msgstr "Total score = maximum score X corrector"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:139
+msgid "25 %"
+msgstr "25 %"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:143
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:171
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:102
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:129
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:144
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:172
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_resultados.php:143
+msgid "puntos"
+msgstr "points"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:150
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:109
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:151
+msgid "Ejemplo 2. "
+msgstr "Example 2."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:151
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:110
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:152
+msgid "Respuesta incorrecta."
+msgstr "Wrong answer."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinAmbar.php:167
+msgid "-20 %"
+msgstr "-20 %"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:12
+msgid "Respuesta:"
+msgstr "Respuesta:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:13
+msgid "SIN comodín"
+msgstr "WITHOUT wildcard"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:27
+msgid "Responder sin comodín tiene sus ventajas:"
+msgstr "Reply without joker has its advantages:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:37
+msgid "Puntuación obtenida"
+msgstr "Score"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:48
+msgid "Máxima puntuación 100%"
+msgstr "Maximum score 100%"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:61
+msgid "0 puntos"
+msgstr "0 points"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:73
+msgid ""
+"Observa que si te equivocas sin usar un comodín, NO obtienes una puntuación "
+"negativa"
+msgstr ""
+"Note that if you mess without using a wildcard, you do NOT get a negative "
+"score"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:97
+msgid "Puntuación total= Puntuación máxima"
+msgstr "Total score = maximum score"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:98
+msgid "100 %"
+msgstr "100 %"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:124
+msgid "Puntuación total= 0 puntos "
+msgstr "Total score = 0 points"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinSinComodin.php:125
+msgid "0 %"
+msgstr "0 %"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:15
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:72
+msgid "Verde"
+msgstr "Green"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:140
+msgid "33 %"
+msgstr "33 %"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/modalComodinVerde.php:168
+msgid "-50 %"
+msgstr "-50 %"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/pasosParaPublicar.php:28
+msgid "URL proporcionada al crear el test"
+msgstr "URL proporcionada al crear el test"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/pasosParaPublicar.php:32
+msgid "Identificador que recibiste cuando te registraste"
+msgstr "ID you received when you registered"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/pasosParaPublicar.php:35
+msgid "Tu contraseña personal de QuickTest"
+msgstr "QuickTest password"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/pasosParaPublicar.php:39
+msgid "Este parametro lo obtendrás cada vez que crees un cuestionario"
+msgstr "This parameter you will get each time you create a questionnaire"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/modules/pasosParaPublicar.php:45
+msgid ""
+"Y copia estos datos en las casillas correspondientes de tu plataforma LTI"
+msgstr "And copy the data in the appropriate boxes on your platform LTI"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:10
+msgid "Bienvenido de nuevo a QuickTest"
+msgstr "Welcome back to QuickTest"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:12
+msgid "Gracias por registrarte, ya puedes empezar a usar QuickTest"
+msgstr "Thanks for signing up, you can start using QuickTest"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:31
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:314
+msgid "Se trata de un estándar creado por la IMS."
+msgstr "This is a standard created by the IMS."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:35
+msgid "Más información"
+msgstr "More information"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:38
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:319
+msgid "Tiene como objetivo ofrecer una estructura uniforme"
+msgstr "It aims to provide a uniform structure"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:39
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:320
+msgid ""
+"para integrar cualquier producto que cumpla con el estándar en una "
+"plataforma educativa."
+msgstr ""
+"to integrate any product that meets the standard of an educational platform."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:44
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:325
+msgid "Visita su web oficial para más información:"
+msgstr "Visit their official website for more information:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:59
+msgid "Primeros pasos"
+msgstr "First steps"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:62
+msgid "Ya tienes una cuenta en QuickTest, haz lo siguiente: "
+msgstr "Already you have an account QuickTest, do the following:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:65
+msgid "En primer lugar, accede con tu usuario y contraseña a una plataforma "
+msgstr "First, sign in with your username and password to a platform"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:73
+msgid ""
+"Una vez allí, entra a la asignatura en la que deseas publicar un "
+"cuestionario."
+msgstr "Once there, enter the subject in which you want to publish a test."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:78
+msgid "Necesitarás unos parámetros para conectarte con"
+msgstr "You will need some parameters to connect to"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:84
+msgid "Haz click en el siguiente botón para conocerlos: "
+msgstr "Click on the button below to know:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:196
+msgid "¿Por qué usar"
+msgstr "Why use"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:207
+msgid "Seguridad"
+msgstr "Security"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:208
+msgid "El"
+msgstr "The"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:209
+msgid " es el encargado de la autenticación."
+msgstr "it is responsible for authentication."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:211
+msgid "Amplia comunidad "
+msgstr "Wider community"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:212
+msgid "de usuarios"
+msgstr "of users"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:214
+msgid ""
+"Utilizable en todas los centros educativos que empleen Moodle u otra "
+"plataforma LTI."
+msgstr "Usable in all schools that use Moodle or other LTI platform."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:216
+msgid "Divertido"
+msgstr "Funny"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:217
+msgid " para el alumno"
+msgstr "for th student"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:219
+msgid "Favorece la competición entre los alumnos, en el ámbito del juego."
+msgstr "It promotes competition among students in the field of play."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:221
+msgid "Útil para el docente"
+msgstr "Useful for teachers"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m.logued.php:222
+msgid ""
+"El profesor puede evaluar el grado de atención de los alumnos durante la "
+"clase, así como la asimilación de los conceptos explicados "
+msgstr ""
+"The teacher can assess the degree of students' attention during class, and "
+"the assimilation of the concepts explained"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:44
+msgid "Comodines"
+msgstr "Wildcards"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:54
+msgid "Tres formas de contestar a una pregunta, tú decides cual usar."
+msgstr "Three ways to answer a question, you decide which one to use."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:75
+msgid "¿Dudas MUCHO de tu respuesta?"
+msgstr "Doubts LOT OF your answer?"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:78
+msgid "¿Prefieres asegurarte? "
+msgstr "Would you rather be sure?"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:79
+msgid "La penalización será "
+msgstr "The penalty will be"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:80
+msgid "elevada."
+msgstr "high."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:86
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:116
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:140
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:58
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:116
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:172
+msgid "Ver un ejemplo"
+msgstr "See an example"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:98
+msgid "¿CASI sabes la respuesta?"
+msgstr "ALMOST you know the answer?"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:102
+msgid "Obtén una solución "
+msgstr "Get a solution"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:103
+msgid "incierta "
+msgstr "uncertain"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:105
+msgid "y despeja tus dudas."
+msgstr "and clear your doubts."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:106
+msgid "A cambio, la penalización será "
+msgstr "In return, the penalty will"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:107
+msgid "leve."
+msgstr "mild."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:123
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_resultados.php:50
+msgid "Sin comodín"
+msgstr "No wildcard"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:126
+msgid "¿Estás SEGURO de tu respuesta?"
+msgstr "Are you SURE of your answer?"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:130
+msgid "Genial, no uses comodín. "
+msgstr "Great, do not use wildcards."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:131
+msgid "Tendrás la puntuación "
+msgstr "You'll score"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Comodines.php:132
+msgid "máxima."
+msgstr "maximum."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:14
+msgid "Rapidez en la respuesta"
+msgstr "Responding quickly"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:24
+msgid ""
+"No esperes a los comodines, sé el primero en responder y obtén PUNTOS EXTRA."
+msgstr ""
+"Do not wait for wildcards, be the first to respond and get EXTRA POINTS."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:42
+msgid "Muy Rápido"
+msgstr "Very fast"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:45
+msgid "Si estás en el grupo de los MÁS RÁPIDOS"
+msgstr "If you're in the group of the fastest"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:48
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:106
+msgid "A tu puntuación final, le sumaremos el:  "
+msgstr "To your final score, we will ADD the:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:49
+msgid "10 %"
+msgstr "10 %"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:50
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:108
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:164
+msgid "de la puntuación máxima"
+msgstr "of the maximum score"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:66
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:124
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:180
+msgid "Supón el siguiente ejemplo:"
+msgstr "Suppose the following example:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:70
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:128
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:184
+msgid "El cuestionario tiene una puntuación máxima de 10 puntos."
+msgstr "The questionnaire has a maximum score of 10 points."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:71
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:129
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:185
+msgid "Has obtenido 6 puntos."
+msgstr "You earned 6 points."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:72
+msgid "Perteneces al grupo de los que han contestado MUY RÁPIDO."
+msgstr "Belong to the group of those who responded VERY QUICKLY."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:73
+#, php-format
+msgid "Por tanto, a tu puntuación total, se añadirá el 10% de 10 puntos:"
+msgstr "Therefore, your total score, 10% of 10 points is added:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:100
+msgid "Rápido"
+msgstr "Quick"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:103
+msgid "Si estás en el grupo de los RÁPIDOS"
+msgstr "If you're in the group of FAST"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:107
+msgid "5 %"
+msgstr "5 %"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:130
+msgid "Perteneces al grupo de los que han contestado  RÁPIDO."
+msgstr "Belong to the group of those who have answered FAST."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:131
+#, php-format
+msgid "Por tanto, a tu puntuación total, se añadirá el 5% de 10 puntos:"
+msgstr "Therefore, your total score will be add 5% of 10 points:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:156
+msgid "Lento"
+msgstr "Slow"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:159
+msgid "Si estás en el grupo más LENTO"
+msgstr "If you are in the SLOWER group"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:162
+msgid "A tu puntuación final, le RESTAREMOS el:  "
+msgstr "To your final score, SUBSTRACT it on:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:163
+msgid " - 5 %"
+msgstr " - 5 %"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:186
+msgid "Perteneces al grupo de los que han contestado MUY LENTO."
+msgstr "Belong to the group of those who responded VERY SLOW."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:187
+#, php-format
+msgid "Por tanto, a tu puntuación total, se RESTARÁ el 5% de 10 puntos:"
+msgstr "Therefore, your total score will be deducted 5% of 10 points:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_explicacion_Orden.php:226
+msgid "Volver al inicio "
+msgstr "Back to top"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_resultados.php:21
+msgid "Resultados obtenidos"
+msgstr "Results obtained"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_resultados.php:31
+msgid "Modo respuesta"
+msgstr "Answer mode"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_resultados.php:33
+msgid "Preguntas contestadas"
+msgstr "Answered questions"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_resultados.php:36
+msgid "Aciertos"
+msgstr "Success"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_resultados.php:39
+msgid "Fallos"
+msgstr "Failures"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_resultados.php:42
+msgid "Puntuación"
+msgstr "Score"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_resultados.php:57
+msgid "Comodín verde"
+msgstr "Green wildcard"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_resultados.php:64
+msgid "Comodín ámbar"
+msgstr "Amber wildcard"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_resultados.php:88
+msgid "Total"
+msgstr "Total"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_resultados.php:149
+msgid "Más informacion"
+msgstr "More information"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_resultados.php:177
+msgid "Revisar cuestionario"
+msgstr "Review test"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/default/sections/m_resultados.php:187
+msgid "Funcionamiento comodines"
+msgstr "Operation wildcards"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:119
+msgid "Tipos de comodín y para qué sirven"
+msgstr "Wildcard types and what they do"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:138
+msgid "¿Cómo influye la rapidez a la hora de responder?"
+msgstr "How does the speed when responding?"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:159
+msgid "Pasos para publicar un cuestionario"
+msgstr "Steps to publish a test"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:179
+msgid "¿Existe algún cuestionario de prueba?"
+msgstr "Is there a test run?"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:184
+msgid "Sí."
+msgstr "Yes."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:189
+msgid "Se trata de un cuestionario especial que no puede ser borrado."
+msgstr "This is a special test that can not be erased."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:192
+msgid ""
+"Está creado para simular una situación real, en la que poder probar "
+"QuickTest."
+msgstr ""
+"It is created to simulate a real situation, in which QuickTest to test."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:195
+msgid "Tiene 100 alumnos conectados."
+msgstr "It has 100 students connected."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:196
+msgid ""
+"Las distintas respuestas, ya han sido respondidas por un determinado número "
+"de usuarios"
+msgstr ""
+"The different responses have already been answered by a number of users"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:197
+msgid ""
+"Así se genera un contexto, en el que poder probar los diferentes comodines."
+msgstr "So the context is generated, in which to test different wildcards."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:201
+msgid "Para usarlo crea un actividad con idCuestionario=1."
+msgstr "To use creates an activity idCuestionario = 1."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:214
+msgid "¿Cómo puedo ocultar un cuestionario publicado?"
+msgstr "How I can hide a published test?"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:227
+msgid "1. Ocultando el cuestionario desde tu plataforma: "
+msgstr "1. Hiding the questionnaire from your platform:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:235
+msgid ""
+"Accede a tu plataforma, y ve al curso en el que se encuentra publicado el "
+"cuestionario. "
+msgstr "Access your platform, go to the course in which the test is published."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:238
+msgid "Activa la edicion de contenido. "
+msgstr "Enables the editing content."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:248
+msgid "Pon tu cuestionario como oculto. "
+msgstr "Put your questionnaire as hidden."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:264
+msgid "2. Eliminando el cuestionario, desde la página de gestión: "
+msgstr "2. Removing the questionnaire, from the management page:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:271
+msgid "Esta opción, NO elimina el enlace en tu plataforma LTI. "
+msgstr "This option does NOT remove the link to your LTI platform."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:279
+msgid "Abre el desplegable correspondiente al cuestionario que quieres borrar."
+msgstr "Open the corresponding pop to the test you want to delete."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:282
+msgid "Marca la opción de eliminar."
+msgstr "Mark the option to delete."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:309
+msgid "¿Qué es LTI?"
+msgstr "What is LTI?"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:338
+msgid ""
+"¿Es imprescindible acceder desde una plataforma LTI para usar QuickTest?"
+msgstr "Is it necessary access from a LTI platform to use QuickTest?"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:343
+msgid "Sí, "
+msgstr "Yes,"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:345
+msgid "por varios motivos:"
+msgstr "for several reasons:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:347
+msgid ""
+"Aumenta la seguridad al guardar tus calificaciones, en la plataforma desde "
+"la que accedes."
+msgstr ""
+"Increases security by keeping your skills on the platform from which you "
+"come."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:348
+msgid ""
+"Hace que QuickTest sea compatible para cualquier plataforma que cumpla con "
+"el estándar LTI."
+msgstr "It makes it compatible with any platform that meets the standard LTI."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:351
+msgid "Si accedes por otro cauce, verás una pantalla como la siguiente:"
+msgstr "If you access another channel, you'll see a screen like this:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:367
+msgid "He olvidado mi 'clave de cliente' o mi 'URL de inicio'."
+msgstr "I forgot my 'key customer' or my 'URL_Start'."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:374
+msgid "No hay problema, sólo necesitas: "
+msgstr "No problem, all you need:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:380
+msgid "Tu email. "
+msgstr "Your email."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:383
+msgid "Tu clave personal. "
+msgstr "Your password."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:392
+msgid "Clica "
+msgstr "Click"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:393
+msgid "aquí "
+msgstr "here"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/FAQ_View.php:394
+msgid "para recuperar tus datos."
+msgstr "to recover your data."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/accesoDenegado_View.php:10
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/accesoDenegado_View.php:48
+msgid "Acceso denegado"
+msgstr "Access denied"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/accesoDenegado_View.php:47
+msgid "Error"
+msgstr "Error"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/accesoDenegado_View.php:62
+msgid "Probablemente:"
+msgstr "Probably:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/accesoDenegado_View.php:66
+msgid "No estés accediendo a través de una plataforma LTI."
+msgstr "No're accessing through a LTI platform."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/accesoDenegado_View.php:69
+msgid "Tu clave de cliente (oauth_consumer_key) no sea la correcta."
+msgstr "Your client key (oauth_consumer_key) is not correct."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/accesoDenegado_View.php:72
+msgid ""
+"Se halla producido un error en la firma del documento, debido a que tu clave "
+"personal (Shared secret) no es correcta."
+msgstr ""
+"Is an error in signing the document, because your personal password (shared "
+"secret) is not correct."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/accesoDenegado_View.php:75
+msgid "Revisa estos datos en tu plataforma LTI y vuelve a intentarlo."
+msgstr "Please review this information on your LTI platform and try again."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/startQuickTest_View.php:122
+msgid "Diseño adaptativo"
+msgstr "Responsive design"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/startQuickTest_View.php:132
+msgid "Calificaciones seguras"
+msgstr "Safe ratings"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/startQuickTest_View.php:143
+msgid "Diviértete compitiendo"
+msgstr "Have fun competing"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/startQuickTest_View.php:173
+msgid "Accede a tu cuenta o regístrate para poder usar QuickTest"
+msgstr ""
+"We need this information so that you can receive access to the site and its "
+"content."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/startQuickTest_View.php:178
+msgid "Acceder/Registrarse"
+msgstr "Log in/Sign up"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/startQuickTest_View.php:201
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/startQuickTest_View.php:257
+msgid "Entrar"
+msgstr "Log in"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/startQuickTest_View.php:202
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/startQuickTest_View.php:328
+msgid "Registrarse"
+msgstr "Sign up"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/startQuickTest_View.php:203
+msgid "¿Por qué?"
+msgstr "Why?"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/startQuickTest_View.php:209
+msgid ""
+"Necesitamos esta información para poder ofrecerte un acceso seguro a "
+"QuickTest."
+msgstr ""
+"We need this information so that you can receive access to the site and its "
+"content."
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/startQuickTest_View.php:226
+msgid "Introduce tu email"
+msgstr "Enter your email"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/startQuickTest_View.php:236
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/startQuickTest_View.php:294
+msgid "Contraseña: "
+msgstr "Password:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/startQuickTest_View.php:242
+msgid "5 a 10 caracteres"
+msgstr "5-10 characters"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/startQuickTest_View.php:279
+msgid "nombreUsuario"
+msgstr "userName"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/startQuickTest_View.php:286
+msgid ""
+"Muy importante: Utiliza el mismo email, con el que accedes a tu plataforma "
+"LTI "
+msgstr "Important: Use the same email, with which you access your LTI platform"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/startQuickTest_View.php:310
+msgid "Confirmar contraseña: "
+msgstr "Confirm Password:"
+
+#: C:\xampp\htdocs\_QuickTest_TFG/app/views/managementView/startQuickTest_View.php:344
+msgid "Cerrar"
+msgstr "Close"
+
+#~ msgid ""
+#~ "Tiene como objetivo ofrecer una estructura uniforme para integrar "
+#~ "cualquier producto que cumpla con el estándar en una plataforma educativa."
+#~ msgstr ""
+#~ "It aims to provide a uniform to integrate any product that meets the "
+#~ "standard of an educational platform structure."
+
+#~ msgid "Configurar comodín amarillo"
+#~ msgstr "Set yellow wildcard"
+
+#~ msgid "HOLA Que TAL"
+#~ msgstr "fine"
+
+#~ msgid "Hola"
+#~ msgstr "hi"
+
+#~ msgid "CALIFICACIÓN GUARDADA. GRACIAS POR PARTICIPAR"
+#~ msgstr "SCORE SAVED. THANK YOU FOR PARTICIPATING"
+
+#~ msgid "Clica aqui para ver tu nota en el tablón"
+#~ msgstr "Click here to see your note on the board"
+
+#~ msgid "Clica aqui para EDITAR notas del tablón"
+#~ msgstr "Click here to edit grades board."
+
+#~ msgid "Título"
+#~ msgstr "Title"
+
+#~ msgid "Ocultar info"
+#~ msgstr "Ocultar info"
+
+#~ msgid "Ayuda"
+#~ msgstr "Help"
+
+#~ msgid "Si lo desea puede"
+#~ msgstr "If you want you can"
+
+#~ msgid ""
+#~ "Clica aqui para EDITAR notas del\n"
+#~ "            tablón"
+#~ msgstr "Click here to see your note on the board"
+
+#~ msgid ""
+#~ "La calificación se verá reducida, pero la nota final será <b>positiva</b> "
+#~ msgstr ""
+#~ "The score will be reduced, but the final score will be </b>positive</b>"
+
+#~ msgid "Penalizar respuesta incorrecta <b>Negativo</b>"
+#~ msgstr "Penalize wrong answer <b>Negative value</b>"
+
+#~ msgid ""
+#~ "La calificación se verá reducida, pero la nota final será <b>negativa</b> "
+#~ msgstr ""
+#~ "The score will be reduced, but the final score will be </b>negative</b>"
+
+#~ msgid "prueba STARTQUICKTAEST"
+#~ msgstr "it Works  startquicktest"
+
+#~ msgid "Accede a tu cuenta o regístrate para poder usar quickTest"
+#~ msgstr "Access your account or sign up to use QuickTest"
+
+#~ msgid "You have %d message"
+#~ msgid_plural "You have %d messages"
+#~ msgstr[0] "Usted tiene %d mensaje"
+#~ msgstr[1] "Usted tiene %d mensajes"
+
+#~ msgid "HOLA Q TALaaaaaa"
+#~ msgstr "how are yo"
+
+#~ msgid "Hello World"
+#~ msgstr "Hola Mundo"
+
+#~ msgid "This is an example."
+#~ msgstr "Este es un ejemplo."
+
+#~ msgid ""
+#~ "This is another example replacing the %site_name% many many times, so "
+#~ "%site_name% its never the same."
+#~ msgstr "Otro %site_name%"
+
+#~ msgid "This is an echo test"
+#~ msgstr "Esto es un test de eco"
+
+#~ msgid "%d orange"
+#~ msgid_plural "%d oranges"
+#~ msgstr[0] "%d naranja"
+#~ msgstr[1] "%d naranjas"
