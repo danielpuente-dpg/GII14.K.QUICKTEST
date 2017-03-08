@@ -1,8 +1,9 @@
 <?php
-require_once 'app/model/Cuestionario_Model.php';
-require_once 'app/model/Preguntas_Model.php';
-require_once 'app/model/Respuestas_Model.php';
-require_once 'app/model/Usuarios_Model.php';
+require_once '../model/Cuestionario_Model.php';
+require_once '../model/Preguntas_Model.php';
+require_once '../model/Respuestas_Model.php';
+require_once '../model/Usuarios_Model.php';
+require_once '../controller/Cuestionario_Gestionar_Controller.php';
 
 /**
  * @author Alejandro Martínez García <amg0098@alu.ubu.es>
@@ -49,7 +50,6 @@ class Cuestionario_CrearNuevo_Controller
             $idCuestionario = $datos['idCuestEditar'];
 
         } else {
-
 
             $idCuestionario = $cuestionarioModel->createCuestionario($datos['cuestTitulo'], $datos['idAsig'], $datos['nombreAsig'],
                 $datos['correctorVerdeTrue'], $datos['correctorVerdeFalse'],

@@ -39,7 +39,6 @@ class Alumno_has_cuestionario_Model extends Database
         $orden= $ord;
 
         $ok = mysqli_stmt_execute($query);
-
         if ($ok == FALSE) {
             echo "Error en la ejecucion de la consulta. <br />";
             echo "error : " . mysqli_stmt_error($query);

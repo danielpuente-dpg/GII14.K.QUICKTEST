@@ -1,5 +1,5 @@
 <?php
-require_once 'app/model/Usuarios_Model.php';
+require_once '../model/Usuarios_Model.php';
 
 
 /**
