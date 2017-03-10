@@ -401,7 +401,7 @@ class Cuestionario_Model extends Database
     /**
      * Realiza una copia de un cuestionario existente.
      * @param $idCuest. id cuestionario a duplicar.
-     * @return mixed. idCuestionario duplicado o False si hay error
+     * @return mixed. idCuestionario duplicado o False si hay error.
      */
     function duplicarCuestionario($idCuest)
     {

@@ -1,8 +1,8 @@
 <?php
-require_once '../model/Cuestionario_Model.php';
-require_once '../model/Preguntas_Model.php';
-require_once '../model/Respuestas_Model.php';
-require_once '../model/Usuarios_Model.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/model/Cuestionario_Model.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/model/Preguntas_Model.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/model/Respuestas_Model.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/model/Usuarios_Model.php';
 
 /**
  * @author Alejandro Martínez García <amg0098@alu.ubu.es>

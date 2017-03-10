@@ -7,8 +7,8 @@
  * Time: 10:48
  */
 
-require_once "../controller/Cuestionario_CrearNuevo_Controller.php";
-require_once "../controller/Cuestionario_Gestionar_Controller.php";
+require_once($_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/controller/Cuestionario_CrearNuevo_Controller.php');
+require_once($_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/controller/Cuestionario_Gestionar_Controller.php');
 
 /**
  * Class Cuestionario, esta clase se comunica con el Controlador o con el
@@ -163,7 +163,7 @@ class Cuestionario
 
     /**
      * Método encargado de borrar un Cuestionario, para ello se comunica con el Controlador
-     * @param $idCuestionario, Identificador del cuestionario a eliminar
+     * @param $idCuestionario , Identificador del cuestionario a eliminar
      * @return array, información sobre el estado de la ejecución
      * @throws APIException
      */

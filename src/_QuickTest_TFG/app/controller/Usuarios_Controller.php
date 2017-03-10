@@ -1,5 +1,5 @@
 <?php
-require_once '../model/Usuarios_Model.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/model/Usuarios_Model.php';
 
 
 /**

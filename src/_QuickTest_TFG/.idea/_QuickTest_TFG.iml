@@ -7,10 +7,10 @@
     <orderEntry type="module-library">
       <library name="PHP">
         <CLASSES>
-          <root url="file://$APPLICATION_HOME_DIR$/jre/jre/bin" />
+          <root url="file://C:/Windows/System32" />
         </CLASSES>
         <SOURCES>
-          <root url="file://$APPLICATION_HOME_DIR$/jre/jre/bin" />
+          <root url="file://C:/Windows/System32" />
         </SOURCES>
       </library>
     </orderEntry>

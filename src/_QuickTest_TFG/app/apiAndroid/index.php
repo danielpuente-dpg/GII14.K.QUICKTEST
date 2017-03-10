@@ -46,7 +46,7 @@ else
 
 // Obtener recurso
 $recurso = array_shift($peticion);
-$recursos_existentes = array('cuestionario', 'alumno', 'usuario');
+$recursos_existentes = array('cuestionario', 'usuario');
 
 // Comprobar si existe el recurso
 if (!in_array($recurso, $recursos_existentes)) {
