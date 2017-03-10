@@ -37,6 +37,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="Cuestionario.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/apiAndroid/modelos/Cuestionario.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="10" column="67" lean-forward="true" selection-start-line="10" selection-start-column="67" selection-end-line="10" selection-end-column="67" />
+              <folding>
+                <element signature="e#7#104#0#PHP" expanded="true" />
+                <element signature="n#get#0;n#Cuestionario#0;n#!!top" expanded="false" />
+                <element signature="n#post#0;n#Cuestionario#0;n#!!top" expanded="false" />
+                <element signature="n#delete#0;n#Cuestionario#0;n#!!top" expanded="false" />
+                <element signature="n#insertarCuestionario#0;n#Cuestionario#0;n#!!top" expanded="false" />
+                <element signature="n#duplicarCuestionario#0;n#Cuestionario#0;n#!!top" expanded="false" />
+                <element signature="n#borrarCuestionario#0;n#Cuestionario#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/apiAndroid/index.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -47,7 +65,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Usuario.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Usuario.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/apiAndroid/modelos/Usuario.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="550">
@@ -100,8 +118,8 @@
         <option value="$PROJECT_DIR$/app/apiAndroid/utilidades/Cuestionario.php" />
         <option value="$PROJECT_DIR$/app/apiAndroid/utilidades/ConstantesCuestionario.php" />
         <option value="$PROJECT_DIR$/app/controller/Cuestionario_Resolver_Controller.php" />
-        <option value="$PROJECT_DIR$/app/apiAndroid/modelos/Cuestionario.php" />
         <option value="$PROJECT_DIR$/app/apiAndroid/modelos/Usuario.php" />
+        <option value="$PROJECT_DIR$/app/apiAndroid/modelos/Cuestionario.php" />
       </list>
     </option>
   </component>
@@ -604,12 +622,12 @@
       <workItem from="1489006222750" duration="8503000" />
       <workItem from="1489058007248" duration="2092000" />
       <workItem from="1489141041716" duration="852000" />
-      <workItem from="1489143065380" duration="6104000" />
+      <workItem from="1489143065380" duration="6612000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57406000" />
+    <option name="totallyTimeSpent" value="57914000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1438,21 +1456,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/apiAndroid/modelos/Cuestionario.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
-          <folding>
-            <element signature="e#7#104#0#PHP" expanded="true" />
-            <element signature="n#get#0;n#Cuestionario#0;n#!!top" expanded="false" />
-            <element signature="n#post#0;n#Cuestionario#0;n#!!top" expanded="false" />
-            <element signature="n#delete#0;n#Cuestionario#0;n#!!top" expanded="false" />
-            <element signature="n#insertarCuestionario#0;n#Cuestionario#0;n#!!top" expanded="false" />
-            <element signature="n#duplicarCuestionario#0;n#Cuestionario#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controller/Cuestionario_CrearNuevo_Controller.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1672">
@@ -1475,6 +1478,22 @@
           <caret line="25" column="32" lean-forward="true" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
           <folding>
             <element signature="e#7#104#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiAndroid/modelos/Cuestionario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="10" column="67" lean-forward="true" selection-start-line="10" selection-start-column="67" selection-end-line="10" selection-end-column="67" />
+          <folding>
+            <element signature="e#7#104#0#PHP" expanded="true" />
+            <element signature="n#get#0;n#Cuestionario#0;n#!!top" expanded="false" />
+            <element signature="n#post#0;n#Cuestionario#0;n#!!top" expanded="false" />
+            <element signature="n#delete#0;n#Cuestionario#0;n#!!top" expanded="false" />
+            <element signature="n#insertarCuestionario#0;n#Cuestionario#0;n#!!top" expanded="false" />
+            <element signature="n#duplicarCuestionario#0;n#Cuestionario#0;n#!!top" expanded="false" />
+            <element signature="n#borrarCuestionario#0;n#Cuestionario#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>

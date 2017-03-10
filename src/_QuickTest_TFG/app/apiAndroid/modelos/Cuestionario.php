@@ -48,7 +48,7 @@ class Cuestionario
                 ];
         } else {
             throw new APIException(self::ESTADO_ERROR_PARAMETROS,
-                "Error al obtener. Falta el ID de Asignatura " . "<class> " . ConstantesCuestionario::class . " </class>",
+                "Error al obtener. Falta el ID de Asignatura " . "<class> " . Cuestionario::class . " </class>",
                 APIEstados::ESTADO_UNPROCESSABLE_ENTITY);
         }
 
@@ -70,7 +70,7 @@ class Cuestionario
             } else {
                 throw new APIException(self::ESTADO_ERROR_PARAMETROS,
                     "Error al obtener. Falta el ID de Cuestionario al duplicar"
-                    . "<class> " . ConstantesCuestionario::class . " </class>",
+                    . "<class> " . Cuestionario::class . " </class>",
                     APIEstados::ESTADO_UNPROCESSABLE_ENTITY);
             }
         } else if ($peticion[0] == 'insertar') {
@@ -78,12 +78,12 @@ class Cuestionario
                 return self::insertarCuestionario();
             } else {
                 throw new APIException(self::ESTADO_ERROR_PARAMETROS,
-                    "Error al insertar un cuestionario. Falta el ID de Cuestionario " . "<class> " . ConstantesCuestionario::class . " </class>",
+                    "Error al insertar un cuestionario. Falta el ID de Cuestionario " . "<class> " . Cuestionario::class . " </class>",
                     APIEstados::ESTADO_UNPROCESSABLE_ENTITY);
             }
         } else {
             throw new APIException(self::ESTADO_ERROR_PARAMETROS,
-                "Error al intentar insertar o duplicar un cuestionario " . "<class> " . ConstantesCuestionario::class . " </class>",
+                "Error al intentar insertar o duplicar un cuestionario " . "<class> " . Cuestionario::class . " </class>",
                 APIEstados::ESTADO_UNPROCESSABLE_ENTITY);
         }
 
@@ -98,26 +98,10 @@ class Cuestionario
     public static function delete($peticion)
     {
         if (!empty($peticion[0])) {
-
-            $cuestionario = new Cuestionario_Gestionar_Controller();
-            if ($cuestionario->borrarCuestionario($peticion[0])) {
-                // Respuesta OK
-                http_response_code(APIEstados::ESTADO_OK);
-                // Retornamos la informacion
-                return
-                    [
-                        "estado" => self::ESTADO_EXITO,
-                        "mensaje" => "Cuestionario eliminado correctamente"
-
-                    ];
-            } else {
-                throw new APIException(self::ESTADO_NO_ENCONTRADO,
-                    "El cuestionario que se intenta eliminar no existe", APIEstados::ESTADO_NOT_FOUND);
-            }
-
+            return self::borrarCuestionario($peticion[0]);
         } else {
             throw new APIException(self::ESTADO_ERROR_PARAMETROS,
-                "Error al eliminar un cuestionario. Falta el ID del Cuestionario " . "<class> " . ConstantesCuestionario::class . " </class>",
+                "Error al eliminar un cuestionario. Falta el ID del Cuestionario " . "<class> " . Cuestionario::class . " </class>",
                 APIEstados::ESTADO_UNPROCESSABLE_ENTITY);
         }
     }
@@ -174,6 +158,31 @@ class Cuestionario
         } else {
             throw new APIException(self::ESTADO_NO_ENCONTRADO,
                 "El cuestionario que se intenta duplicar no existe", APIEstados::ESTADO_NOT_FOUND);
+        }
+    }
+
+    /**
+     * Método encargado de borrar un Cuestionario, para ello se comunica con el Controlador
+     * @param $idCuestionario, Identificador del cuestionario a eliminar
+     * @return array, información sobre el estado de la ejecución
+     * @throws APIException
+     */
+    private static function borrarCuestionario($idCuestionario)
+    {
+        $cuestionario = new Cuestionario_Gestionar_Controller();
+        if ($cuestionario->borrarCuestionario($idCuestionario)) {
+            // Respuesta OK
+            http_response_code(APIEstados::ESTADO_OK);
+            // Retornamos la informacion
+            return
+                [
+                    "estado" => self::ESTADO_EXITO,
+                    "mensaje" => "Cuestionario eliminado correctamente"
+
+                ];
+        } else {
+            throw new APIException(self::ESTADO_NO_ENCONTRADO,
+                "El cuestionario que se intenta eliminar no existe", APIEstados::ESTADO_NOT_FOUND);
         }
     }
 
