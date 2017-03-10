@@ -37,22 +37,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Cuestionario.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/apiAndroid/modelos/Cuestionario.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="86" column="16" lean-forward="true" selection-start-line="86" selection-start-column="16" selection-end-line="94" selection-end-column="22" />
-              <folding>
-                <element signature="e#7#104#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/apiAndroid/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
+            <state relative-caret-position="363">
               <caret line="65" column="47" lean-forward="false" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
               <folding />
             </state>
@@ -62,21 +50,11 @@
       <file leaf-file-name="Usuario.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/apiAndroid/modelos/Usuario.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="726">
-              <caret line="33" column="39" lean-forward="true" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
+            <state relative-caret-position="550">
+              <caret line="25" column="32" lean-forward="true" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
               <folding>
                 <element signature="e#7#104#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Usuarios_Controller.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controller/Usuarios_Controller.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="35" column="56" lean-forward="false" selection-start-line="35" selection-start-column="56" selection-end-line="35" selection-end-column="56" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -106,7 +84,6 @@
         <option value="$PROJECT_DIR$/app/model/Alumno_has_cuestionario_Model.php" />
         <option value="$PROJECT_DIR$/app/model/Cuestionario_Model.php" />
         <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/app/controller/Cuestionario_Resolver_Controller.php" />
         <option value="$PROJECT_DIR$/app/apiAndroid/vista/APIVista.php" />
         <option value="$PROJECT_DIR$/app/apiAndroid/vista/APIVistaJSON.php" />
         <option value="$PROJECT_DIR$/app/apiAndroid/utilidades/ExcepcionApi.php" />
@@ -114,14 +91,16 @@
         <option value="$PROJECT_DIR$/app/apiAndroid/utilidades/APIEstados.php" />
         <option value="$PROJECT_DIR$/app/apiAndroid/.htaccess" />
         <option value="$PROJECT_DIR$/app/apiAndroid/utilidades/login_mysql.php" />
-        <option value="$PROJECT_DIR$/app/apiAndroid/utilidades/Cuestionario.php" />
         <option value="$PROJECT_DIR$/app/apiAndroid/modelos/APICuestionario.php" />
         <option value="$PROJECT_DIR$/app/controller/Cuestionario_CrearNuevo_Controller.php" />
         <option value="$PROJECT_DIR$/app/controller/Cuestionario_Gestionar_Controller.php" />
-        <option value="$PROJECT_DIR$/app/apiAndroid/modelos/Cuestionario.php" />
         <option value="$PROJECT_DIR$/app/apiAndroid/modelos/LTI_Keys_Users.php" />
         <option value="$PROJECT_DIR$/app/apiAndroid/index.php" />
         <option value="$PROJECT_DIR$/app/controller/Usuarios_Controller.php" />
+        <option value="$PROJECT_DIR$/app/apiAndroid/utilidades/Cuestionario.php" />
+        <option value="$PROJECT_DIR$/app/apiAndroid/utilidades/ConstantesCuestionario.php" />
+        <option value="$PROJECT_DIR$/app/controller/Cuestionario_Resolver_Controller.php" />
+        <option value="$PROJECT_DIR$/app/apiAndroid/modelos/Cuestionario.php" />
         <option value="$PROJECT_DIR$/app/apiAndroid/modelos/Usuario.php" />
       </list>
     </option>
@@ -140,10 +119,10 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1048" />
+    <option name="x" value="-1809" />
+    <option name="y" value="217" />
+    <option name="width" value="1818" />
+    <option name="height" value="1093" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -191,7 +170,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -444,6 +422,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -623,11 +602,14 @@
       <workItem from="1488445305807" duration="16439000" />
       <workItem from="1488963728386" duration="13714000" />
       <workItem from="1489006222750" duration="8503000" />
+      <workItem from="1489058007248" duration="2092000" />
+      <workItem from="1489141041716" duration="852000" />
+      <workItem from="1489143065380" duration="6104000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48358000" />
+    <option name="totallyTimeSpent" value="57406000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -650,10 +632,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="false" />
+    <frame x="-1809" y="217" width="1818" height="1093" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21041666" sideWeight="0.86165047" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22444445" sideWeight="0.86165047" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32692307" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32821077" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -992,7 +974,7 @@
           <option name="timeStamp" value="136" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="138" />
+      <option name="time" value="139" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1028,13 +1010,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_PHPUnit/model/Cuestionario_ModelTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6160">
-          <caret line="280" column="70" lean-forward="false" selection-start-line="280" selection-start-column="70" selection-end-line="280" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_PHPUnit/model/Database_ModelTest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1188">
@@ -1047,13 +1022,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="17" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_PHPUnit/model/Pregunta_ModelTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="802">
-          <caret line="297" column="86" lean-forward="false" selection-start-line="297" selection-start-column="86" selection-end-line="297" selection-end-column="86" />
         </state>
       </provider>
     </entry>
@@ -1193,24 +1161,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controller/LTI_Controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5596">
-          <caret line="61" column="33" lean-forward="false" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
-          <folding>
-            <marker date="1486986053066" expanded="true" signature="9288:9962" ph="..." />
-            <marker date="1486986053066" expanded="true" signature="9308:9510" ph="..." />
-            <marker date="1486986053066" expanded="true" signature="9341:9489" ph="..." />
-            <marker date="1486986053066" expanded="true" signature="9528:9934" ph="..." />
-            <marker date="1486986053066" expanded="true" signature="9554:9897" ph="..." />
-            <marker date="1486986053066" expanded="true" signature="9576:9888" ph="..." />
-            <marker date="1486986053066" expanded="true" signature="9599:9687" ph="..." />
-            <marker date="1486986053066" expanded="true" signature="9705:9865" ph="..." />
-            <marker date="1486986053066" expanded="true" signature="9730:9846" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/model/Alumno_Model.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
@@ -1268,34 +1218,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/apiAndroid/utilidades/Cuestionario.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/apiAndroid/utilidades/APIEstados.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="10" lean-forward="false" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/apiAndroid/vista/APIVista.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="12" column="65" lean-forward="false" selection-start-line="12" selection-start-column="65" selection-end-line="12" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/apiAndroid/utilidades/APIException.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1314,7 +1240,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
           <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1341,58 +1266,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controller/Cuestionario_CrearNuevo_Controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="83" column="61" lean-forward="true" selection-start-line="83" selection-start-column="61" selection-end-line="83" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controller/Cuestionario_Resolver_Controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13508">
-          <caret line="614" column="60" lean-forward="false" selection-start-line="614" selection-start-column="60" selection-end-line="614" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/Cuestionario_Model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding>
-            <marker date="1488277395779" expanded="true" signature="635:1064" ph="SELECT idCue... cuestionario" />
-            <marker date="1488277395779" expanded="true" signature="2819:2909" ph="SELECT conta... cuestionario" />
-            <marker date="1488277395779" expanded="true" signature="3880:3991" ph="UPDATE cuest... " />
-            <marker date="1488277395779" expanded="true" signature="5419:5823" ph="INSERT INTO cuestionario" />
-            <marker date="1488277395779" expanded="true" signature="7974:8396" ph="INSERT INTO cuestionario" />
-            <marker date="1488277395779" expanded="true" signature="9675:9841" ph="SELECT idCue... cuestionario" />
-            <marker date="1488277395779" expanded="true" signature="10933:11203" ph="SELECT corre... cuestionario" />
-            <marker date="1488277395779" expanded="true" signature="12472:12564" ph="DELETE FROM " />
-            <marker date="1488277395779" expanded="true" signature="13417:14248" ph="insert into cuestionario... " />
-            <marker date="1488277395779" expanded="true" signature="13813:14248" ph="select conca... cuestionario" />
-            <marker date="1488277395779" expanded="true" signature="15639:16048" ph="SELECT idCue... cuestionario" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/Preguntas_Model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-104">
-          <caret line="71" column="13" lean-forward="false" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
-          <folding>
-            <marker date="1486986053090" expanded="true" signature="620:866" ph="SELECT pregu... cuestionario" />
-            <marker date="1486986053090" expanded="true" signature="2013:2249" ph="SELECT idPre... pregunta" />
-            <marker date="1486986053090" expanded="true" signature="3553:3715" ph="SELECT count... pregunta" />
-            <marker date="1486986053090" expanded="true" signature="4675:4852" ph="INSERT INTO pregunta... " />
-            <marker date="1486986053090" expanded="true" signature="5952:6038" ph="SELECT max_p... pregunta" />
-            <marker date="1486986053090" expanded="true" signature="6943:7244" ph="SELECT sum(`... pregunta" />
-            <marker date="1486986053090" expanded="true" signature="8154:8422" ph="SELECT idPre... pregunta" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/cuestionarioView/cuestionario_Duplicar_View.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-10084">
@@ -1401,45 +1274,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controller/Cuestionario_Gestionar_Controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="101" column="49" lean-forward="false" selection-start-line="101" selection-start-column="49" selection-end-line="101" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="84" column="45" lean-forward="false" selection-start-line="84" selection-start-column="45" selection-end-line="84" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/Core.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
           <caret line="384" column="9" lean-forward="false" selection-start-line="384" selection-start-column="9" selection-end-line="384" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/apiAndroid/modelos/Cuestionario.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="86" column="16" lean-forward="true" selection-start-line="86" selection-start-column="16" selection-end-line="94" selection-end-column="22" />
-          <folding>
-            <element signature="e#7#104#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/apiAndroid/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="65" column="47" lean-forward="false" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1456,18 +1294,185 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test_PHPUnit/model/Pregunta_ModelTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="42" column="45" lean-forward="false" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/Preguntas_Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="155" column="20" lean-forward="true" selection-start-line="155" selection-start-column="20" selection-end-line="155" selection-end-column="20" />
+          <folding>
+            <marker date="1486986053090" expanded="true" signature="620:866" ph="SELECT pregu... cuestionario" />
+            <marker date="1486986053090" expanded="true" signature="2013:2249" ph="SELECT idPre... pregunta" />
+            <marker date="1486986053090" expanded="true" signature="3553:3715" ph="SELECT count... pregunta" />
+            <marker date="1486986053090" expanded="true" signature="4675:4852" ph="INSERT INTO pregunta... " />
+            <marker date="1486986053090" expanded="true" signature="5952:6038" ph="SELECT max_p... pregunta" />
+            <marker date="1486986053090" expanded="true" signature="6943:7244" ph="SELECT sum(`... pregunta" />
+            <marker date="1486986053090" expanded="true" signature="8154:8422" ph="SELECT idPre... pregunta" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiAndroid/utilidades/ConstantesCuestionario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiAndroid/utilidades/APIException.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiAndroid/utilidades/APIEstados.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" column="10" lean-forward="false" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_PHPUnit/model/Cuestionario_ModelTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="337" column="65" lean-forward="false" selection-start-line="337" selection-start-column="65" selection-end-line="337" selection-end-column="65" />
+          <folding>
+            <marker date="1486986053892" expanded="true" signature="1057:1090" ph="SELECT COUNT... cuestionario" />
+            <marker date="1486986053892" expanded="true" signature="1703:1736" ph="SELECT COUNT... cuestionario" />
+            <marker date="1486986053892" expanded="true" signature="2055:2103" ph="DELETE FROM " />
+            <marker date="1486986053892" expanded="true" signature="2614:2647" ph="SELECT COUNT... cuestionario" />
+            <marker date="1486986053892" expanded="true" signature="3306:3339" ph="SELECT COUNT... cuestionario" />
+            <marker date="1486986053892" expanded="true" signature="3695:3743" ph="DELETE FROM " />
+            <marker date="1486986053892" expanded="true" signature="5295:5343" ph="DELETE FROM " />
+            <marker date="1486986053892" expanded="true" signature="8438:8486" ph="DELETE FROM " />
+            <marker date="1486986053892" expanded="true" signature="9033:9181" ph="INSERT INTO cuestionario... " />
+            <marker date="1486986053892" expanded="true" signature="9589:9637" ph="DELETE FROM " />
+            <marker date="1486986053892" expanded="true" signature="10122:10234" ph="INSERT INTO cuestionario... " />
+            <marker date="1486986053892" expanded="true" signature="11219:11252" ph="SELECT COUNT... cuestionario" />
+            <marker date="1486986053892" expanded="true" signature="11597:11630" ph="SELECT COUNT... cuestionario" />
+            <marker date="1486986053892" expanded="true" signature="11951:11999" ph="DELETE FROM " />
+            <marker date="1486986053892" expanded="true" signature="12141:12189" ph="DELETE FROM " />
+            <marker date="1486986053892" expanded="true" signature="13037:13100" ph="SELECT conta... cuestionario" />
+            <marker date="1486986053892" expanded="true" signature="13471:13519" ph="DELETE FROM " />
+            <marker date="1486986053892" expanded="true" signature="15083:15131" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/Cuestionario_Resolver_Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5082">
+          <caret line="561" column="9" lean-forward="true" selection-start-line="561" selection-start-column="8" selection-end-line="561" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/LTI_Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="61" column="33" lean-forward="false" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
+          <folding>
+            <marker date="1486986053066" expanded="true" signature="9288:9962" ph="..." />
+            <marker date="1486986053066" expanded="true" signature="9308:9510" ph="..." />
+            <marker date="1486986053066" expanded="true" signature="9341:9489" ph="..." />
+            <marker date="1486986053066" expanded="true" signature="9528:9934" ph="..." />
+            <marker date="1486986053066" expanded="true" signature="9554:9897" ph="..." />
+            <marker date="1486986053066" expanded="true" signature="9576:9888" ph="..." />
+            <marker date="1486986053066" expanded="true" signature="9599:9687" ph="..." />
+            <marker date="1486986053066" expanded="true" signature="9705:9865" ph="..." />
+            <marker date="1486986053066" expanded="true" signature="9730:9846" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/controller/Usuarios_Controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
+        <state relative-caret-position="-2695">
           <caret line="35" column="56" lean-forward="false" selection-start-line="35" selection-start-column="56" selection-end-line="35" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="76" column="44" lean-forward="false" selection-start-line="76" selection-start-column="44" selection-end-line="76" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/Cuestionario_Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="279" column="13" lean-forward="false" selection-start-line="279" selection-start-column="13" selection-end-line="279" selection-end-column="13" />
+          <folding>
+            <marker date="1488277395779" expanded="true" signature="635:1064" ph="SELECT idCue... cuestionario" />
+            <marker date="1488277395779" expanded="true" signature="2819:2909" ph="SELECT conta... cuestionario" />
+            <marker date="1488277395779" expanded="true" signature="3880:3991" ph="UPDATE cuest... " />
+            <marker date="1488277395779" expanded="true" signature="5419:5823" ph="INSERT INTO cuestionario" />
+            <marker date="1488277395779" expanded="true" signature="7974:8396" ph="INSERT INTO cuestionario" />
+            <marker date="1488277395779" expanded="true" signature="9675:9841" ph="SELECT idCue... cuestionario" />
+            <marker date="1488277395779" expanded="true" signature="10933:11203" ph="SELECT corre... cuestionario" />
+            <marker date="1488277395779" expanded="true" signature="12472:12564" ph="DELETE FROM " />
+            <marker date="1488277395779" expanded="true" signature="13417:14248" ph="insert into cuestionario... " />
+            <marker date="1488277395779" expanded="true" signature="13813:14248" ph="select conca... cuestionario" />
+            <marker date="1488277395779" expanded="true" signature="15639:16048" ph="SELECT idCue... cuestionario" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/Cuestionario_Gestionar_Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="487">
+          <caret line="128" column="13" lean-forward="false" selection-start-line="128" selection-start-column="13" selection-end-line="128" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiAndroid/modelos/Cuestionario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+          <folding>
+            <element signature="e#7#104#0#PHP" expanded="true" />
+            <element signature="n#get#0;n#Cuestionario#0;n#!!top" expanded="false" />
+            <element signature="n#post#0;n#Cuestionario#0;n#!!top" expanded="false" />
+            <element signature="n#delete#0;n#Cuestionario#0;n#!!top" expanded="false" />
+            <element signature="n#insertarCuestionario#0;n#Cuestionario#0;n#!!top" expanded="false" />
+            <element signature="n#duplicarCuestionario#0;n#Cuestionario#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/Cuestionario_CrearNuevo_Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1672">
+          <caret line="76" column="52" lean-forward="false" selection-start-line="76" selection-start-column="52" selection-end-line="76" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiAndroid/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="65" column="47" lean-forward="false" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/apiAndroid/modelos/Usuario.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="33" column="39" lean-forward="true" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
+        <state relative-caret-position="550">
+          <caret line="25" column="32" lean-forward="true" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
           <folding>
             <element signature="e#7#104#0#PHP" expanded="true" />
           </folding>

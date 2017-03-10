@@ -6,7 +6,7 @@
  * Date: 08/03/2017
  * Time: 10:50
  */
-class Cuestionario
+class ConstantesCuestionario
 {
     const NOMBRE_TABLA = "cuestionario";
     const ID_CUESTIONARIO = "idCuestionario";

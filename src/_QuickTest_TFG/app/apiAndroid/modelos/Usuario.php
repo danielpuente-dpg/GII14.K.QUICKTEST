@@ -11,10 +11,11 @@ require_once "../controller/Usuarios_Controller.php";
 
 class Usuario
 {
-    const ESTADO_ERROR_PARAMETROS = 4;
+
     const ESTADO_EXITO = 1;
     const ESTADO_NO_ENCONTRADO = 2;
     const ESTADO_USER_EXISTE = 3;
+    const ESTADO_ERROR_PARAMETROS = 4;
 
     public static function post($peticion)
     {
@@ -26,7 +27,7 @@ class Usuario
             return self::login();
         } else {
             throw new APIException(self::ESTADO_ERROR_PARAMETROS,
-                "Error al añadir/editar un cuestionario " . "<class> " . Cuestionario::class . " </class>",
+                "Error al añadir/editar un cuestionario " . "<class> " . ConstantesCuestionario::class . " </class>",
                 APIEstados::ESTADO_UNPROCESSABLE_ENTITY);
         }
     }
@@ -37,7 +38,7 @@ class Usuario
         $usuario = json_decode($cuerpo, true);
 
         $usuarioController = new Usuarios_Controller();
-        if($usuarioController->registrarNuevoUsuario($usuario['email'], $usuario['password'])){
+        if ($usuarioController->registrarNuevoUsuario($usuario['email'], $usuario['password'])) {
             // TODO devuelve una vista del contenido, seria podria hacer un metodo aparte para la recoleccion de esta informacion
             // Respuesta OK
             http_response_code(APIEstados::ESTADO_OK);
@@ -48,7 +49,7 @@ class Usuario
                     "mensaje" => "Registro de usuario realizado correctamente"
 
                 ];
-        }else{
+        } else {
             throw new APIException(self::ESTADO_USER_EXISTE,
                 "Error en su email de usuario, ya existe", APIEstados::ESTADO_METHOD_NOT_ALLOWED);
         }
@@ -66,7 +67,7 @@ class Usuario
         $usuarioController = new Usuarios_Controller();
 
         // Si es 1, permite el accesp
-        if($usuarioController->login($usuario['email'], $usuario['password']) == 1){
+        if ($usuarioController->login($usuario['email'], $usuario['password']) == 1) {
 
             // TODO devuelve una vista del contenido, seria podria hacer un metodo aparte para la recoleccion de esta informacion
             // Respuesta OK
@@ -78,10 +79,10 @@ class Usuario
                     "mensaje" => "Inicio de sesion correctamente"
 
                 ];
-        // Sino, es 0, deniega
-        }else{
+            // Sino, es 0, deniega
+        } else {
             throw new APIException(self::ESTADO_NO_ENCONTRADO,
-                    "Los campos son erroneos o no existen", APIEstados::ESTADO_NOT_FOUND);
+                "Los campos son erroneos o no existen", APIEstados::ESTADO_NOT_FOUND);
         }
 
 
