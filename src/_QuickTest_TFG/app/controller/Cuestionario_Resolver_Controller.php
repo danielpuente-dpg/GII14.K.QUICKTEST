@@ -1,11 +1,11 @@
 <?php
-require_once 'app/model/Cuestionario_Model.php';
-require_once 'app/model/Preguntas_Model.php';
-require_once 'app/model/Respuestas_Model.php';
-require_once 'app/model/Alumno_Model.php';
-require_once 'app/model/Alumno_has_cuestionario_Model.php';
-require_once 'app/model/Alumno_has_respuesta_Model.php';
-require_once 'app/model/Usuarios_Model.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/model/Cuestionario_Model.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/model/Preguntas_Model.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/model/Respuestas_Model.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/model/Alumno_Model.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/model/Alumno_has_cuestionario_Model.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/model/Alumno_has_respuesta_Model.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/model/Usuarios_Model.php';
 /**
  * @author Alejandro Martínez García <amg0098@alu.ubu.es>
  * @version 1.0.

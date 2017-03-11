@@ -11,6 +11,7 @@ require 'utilidades/APIException.php';
 require 'vista/APIVistaJSON.php';
 require 'modelos/Cuestionario.php';
 require 'modelos/Usuario.php';
+require 'modelos/Alumno.php';
 require 'utilidades/APIEstados.php';
 
 
@@ -46,7 +47,7 @@ else
 
 // Obtener recurso
 $recurso = array_shift($peticion);
-$recursos_existentes = array('cuestionario', 'usuario');
+$recursos_existentes = array('cuestionario', 'usuario', 'alumno');
 
 // Comprobar si existe el recurso
 if (!in_array($recurso, $recursos_existentes)) {

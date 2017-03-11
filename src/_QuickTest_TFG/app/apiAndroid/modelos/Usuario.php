@@ -38,7 +38,7 @@ class Usuario
             return self::login();
         } else {
             throw new APIException(self::ESTADO_ERROR_PARAMETROS,
-                "Error al añadir/editar un cuestionario " . "<class> " . Cuestionario::class . " </class>",
+                "Error al añadir/editar un cuestionario " . "<class> " . Usuario::class . " </class>",
                 APIEstados::ESTADO_UNPROCESSABLE_ENTITY);
         }
     }
