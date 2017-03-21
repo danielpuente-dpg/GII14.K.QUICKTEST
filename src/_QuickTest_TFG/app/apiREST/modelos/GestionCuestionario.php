@@ -11,11 +11,11 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/controller/Cuestio
 require_once($_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/controller/Cuestionario_Gestionar_Controller.php');
 
 /**
- * Class Cuestionario, esta clase se comunica con el Controlador o con el
+ * Class GestionCuestionario, esta clase se comunica con el Controlador o con el
  * Modelo para el tratamiento de todas las lógicas relacionadas con un
  * cuestionario.
  */
-class Cuestionario
+class GestionCuestionario
 {
     /**
      * Constantes de estado para los mensajes de salida
@@ -48,7 +48,7 @@ class Cuestionario
                 ];
         } else {
             throw new APIException(self::ESTADO_ERROR_PARAMETROS,
-                "Error al obtener. Falta el ID de Asignatura " . "<class> " . Cuestionario::class . " </class>",
+                "Error al obtener. Falta el ID de Asignatura " . "<class> " . GestionCuestionario::class . " </class>",
                 APIEstados::ESTADO_UNPROCESSABLE_ENTITY);
         }
 
@@ -70,20 +70,14 @@ class Cuestionario
             } else {
                 throw new APIException(self::ESTADO_ERROR_PARAMETROS,
                     "Error al obtener. Falta el ID de Cuestionario al duplicar"
-                    . "<class> " . Cuestionario::class . " </class>",
+                    . "<class> " . GestionCuestionario::class . " </class>",
                     APIEstados::ESTADO_UNPROCESSABLE_ENTITY);
             }
         } else if ($peticion[0] == 'insertar') {
-            if (isset($peticion[1])) {
                 return self::insertarCuestionario();
-            } else {
-                throw new APIException(self::ESTADO_ERROR_PARAMETROS,
-                    "Error al insertar un cuestionario. Falta el ID de Cuestionario " . "<class> " . Cuestionario::class . " </class>",
-                    APIEstados::ESTADO_UNPROCESSABLE_ENTITY);
-            }
         } else {
             throw new APIException(self::ESTADO_ERROR_PARAMETROS,
-                "Error al intentar insertar o duplicar un cuestionario " . "<class> " . Cuestionario::class . " </class>",
+                "Error al intentar insertar o duplicar un cuestionario " . "<class> " . GestionCuestionario::class . " </class>",
                 APIEstados::ESTADO_UNPROCESSABLE_ENTITY);
         }
 
@@ -101,7 +95,7 @@ class Cuestionario
             return self::borrarCuestionario($peticion[0]);
         } else {
             throw new APIException(self::ESTADO_ERROR_PARAMETROS,
-                "Error al eliminar un cuestionario. Falta el ID del Cuestionario " . "<class> " . Cuestionario::class . " </class>",
+                "Error al eliminar un cuestionario. Falta el ID del Cuestionario " . "<class> " . GestionCuestionario::class . " </class>",
                 APIEstados::ESTADO_UNPROCESSABLE_ENTITY);
         }
     }
@@ -131,21 +125,22 @@ class Cuestionario
 
         } else {
             throw new APIException(self::ESTADO_ERROR_PARAMETROS,
-                "Error al añadir/editar un cuestionario " . "<class> " . ConstantesCuestionario::class . " </class>",
+                "Error al añadir/editar un cuestionario " . "<class> " . GestionCuestionario::class . " </class>",
                 APIEstados::ESTADO_UNPROCESSABLE_ENTITY);
         }
     }
 
     /**
-     * Método encargado de duplicar un Cuestionario, para ello se comunica con el Modelo
+     * Método encargado de duplicar un Cuestionario, para ello se comunica con el Controlador
      * @param $idCuestionario , Identificador del cuestionario a duplicar
      * @return array, información sobre el estado de la ejecución
      * @throws APIException
      */
     private static function duplicarCuestionario($idCuestionario)
     {
-        $cuestionarioModel = new Cuestionario_Model();
-        $retorno = $cuestionarioModel->duplicarCuestionario($idCuestionario);
+        //$cuestionarioModel = new Cuestionario_Model();
+        $cuestionario = new Cuestionario_Gestionar_Controller();
+        $retorno = $cuestionario->duplicarCuestionarioExistente($idCuestionario);
 
         if (isset($retorno)) {
             // Establecemos la respuesta indicando que se creo un recurso

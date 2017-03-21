@@ -1,7 +1,8 @@
 <?php
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/Usuarios_Controller.php";
+//require_once $_SERVER["DOCUMENT_ROOT"] . "/_QuickTest_TFG/app/controller/Usuarios_Controller.php";
 
+require_once "D:/xampp/htdocs" . "/_QuickTest_TFG/app/controller/Usuarios_Controller.php";
 
 /**
  * @author Alejandro Martínez García

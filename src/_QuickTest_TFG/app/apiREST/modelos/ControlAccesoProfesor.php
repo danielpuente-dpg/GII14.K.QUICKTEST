@@ -10,10 +10,11 @@
 require_once($_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/controller/Usuarios_Controller.php');
 
 /**
+ * ControlAcesoProfesor
  * Class Usuario, esta clase se comunica con el Controlador para el tratamiento de toda
  * la lógica del acceso y registro de QuickTest
  */
-class Usuario
+class ControlAccesoProfesor
 {
     /**
      * Constantes de estado para los mensajes de salida
@@ -38,7 +39,7 @@ class Usuario
             return self::login();
         } else {
             throw new APIException(self::ESTADO_ERROR_PARAMETROS,
-                "Error al añadir/editar un cuestionario " . "<class> " . Usuario::class . " </class>",
+                "Error al añadir/editar un cuestionario " . "<class> " . ControlAccesoProfesor::class . " </class>",
                 APIEstados::ESTADO_UNPROCESSABLE_ENTITY);
         }
     }
@@ -57,7 +58,6 @@ class Usuario
 
         $usuarioController = new Usuarios_Controller();
         if ($usuarioController->registrarNuevoUsuario($usuario['email'], $usuario['password'])) {
-            // TODO devuelve una vista del contenido, seria podria hacer un metodo aparte para la recoleccion de esta informacion
             // Respuesta OK
             http_response_code(APIEstados::ESTADO_OK);
             // Retornamos la informacion
@@ -108,8 +108,8 @@ class Usuario
         }
 
 
-        // Autenticar - Ok
-        // Obtener datos de usuario - TODO Si es preciso
+        // Autenticar - OK
+        // Obtener datos de usuario - OK
         // Imprimir respuesta - OK
     }
 

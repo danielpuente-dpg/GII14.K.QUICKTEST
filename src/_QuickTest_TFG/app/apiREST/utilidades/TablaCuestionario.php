@@ -3,10 +3,10 @@
 /**
  * Created by PhpStorm.
  * User: Daniel
- * Date: 08/03/2017
- * Time: 10:50
+ * Date: 21/03/2017
+ * Time: 13:35
  */
-class ConstantesCuestionario
+abstract class TablaCuestionario
 {
     const NOMBRE_TABLA = "cuestionario";
     const ID_CUESTIONARIO = "idCuestionario";
@@ -19,6 +19,4 @@ class ConstantesCuestionario
     const CORRECTOR_VERDE_FALSE = "correctorVerdeFalse";
     const CORRECTOR_AMARILLO_TRUE = "correctorAmarilloTrue";
     const CORRECTOR_AMARILLO_FALSE = "correctorAmarilloFalse";
-
-
 }

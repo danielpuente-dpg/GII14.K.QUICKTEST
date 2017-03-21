@@ -137,6 +137,24 @@ class Cuestionario_Gestionar_Controller
         }
         return false;
     }
+
+    /**
+     * Método añadido al controlador de partida en esta segunda versión de la aplicación al no existir en
+     * el controlador. Se encarga de duplicar un cuestionario dado.
+     * @param $idCuestionario, identificador del cuestionario a duplicar
+     * @return bool, True si el cuestionario fue duplicado, sino False
+     */
+    function duplicarCuestionarioExistente($idCuestionario)
+    {
+        $cuestionarioModel = new Cuestionario_Model();
+        $cuestDuplicado = $cuestionarioModel->duplicarCuestionario($idCuestionario);
+
+        if (isset($cuestCuplicado)) {
+            return true;
+        }
+        return false;
+    }
+
 }
 
 ?>

@@ -66,7 +66,7 @@ class LTI_Controller
      * Devuelve el idCuestionario  que la tarea del LTI_Consumer desde la que se ha accedido, tiene configurado.
      * @return bool. Devuelve el cuestionario, o false, si no está configurado.
      */
-        function get_custom_idcuestionario()
+    function get_custom_idcuestionario()
     {
 
         $lti_Model = new LTI_Model();

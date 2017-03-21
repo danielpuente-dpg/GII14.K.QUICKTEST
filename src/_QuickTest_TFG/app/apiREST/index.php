@@ -5,13 +5,12 @@
  * Date: 08/03/2017
  * Time: 10:35
  */
-//print $_GET['PATH_INFO'];
 
 require 'utilidades/APIException.php';
 require 'vista/APIVistaJSON.php';
-require 'modelos/Cuestionario.php';
-require 'modelos/Usuario.php';
-require 'modelos/Alumno.php';
+require 'modelos/ControlAccesoProfesor.php';
+require 'modelos/GestionCuestionario.php';
+require 'modelos/SolucionCuestionario.php';
 require 'utilidades/APIEstados.php';
 
 
@@ -47,7 +46,7 @@ else
 
 // Obtener recurso
 $recurso = array_shift($peticion);
-$recursos_existentes = array('cuestionario', 'usuario', 'alumno');
+$recursos_existentes = array('gestionCuestionario', 'controlAccesoProfesor', 'solucionCuestionario');
 
 // Comprobar si existe el recurso
 if (!in_array($recurso, $recursos_existentes)) {
