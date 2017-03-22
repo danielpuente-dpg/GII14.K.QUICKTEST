@@ -1,4 +1,9 @@
 <?php
+
+if (empty($_SERVER["DOCUMENT_ROOT"])){
+    $_SERVER["DOCUMENT_ROOT"] = $URL_GLOBAL;
+}
+
 require_once $_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/model/Usuarios_Model.php';
 
 

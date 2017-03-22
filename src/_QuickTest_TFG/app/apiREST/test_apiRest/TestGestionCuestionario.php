@@ -10,7 +10,7 @@
 require_once('../utilidades/Defines.php');
 
 require_once($URL_GLOBAL . '/_QuickTest_TFG/app/model/Database.class.php');
-require_once($URL_GLOBAL . '/_QuickTest_TFG/app/apiREST/utilidades/TablaCuestionario.php');
+require_once($URL_GLOBAL . '/_QuickTest_TFG/app/apiREST/test_apiRest/TablaCuestionario.php');
 require_once($URL_GLOBAL . '/_QuickTest_TFG/app/model/Cuestionario_Model.php');
 require_once($URL_GLOBAL . '/_QuickTest_TFG/app/controller/Cuestionario_CrearNuevo_Controller.php');
 
@@ -66,11 +66,16 @@ class TestGestionCuestionario extends PHPUnit_Framework_TestCase
         // No existe un metodo sobre el controlador asi que lo comprobamos sobre la propia BD
         // Obtenemos el titulo del cuestionario que hemos añadido anteriormente
         $mysqli = new mysqli("localhost", "root", "", "quicktest_tfg");
-        $resultado = $mysqli->query(
-            "SELECT titulo FROM cuestionario ORDER BY idCuestionario DESC LIMIT 1; ");
+
+        $resultado = $mysqli->query("SELECT " . TablaCuestionario::TITULO .
+                        " FROM " . TablaCuestionario::NOMBRE_TABLA .
+                        " ORDER BY " . TablaCuestionario::ID_CUESTIONARIO .
+                        " DESC LIMIT 1" );
+
         $fila = $resultado->fetch_row();
         $titulo = $fila[0];
-        // Comprobamos que se llama igual
+
+        // Comprobamos que tenga el mismo titulo de cuestionario
         $this->assertEquals("Cuestionario de test", $titulo);
     }
 
@@ -81,8 +86,12 @@ class TestGestionCuestionario extends PHPUnit_Framework_TestCase
 
         // Obtenemos el Id del cuestionario a duplicar
         $mysqli = new mysqli("localhost", "root", "", "quicktest_tfg");
-        $resultado = $mysqli->query(
-            "SELECT idCuestionario FROM cuestionario ORDER BY idCuestionario DESC LIMIT 1; ");
+
+        $resultado = $mysqli->query("SELECT " . TablaCuestionario::ID_CUESTIONARIO .
+                    " FROM " . TablaCuestionario::NOMBRE_TABLA .
+                    " ORDER BY " . TablaCuestionario::ID_CUESTIONARIO .
+                    " DESC LIMIT 1");
+
         $fila = $resultado->fetch_row();
         $idCuestionario = $fila[0];
 
@@ -100,8 +109,12 @@ class TestGestionCuestionario extends PHPUnit_Framework_TestCase
 
         // Obtenemos los dos Id de los cuestionarios añadidos anteriormente
         $mysqli = new mysqli("localhost", "root", "", "quicktest_tfg");
-        $resultado = $mysqli->query(
-            "SELECT idCuestionario FROM cuestionario ORDER BY idCuestionario DESC LIMIT 2; ");
+
+        $resultado = $mysqli->query("SELECT " . TablaCuestionario::ID_CUESTIONARIO .
+                        " FROM " . TablaCuestionario::NOMBRE_TABLA .
+                        " ORDER BY " . TablaCuestionario::ID_CUESTIONARIO .
+                        " DESC LIMIT 2");
+
         $fila = $resultado->fetch_row();
         $idCuestionario = $fila[0];
         $fila = $resultado->fetch_row();
