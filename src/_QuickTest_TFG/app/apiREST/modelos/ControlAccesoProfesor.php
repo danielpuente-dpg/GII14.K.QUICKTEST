@@ -7,7 +7,10 @@
  * Time: 23:09
  */
 
-require_once($_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/controller/Usuarios_Controller.php');
+if (!empty($_SERVER["DOCUMENT_ROOT"]))
+    $URL_GLOBAL = $_SERVER["DOCUMENT_ROOT"];
+
+require_once($URL_GLOBAL . '/_QuickTest_TFG/app/controller/Usuarios_Controller.php');
 
 /**
  * ControlAcesoProfesor

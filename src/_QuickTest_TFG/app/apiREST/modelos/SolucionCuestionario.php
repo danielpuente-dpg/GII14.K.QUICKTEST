@@ -7,11 +7,14 @@
  * Time: 18:17
  */
 
-require_once($_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/model/Alumno_has_cuestionario_Model.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/controller/Cuestionario_Resolver_Controller.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/model/Preguntas_Model.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/model/Respuestas_Model.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/controller/LTI_Controller.php');
+if (!empty($_SERVER["DOCUMENT_ROOT"]))
+    $URL_GLOBAL = $_SERVER["DOCUMENT_ROOT"];
+
+require_once($URL_GLOBAL . '/_QuickTest_TFG/app/model/Alumno_has_cuestionario_Model.php');
+require_once($URL_GLOBAL . '/_QuickTest_TFG/app/controller/Cuestionario_Resolver_Controller.php');
+require_once($URL_GLOBAL . '/_QuickTest_TFG/app/model/Preguntas_Model.php');
+require_once($URL_GLOBAL . '/_QuickTest_TFG/app/model/Respuestas_Model.php');
+require_once($URL_GLOBAL . '/_QuickTest_TFG/app/controller/LTI_Controller.php');
 
 /**
  *

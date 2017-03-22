@@ -13,6 +13,8 @@ require 'modelos/GestionCuestionario.php';
 require 'modelos/SolucionCuestionario.php';
 require 'utilidades/APIEstados.php';
 
+global $RAIZ;
+$RAIZ = "D:/xampp/htdocs";
 
 // Constantes de estado
 const ESTADO_URL_INCORRECTA = 2;

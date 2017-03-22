@@ -7,8 +7,12 @@
  * Time: 10:48
  */
 
-require_once($_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/controller/Cuestionario_CrearNuevo_Controller.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/controller/Cuestionario_Gestionar_Controller.php');
+if (!empty($_SERVER["DOCUMENT_ROOT"]))
+    $URL_GLOBAL = $_SERVER["DOCUMENT_ROOT"];
+
+
+require_once($URL_GLOBAL . '/_QuickTest_TFG/app/controller/Cuestionario_CrearNuevo_Controller.php');
+require_once($URL_GLOBAL . '/_QuickTest_TFG/app/controller/Cuestionario_Gestionar_Controller.php');
 
 /**
  * Class GestionCuestionario, esta clase se comunica con el Controlador o con el
@@ -37,6 +41,7 @@ class GestionCuestionario
             $cuestionarioModel = new Cuestionario_Model();
             // Devuelve un array con los cuestionarios de esa Asignatura
             $cuestionarios = $cuestionarioModel->getCuestionariosAsignatura($peticion[0]);
+
             // Establecemos la respuesta
             http_response_code(APIEstados::ESTADO_OK);
             // Retornamos la informacion

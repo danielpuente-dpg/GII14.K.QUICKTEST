@@ -1,8 +1,13 @@
 <?php
+
+if (empty($_SERVER["DOCUMENT_ROOT"])){
+    $_SERVER["DOCUMENT_ROOT"] = $URL_GLOBAL;
+}
 require_once $_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/model/Cuestionario_Model.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/model/Preguntas_Model.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/model/Respuestas_Model.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/model/Usuarios_Model.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/_QuickTest_TFG/app/controller/Cuestionario_Gestionar_Controller.php';
 
 /**
  * @author Alejandro Martínez García <amg0098@alu.ubu.es>
