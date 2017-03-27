@@ -1,7 +1,6 @@
 package aplicacion.android.danielvm.quicktest_android.http;
 
 import android.content.Context;
-import android.service.voice.VoiceInteractionSession;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;

@@ -15,6 +15,16 @@
         android:ems="10"
         android:inputType="textPersonName" />
 
+    <ImageButton
+        android:id="@+id/imageButtonWeb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/editTextEmail"
+        android:layout_toRightOf="@+id/editTextEmail"
+        android:layout_marginLeft="23dp"
+        android:layout_marginStart="23dp"
+        android:layout_above="@+id/editTextPassword"
+        android:src="@android:drawable/ic_media_play"/>
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="wrap_content"

@@ -2,14 +2,10 @@ package aplicacion.android.danielvm.quicktest_android.http;
 
 import android.content.Context;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Daniel on 19/03/2017.
