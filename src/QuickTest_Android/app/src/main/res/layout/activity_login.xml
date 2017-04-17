@@ -1,9 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="aplicacion.android.danielvm.quicktest_android.Login">
+    android:paddingBottom="16dp"
+    android:paddingLeft="64dp"
+    android:paddingRight="64dp"
+    android:paddingTop="16dp"
+    tools:context=".Activities.LoginActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="115dp"
+        android:id="@+id/editTextEmail"
+        android:hint="correo@alu.ubu.es" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_below="@+id/editTextEmail"
+        android:layout_alignRight="@+id/editTextEmail"
+        android:layout_alignEnd="@+id/editTextEmail"
+        android:layout_marginTop="38dp"
+        android:id="@+id/editTextPassword"
+        android:hint="contraseña" />
+
+    <Switch
+        android:text="Recordar campos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextPassword"
+        android:layout_alignRight="@+id/editTextPassword"
+        android:layout_alignEnd="@+id/editTextPassword"
+        android:layout_marginTop="28dp"
+        android:id="@+id/switchRemember" />
+
+    <Switch
+        android:text="Realizar conexión"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/switchRemember"
+        android:layout_alignRight="@+id/editTextPassword"
+        android:layout_alignEnd="@+id/editTextPassword"
+        android:layout_marginTop="4dp"
+        android:id="@+id/switchConection" />
+
+    <Button
+        android:text="INICIAR SESIÓN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/switchRemember"
+        android:layout_marginTop="42dp"
+        android:id="@+id/button"
+        android:layout_alignLeft="@+id/editTextPassword"
+        android:layout_alignStart="@+id/editTextPassword"
+        android:layout_alignRight="@+id/switchRemember"
+        android:layout_alignEnd="@+id/switchRemember"
+        android:textColor="@android:color/background_light"
+        android:background="@color/colorPrimaryDark"
+        android:visibility="invisible"/>
+
+
+</RelativeLayout>

@@ -7,9 +7,8 @@ import com.android.volley.VolleyError;
 
 import org.json.JSONObject;
 
-import aplicacion.android.danielvm.quicktest_android.http.APIConstants;
-import aplicacion.android.danielvm.quicktest_android.http.RESTService;
-
+import aplicacion.android.danielvm.quicktest_android.Request.RESTService;
+import aplicacion.android.danielvm.quicktest_android.Request.APIConstants;
 
 /**
  * Created by Daniel on 26/03/2017.
@@ -28,8 +27,30 @@ public class VolleyService {
 
     public void getDataVolley() {
         RESTService restService = new RESTService(mContext);
-        restService.get(APIConstants.GET_TOKEN + "username=" + "admin" + "&password=" + "Asdf1234!" +
-                "&service=moodle_mobile_app",
+        restService.get(APIConstants.GET_CUESTIONARIO_BY_ID_ASIGNATURA,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        if (mResultCallback != null)
+                            mResultCallback.notifySuccess(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        if (mResultCallback != null)
+                            mResultCallback.notifyError(error);
+                    }
+                });
+    }
+
+    public void initToken(String email, String password) {
+
+        String URL = APIConstants.Direcciones.HTTP_HOST + "/moodle/login/token.php?username="
+                + email + "&password=" + password + "&service=moodle_mobile_app";
+
+        RESTService restService = new RESTService(mContext);
+        restService.get(URL,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
