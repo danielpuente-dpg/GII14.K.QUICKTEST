@@ -19,13 +19,11 @@ import com.google.gson.GsonBuilder;
 
 import org.json.JSONObject;
 
+import aplicacion.android.danielvm.quicktest_android.Models.Token;
 import aplicacion.android.danielvm.quicktest_android.R;
+import aplicacion.android.danielvm.quicktest_android.Request.APIConstants;
 import aplicacion.android.danielvm.quicktest_android.Request.RESTService;
 import aplicacion.android.danielvm.quicktest_android.Util.Util;
-import aplicacion.android.danielvm.quicktest_android.VolleyCallbacks.VolleyService;
-import aplicacion.android.danielvm.quicktest_android.Models.Token;
-import aplicacion.android.danielvm.quicktest_android.Request.APIConstants;
-import aplicacion.android.danielvm.quicktest_android.VolleyCallbacks.IResult;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -40,8 +38,6 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences prefs;
 
     private String token;
-    private IResult mResultCallback = null;
-    private VolleyService mVolleyService;
     private RESTService restService;
 
     @Override
@@ -79,6 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(LoginActivity.this, "Correo o contraseña erroneos", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
 
@@ -92,6 +89,8 @@ public class LoginActivity extends AppCompatActivity {
                     String password = editTextPassword.getText().toString();
 
                     initToken(email, password);
+                } else {
+                    btnLogIn.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -162,5 +161,4 @@ public class LoginActivity extends AppCompatActivity {
             editor.apply();
         }
     }
-
 }

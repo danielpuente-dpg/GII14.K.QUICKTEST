@@ -32,5 +32,7 @@ public class APIConstants {
             + Direcciones.URL_GET_CUESTIONARIO_POR_ID_ASIG;
     public static final String GET_USERS = Direcciones.HTTP + URL_BASE + Direcciones.URL_GET_USUARIOS_MOODLE;
 
+    public static final String GET_EXTERNAL_TOOL = Direcciones.HTTP + URL_BASE + "/moodle/webservice/rest/server.php?wstoken=";
+
 
 }
