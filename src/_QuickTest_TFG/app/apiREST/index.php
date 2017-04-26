@@ -11,6 +11,7 @@ require 'vista/APIVistaJSON.php';
 require 'modelos/ControlAccesoProfesor.php';
 require 'modelos/GestionCuestionario.php';
 require 'modelos/SolucionCuestionario.php';
+require 'modelos/ObtenerCuestionario.php';
 require 'utilidades/APIEstados.php';
 
 global $RAIZ;
@@ -48,7 +49,7 @@ else
 
 // Obtener recurso
 $recurso = array_shift($peticion);
-$recursos_existentes = array('gestionCuestionario', 'controlAccesoProfesor', 'solucionCuestionario');
+$recursos_existentes = array('gestionCuestionario', 'controlAccesoProfesor', 'solucionCuestionario', 'obtenerCuestionario');
 
 // Comprobar si existe el recurso
 if (!in_array($recurso, $recursos_existentes)) {
@@ -61,10 +62,12 @@ $metodo = strtolower($_SERVER['REQUEST_METHOD']);
 
 // Filtrar método
 switch ($metodo) {
+
     case 'get':
     case 'post':
     case 'put':
     case 'delete':
+
         if (method_exists($recurso, $metodo)) {
             // Realiza la llamada la metodo correspondiente y lo retorna
             // De esta manera lo hacemos generico para que sepa a que tiene que llamar

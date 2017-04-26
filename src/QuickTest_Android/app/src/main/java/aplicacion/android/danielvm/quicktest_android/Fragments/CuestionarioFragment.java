@@ -1,10 +1,9 @@
 package aplicacion.android.danielvm.quicktest_android.Fragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AlertDialogLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,28 +13,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import aplicacion.android.danielvm.quicktest_android.Activities.LoginActivity;
+import aplicacion.android.danielvm.quicktest_android.API.API;
+import aplicacion.android.danielvm.quicktest_android.API.APIServices.MoodleService;
 import aplicacion.android.danielvm.quicktest_android.Activities.MainActivity;
-import aplicacion.android.danielvm.quicktest_android.Adapters.CuestionarioAdapter;
+import aplicacion.android.danielvm.quicktest_android.Adapters.ExternalToolAdapter;
 import aplicacion.android.danielvm.quicktest_android.Models.Cuestionario;
 import aplicacion.android.danielvm.quicktest_android.Models.ExternalTool;
 import aplicacion.android.danielvm.quicktest_android.R;
-import aplicacion.android.danielvm.quicktest_android.Request.APIConstants;
-import aplicacion.android.danielvm.quicktest_android.Request.RESTService;
-import aplicacion.android.danielvm.quicktest_android.VolleyCallbacks.IResult;
-import aplicacion.android.danielvm.quicktest_android.VolleyCallbacks.VolleyService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
 
 public class CuestionarioFragment extends Fragment {
 
@@ -46,21 +36,15 @@ public class CuestionarioFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
 
     private List<Cuestionario> cuestionarios;
-    private List<ExternalTool> externaltools;
 
-    private Gson gson = new Gson();
-
-    private IResult mResultCallback = null;
-    private VolleyService mVolleyService;
-    private IResult mResultCallback2 = null;
-    private VolleyService mVolleyService2;
-
-    public ExternalTool ets;
-
-    public int NUM_EXTERNAL_TOOLS;
+    public int NUM_EXTERNAL_TOOLS = 10;
 
 
     public CuestionarioFragment() {
+        cuestionarios = new ArrayList<>();
+        for (int i = 1; i <= NUM_EXTERNAL_TOOLS; i++) {
+            getExternalTool(i);
+        }
     }
 
     @Override
@@ -69,16 +53,11 @@ public class CuestionarioFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_first, container, false);
 
-        /////////////////////////////////////////////////////////////
-
-
-        //////////////////////////////////////////////////////////////
         // Instanciamos los elementos de la UI
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         mLayoutManager = new LinearLayoutManager(getContext());
-        //mAdapter = new CuestionarioAdapter(this.cuestionarios, getActivity(), R.layout.recycler_view_item);
-        mAdapter = new CuestionarioAdapter(this.cuestionarios, getActivity(), R.layout.recycler_view_item);
+        mAdapter = new ExternalToolAdapter(this.cuestionarios, getActivity(), R.layout.recycler_view_item);
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -90,55 +69,48 @@ public class CuestionarioFragment extends Fragment {
 
     }
 
+    private void getExternalTool(int counter) {
+        Retrofit retrofit = API.getApi();
+        MoodleService service = retrofit.create(MoodleService.class);
 
-    private Cuestionario parseExternalToolToQuestionary(JSONObject response) {
-        Cuestionario cuestionario = null;
+        Call<ExternalTool> call = service.getExternalTools(new MainActivity().token, API.GET_EXTERNAL_TOOL, API.FORMAT_JSON, counter);
 
-        Gson gson = new GsonBuilder().create();
-        ExternalTool externalTool = gson.fromJson(response.toString(), ExternalTool.class);
+        call.enqueue(new Callback<ExternalTool>() {
+            @Override
+            public void onResponse(Call<ExternalTool> call, retrofit2.Response<ExternalTool> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getEndpoint() != null) {
+                        addExternalTool(response.body(), true);
+                    } else {
+                        addExternalTool(response.body(), false);
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Error en el formato de respuesta", Toast.LENGTH_SHORT).show();
+                }
+            }
 
-        if (externalTool.getEndpoint().equals("http://localhost/_QuickTest_TFG/index.php")) {
+            @Override
+            public void onFailure(Call<ExternalTool> call, Throwable t) {
+                Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void addExternalTool(ExternalTool externalTool, boolean status) {
+        ExternalTool et = externalTool;
+        Cuestionario cuestionario;
+
+        if (status == true && externalTool.getEndpoint().equals("http://localhost/_QuickTest_TFG/index.php")) {
             // Obtenemos la descripcion
             String description = externalTool.getParameters().get(10).getValue();
             // Obtenemos el Id cuestionario
             String idCuestionario = externalTool.getParameters().get(11).getValue();
 
             cuestionario = new Cuestionario(idCuestionario, description, R.mipmap.ic_icon_cuestionario);
+            cuestionarios.add(cuestionario);
+
+            Log.d("AddExternalTool", description);
         }
-
-        return cuestionario;
     }
-
-    private List<Cuestionario> getAndSetExternalTool() {
-        final List<Cuestionario> resultado = new ArrayList<>();
-        mResultCallback = new IResult() {
-            @Override
-            public void notifySuccess(JSONObject response) {
-                resultado.add(parseExternalToolToQuestionary(response));
-            }
-
-            @Override
-            public void notifyError(VolleyError error) {
-                Log.d("", "Error Volley" + error.getMessage());
-            }
-        };
-        return resultado;
-    }
-
-
-    private int getNumberExternalTools(){
-        return 4;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        cuestionarios = getAndSetExternalTool();
-        mVolleyService = new VolleyService(mResultCallback, getContext());
-        mVolleyService.getAndAddCuestionarios(new MainActivity().token, 1, getNumberExternalTools());
-
-    }
-
 
 }

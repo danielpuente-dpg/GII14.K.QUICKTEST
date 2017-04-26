@@ -14,6 +14,8 @@ public class ExternalTool {
     private String endpoint;
     private List<Parameter> parameters;
 
+    public ExternalTool(){}
+
     public ExternalTool(String endpoint, List<Parameter> parameters) {
         this.endpoint = endpoint;
         this.parameters = parameters;

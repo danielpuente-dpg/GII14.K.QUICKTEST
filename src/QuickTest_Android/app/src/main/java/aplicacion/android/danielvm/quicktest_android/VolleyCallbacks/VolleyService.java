@@ -1,6 +1,7 @@
 package aplicacion.android.danielvm.quicktest_android.VolleyCallbacks;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -48,8 +49,7 @@ public class VolleyService {
 
     public void getAndAddCuestionarios(String token, int count, int NUM_EXTERNAL_TOOLS) {
         RESTService restService = new RESTService(mContext);
-
-        for(; count < NUM_EXTERNAL_TOOLS; count++) {
+        for(; count <= NUM_EXTERNAL_TOOLS; count++) {
             String url = APIConstants.GET_EXTERNAL_TOOL + token +
                     "&wsfunction=mod_lti_get_tool_launch_data&moodlewsrestformat=json&moodlewsrestformat=json&toolid=" + count;
 

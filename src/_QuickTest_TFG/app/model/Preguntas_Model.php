@@ -47,12 +47,14 @@ class Preguntas_Model extends Database
 
             $preguntas = array();
             while (mysqli_stmt_fetch($query)) {
+                //echo "ENTRE";
 
                 $preguntas[] = array(
                     'idPregunta' => $idPregunta,
                     'tituloPreg' => $titulo,
                     'max_puntuacion'=>$max_puntuacion
                 );
+
 
             }
 

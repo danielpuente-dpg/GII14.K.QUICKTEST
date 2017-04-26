@@ -24,7 +24,7 @@ public class APIConstants {
         // TODO OTRAS
     }
 
-    private static final String URL_BASE = "192.168.1.24"; // IP del entorno de virtualizacion
+    private static final String URL_BASE = "192.168.56.1"; // IP del entorno de virtualizacion
     private static final String URL_API_REST = "10.0.2.2"; // IP del entorno de virtualizacion
 
     public static final String GET_TOKEN = Direcciones.HTTP + URL_BASE + Direcciones.URL_GET_TOKEN;
