@@ -3,7 +3,6 @@ package aplicacion.android.danielvm.quicktest_android.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.AlertDialogLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,8 +19,8 @@ import aplicacion.android.danielvm.quicktest_android.API.API;
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.MoodleService;
 import aplicacion.android.danielvm.quicktest_android.Activities.MainActivity;
 import aplicacion.android.danielvm.quicktest_android.Adapters.ExternalToolAdapter;
-import aplicacion.android.danielvm.quicktest_android.Models.Cuestionario;
-import aplicacion.android.danielvm.quicktest_android.Models.ExternalTool;
+import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
+import aplicacion.android.danielvm.quicktest_android.Models.Moodle.ExternalTool;
 import aplicacion.android.danielvm.quicktest_android.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,6 +37,7 @@ public class CuestionarioFragment extends Fragment {
     private List<Cuestionario> cuestionarios;
 
     public int NUM_EXTERNAL_TOOLS = 10;
+    public boolean flag = true;
 
 
     public CuestionarioFragment() {
@@ -45,6 +45,13 @@ public class CuestionarioFragment extends Fragment {
         for (int i = 1; i <= NUM_EXTERNAL_TOOLS; i++) {
             getExternalTool(i);
         }
+
+        /*cuestionarios = new ArrayList<>();
+        int i = 1;
+        do{
+            getExternalTool(i);
+            i++;
+        }while (flag == true);*/
     }
 
     @Override
@@ -52,6 +59,7 @@ public class CuestionarioFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_first, container, false);
+
 
         // Instanciamos los elementos de la UI
 
@@ -110,6 +118,9 @@ public class CuestionarioFragment extends Fragment {
             cuestionarios.add(cuestionario);
 
             Log.d("AddExternalTool", description);
+        }else{
+            flag = false;
+            Log.d("AddExternalTool", "Flag: " + flag);
         }
     }
 

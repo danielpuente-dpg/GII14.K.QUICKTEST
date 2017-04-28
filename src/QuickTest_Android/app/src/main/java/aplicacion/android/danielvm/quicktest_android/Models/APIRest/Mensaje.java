@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Models;
+package aplicacion.android.danielvm.quicktest_android.Models.APIRest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

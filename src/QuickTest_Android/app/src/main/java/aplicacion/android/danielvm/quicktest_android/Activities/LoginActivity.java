@@ -14,9 +14,8 @@ import android.widget.Toast;
 
 import aplicacion.android.danielvm.quicktest_android.API.API;
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.MoodleService;
-import aplicacion.android.danielvm.quicktest_android.Models.Token;
+import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Token;
 import aplicacion.android.danielvm.quicktest_android.R;
-import aplicacion.android.danielvm.quicktest_android.Request.RESTService;
 import aplicacion.android.danielvm.quicktest_android.Util.Util;
 import retrofit2.Call;
 import retrofit2.Callback;

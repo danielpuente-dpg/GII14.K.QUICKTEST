@@ -2,18 +2,26 @@ package aplicacion.android.danielvm.quicktest_android.Adapters;
 
 
 import android.content.Context;
+import android.support.annotation.BoolRes;
+import android.support.annotation.IdRes;
+import android.support.annotation.IntegerRes;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
-import aplicacion.android.danielvm.quicktest_android.Models.Respuesta;
-import aplicacion.android.danielvm.quicktest_android.Models.Test;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
+import aplicacion.android.danielvm.quicktest_android.Models.Android.Test;
 import aplicacion.android.danielvm.quicktest_android.R;
 
 /**
@@ -26,10 +34,15 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
     private int layout;
     private Context context;
 
+    private HashMap<Integer, Integer> respuestas;
+    private HashMap<Integer, Boolean> flags;
+
 
     public TestAdapter(List<Test> tests, int layout) {
         this.tests = tests;
         this.layout = layout;
+        respuestas = new HashMap();
+        flags = new HashMap<>();
     }
 
     @Override
@@ -55,78 +68,63 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
         return 0;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder /*implements View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener*/ {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         // Elementos que forman parte de la UI del CuestionarioFragment
 
         private TextView pregunta;
-        private LinearLayout ll;
+        private RadioGroup radioGroup;
 
         public ViewHolder(View view) {
             super(view);
 
             this.pregunta = (TextView) view.findViewById(R.id.textViewStatement);
-
-            ll = new LinearLayout(context);
-            ll.setOrientation(LinearLayout.VERTICAL);
-            ll = (LinearLayout) view.findViewById(R.id.radioGroup);
+            this.radioGroup = (RadioGroup) view.findViewById(R.id.radioGroup);
 
             // Añadimos la vista de nuestro menu de contexto
             //itemView.setOnCreateContextMenuListener(activity);
         }
 
-        public void dataBind(final Test test, int position) {
+        public void dataBind(final Test test, final int position) {
 
-            // Procesamiento de los datos a renderizar
-
-            // Eliminamos los anteriores RadioButtons del CardView
-            ll.removeAllViews();
-
-            // Renderizamos el titulo
+            radioGroup.removeAllViews();
             this.pregunta.setText((position + 1) + " - " + test.getPregunta());
-
-            // Renderizamos las opciones
-            RadioButton radioButton;
+            int i = 0;
             for (Respuesta r : test.getRespuestas()) {
-                radioButton = new RadioButton(context);
-                radioButton.setText(r.getTitulo());
-                ll.addView(radioButton);
+                RadioButton nuevoRadio = crearRadioButton(r.getTitulo(), i);
+                radioGroup.addView(nuevoRadio);
+                i++;
             }
+
+            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                    respuestas.put(getAdapterPosition(), checkedId);
+                    flags.put(getAdapterPosition(), true);
+                    Log.d("Listener->Position : " + getAdapterPosition(), "Btn: " + checkedId);
+                }
+            });
+
         }
 
+        private RadioButton crearRadioButton(String marca, int i) {
 
-        /*
-        @Override
-        public boolean onMenuItemClick(MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.resolverCuestionario:
-                    // TODO Lógica de resolver un determinado cuestionario
-                    return true;
-                case R.id.abortarCuestionario:
-                    // TODO no hacer nada
-                    return true;
-                default:
-                    return false;
+            RadioButton nuevoRadio = new RadioButton(context);
+            LinearLayout.LayoutParams params = new RadioGroup.LayoutParams(
+                    RadioGroup.LayoutParams.WRAP_CONTENT,
+                    RadioGroup.LayoutParams.WRAP_CONTENT);
+            nuevoRadio.setLayoutParams(params);
+            nuevoRadio.setText(marca);
+            nuevoRadio.setTag(marca);
+            nuevoRadio.setId(i);
+
+            if (flags.containsKey(getAdapterPosition()) == true && respuestas.get(getAdapterPosition()) == i) {
+                int id = respuestas.get(getAdapterPosition());
+                Log.d("Position : " + i, "Btn: " + id);
+                nuevoRadio.setChecked(true);
             }
+
+            return nuevoRadio;
         }
-
-        @Override
-        public void onCreateContextMenu(ContextMenu contextMenu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            // Obtenemos el cuestionario actual
-            Test currentTest = tests.get(this.getAdapterPosition());
-            // Modificamos el nombre del cuestionario en función del seleccionado
-            contextMenu.setHeaderTitle(currentTest.setHeaderTitle());
-            // Inflamos el menu de contexto
-            MenuInflater inflater = activity.getMenuInflater();
-            inflater.inflate(R.menu.action_cuestionario, contextMenu);
-
-            // Este bucle se encarga de añadir el listener para cada Item Clicked
-            // Es decir, a cada Item de /menu/action_cuestionario -> le asociamos el
-            // metodo onMenuItemClick
-            for (int i = 0; i < contextMenu.size(); i++)
-                contextMenu.getItem(i).setOnMenuItemClickListener(this);
-        }
-        */
-
     }
 }

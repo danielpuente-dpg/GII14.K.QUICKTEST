@@ -2,7 +2,6 @@ package aplicacion.android.danielvm.quicktest_android.Adapters;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -12,13 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
 import aplicacion.android.danielvm.quicktest_android.Activities.TestActivity;
-import aplicacion.android.danielvm.quicktest_android.Models.Cuestionario;
-import aplicacion.android.danielvm.quicktest_android.Models.Test;
+import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
 import aplicacion.android.danielvm.quicktest_android.R;
 
 /**

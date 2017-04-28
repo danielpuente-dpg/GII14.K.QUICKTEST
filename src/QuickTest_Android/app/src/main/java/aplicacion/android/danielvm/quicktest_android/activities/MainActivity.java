@@ -1,7 +1,6 @@
 package aplicacion.android.danielvm.quicktest_android.Activities;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -9,11 +8,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.widget.Toast;
 
 import aplicacion.android.danielvm.quicktest_android.Adapters.PagerAdapter;
-import aplicacion.android.danielvm.quicktest_android.Fragments.CuestionarioFragment;
-import aplicacion.android.danielvm.quicktest_android.Models.Cuestionario;
 import aplicacion.android.danielvm.quicktest_android.R;
 
 

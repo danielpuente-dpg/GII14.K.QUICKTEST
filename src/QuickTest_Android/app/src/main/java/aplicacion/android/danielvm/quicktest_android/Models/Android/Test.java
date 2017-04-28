@@ -1,9 +1,11 @@
-package aplicacion.android.danielvm.quicktest_android.Models;
+package aplicacion.android.danielvm.quicktest_android.Models.Android;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.List;
+
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
 
 /**
  * Created by Daniel on 23/04/2017.

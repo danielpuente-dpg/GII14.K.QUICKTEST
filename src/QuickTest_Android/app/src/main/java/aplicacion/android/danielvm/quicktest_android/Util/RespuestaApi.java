@@ -2,7 +2,7 @@ package aplicacion.android.danielvm.quicktest_android.Util;
 
 import java.util.List;
 
-import aplicacion.android.danielvm.quicktest_android.Models.Mensaje;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Mensaje;
 
 /**
  * Created by Daniel on 26/04/2017.

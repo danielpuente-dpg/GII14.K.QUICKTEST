@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Models;
+package aplicacion.android.danielvm.quicktest_android.Models.Moodle;
 
 /**
  * Created by Daniel on 17/04/2017.
