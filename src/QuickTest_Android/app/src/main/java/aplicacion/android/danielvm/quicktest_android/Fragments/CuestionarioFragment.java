@@ -1,6 +1,7 @@
 package aplicacion.android.danielvm.quicktest_android.Fragments;
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -12,6 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +25,14 @@ import aplicacion.android.danielvm.quicktest_android.API.APIServices.MoodleServi
 import aplicacion.android.danielvm.quicktest_android.Activities.MainActivity;
 import aplicacion.android.danielvm.quicktest_android.Adapters.ExternalToolAdapter;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
+import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Content;
+import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Course;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.ExternalTool;
+import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Module;
 import aplicacion.android.danielvm.quicktest_android.R;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class CuestionarioFragment extends Fragment {
@@ -35,23 +44,14 @@ public class CuestionarioFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
 
     private List<Cuestionario> cuestionarios;
+    private List<Course> courses;
 
-    public int NUM_EXTERNAL_TOOLS = 10;
+    public int NUM_EXTERNAL_TOOLS;
     public boolean flag = true;
+    public int contador;
 
 
     public CuestionarioFragment() {
-        cuestionarios = new ArrayList<>();
-        for (int i = 1; i <= NUM_EXTERNAL_TOOLS; i++) {
-            getExternalTool(i);
-        }
-
-        /*cuestionarios = new ArrayList<>();
-        int i = 1;
-        do{
-            getExternalTool(i);
-            i++;
-        }while (flag == true);*/
     }
 
     @Override
@@ -60,6 +60,10 @@ public class CuestionarioFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_first, container, false);
 
+        cuestionarios = new ArrayList<>();
+        for (int i = 1; i <= new MainActivity().NUM_EXTERNAL_TOOLS; i++) {
+            getExternalTool(i);
+        }
 
         // Instanciamos los elementos de la UI
 
@@ -118,10 +122,11 @@ public class CuestionarioFragment extends Fragment {
             cuestionarios.add(cuestionario);
 
             Log.d("AddExternalTool", description);
-        }else{
+        } else {
             flag = false;
             Log.d("AddExternalTool", "Flag: " + flag);
         }
     }
+
 
 }

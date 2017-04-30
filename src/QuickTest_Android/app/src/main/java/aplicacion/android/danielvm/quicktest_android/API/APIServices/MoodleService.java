@@ -1,6 +1,8 @@
 package aplicacion.android.danielvm.quicktest_android.API.APIServices;
 
 
+import java.util.List;
+
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Content;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Course;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.ExternalTool;
@@ -25,11 +27,11 @@ public interface MoodleService {
             , @Query("moodlewsrestformat") String format, @Query("toolid") int id);
 
     @GET("webservice/rest/server.php")
-    Call<Course> getCourses(@Query("wstoken") String token, @Query("wsfunction") String function
+    Call<List<Course>> getCourses(@Query("wstoken") String token, @Query("wsfunction") String function
             , @Query("moodlewsrestformat") String format);
 
     @GET("webservice/rest/server.php")
-    Call<Content> getContentCourses(@Query("wstoken") String token, @Query("wsfunction") String function
+    Call<Content[]> getContentCourse(@Query("wstoken") String token, @Query("wsfunction") String function
             , @Query("moodlewsrestformat") String format, @Query("courseid") int id);
 
 
