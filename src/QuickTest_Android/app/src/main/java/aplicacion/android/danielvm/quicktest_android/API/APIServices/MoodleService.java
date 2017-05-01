@@ -7,6 +7,7 @@ import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Content;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Course;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.ExternalTool;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Token;
+import aplicacion.android.danielvm.quicktest_android.Models.Moodle.User;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -17,22 +18,58 @@ import retrofit2.http.Query;
 
 public interface MoodleService {
 
-    //login/token.php?username=admin&password=Asdf1234!&service=moodle_mobile_app
+    /**
+     *
+     * @param user
+     * @param pass
+     * @param app
+     * @return
+     */
     @GET("login/token.php")
     Call<Token> getToken(@Query("username") String user, @Query("password") String pass, @Query("service") String app);
 
-    //http://localhost/moodle/webservice/rest/server.php?wstoken=ac29bdd56eb45e7669024cccc19147fe&wsfunction=mod_lti_get_tool_launch_data&moodlewsrestformat=json&toolid=1
+    /**
+     *
+     * @param token
+     * @param function
+     * @param format
+     * @param id
+     * @return
+     */
     @GET("webservice/rest/server.php")
     Call<ExternalTool> getExternalTools(@Query("wstoken") String token, @Query("wsfunction") String function
             , @Query("moodlewsrestformat") String format, @Query("toolid") int id);
 
+    /**
+     *
+     * @param token
+     * @param function
+     * @param format
+     * @return
+     */
     @GET("webservice/rest/server.php")
     Call<List<Course>> getCourses(@Query("wstoken") String token, @Query("wsfunction") String function
             , @Query("moodlewsrestformat") String format);
 
+    /**
+     *
+     * @param token
+     * @param function
+     * @param format
+     * @param id
+     * @return
+     */
     @GET("webservice/rest/server.php")
     Call<Content[]> getContentCourse(@Query("wstoken") String token, @Query("wsfunction") String function
             , @Query("moodlewsrestformat") String format, @Query("courseid") int id);
+
+    @GET("webservice/rest/server.php")
+    Call<User[]> getUserByField(@Query("wstoken") String token, @Query("wsfunction") String function
+            , @Query("moodlewsrestformat") String format, @Query("field") String field, @Query("values[0]") String name);
+
+    @GET("webservice/rest/server.php")
+    Call<Course[]> getCoursesByUserId(@Query("wstoken") String token, @Query("wsfunction") String function
+            , @Query("moodlewsrestformat") String format, @Query("userid") int id);
 
 
 }

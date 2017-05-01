@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void initToken(String email, String password) {
+    private void initToken(final String email, String password) {
         Retrofit retrofit = APIMoodle.getApi();
         MoodleService service = retrofit.create(MoodleService.class);
 
@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<Token> call, retrofit2.Response<Token> response) {
                 Token body = response.body();
                 if (body.getToken() != null)
-                    goToMain(body.getToken());
+                    goToMain(body.getToken(), email);
                 else
                     Toast.makeText(LoginActivity.this, "Correo o contraseña erroneos", Toast.LENGTH_SHORT).show();
             }
@@ -106,9 +106,10 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void goToMain(String token) {
+    private void goToMain(String token, String name) {
         Intent intentLogin = new Intent(this, MainActivity.class);
         intentLogin.putExtra("token", token);
+        intentLogin.putExtra("name", name);
         intentLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intentLogin);
     }

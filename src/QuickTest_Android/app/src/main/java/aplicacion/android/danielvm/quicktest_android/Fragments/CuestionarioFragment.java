@@ -22,6 +22,7 @@ import aplicacion.android.danielvm.quicktest_android.Adapters.ExternalToolAdapte
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Course;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.ExternalTool;
+import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Module;
 import aplicacion.android.danielvm.quicktest_android.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,11 +37,8 @@ public class CuestionarioFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
 
     private List<Cuestionario> cuestionarios;
-    private List<Course> courses;
 
-    public int NUM_EXTERNAL_TOOLS;
     public boolean flag = true;
-    public int contador;
 
 
     public CuestionarioFragment() {
@@ -51,6 +49,8 @@ public class CuestionarioFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_first, container, false);
+
+        int valor = new MainActivity().modules.size();
 
         cuestionarios = new ArrayList<>();
         for (int i = 1; i <= new MainActivity().NUM_EXTERNAL_TOOLS; i++) {
@@ -77,7 +77,7 @@ public class CuestionarioFragment extends Fragment {
         Retrofit retrofit = APIMoodle.getApi();
         MoodleService service = retrofit.create(MoodleService.class);
 
-        Call<ExternalTool> call = service.getExternalTools(new MainActivity().token, APIMoodle.GET_EXTERNAL_TOOL, APIMoodle.FORMAT_JSON, counter);
+        Call<ExternalTool> call = service.getExternalTools(new MainActivity().TOKEN_WS, APIMoodle.GET_EXTERNAL_TOOL, APIMoodle.FORMAT_JSON, counter);
 
         call.enqueue(new Callback<ExternalTool>() {
             @Override
@@ -105,19 +105,37 @@ public class CuestionarioFragment extends Fragment {
         Cuestionario cuestionario;
 
         if (status == true && externalTool.getEndpoint().equals("http://localhost/_QuickTest_TFG/index.php")) {
+
+            // Comprobamos que ese usuario tenga asignado ese cuestionario
+
             // Obtenemos la descripcion
             String description = externalTool.getParameters().get(10).getValue();
-            // Obtenemos el Id cuestionario
+            for(Module module : new MainActivity().modules){
+                if(description.equals(module.getName())){
+                    // Obtenemos el Id cuestionario
+                    String idCuestionario = externalTool.getParameters().get(11).getValue();
+
+                    cuestionario = new Cuestionario(idCuestionario, description, R.mipmap.ic_icon_cuestionario);
+                    cuestionarios.add(cuestionario);
+
+                    Log.d("AddExternalTool", description);
+                    break;
+                }
+            }
+
+
+
+          /*  // Obtenemos el Id cuestionario
             String idCuestionario = externalTool.getParameters().get(11).getValue();
 
             cuestionario = new Cuestionario(idCuestionario, description, R.mipmap.ic_icon_cuestionario);
             cuestionarios.add(cuestionario);
 
-            Log.d("AddExternalTool", description);
-        } else {
+            Log.d("AddExternalTool", description);*/
+        }/* else {
             flag = false;
             Log.d("AddExternalTool", "Flag: " + flag);
-        }
+        }*/
     }
 
 
