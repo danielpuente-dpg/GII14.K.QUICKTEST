@@ -1,6 +1,6 @@
 package aplicacion.android.danielvm.quicktest_android.API.APIServices;
 
-import aplicacion.android.danielvm.quicktest_android.Util.RespuestaApi;
+import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApi;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

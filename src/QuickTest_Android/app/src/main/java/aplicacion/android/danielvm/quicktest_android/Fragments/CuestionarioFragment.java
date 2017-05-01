@@ -1,7 +1,6 @@
 package aplicacion.android.danielvm.quicktest_android.Fragments;
 
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -13,26 +12,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import aplicacion.android.danielvm.quicktest_android.API.API;
+import aplicacion.android.danielvm.quicktest_android.API.APIMoodle;
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.MoodleService;
 import aplicacion.android.danielvm.quicktest_android.Activities.MainActivity;
 import aplicacion.android.danielvm.quicktest_android.Adapters.ExternalToolAdapter;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
-import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Content;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Course;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.ExternalTool;
-import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Module;
 import aplicacion.android.danielvm.quicktest_android.R;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class CuestionarioFragment extends Fragment {
@@ -82,10 +74,10 @@ public class CuestionarioFragment extends Fragment {
     }
 
     private void getExternalTool(int counter) {
-        Retrofit retrofit = API.getApi();
+        Retrofit retrofit = APIMoodle.getApi();
         MoodleService service = retrofit.create(MoodleService.class);
 
-        Call<ExternalTool> call = service.getExternalTools(new MainActivity().token, API.GET_EXTERNAL_TOOL, API.FORMAT_JSON, counter);
+        Call<ExternalTool> call = service.getExternalTools(new MainActivity().token, APIMoodle.GET_EXTERNAL_TOOL, APIMoodle.FORMAT_JSON, counter);
 
         call.enqueue(new Callback<ExternalTool>() {
             @Override

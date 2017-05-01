@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Util;
+package aplicacion.android.danielvm.quicktest_android.Utils;
 
 import android.content.SharedPreferences;
 

@@ -20,7 +20,7 @@ import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Pregunta;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Test;
 import aplicacion.android.danielvm.quicktest_android.R;
-import aplicacion.android.danielvm.quicktest_android.Util.RespuestaApi;
+import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

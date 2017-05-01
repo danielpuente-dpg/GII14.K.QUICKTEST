@@ -6,27 +6,19 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.util.List;
-
-import aplicacion.android.danielvm.quicktest_android.API.API;
+import aplicacion.android.danielvm.quicktest_android.API.APIMoodle;
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.MoodleService;
-import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Content;
-import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Course;
-import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Module;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Token;
 import aplicacion.android.danielvm.quicktest_android.R;
-import aplicacion.android.danielvm.quicktest_android.Util.Util;
+import aplicacion.android.danielvm.quicktest_android.Utils.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class LoginActivity extends AppCompatActivity {
@@ -75,10 +67,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initToken(String email, String password) {
-        Retrofit retrofit = API.getApi();
+        Retrofit retrofit = APIMoodle.getApi();
         MoodleService service = retrofit.create(MoodleService.class);
 
-        Call<Token> call = service.getToken(email, password, API.APP);
+        Call<Token> call = service.getToken(email, password, APIMoodle.APP);
 
         call.enqueue(new Callback<Token>() {
             @Override
