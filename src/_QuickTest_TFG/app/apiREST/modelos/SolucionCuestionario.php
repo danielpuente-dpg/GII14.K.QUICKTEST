@@ -167,16 +167,35 @@ class SolucionCuestionario
         $ltiController = new LTI_Controller();
         $idCuestionario = $cuestionario['idCuestionario'];
 
-        foreach ($cuestionario as $c) {
-            $idRespuesta = $cuestionario['idRespuesta'];
-            $tipoComUsado = $cuestionario['comodin'];
-            $idAlumno = $cuestionario['idAlumno'];
-            $pregResuelta = $cuestionario['pregunta'];
+        // Obtenemos las respuestas
+        $respuestas = $cuestionario['respuestas'];
+
+        foreach ($respuestas as $r) {
+            $pregResuelta = $r['idPregunta'];
+            $idRespuesta = $r['idRespuesta'];
+            $tipoComUsado = $r['tipoComUsado'];
+            $idAlumno = $r['idAlumno'];
 
             $cuestionarioResolverController->guardarCadaRespuesta($idRespuesta, $tipoComUsado, $idAlumno, $pregResuelta);
         }
 
-        $ltiController->prepare_Grade_toMoodle($idCuestionario, $idAlumno);
+        $retorno = $ltiController->prepare_Grade_toMoodle($idCuestionario, $idAlumno);
+
+        echo $retorno;
+        if($retorno < 0){
+            // Establecemos la respuesta indicando que se creo un recurso
+            http_response_code(APIEstados::ESTADO_OK);
+            return
+                [
+                    "estado" => self::ESTADO_EXITO,
+                    "mensaje" => "Cuestionario finalizado correctamente"
+                ];
+        }else{
+            throw new APIException(self::ESTADO_ERROR_PARAMETROS,
+                "Error al finalizar un cuestionario " . "<class> " . SolucionCuestionario::class . " </class>",
+                APIEstados::ESTADO_UNPROCESSABLE_ENTITY);
+        }
+
     }
 
     private static function mostrarResultados()

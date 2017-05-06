@@ -89,7 +89,7 @@ function index()
         $cuestionario_Controller->cuestionario_Resolver_Visualizar($_GET['data-idCuestVisualizar'], $_GET['nombreAsig'], $_GET['nombreCuest'], $_GET['isProfesor'], $_GET['idUser'], $_GET['nombreAlu'], $_GET['apeAlu'], $_GET['lang'], $_GET['idAsig'], $_SESSION['ltiConsumerURL']);
 
     } else if (isset($_POST['respuestaElegida']) && isset($_POST['tipoComUsado']) && isset($_POST['idUser'])) {//si grabo respuesta
-
+        print_r($_SESSION);
         $cuestionario_Controller->guardarCadaRespuesta($_POST['respuestaElegida'], $_POST['tipoComUsado'], $_POST['idUser'],$_POST['preguntaResuelta']);
 
 

@@ -229,7 +229,6 @@ class LTI_Controller
         $calificObtenida = $alumno_has_respuestaModel->getSumaPuntTotal_Alumno($idCuestionario, $idAlumno);
         $calificMaxPosible = $preguntasModel->getPuntMaxima_Cuestionario($idCuestionario);
 
-
         //Se calcula una bonificación en función de cuando se ha resuelto el cuestionario.
 
         if ($orden == 1) { // se bonifica con 1 punto a los primeros en responder
@@ -279,11 +278,13 @@ class LTI_Controller
 
         $context = $lti_Model->establish_LTI_Context();
 
+        print_r($context);
 
         //PARAMETROS REQUERIDOS POR LTI
         $lis_outcome_service_url = $context->getLis_outcome_service_url();
         $lis_result_sourcedid = $context->getLis_result_sourcedid();
         $oauth_consumer_key = $context->getConsumerKey();
+
         $oauth_consumer_secret = $usuarios_Controller->desencriptarPassword($context->getSecret());
 
         //Tipo de petición a moodle:

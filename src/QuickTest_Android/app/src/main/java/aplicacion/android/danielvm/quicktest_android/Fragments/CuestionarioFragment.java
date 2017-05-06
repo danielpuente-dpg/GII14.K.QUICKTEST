@@ -112,10 +112,12 @@ public class CuestionarioFragment extends Fragment {
             String description = externalTool.getParameters().get(10).getValue();
             for(Module module : new MainActivity().modules){
                 if(description.equals(module.getName())){
-                    // Obtenemos el Id cuestionario
-                    String idCuestionario = externalTool.getParameters().get(11).getValue();
 
-                    cuestionario = new Cuestionario(idCuestionario, description, R.mipmap.ic_icon_cuestionario);
+                    // Obtenemos el Id cuestionario
+                    int idCuestionario = Integer.parseInt(externalTool.getParameters().get(11).getValue().split("=")[1].trim());
+                    String curso = externalTool.getParameters().get(9).getValue();
+                    String claveCliente = externalTool.getParameters().get(3).getValue();
+                    cuestionario = new Cuestionario(idCuestionario, description, R.mipmap.ic_icon_cuestionario, curso, claveCliente);
                     cuestionarios.add(cuestionario);
 
                     Log.d("AddExternalTool", description);

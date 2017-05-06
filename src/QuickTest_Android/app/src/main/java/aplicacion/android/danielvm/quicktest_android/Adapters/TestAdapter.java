@@ -2,9 +2,7 @@ package aplicacion.android.danielvm.quicktest_android.Adapters;
 
 
 import android.content.Context;
-import android.support.annotation.BoolRes;
 import android.support.annotation.IdRes;
-import android.support.annotation.IntegerRes;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,13 +12,13 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
+import aplicacion.android.danielvm.quicktest_android.Activities.TestActivity;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.TestRequest;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Test;
 import aplicacion.android.danielvm.quicktest_android.R;
 
@@ -34,15 +32,15 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
     private int layout;
     private Context context;
 
-    private HashMap<Integer, Integer> respuestas;
-    private HashMap<Integer, Boolean> flags;
-
+    public static HashMap<Integer, Integer> respuestas = new HashMap();
+    public static HashMap<Integer, Boolean> flags = new HashMap<>();
+    public static HashMap<Integer, TestRequest> postTest = new HashMap();
 
     public TestAdapter(List<Test> tests, int layout) {
         this.tests = tests;
         this.layout = layout;
-        respuestas = new HashMap();
-        flags = new HashMap<>();
+        //respuestas = new HashMap();
+        //flags = new HashMap<>();
     }
 
     @Override
@@ -102,6 +100,15 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
                     respuestas.put(getAdapterPosition(), checkedId);
                     flags.put(getAdapterPosition(), true);
                     Log.d("Listener->Position : " + getAdapterPosition(), "Btn: " + checkedId);
+
+
+                    int idPregunta = test.getIdPregunta();
+                    int idRespuesta = test.getRespuestas().get(checkedId).getIdRespuesta();
+                    String tipoComUsado = "";
+                    String idAlumno = new TestActivity().CLAVE;
+                    TestRequest testPost = new TestRequest(idPregunta, idRespuesta, tipoComUsado, idAlumno);
+
+                    postTest.put(getAdapterPosition(), testPost);
                 }
             });
 
@@ -126,5 +133,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
 
             return nuevoRadio;
         }
+
+
     }
 }

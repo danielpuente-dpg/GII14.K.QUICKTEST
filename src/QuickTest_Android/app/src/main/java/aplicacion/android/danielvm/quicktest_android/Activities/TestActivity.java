@@ -7,9 +7,12 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import aplicacion.android.danielvm.quicktest_android.API.APIRest;
@@ -18,6 +21,7 @@ import aplicacion.android.danielvm.quicktest_android.Adapters.TestAdapter;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Mensaje;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Pregunta;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.TestRequest;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Test;
 import aplicacion.android.danielvm.quicktest_android.R;
 import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApi;
@@ -33,9 +37,12 @@ public class TestActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    private Button button;
+
     // Atributos
     private List<Test> tests;
     private int ID_CUESTIONARIO;
+    public static String CLAVE;
 
 
     @Override
@@ -44,10 +51,12 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         tests = new ArrayList<>();
-        setIdCuestionario();
+        setIdCuestionarioAndKey();
         getTest(ID_CUESTIONARIO);
 
         // Instanciamos los elementos de la UI
+
+        button = (Button) findViewById(R.id.btnSendTest);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerViewTest);
         mLayoutManager = new LinearLayoutManager(this);
@@ -58,6 +67,20 @@ public class TestActivity extends AppCompatActivity {
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Obtenemoslas la informacion del cuestionario resuelto
+                HashMap<Integer, TestRequest> postTest = new TestAdapter(tests, R.layout.recycler_view_item_test).postTest;
+
+
+
+
+                //Toast.makeText(TestActivity.this, postTest.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
@@ -93,11 +116,11 @@ public class TestActivity extends AppCompatActivity {
         for (Mensaje m : messages) {
             Pregunta pregunta = m.getPregunta();
             List<Respuesta> respuestas = m.getRespuestas();
-            tests.add(new Test(pregunta.getTitulo(), respuestas));
+            tests.add(new Test(pregunta.getTitulo(), respuestas, pregunta.getIdPregunta()));
         }
     }
 
-    public void setIdCuestionario() {
+    public void setIdCuestionarioAndKey() {
 
         // Recogemos el nombre introducido en la anterior actividad
         Bundle bundle = getIntent().getExtras();
@@ -106,6 +129,7 @@ public class TestActivity extends AppCompatActivity {
         else {
             Log.d("**** DEBUG ***", "Intent OK");
             ID_CUESTIONARIO = bundle.getInt("idCuestionario");
+            CLAVE = bundle.getString("clave");
         }
 
     }

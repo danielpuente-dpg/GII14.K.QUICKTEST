@@ -76,8 +76,8 @@ public class ExternalToolAdapter extends RecyclerView.Adapter<ExternalToolAdapte
         }
 
         public void dataBind(final Cuestionario cuestionario) {
-            this.textViewName.setText(cuestionario.getIdCuestionario());
-            this.textViewDescription.setText(cuestionario.getNombreCuestionario());
+            this.textViewName.setText(cuestionario.getDescripcion());
+            this.textViewDescription.setText(cuestionario.getCurso());
             this.imgCuestionario.setImageResource(cuestionario.getImgIcon());
 
         }
@@ -103,7 +103,7 @@ public class ExternalToolAdapter extends RecyclerView.Adapter<ExternalToolAdapte
             // Obtenemos el cuestionario actual
             Cuestionario currentCuestionario = cuestionarios.get(this.getAdapterPosition());
             // Modificamos el nombre del cuestionario en función del seleccionado
-            contextMenu.setHeaderTitle("Cuestionario " + currentCuestionario.getIdCuestionario());
+            contextMenu.setHeaderTitle(currentCuestionario.getDescripcion());
             // Inflamos el menu de contexto
             MenuInflater inflater = activity.getMenuInflater();
             inflater.inflate(R.menu.action_cuestionario, contextMenu);
@@ -123,11 +123,14 @@ public class ExternalToolAdapter extends RecyclerView.Adapter<ExternalToolAdapte
         Cuestionario cuestionario = cuestionarios.get(position);
 
         // Obtenemos el Id del cuestionario a resolver
-        int idCuestionario = Integer.parseInt(cuestionario.getIdCuestionario().split("=")[1].trim());
+        int idCuestionario = cuestionario.getIdCuestionario();
+        // Obtenemos la clave del ciente;
+        String clave = cuestionario.getClaveCliente();
 
         // Vamos al activity encargado de resolver el Test
         Intent intent = new Intent(activity, TestActivity.class);
         intent.putExtra("idCuestionario", idCuestionario);
+        intent.putExtra("clave", clave);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         activity.startActivity(intent);
 

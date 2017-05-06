@@ -15,13 +15,16 @@ public class Test {
 
     private String pregunta;
     private List<Respuesta> respuesta;
+    private int idPregunta;
+
 
     public Test() {
     }
 
-    public Test(String pregunta, List<Respuesta> respuesta) {
+    public Test(String pregunta, List<Respuesta> respuesta, int idPregunta) {
         this.pregunta = pregunta;
         this.respuesta = respuesta;
+        this.idPregunta = idPregunta;
     }
 
     public String getPregunta() {
@@ -38,6 +41,14 @@ public class Test {
 
     public void setRespuestas(List<Respuesta> respuestas) {
         this.respuesta = respuestas;
+    }
+
+    public int getIdPregunta() {
+        return idPregunta;
+    }
+
+    public void setIdPregunta(int idPregunta) {
+        this.idPregunta = idPregunta;
     }
 
     public static Respuesta parseJSON(String response) {

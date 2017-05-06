@@ -6,30 +6,34 @@ package aplicacion.android.danielvm.quicktest_android.Models.Android;
 
 public class Cuestionario {
 
-    private String idCuestionario;
-    private String nombreCuestionario;
+    private int idCuestionario;
+    private String descripcion;
     private int imgIcon;
+    private String curso;
+    private String claveCliente;
 
-    public Cuestionario(String idCuestionario, String descripcion, int imgIcon) {
+    public Cuestionario(int idCuestionario, String descripcion, int imgIcon, String curso, String claveCliente) {
         this.idCuestionario = idCuestionario;
-        this.nombreCuestionario = descripcion;
+        this.descripcion = descripcion;
         this.imgIcon = imgIcon;
+        this.curso = curso;
+        this.claveCliente = claveCliente;
     }
 
-    public String getIdCuestionario() {
+    public int getIdCuestionario() {
         return idCuestionario;
     }
 
-    public void setIdCuestionario(String idCuestionario) {
+    public void setIdCuestionario(int idCuestionario) {
         this.idCuestionario = idCuestionario;
     }
 
-    public String getNombreCuestionario() {
-        return nombreCuestionario;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setNombreCuestionario(String nombreCuestionario) {
-        this.nombreCuestionario = nombreCuestionario;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public int getImgIcon() {
@@ -38,5 +42,21 @@ public class Cuestionario {
 
     public void setImgIcon(int imgIcon) {
         this.imgIcon = imgIcon;
+    }
+
+    public String getCurso() {
+        return curso;
+    }
+
+    public void setCurso(String curso) {
+        this.curso = curso;
+    }
+
+    public String getClaveCliente() {
+        return claveCliente;
+    }
+
+    public void setClaveCliente(String claveCliente) {
+        this.claveCliente = claveCliente;
     }
 }
