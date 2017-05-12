@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/bg7" />
+        android:src="@drawable/back_ground_nav" />
 
     <TextView
         android:id="@+id/textView"

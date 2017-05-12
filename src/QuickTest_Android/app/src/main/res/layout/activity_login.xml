@@ -3,59 +3,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="16dp"
-    android:paddingLeft="64dp"
-    android:paddingRight="64dp"
-    android:paddingTop="16dp"
     tools:context=".Activities.LoginActivity">
 
-
-    <EditText
-        android:id="@+id/editTextEmail"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="115dp"
-        android:ems="10"
-        android:hint="correo@alu.ubu.es"
-        android:inputType="textEmailAddress" />
+        android:layout_marginTop="46dp"
+        android:gravity="center"
+        android:text="Iniciar sesión"
+        android:textSize="26dp"
+        android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/editTextPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/editTextEmail"
-        android:layout_alignRight="@+id/editTextEmail"
-        android:layout_below="@+id/editTextEmail"
-        android:layout_marginTop="38dp"
-        android:ems="10"
-        android:hint="contraseña"
-        android:inputType="textPassword" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/button"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="250dp">
 
-    <Switch
-        android:id="@+id/switchRemember"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/editTextPassword"
-        android:layout_alignRight="@+id/editTextPassword"
-        android:layout_below="@+id/editTextPassword"
-        android:layout_marginTop="28dp"
-        android:text="Recordar campos" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorDivider" />
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:hint="nombre"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/editTextName"
+            android:layout_alignRight="@+id/editTextName"
+            android:layout_below="@+id/editTextName"
+            android:layout_marginTop="38dp"
+            android:ems="10"
+            android:hint="contraseña"
+            android:inputType="textPassword" />
+
+        <Switch
+            android:id="@+id/switchRemember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/editTextPassword"
+            android:layout_alignRight="@+id/editTextPassword"
+            android:layout_below="@+id/editTextPassword"
+            android:layout_marginTop="28dp"
+            android:text="Recordar campos" />
+
+
+    </RelativeLayout>
+
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/switchRemember"
-        android:layout_alignLeft="@+id/editTextPassword"
-        android:layout_alignRight="@+id/switchRemember"
-        android:layout_alignStart="@+id/editTextPassword"
-        android:layout_below="@+id/switchRemember"
-        android:layout_marginTop="42dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:background="@color/colorPrimaryDark"
-        android:text="INICIAR SESIÓN"
-        android:textColor="@android:color/background_light" />
+        android:text="Iniciar sesión"
+        android:textColor="#FFF" />
 
 
 </RelativeLayout>

@@ -1,7 +1,7 @@
 package aplicacion.android.danielvm.quicktest_android.API.APIServices;
 
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.TestRequest;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.TestResponse;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.APIResponse;
 import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApi;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -18,5 +18,5 @@ public interface RestService {
     Call<RespuestaApi> getTest(@Path("idTest") String idTest);
 
     @POST("solucionCuestionario/finalizar")
-    Call<TestResponse> sendTest(@Body TestRequest testRequest);
+    Call<APIResponse> sendTest(@Body TestRequest testRequest);
 }

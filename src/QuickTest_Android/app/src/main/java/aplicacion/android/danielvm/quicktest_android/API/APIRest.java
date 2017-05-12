@@ -8,9 +8,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class APIRest {
+
     public static final String BASE = "http://10.0.2.2/";
     public static final String BASE_URL = BASE + "_QuickTest_TFG/app/apiRest/";
-
 
     private static Retrofit retrofit = null;
 

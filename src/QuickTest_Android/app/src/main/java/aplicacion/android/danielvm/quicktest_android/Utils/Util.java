@@ -3,11 +3,15 @@ package aplicacion.android.danielvm.quicktest_android.Utils;
 import android.content.SharedPreferences;
 
 /**
- * Created by Daniel on 04/02/2017.
+ * Clase Util encargada del manejo de las SharedPreferences.
+ * @author Daniel Puente
  */
-
 public class Util {
 
+    /**
+     * Metodo encargado vaciar las SharedPreferences.
+     * @param prefs, preferences a eliminar.
+     */
     public static void removeUserToSharedPreferences(SharedPreferences prefs) {
         SharedPreferences.Editor editor = prefs.edit();
         editor.remove("email");
@@ -15,10 +19,20 @@ public class Util {
         editor.apply();
     }
 
+    /**
+     * Metodo para obtener el nombre del usuario.
+     * @param prefs, preferencias.
+     * @return String, nombre del usuario.
+     */
     public static String getUserMailPrefs(SharedPreferences prefs) {
         return prefs.getString("email", "");
     }
 
+    /**
+     * Metodo para obtener la contraseña del usuario.
+     * @param prefs, preferencias.
+     * @return String, contraseña del usuario.
+     */
     public static String getUserPassPrefs(SharedPreferences prefs) {
         return prefs.getString("pass", "");
     }

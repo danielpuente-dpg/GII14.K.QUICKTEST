@@ -1,0 +1,88 @@
+\apendice{Especificación de diseño}
+
+\section{Introducción}
+
+A continuación, se incluye una explicación/descripción del diseño de la aplicación Android. Para ello se dividirán los diagramas en dos enfoques: el APIREST utilizado para comunicarse con el proyecto de partida y la propia app Android que se comunicará con dicho API para la obtención y volcado de los datos.
+
+\section{Diseño de datos}
+
+En este apartado se incluirán los diagramas de clases y paquetes de ambos enfoques.
+
+\subsection{Diagrama de clases}
+
+En estos diagramas se ha decidido utilizar un criterio de color para diferenciar aquellas clases que forman parte del APIREST, en color azul y en amarillo aquellos que forman parte del proyecto de partida.
+
+\subsubsection{APIREST}
+
+Este paquete será el encargado de comunicarse con el Controlador del proyecto de partida. A continuación, se mostrarán de manera fraccionada cada una de las clases que lo forman y con qué clases del controlador del proyecto de partida se comunican.
+
+\paragraph{Clase SolucionCuestionario}
+
+Esta clase será la encargada de realizar el control de acceso por parte de los profesores a la web QuickTest. Esta web provee a los profesores de una clave privada dentro de la aplicación para poder utilizarla en la sincronización de sus cuestionarios con Moodle. Esta clase permite registrar a un nuevo profesor o comprobar si puede iniciar sesión. Ambas lógicas se controlan mediante una petición post. Para llevar a cabo este cometido se comunican con el controlador llamando al método registrarNuevoUsuario o login respectivamente.
+
+\begin{itemize}
+
+	\item \textbf{Post:} petición que permitirá logearse o registrarse en QuickTest. Para logearse \url{http://localhost/_QuickTest_TFG/app/apiREST/controlAccesoProfesor/login}. Para registrarse \url{http://localhost/_QuickTest_TFG/app/apiREST/controlAccesoProfesor/registro}.
+	
+\end{itemize}
+
+\imagen{ControlAccesoProfesor}{Clase ControlAccesoProfesor}
+
+\paragraph{Clase GestionCuestionario}
+
+La lógica de esta clase será toda aquella que se encuentre relacionada con la gestión sobre los Cuestionarios: insertar, obtener, duplicar o borrar. Cabe destacar, que en el controlador del proyecto de partida se ha incluido un método para poder duplicar un cuestionario existente, de esta manera evitamos comunicarnos con el modelo.
+Para ello se comunica con el controlador. Todas estas acciones se realizan mediante diferentes peticiones:
+
+\begin{itemize}
+
+	\item \textbf{Get:} esta petición será la encargada de mostrar aquellos cuestionarios dada un identificador de asignatura. \url{http://localhost/_QuickTest_TFG/app/apiREST/gestionCuestionario/id}
+	\item \textbf{Post:} esta petición maneja dos lógicas: duplicar o insertar/editar un cuestionario. Para duplicar un cuestionario basta con indicar el identificador de cuestionario y para insertar o editar será necesario incluir en esta petición el resto de información propia de un cuestionario. Cabe destacar que el método insertar manejará la lógica de insertar o editar un cuestionario en función de si un campo se encuentra a verdadero o falso. Esta lógica venia dado por el proyecto de partida. Para duplicar un cuestionario \url{http://localhost/_QuickTest_TFG/app/apiREST/gestionCuestionario/duplicar/id}. \linebreak Para insertar/editar un cuestionario \url{http://localhost/_QuickTest_TFG/app/apiREST/gestionCuestionario/insertar}.
+	
+	\item \textbf{Delete:} esta petición se encarga de eliminar un determinado cuestionario dado un identificador. \url{http://localhost/_QuickTest_TFG/app/apiREST/gestionCuestionario/id}.
+
+\end{itemize}
+
+\imagen{GestionCuestionario}{Clase GestionCuestionario}
+
+\paragraph{Clase SolucionCuestionario}
+
+Esta clase se encarga de la lógica a realizar durante la resolución de un cuestionario: iniciar, finalizar o mostrar resultado. Para ello se comunica con el controlador. Destacar que al tener que basarse en el proyecto de partida existen ciertas funcionalidades que no se encuentran en el controlador. Es por esto que será necesario comunicarse también con el modelo.
+Todas estas acciones se realizan mediante peticiones post y son las siguiente:
+
+\begin{itemize}
+
+	\item \textbf{Post:} esta petición será la encargada de manejar toda la lógica de esta clase, es decir, iniciar un cuestionario, finalizar un cuestionario y mostrar la calificación. Para iniciar un cuestionario \url{http://localhost/_QuickTest_TFG/app/apiREST/solucionCuestionario/resolver}. Para finalizar un cuestionario \url{http://localhost/_QuickTest_TFG/app/apiREST/solucionCuestionario/finalizar}. \linebreak Para mostrar la calificación \url{http://localhost/_QuickTest_TFG/app/apiREST/solucionCuestionario/mostrar}
+\end{itemize}
+
+\imagen{SolucionCuestionario}{Clase SolucionCuestionario}
+
+\subsubsection{Android}
+
+
+\section{Diagrama de paquetes}
+
+Para estos diagramas se ha decido utilizar el mismo criterio de color empleando anteriormente en el diagrama de clases.
+
+\subsection{APIREST}
+
+Este diagrama muestra un desglose de todos los componentes que entran en contacto en el API, como ya se ha comentado en color amarillo corresponde a la lógica dada en el proyecto de partida y en azul el APIREST desarrollado para interactuar con el controlador.
+
+\imagen{DiagramPaqRest}{Diagrama de paquetes del APIRest}
+
+\subsection{Aplicación Android}
+
+En este diagrama se muestra el desglose de todos los componentes que forman la arquitectura del FrontEnd de la aplicación.
+
+
+\imagen{DiagramPaqAndroid}{Diagrama de paquetes de la aplicación Android}
+
+\section{Diseño procedimental}
+
+\subsection{Diagrama de secuencias}
+
+\section{Diseño arquitectónico}
+
+\subsubsection{Diagrama de despliegue}
+
+
+

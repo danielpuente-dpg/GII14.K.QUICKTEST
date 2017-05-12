@@ -1,27 +1,23 @@
 package aplicacion.android.danielvm.quicktest_android.Activities;
 
-import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,18 +26,21 @@ import java.util.concurrent.ExecutionException;
 
 import aplicacion.android.danielvm.quicktest_android.API.APIMoodle;
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.MoodleService;
-import aplicacion.android.danielvm.quicktest_android.Adapters.PagerAdapter;
+
 import aplicacion.android.danielvm.quicktest_android.Fragments.CuestionarioFragment;
 import aplicacion.android.danielvm.quicktest_android.Fragments.SecondFragment;
 import aplicacion.android.danielvm.quicktest_android.Fragments.ThirdFragment;
+import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Content;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Course;
+import aplicacion.android.danielvm.quicktest_android.Models.Moodle.ExternalTool;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Module;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Token;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.User;
 import aplicacion.android.danielvm.quicktest_android.R;
 import aplicacion.android.danielvm.quicktest_android.Utils.Util;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Retrofit;
 
 
@@ -51,24 +50,22 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
 
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private PagerAdapter adapter;
-
     // Shared Preferences
     private SharedPreferences prefs;
 
-    public static String token;
-    public static int NUM_EXTERNAL_TOOLS = 0;
-    public static Course[] courses;
-    public static List<Course> AllCourses;
-    public static List<Module> modules = new ArrayList<>();
+    public String token;
+    public int NUM_EXTERNAL_TOOLS;
+    public Course[] courses;
+    public List<Course> AllCourses;
+    public List<Module> modules = new ArrayList<>();
 
-    public static String USERNAME = "admin";
-    public static String PASSWORD = "Asdf1234!";
-    public static String TOKEN_WS;
-    public static String NAME;
-    public static User user;
+    public static ArrayList<Cuestionario> cuestionarios;
+
+    public static final String USERNAME = "admin";
+    public static final String PASSWORD = "Asdf1234!";
+    public String TOKEN_WS;
+    public String NAME;
+    public User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,32 +86,43 @@ public class MainActivity extends AppCompatActivity {
         getNumberOfCourses();
         getNumberExternalTools();
 
+        cuestionarios = getAll();
+
         setToolbar();
+
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.navview);
+
+        setFragmentByDefault();
 
         // Obtenemos la vista del Navigation Drawer y modificamos los campos
         // en funcion del usuario
         View header = navigationView.getHeaderView(0);
-        TextView user = (TextView)header.findViewById(R.id.textView);
+        TextView user = (TextView) header.findViewById(R.id.textView);
         user.setText(NAME);
-
-        // Preparamos el Layout del Tab
-        setTabLayout();
-        setViewPager();
-        // Logica del Tab al realizar una accion
-        setListenerTabLayout(viewPager);
-
-
 
         // Evento Navigation Drawer
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                switch (item.getItemId()){
+                boolean fragmentTransaction = false;
+                Fragment fragment = null;
+
+                switch (item.getItemId()) {
+                    case R.id.menu_courses:
+                        fragment = new CuestionarioFragment();
+                        fragmentTransaction = true;
+                        break;
+
+                    case R.id.menu_courses_end:
+                        fragment = new SecondFragment();
+                        fragmentTransaction = true;
+                        break;
+
                     case R.id.menu_info:
-                        // TODO gotoHelpActivity
+                        fragment = new ThirdFragment();
+                        fragmentTransaction = true;
                         break;
 
                     case R.id.menu_log_out:
@@ -127,69 +135,46 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
 
+                if (fragmentTransaction) {
+                    changeFragment(fragment, item);
+                    drawerLayout.closeDrawers();
+                }
                 return true;
             }
         });
 
     }
 
+
     private void logOut() {
         Intent intentLogin = new Intent(this, LoginActivity.class);
-
         // Al hacer clicked Atras, cerramos la App
         intentLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
         startActivity(intentLogin);
     }
 
     private void setToolbar() {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_home);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 
-    private void setTabLayout() {
-        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-
-        tabLayout.addTab(tabLayout.newTab().setText("Cuestionarios"));
-        tabLayout.addTab(tabLayout.newTab().setText("Resultados"));
-
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+    private void setFragmentByDefault() {
+        changeFragment(new ThirdFragment(), navigationView.getMenu().getItem(2));
     }
 
-    private void setViewPager() {
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
-        adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(adapter);
-        // Cada vez que cambiemos de Tabs, el viewPager (encargado de los fragments )tambien lo cambie
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+    private void changeFragment(Fragment fragment, MenuItem item) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content_frame, fragment)
+                .commit();
+        // Activamos el efecto de clickado
+        item.setChecked(true);
+        getSupportActionBar().setTitle(item.getTitle());
     }
 
-    private void setListenerTabLayout(final ViewPager viewPager) {
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            // Al seleccionar el Tab
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                int position = tab.getPosition();
-                viewPager.setCurrentItem(position);
-            }
-
-            // Cuando el Tab activo deja de estarlo
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            // Cuando seleccionamos el mismo tab que esta activo
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-    }
 
     // Metodo encargado de enlazar el boton del burger menu con el evento
     // del navigation drawer.
@@ -311,6 +296,66 @@ public class MainActivity extends AppCompatActivity {
         bundle = getIntent().getExtras();
         NAME = bundle.getString("name");
         Log.d("NAME", NAME);
+    }
+
+    private ArrayList<Cuestionario> getAll() {
+        ArrayList<Cuestionario> cuestionarios = new ArrayList<>();
+        for (int i = 1; i <= NUM_EXTERNAL_TOOLS; i++) {
+            getExternalTool(cuestionarios, i);
+        }
+        return cuestionarios;
+    }
+
+    private void getExternalTool(final List<Cuestionario> cuestionarios, int counter) {
+        Retrofit retrofit = APIMoodle.getApi();
+        MoodleService service = retrofit.create(MoodleService.class);
+
+        Call<ExternalTool> call = service.getExternalTools(TOKEN_WS, APIMoodle.GET_EXTERNAL_TOOL, APIMoodle.FORMAT_JSON, counter);
+
+        call.enqueue(new Callback<ExternalTool>() {
+            @Override
+            public void onResponse(Call<ExternalTool> call, retrofit2.Response<ExternalTool> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getEndpoint() != null) {
+                        addExternalTool(cuestionarios, response.body());
+                    } else {
+                        addExternalTool(cuestionarios, response.body());
+                    }
+                } else {
+                    Toast.makeText(MainActivity.this, "Error en el formato de respuesta", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ExternalTool> call, Throwable t) {
+                Toast.makeText(MainActivity.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void addExternalTool(List<Cuestionario> cuestionarios, ExternalTool externalTool) {
+        Cuestionario cuestionario;
+        if (externalTool.getEndpoint().equals("http://localhost/_QuickTest_TFG/index.php")) {
+
+            // Comprobamos que ese usuario tenga asignado ese cuestionario
+            // Obtenemos la descripcion
+            String description = externalTool.getParameters().get(10).getValue();
+
+            for (Module module : modules) {
+                if (description.equals(module.getName())) {
+
+                    // Obtenemos el Id cuestionario
+                    int idCuestionario = Integer.parseInt(externalTool.getParameters().get(11).getValue().split("=")[1].trim());
+                    String curso = externalTool.getParameters().get(9).getValue();
+                    String claveCliente = externalTool.getParameters().get(3).getValue();
+                    cuestionario = new Cuestionario(idCuestionario, description, R.mipmap.ic_icon_cuestionario, curso, claveCliente);
+                    cuestionarios.add(cuestionario);
+
+                    Log.d("AddExternalTool", description);
+                    break;
+                }
+            }
+        }
     }
 
 
@@ -513,11 +558,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
-        private void incNumberExternalTools(){
+
+        private void incNumberExternalTools() {
             ++cont;
         }
     }
-
 
 
 }

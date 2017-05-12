@@ -1,10 +1,15 @@
 package aplicacion.android.danielvm.quicktest_android.Models.Android;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Daniel on 23/03/2017.
  */
 
-public class Cuestionario {
+
+
+public class Cuestionario implements Parcelable {
 
     private int idCuestionario;
     private String descripcion;
@@ -59,4 +64,39 @@ public class Cuestionario {
     public void setClaveCliente(String claveCliente) {
         this.claveCliente = claveCliente;
     }
+
+    protected Cuestionario(Parcel in) {
+        idCuestionario = in.readInt();
+        descripcion = in.readString();
+        imgIcon = in.readInt();
+        curso = in.readString();
+        claveCliente = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(idCuestionario);
+        dest.writeString(descripcion);
+        dest.writeInt(imgIcon);
+        dest.writeString(curso);
+        dest.writeString(claveCliente);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Cuestionario> CREATOR = new Parcelable.Creator<Cuestionario>() {
+        @Override
+        public Cuestionario createFromParcel(Parcel in) {
+            return new Cuestionario(in);
+        }
+
+        @Override
+        public Cuestionario[] newArray(int size) {
+            return new Cuestionario[size];
+        }
+    };
 }

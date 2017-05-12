@@ -1,0 +1,201 @@
+\apendice{Documentación técnica de programación}
+
+\section{Introducción}
+
+\section{Estructura de directorios}
+
+\section{Manual del programador}
+
+\subsection{Instalación de las herramientas}
+
+\subsubsection{Sistema operativo}
+
+\subsubsection{Servidor}
+
+\begin{itemize}
+
+	\item Acceder a la web oficial de XAMPP en el siguiente enlace:
+\url{https://www.apachefriends.org/es/download.html}.
+
+	\item Seleccionar la versión 5.6.30/PHP 5.6.30. Cabe destacar que es necesario instalar esta versión de XAMPP o inferiores, debido a que el proyecto de partida utiliza ciertas funcionalidades que se encuentran sin soporte en versiones superiores. Y comenzamos a descargar el instalador. \imagen{InstXammp}{Instalador de XAMMP}
+	
+	\item Una vez descargado, procedemos a la instalación de esta herramienta. Para procedemos a realizar la típica instalación de Siguiente – Siguiente y seleccionamos donde ubicar los archivos a instalar.
+	
+	\item Al finalizar la instalación se lanzará una alerta del firewall de Windows indicando que se necesita conceder acceso a Apache. Marcamos todas las opciones y finalizamos. \imagen{AlertFirApache}{Alerta del firewall de Apache}
+	\item Una vez instalado, ya tendremos instalado y disponible nuestro servidor XAMPP. Para el correcto funcionamiento del proyecto de partida y de QuickTest en Android es necesario arrancar Apache y MySQL al iniciar esta herramienta como podemos ver en la siguiente ilustración. \imagen{PanelXammp}{Panel de XAMPP}
+	
+	\item Además, al arrancar estos servicios nos volverá a saltar el firewall de Windows pidiendo conceder permisos a MySQL. \imagen{AlertFirMysql}{Alerta del firewall de MySQL}
+	
+	\item Concedemos los permisos y la instalación de nuestro servidor a finalizado.
+
+
+\end{itemize}
+
+\subsubsection{Moodle}\label{subsec:moodle}
+
+Respecto al proyecto de partida se decidió utilizar como LMS, el mismo utilizado por la Universidad de Burgos, Moodle. Al tener que basarse en este proyecto no se ha realizado ningún cambio en la herramienta utilizada como LMS.
+No obstante, en esta ocasión la versión de Moodle empleada es la más actual hasta la fecha Moodle 3.2.2+. Este cambio en la versión utilizada es realizado al tener que utilizar las funciones que proporciona el propio web services de Moodle. De manera que cuanto más actual sea la versión, más funcionalidades tendremos a nuestra disposición.
+
+\begin{itemize}
+
+	\item Descargamos el archivo comprimido de Moodle correspondiente a la versión 3.2.2+: \url{https://sourceforge.net/projects/moodle/files/Moodle/stable32/moodle-3.2.2.zip/download}
+	
+	\item Seleccionamos la versión comentada anteriormente y comenzamos la descarga del archivo comprimido. \imagen{FolderMoodle}{Carpeta comprimida de Moodle}
+	
+	\item Una vez finalizada la descarga, descomprimimos el archivo en la carpeta htdocs. Esta carpeta se encuentra en el directorio raíz de XAMPP. Si la ruta de instalación de XAMPP se ha realizado con los campos por defecto, esta se encontrará en ''C:\textbackslash{xampp}\textbackslash{htdocs}''. Esta es la carpeta raíz del localhost, desde donde el servidor XAMPP comenzará a buscar cuando le mandemos una petición.
+	
+	\item Una vez descomprimido la carpeta abrimos un navegador y realizamos una petición al servidor indicando que queremos acceder a la URL de Moodle. \imagen{urlMoodle}{url de Moodle}
+	
+	\item Al no tener instalada ni configurada la herramienta, nos pedirá seleccionar el idioma deseado. Una vez seleccionado el idioma, tendremos que seleccionar la ruta de instalación de los nuevos componentes. En este caso dejamos la configuración por defecto como podemos ver en la siguiente ilustración. \imagen{UbicInstDir}{Ubicación de donde instalar los directorios}
+	
+	\item Posteriormente, tendremos que seleccionar el tipo de base de datos a utilizar. En este caso la opción elegida es MariaDB para evitar problemas de compatibilidad. \imagen{SelBD}{Selección de la base de datos}
+	
+	\item Al finalizar la selección de la base de datos la instalación nos permitirá modificar la configuración por defecto de la misma. En este caso solamente añadiremos root en la sección Usuario de la base de datos como podemos ver en la siguiente ilustración y aceptamos la licencia. \imagen{ConfMoodle}{Configuración de Moodle}
+	
+	\item Antes de pulsar en el botón de siguiente tendremos que abrir una nueva pestaña en nuestro navegador e introducir el siguiente enlace localhost/phpmyadmin. \imagen{urlMysql}{url de MySql}
+	
+	\item Una vez nos encontremos en la página tendremos que cambiar el cotejamiento de la conexión al servidor como podemos ver en la siguiente ilustración.\imagen{CambForBD}{Cambiamos el formato de la base de datos}
+	
+	\item Una vez realizada la creación de la base de datos de manera manual, podemos volver a la pestaña de instalación de Moodle y proseguir con la instalación.
+
+	\item Si hemos realizado los anteriores pasos de forma correcta el sistema nos comunicará que el entorno cumple todos los requerimientos mínimos y continuamos con la instalación. Este proceso puede durar varios minutos dependiendo de la conexión a Internet.
+	
+	\item Una vez realizada la instalación de Moodle, es necesario la configuración de la plataforma. Para ello es necesario establecer un administrador de la misma. En nuestro caso la configuración es la que se puede ver en la siguiente ilustración. \imagen{ConfDatAdminMoodle}{Configuramos los datos del administrador de Moodle}
+	
+	\item A continuación, tendremos que configurar el sitio. Para ello introducimos la siguiente información. \imagen{ConfSites}{Configuramos el sitio}
+	
+	\item Una vez realizamos de forma correcta todos los anteriores pasos, la instalación y configuración de Moodle ha finalizado
+
+\end{itemize}
+
+\subsubsection{Instalar base de datos}
+
+A continuación, vamos a importar la base de datos que utiliza QuickTest. Esta base de datos es la misma proporcionada por el proyecto de partida. Para llevar a cabo esta tarea tendremos que seguir los siguientes pasos:
+
+\begin{itemize}
+
+	\item Dentro del proyecto de partida nos situamos en la ruta src/InstalarBaseDeDatos.
+	
+	\item En esta carpeta tendremos un único archivo llamado: instalar\_BaseDatosQuickTest.sql
+	
+	\item Abrimos una nueva pestaña en nuestro navegador e introducir el siguiente enlace. \imagen{urlMysql}{Url de Mysql}
+	
+	\item Una vez nos encontremos en el panel de administración de la base de datos tendremos que importar el archivo del punto 2. Para ello seguimos los siguientes pasos. \imagen{FichBD}{Añadimos el fichero de la base de datos}
+	
+	\item Una vez importado el archivo seleccionamos continuar y el proceso de importación de la base de datos de QuickTest ha finalizado.
+
+\end{itemize}
+
+\subsubsection{Instalar/Configurar QuickTest}
+
+Para instalar QuickTest tendremos copiar la carpeta \_QuickTest\_TFG en la carpeta raíz del localhost de XAMPP para que el servidor pueda buscar el directorio pedido al mandarle una petición.
+Para ello tendremos que:
+
+\begin{itemize}
+
+	\item Copiar la carpeta \_QuickTest\_TFG en la carpeta htdocs de XAMPP. \imagen{FolderHtdocs}{Añadimos la carpeta al htdocs}
+
+\end{itemize}
+
+\subsection{Registrar un usuario en QuickTest}
+
+Para poder utilizar QuickTest desde un LMS, en este caso Moodle, tendremos que estar previamente registrado en QuickTest. Para ello tendremos que:
+
+\begin{itemize}
+
+	\item Abrir una nueva pestaña en el navegador e introducir el siguiente enlace: \imagen{UrlIniQT}{Abrimos la página de inicio de QuickTest}
+	
+	\item Seleccionamos Acceder/Registrarse. Una vez seleccionado este botón aparecerá una ventana emergente que permitirá Entrar o Registrarse.
+	
+	\item Para llevar a cabo el registro de un nuevo usuario en QuickTest tendremos que seguir dos criterios importantes.
+	\begin{itemize}
+         \item En el campo Email tendremos que usar el mismo que en Moodle.
+         \item En el campo Contraseña podremos utilizar cualquiera siempre y cuando la contraseña este formada entre 5 y 10 caracteres.
+    \end{itemize}
+    En la siguiente ilustración podemos observar un inicio de sesión. Este usuario se encuentra por defecto en la base de datos inicial por lo que si se desea podemos saltarnos el paso de registrar un usuario. La contraseña es 12345. \imagen{EntQT}{Entramos en QuickTest}
+    \item Una vez realizado el registro y su posterior inicio de sesión el sistema informará con una ventana de bienvenida. \imagen{PanFF}{Panel de primeros pasos}
+    
+    \item Al pinchar sobre Publicar cuestionario se abrirá una ventana emergente. Es en esta ventana donde se encuentra los tres campos necesarios para poder publicar y enlazar nuestros cuestionarios con Moodle. La información necesarios es la siguiente. \imagen{WPubCues}{Ventana emergente de publicar un cuestionario}
+    
+	
+\end{itemize}
+
+
+\subsection{Configurar/Publicar un cuestionario en Moodle}
+
+En esta sección vamos a configurar Moodle para poder utilizar QuickTest. Para llevar a cabo esta tarea tendremos que seguir los siguientes pasos.
+
+\subsubsection{Configuración}
+
+
+\begin{itemize}
+
+	\item Abrimos una nueva pestaña del navegador y accedemos a Moodle.
+	
+	\item Una vez allí tendremos que iniciar sesión con el nombre de usuario y contraseña propios del administrador del sistema, en este caso son las credenciales utilizadas en la sección \ref{subsec:moodle}. \imagen{InitSesMoodle}{Inicio de sesión de Moodle}
+	
+	\item Una vez iniciada la sesión tendremos que crear un curso donde añadir nuestro cuestionario, para ello tendremos que:
+	
+	\begin{itemize}
+	
+		\item Entramos en Administración del sitio.
+		
+		\item Una vez allí entramos en la categoría de Cursos y dentro de esa sección en Administrar cursos y categorías. \imagen{CrearCurso}{Creamos un curso}
+		
+		\item Una vez en esa sección seleccionamos Crear un nuevo curso y rellenamos los campos con la siguiente información. Al finalizar guardamos la información.
+		\imagen{RelCampos}{Rellenamos los campos del nuevo curso}
+	\end{itemize}
+	
+	\item Al crear el curso tendremos que matricular a los usuarios. Para ello vamos a crear dos usuarios.
+	
+	\begin{itemize}
+		
+		\item Tendremos que entrar en Administración del sitio, una vez allí tendremos que ir a la categoría de Usuarios y dentro de allí a la sección Crear un nuevo usuario. \imagen{CreNueUsers}{Creamos los nuevos usuarios}
+		
+		\item A continuación, tendremos que crear dos usuarios como podemos ver en las siguientes ilustraciones. \imagen{RelCmps}{Rellenamos los campos del primer usuario} \imagen{RelCmps2}{Rellenamos los campos del segundo usuario}
+	\end{itemize}
+	
+	\item Una vez los usuarios tendremos que matricular dichos usuarios en el curso creado para ello tendremos que entrar en Administración del sitio, una vez allí tendremos que ir a la categoría de Cursos y dentro de allí a la sección Administrar cursos y categorías.
+	
+	\item Allí seleccionamos el nuevo curso creado y pinchamos en Usuarios matriculados.
+	
+	\item A continuación, matriculamos ambos usuarios creados anteriormente, el alumno con rol de Estudiante y el profesor con el rol de Profesor.
+	
+	
+
+\end{itemize}
+
+\subsubsection{Publicar}
+
+Para llevar a cabo la publicación de un cuestionario tendremos que:
+
+\begin{itemize}
+
+	\item Tendremos que entrar en Administración del sitio, una vez allí tendremos que ir a la categoría de Cursos y dentro de allí a la sección Administrar cursos y categorías.
+	
+	\item Una vez allí, seleccionamos el curso creado y en Vista.
+	
+	\item A continuación, activamos la edición y añadimos una herramienta externa.
+	
+	\begin{itemize}
+	
+			\item Para ello, tendremos que seleccionar Agregue una actividad o recurso. \imagen{AgHE}{Agregamos una nueva herramienta externa}
+			\item En este instante comenzamos a configurar la herramienta externa para poder utilizar QuickTest. Tendremos que rellenar los campos con la siguiente información.\imagen{ConfHE2}{Configuramos la nueva herramienta externa 1} \imagen{ConfHE}{Configuramos la nueva herramienta externa 2}
+			
+			\item Además, revisar que en el apartado Privacidad se encuentren activas las siguientes opciones. \imagen{CamPrivi}{Campos de la privacidad}
+	
+	\end{itemize}
+	
+	\item En este instante la publicación ha finalizado.
+
+\end{itemize}
+
+
+
+
+
+
+
+\section{Compilación, instalación y ejecución del proyecto}
+
+\section{Pruebas del sistema}

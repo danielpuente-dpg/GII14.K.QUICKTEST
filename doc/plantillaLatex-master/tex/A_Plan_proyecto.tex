@@ -1,0 +1,229 @@
+\apendice{Plan de Proyecto Software}
+
+\section{Introducción}
+
+A continuación, en esta sección se encuentra toda aquella información relacionada con la gestión del proyecto. Esta información no solamente va a estar relacionada con el desarrollo del producto pedido, sino que englobará otros aspectos relevantes como la definición de los riesgos o costes del plan proyecto.
+Como se ha comentado anteriormente en la sección 4.3.3, la metodología de trabajo utilizada para este proyecto es SCRUM. Para llevar cabo al desarrollo del proyecto se ha divido el desarrollo del mismo en Sprints o Iteraciones de dos semanas. Cabe destacar que algún Sprint varia en esta duración establecida debido a la disponibilidad del equipo para poder llevar a cabo la reunión al finalizar cada iteración.
+
+
+\section{Planificación temporal}
+
+Como se comentaba, se ha decidido dividir el desarrollo del proyecto en Sprints de dos semanas de duración. Gracias a esta duración se podrá compaginar de una manera más eficiente el desarrollo del proyecto de final de grado junto con el resto de asignaturas de este cuatrimestre. En este cuatrimestre el número de asignaturas cursadas son tres junto con el trabajo de fin de grado. Además, se ha estipulado que el número de horas de dedicación por iteración sea de alrededor de cuarenta, este es el principal motivo por el cual se ha decidido que la duración de cada iteración sea de quince días para poder compaginar el desarrollo del proyecto junto con el resto de asignaturas.
+
+\subsection{Sprint 1. Inicio del proyecto (7 Feb 2017 a 16 Feb 2017)}
+
+Este día tuvo lugar la primera reunión para la explicación sobre el producto a desarrollar. Una vez explicado el mismo, se decidió aceptar este proyecto y se comenzó con la definición de los principales pilares a superar para construir el producto. Una vez definidas estas bases se decidió realizar en este Sprint las siguientes tareas.
+
+\begin{itemize}
+
+	\item \textbf{Cargar código fuente:} este primer commit fue realizado por los tutores para incluir el proyecto de partida.
+	
+	\item \textbf{Objetivos del proyecto:} esta tarea ha sido realizada por el alumno sobre la documentación a entregar. En dicho apartado del documento se definirán las bases principales del proyecto junto con sus objetivos más destacados.
+	\item \textbf{Instalar proyecto de partida:} en tarea fue realizada por el alumno, para ello se ha realizado una lectura de la documentación del proyecto de partida y su posterior instalación para conocer al máximo la lógica a implementar.
+	
+	\item \textbf{Generar el Product Backlog:}  esta tarea fue realizada por el alumno en la memoria. En esta sección se llevó a cabo la definición de los principales requisitos funcionales las cuales derivarán en las historias de usuario a realizar en los diferentes Sprint.
+	
+	\item \textbf{Aprendizaje PHP:} esta tarea fue la más costosa de esta iteración ya que se desconocía cualquier conocimiento acorde a este lenguaje. Para ello se realizado una lectura de la documentación proporcionada en la propia web de PHP \cite{wiki:phpdoc} junto con otras fuentes online como tutoriales sobre PHP desde cero.
+
+\end{itemize}
+
+
+A continuación, en la siguiente Ilustración se incluye un gráfico Burndown resumiendo el Sprint, cabe destacar que en esta ocasión solamente se aprecia que todas las tareas fueron finalizadas el mismo día, aunque esto no fue así. Este error nace fruto de un desconocimiento previo de la herramienta, al no incluir en la configuración de la creación de dicha gráfico las tareas que se encuentren dentro del tablero en la sección Done. Posteriormente, una vez localizado y subsanado este error en las siguientes iteraciones este fallo no se produce.
+
+\imagen{Sprint1}{Gráfico Burndown Sprint 1 - Inicio del proyecto.}
+
+
+\subsection{Sprint 2. Estudio de refactorización del servidor (16 Feb 2017 a 2 Mar 2017)}
+
+Al comienzo de esta iteración se realizó la revisión de las tareas a realizar en el Sprint anterior y una vez revisadas se dio por finalizado el Sprint 1. Inicio del proyecto (7 Feb 2017 a 16 Feb 2017). 
+En esta iteración se decidió realizar las siguientes tareas:
+
+\begin{itemize}
+	
+	\item Estudio de inclusión de un Framework: esta tarea fue realizada por el alumno y se realizado un estudio de diferentes alternativas como: CakePHP \cite{wiki:cakephp}, Laravel \cite{wiki:laravel}, Symphony \cite{wiki:symphony}, Slim \cite{wiki:slim}. No obstante, la decisión ha sido no utilizar ningún Framework al tratarse de un proyecto pequeño en dimensiones y al añadir mayor complejidad a la resolución del mismo.
+	
+	\item •	Listar los métodos a implementar en el API: esta tarea ha sido realizada por el alumno y en ella se listan las principales lógicas a implementar sobre la base de datos.
+	
+	\item •	Estudio de diferencias entre REST y SOAP: esta tarea también fue realizada por el alumno, para ello se realizó una correcta lectura y posterior documentación en el apartado Soap y Rest. Fruto de este estudio se ha decidido utilizar REST como arquitectura para facilitar el uso y tratamiento de las peticiones desde el programa.
+	
+	\item •	Documentación: Aspectos Teóricos / Técnicas y Herramientas: esta tarea consiste en llevar a cabo una documentación en la memoria sobre estos aspectos en la sección Conceptos teóricos y Técnicas y herramientas.
+
+
+\end{itemize}
+
+En la siguiente Ilustración podemos observar el gráfico Burndown correspondiente a esta iteración.
+
+\imagen{Sprint2}{Gráfico Burndown Sprint 2 - Estudio de refactorización del servidor. }
+
+\subsection{Sprint 3. Diseño del BackEnd (2 Mar 2017 a 15 Mar 2017)}
+
+Al comienzo de esta iteración se realizó la revisión de las tareas a realizar en el Sprint anterior y una vez revisadas se dio por finalizado el Sprint 2. Estudio de refactorización del servidor (16 Feb 2017 a 2 Mar 2017).
+En esta iteración se decidió realizar las siguientes tareas:
+
+\begin{itemize}
+
+	\item \textbf{Implementación de los métodos del API:} esta tarea consiste en realizar la implementación del APIREST, para poder comunicarnos con el controlador del proyecto de partida.
+
+	\item \textbf{Diseño arquitectura del BackEnd:} esta tarea consiste en construir los diagramas sobre el BackEnd.
+
+	\item \textbf{Anexo 1 – Planificación del proyecto:} esta tarea consiste en añadir a la documentación este anexo.
+\end{itemize}
+
+En la siguiente Ilustración podemos observar el gráfico Burndown correspondiente a esta iteración.
+
+\imagen{Sprint3}{Gráfico Burndown Sprint 3 - Diseño del BackEnd. }
+
+
+
+\section{Estudio de viabilidad}
+
+Uno de los objetivos principales de cualquier proyecto por no clasificarlo como el más importante es conocer si este proyecto es viable. Para ello se debe realizar un estudio sobre la viabilidad del mismo. Es por esto que se deberá realizar este estudio sobre dos enfoques: \emph{económico y legal}. Y gracias a estos sabremos si el proyecto es rentable y viable.
+
+\subsection{Viabilidad económica}
+
+Relacionado con lo anteriormente expuesto en esta sección se va realizar un estudio sobre la viabilidad del proyecto en el enfoque económico. Para ello se va realizar un análisis sobre los diferentes costes que entran en juego y son necesarios para el desarrollo del mismo junto con el mantenimiento una vez desarrollado.
+
+\subsection{Coste Hardware}
+
+Para el desarrollo del proyecto y posterior corrección de ciertos problemas que puedan surgir será necesario:
+
+\begin{itemize}
+
+    \item \textbf{Un ordenador potente en prestaciones}, ya que el IDE de Android Studio es bastante pesado en tareas principalmente de emulación. 
+	
+	\item \textbf{Un dispositivo móvil}, es decir un Smartphone con S.O Android.
+
+\end{itemize}
+
+En este caso se utilizarán las herramientas propias del alumno encargado de realizar el proyecto, que son las siguientes:
+
+\begin{itemize}
+
+	\item \textbf{Asus GL552VW-DM142T:} coste actual 1199 \euro sin S.O.
+	
+	\item \textbf{OnePlus 2:} coste actual 319 \euro.
+
+\end{itemize}
+
+
+Ambos componentes son bastante potentes y por lo tanto no ocasionarán ninguna problemática de que el hardware se quede anticuado en prestaciones en posteriores años. Para redondear los posteriores cálculos estimaremos que el tiempo de vida de ambos componentes será de 5 años, es decir 60 meses. Aunque seguramente su tiempo de vida podría alargarse aún más. Además, al realizarse el proyecto en un cuatrimestre la duración de la utilización de dichos componentes será de 4 meses.
+
+\tablaSmall{Coste Hardware}{l l}{herramientasportipodeuso}
+{ 
+Tiempo de amortización & 60 meses\\
+Coste de los componentes & 1199,00 \euro + 319,00 \euro = 1518,00 \euro \\
+Coste de amortización/mes & 1518,00 \euro / 60 meses = 25,3 \euro /mes \\
+Coste final & 25,3 \euro /mes * 4 meses = 101,2 \euro \\
+
+}
+
+
+
+
+
+\subsection{Coste Software}
+
+Para la realización del proyecto y su posterior mantenimiento será necesario lo siguiente:
+
+\tablaSmall{Coste Software 1}{l l l }{coste-1}
+{ \multicolumn{1}{l}{Software} & Licencia & Coste \\}{ 
+Microsoft Windows 10 & Home & 135,00 \euro \\
+Android Studio & Licencia Apache 2.0 \cite{wiki:astudio} & 0,00 \euro \\
+XAMPP & GNU \cite{wiki:xampp} & 0,00 \euro \\
+GitHub & X & X \\	
+TortoiseSVN & GNU General Public License \cite{wiki:tortoisesvn} & 0,00 \euro \\
+Moodle & GNU GPL \cite{wiki:moodle} & 0,00 \euro \\
+PhpStorm & Estudiante & 0,00 \euro \\
+SonarQube & LGPL & 0,00 \euro \\
+Advanced REST Client & X & X \\
+Microsoft Office & Hogar & 99,00 \euro \\
+& & 234,00 \euro \\
+
+}
+
+En este caso la licencia de Microsoft Office es para un único año de duración, pero la licencia del S.O no tiene caducidad por lo que solamente tendremos en cuenta una duración anual.
+
+
+\tablaSmall{Coste Software 2}{c c}{H}
+{ 
+Tiempo de amortización & 12 meses\\
+Coste de los componentes & 135,00 \euro + 99,00 \euro = 234,00 \euro \\
+Coste de amortización/mes & 234,00 \euro / 12 meses = 19,5 \euro /mes \\
+Coste final & 19,5 \euro /mes * 4 meses = 78,00 \euro \\
+}
+
+
+\subsection{Coste de instalación}
+
+Este coste será nulo y no se tendrá en cuenta ya que la instalación de los distintos componentes será realizada por el propio alumno.
+
+\subsection{Coste de aprendizaje}
+
+Este proyecto será desarrollado por el alumno por lo que este coste de realización será un sueldo mensual a dicho alumno por llevar a cabo el diseño, implementación y testeo del mismo. Como se comentaba anteriormente se ha estipulado que el número de horas dedicadas al desarrollo del mismo será de 40 horas cada dos semanas.
+
+\tablaSmall{Coste de aprendizaje}{c c}{CostesDeAprendizaje}
+{ 
+Duración & 4 meses * 4 semanas = 16 semanas\\
+Salario/hora & 10,00 \euro /hora\\
+Nºhoras/semana & 20 horas/semana \\
+Coste final & 10,00 \euro /hora * 20 horas/semana * 16 semanas = 3.200,00 \euro \\
+}
+
+\subsection{Coste de soporte}
+
+Este coste sería realizado por un hipotético técnico que se ocuparía de resolver cualquier incidencia en la utilización del producto desarrollado. Al ser una aplicación que, si resulta viable, será publicada en el Play Store no existirá ningún técnico encargado de subsanar directamente los errores a los usuarios, sino que serán los propios operarios de dicha página los que se remitirán cualquier incidencia.
+Es por esto que coste de soporte será nulo y por tanto no se tendrá en cuenta.
+
+\subsection{Coste de mantenimiento}
+
+En este caso será el propio alumno el encargado de realizar el mantenimiento de la aplicación por lo que esta tarea se encuentra remunerada dentro de su salario. No obstante, cabe destacar que la distribución desde esta App no incluye costes de almacenamiento de la información resultantes, es decir, las propias instituciones que compren el producto tendrán que realizar un mantenimiento propio de sus servidores.
+
+\subsection{Otros costes}
+
+Además, también hay que tener en cuenta otros costes como los derivados del \emph{material mobiliario, de oficina, documentación, electricidad, Internet}.
+
+\tablaSmall{Otros costes}{l c c }{Otros Costes}
+{ \multicolumn{1}{l}{Tipos de coste} & Coste & Total \\}{ 
+Infraestuctura & 10,00 \euro /mes &  10,00 \euro /mes * 4 meses = 40,00 \euro \\
+Documentación & 36,10 \euro \cite{wiki:book}  & 36,10 \euro \\
+Electricidad & 35,00 \euro & 35 \euro /mes * 4 = 140 \euro \\
+Internet & X & 37,90 \euro \euro /mes * 4 = 151,60 \euro \\	
+
+}
+
+\subsection{Total}
+
+
+\tablaSmall{Costes totales}{l c}{H}
+{ \multicolumn{1}{l}{Tipos de coste} & Total \\}{ 
+
+Coste Hardware & 101,2 \euro \\
+Coste Software & 78,00 \euro \\
+Coste de instalación & 0,00 \euro \\
+Coste de aprendizaje & 3.200,00 \euro \\
+Coste de soporte & 0,00 \euro \\
+Coste de mantenimiento & 367,70 \euro \\
+Otros coste & 367,70 \euro \\
+& 3.746,90 \euro \\
+
+}
+
+\subsection{Análisis coste-beneficio}
+
+Como ya se ha explicado, este proyecto nace de la base fundamental de otro proyecto. Este proyecto fue desarrollado con una base y un fin muy bien definido y fijado, la herramienta QuickTest es compatible con cualquier plataforma que cumpla el estándar LTI. Fruto de esta idea se desarrolló este proyecto como un complemento de resolución de cuestionarios para Moodle. Es por esto que este análisis de coste-beneficio se va realizar para Moodle.
+Moodle cuenta actualmente con más de 100 millones de usuarios en todo el mundo, lo que la convierte en la plataforma digital más utilizada en todo mundo por la comunidad educativa \cite{wiki:mest} \cite{wiki:moodlestas}. Además, se encuentra registrada en 234 países, en la que se encuentra España en el segundo puesto con 7.152 inscripciones.
+Como el principal objetivo de esta aplicación es la utilización de la misma para un entorno universitario vamos a reducir estos cálculos de inscripciones al número de universidades en España. Actualmente, el número de universidades tanto públicas como privadas es de 82. 
+Al ser el proyecto compatible con Moodle y al ser este, la plataforma digital más influyente en este sector, cabe destacar que no deberíamos de tener ningún inconveniente en vender licencias de este software en el PlayStore. Sería una suposición muy idealizada que todas estas comprarán nuestro producto por lo que realizaremos los cálculos estimando que solamente 40 universidades deciden adquirir la licencia.
+Ante este estudio preliminar, se decide vender cada licencia por 100,00 \euro. Este precio solamente incluirá el producto junto con la documentación necesarios para su correcta utilización, es decir, no se incluye un soporte de almacenamiento de la información generada por su utilización. Además, esta distribución de licencia se hará con carácter comercial \cite{wiki:liccom}. 
+Finalmente, cabe destacar que valoraremos este análisis como factible ya que únicamente distribuyendo estas 40 licencias recuperaríamos la inversión realizada.
+
+
+
+\subsection{Viabilidad legal}
+
+Al utilizar herramientas que se encuentran bajo licencias de software libre la distribución de esta herramienta no ocasionará ninguna problemática legal.
+No obstante, la herramienta fruto de este proyecto se distribuirá con la licencia Android License Verification Library \cite{wiki:androidlic} propia de PlayStore y utilizada por cualquier aplicación que resida en la misma para evitar posibles pirateos.
+Como ya se comentaba en la sección anterior este producto se distribuirá como licencia comercial, ya que todos los activos utilizados para el desarrollo del mismo poseen licencia GNU.
+
+
+

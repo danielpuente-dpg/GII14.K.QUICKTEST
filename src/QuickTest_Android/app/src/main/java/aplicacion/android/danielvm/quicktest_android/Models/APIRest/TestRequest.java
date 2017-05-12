@@ -1,52 +1,43 @@
 package aplicacion.android.danielvm.quicktest_android.Models.APIRest;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.util.List;
+
 /**
  * Created by Daniel on 06/05/2017.
  */
 
 public class TestRequest {
 
-    private int idPregunta;
-    private int idRespuesta;
-    private String tipoComUsado;
-    private String idAlumno;
+    private int idCuestionario;
+    private List<Result> respuestas;
 
-    public TestRequest(int idPregunta, int idRespuesta, String tipoComUsado, String idAlumno) {
-        this.idPregunta = idPregunta;
-        this.idRespuesta = idRespuesta;
-        this.tipoComUsado = tipoComUsado;
-        this.idAlumno = idAlumno;
+    public TestRequest(int idCuestionario, List<Result> respuestas) {
+        this.idCuestionario = idCuestionario;
+        this.respuestas = respuestas;
     }
 
-    public int getIdPregunta() {
-        return idPregunta;
+    public int getIdCuestionario() {
+        return idCuestionario;
     }
 
-    public void setIdPregunta(int idPregunta) {
-        this.idPregunta = idPregunta;
+    public void setIdCuestionario(int idCuestionario) {
+        this.idCuestionario = idCuestionario;
     }
 
-    public int getIdRespuesta() {
-        return idRespuesta;
+    public List<Result> getRespuestas() {
+        return respuestas;
     }
 
-    public void setIdRespuesta(int idRespuesta) {
-        this.idRespuesta = idRespuesta;
+    public void setRespuestas(List<Result> respuestas) {
+        this.respuestas = respuestas;
     }
 
-    public String getTipoComUsado() {
-        return tipoComUsado;
-    }
-
-    public void setTipoComUsado(String tipoComUsado) {
-        this.tipoComUsado = tipoComUsado;
-    }
-
-    public String getIdAlumno() {
-        return idAlumno;
-    }
-
-    public void setIdAlumno(String idAlumno) {
-        this.idAlumno = idAlumno;
+    public static Result parseJSON(String response) {
+        Gson gson = new GsonBuilder().create();
+        Result result = gson.fromJson(response, Result.class);
+        return result;
     }
 }

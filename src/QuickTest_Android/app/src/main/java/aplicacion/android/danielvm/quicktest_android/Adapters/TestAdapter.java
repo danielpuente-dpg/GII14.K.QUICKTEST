@@ -18,6 +18,7 @@ import java.util.List;
 
 import aplicacion.android.danielvm.quicktest_android.Activities.TestActivity;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Result;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.TestRequest;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Test;
 import aplicacion.android.danielvm.quicktest_android.R;
@@ -34,7 +35,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
 
     public static HashMap<Integer, Integer> respuestas = new HashMap();
     public static HashMap<Integer, Boolean> flags = new HashMap<>();
-    public static HashMap<Integer, TestRequest> postTest = new HashMap();
+    public static HashMap<Integer, Result> postTest = new HashMap();
 
     public TestAdapter(List<Test> tests, int layout) {
         this.tests = tests;
@@ -105,10 +106,11 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
                     int idPregunta = test.getIdPregunta();
                     int idRespuesta = test.getRespuestas().get(checkedId).getIdRespuesta();
                     String tipoComUsado = "";
-                    String idAlumno = new TestActivity().CLAVE;
-                    TestRequest testPost = new TestRequest(idPregunta, idRespuesta, tipoComUsado, idAlumno);
+                    String idAlumno = new TestActivity().CLAVE + ":3";
 
-                    postTest.put(getAdapterPosition(), testPost);
+                    Result result = new Result(idPregunta, idRespuesta, tipoComUsado, idAlumno);
+
+                    postTest.put(getAdapterPosition(), result);
                 }
             });
 

@@ -18,9 +18,11 @@ import java.util.List;
 import aplicacion.android.danielvm.quicktest_android.API.APIRest;
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.RestService;
 import aplicacion.android.danielvm.quicktest_android.Adapters.TestAdapter;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.APIResponse;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Mensaje;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Pregunta;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Result;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.TestRequest;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Test;
 import aplicacion.android.danielvm.quicktest_android.R;
@@ -73,8 +75,34 @@ public class TestActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // Obtenemoslas la informacion del cuestionario resuelto
-                HashMap<Integer, TestRequest> postTest = new TestAdapter(tests, R.layout.recycler_view_item_test).postTest;
+                HashMap<Integer, Result> results = new TestAdapter(tests, R.layout.recycler_view_item_test).postTest;
 
+                List<Result> respuestas = new ArrayList<Result>();
+                for(Result r : results.values())
+                    respuestas.add(r);
+
+                TestRequest testRequest = new TestRequest(ID_CUESTIONARIO, respuestas);
+
+                Retrofit retrofit = APIRest.getApi();
+                RestService service = retrofit.create(RestService.class);
+
+                Call<APIResponse> call = service.sendTest(testRequest);
+
+                call.enqueue(new Callback<APIResponse>() {
+                    @Override
+                    public void onResponse(Call<APIResponse> call, Response<APIResponse> response) {
+                        int statusCode = response.code();
+
+                        APIResponse apiResponse = response.body();
+
+                        Log.d("TestActivity", "onResponse: " + statusCode);
+                    }
+
+                    @Override
+                    public void onFailure(Call<APIResponse> call, Throwable t) {
+                        Log.d("TestActivity", "onFailure: " + t.getMessage());
+                    }
+                });
 
 
 
@@ -125,9 +153,9 @@ public class TestActivity extends AppCompatActivity {
         // Recogemos el nombre introducido en la anterior actividad
         Bundle bundle = getIntent().getExtras();
         if (bundle == null)
-            Log.d("***DEBUG****", "Intent was null");
+            Log.d("setIdCuestionarioAndKey", "Intent was null");
         else {
-            Log.d("**** DEBUG ***", "Intent OK");
+            Log.d("setIdCuestionarioAndKey", "Intent OK");
             ID_CUESTIONARIO = bundle.getInt("idCuestionario");
             CLAVE = bundle.getString("clave");
         }

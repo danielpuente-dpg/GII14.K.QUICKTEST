@@ -1,0 +1,216 @@
+\apendice{Especificación de Requisitos}
+
+\section{Introducción}
+
+Como ya se ha comentado anteriormente, se va utilizar la metodología ágil SCRUM. Es por esto que no vamos a tratar las tareas a realizar como requisitos, sino como historias de usuario. Todas estas historias de usuarios formarán parte del Product Backlog y serán asignadas a determinadas iteraciones durante en desarrollo del proyecto.
+A continuación, se incluye un listado sobre las historias de usuarios y sus correspondientes diagramas de casos de uso.
+
+
+\section{Product Backlog}
+
+En esta sección se incluyen todas aquellas historias de usuarios necesarias para la resolución por parte del alumno de los cuestionarios.
+
+\subsection{Historia de usuario 1: Iniciar sesión}
+
+\tablaSmall{Historia de usuario 1}{l l}{coste-1}
+{ \multicolumn{1}{l}{HU1}\\}{ 
+Título & Como un usuario autenticado, podrá iniciar sesión. \\
+Rol & Usuario autenticado. \\
+Descripción & El usuario introducirá sus credenciales y se le mostrará \\\
+& aquellos cuestionarios que tenga asignados. \\
+Precondiciones & - El usuario debe estar previamente registrado. \\\
+			   & - Haber iniciado sesión. \\
+}
+
+\subsection{Historia de usuario 2: Cuestionarios}
+
+\tablaSmall{Historia de usuario 2}{l l}{coste-1}
+{ \multicolumn{1}{l}{HU2}\\}{ 
+Título & Como un usuario autenticado, el sistema notificará sobre los \\\
+& cuestionarios a resolver. \\
+Rol & Usuario autenticado. \\
+Descripción & Una vez el usuario haya iniciado sesión obtendrá todos aquellos\\\  & cuestionarios en los que se encuentre asignado. \\
+Precondiciones & - El usuario debe estar previamente registrado.\\\
+& - Haber iniciado sesión. \\\
+& - Existan cuestionarios en aquellos cursos en los que se encuentra\\\
+& registrado el alumno. \\
+}
+
+\subsection{Historia de usuario 3: Resolver cuestionario}
+
+\tablaSmall{Historia de usuario 3}{l l}{coste-1}
+{ \multicolumn{1}{l}{HU3}\\}{ 
+Título & Como un usuario autenticado, podrá resolver un cuestionario. \\
+Rol & Usuario autenticado. \\
+Descripción & Una vez el usuario haya iniciado sesión podrá resolver aquellos\\\
+& cuestionarios que se encuentren asignados, a un curso al que pertenezca. \\
+Precondiciones & - El usuario debe estar previamente registrado.\\\
+& - Haber iniciado sesión. \\\
+& - Existan cuestionarios en aquellos cursos en los que se encuentra\\\
+& registrado el alumno. \\
+}
+
+\subsection{Historia de usuario 4: Finalizar cuestionario}
+
+\tablaSmall{Historia de usuario 4}{l l}{coste-1}
+{ \multicolumn{1}{l}{HU4}\\}{ 
+Título & Como un usuario autenticado, podrá finalizar un cuestionario. \\
+Rol & Usuario autenticado. \\
+Descripción & El usuario podrá finalizar aquel cuestionario que este resolviendo \\
+Precondiciones & - El usuario debe estar previamente registrado.\\\
+& - Haber iniciado sesión. \\\
+& - Existan cuestionarios en aquellos cursos en los que se encuentra\\\
+& registrado el alumno. \\\
+& - Haber iniciado la resolución de un cuestionario. \\
+}
+
+\subsection{Historia de usuario 5: Calificación obtenida}
+
+\tablaSmall{Historia de usuario 5}{l l}{coste-1}
+{ \multicolumn{1}{l}{HU5}\\}{ 
+Título & Como un usuario autenticado, el sistema notificará sobre la \\\
+& calificación obtenida. \\
+Rol & Usuario autenticado. \\
+Descripción & Una vez el usuario finalice el cuestionario, el sistema \\\
+& proporcionará una retroalimentación sobre el cuestionario resuelto. \\
+Precondiciones & - El usuario debe estar previamente registrado.\\\
+& - Haber iniciado sesión. \\\
+& - Existan cuestionarios en aquellos cursos en los que se encuentra \\\
+& registrado el alumno. \\\
+& - Haber iniciado la resolución de un cuestionario. \\\
+& - Haber finalizado un cuestionario. \\
+}
+
+\subsection{Historia de usuario 6: Revisar cuestionario resuelto}
+
+\tablaSmall{Historia de usuario 6}{l l}{coste-1}
+{ \multicolumn{1}{l}{HU6}\\}{ 
+Título & Como un usuario autenticado, podrá revisar un cuestionario resuelto.\\\
+Rol & Usuario autenticado. \\
+Descripción & El usuario podrá revisar la retroalimentación de un cuestionario \\\ & que ya esté finalizado. \\
+Precondiciones & - El usuario debe estar previamente registrado.\\\
+& - Haber iniciado sesión. \\\
+& - Existan cuestionarios en aquellos cursos en los que se encuentra \\\
+& registrado el alumno. \\\
+& - Haber iniciado la resolución de un cuestionario. \\\
+& - Haber finalizado un cuestionario. \\
+}
+
+\subsection{Historia de usuario 7: Cerrar sesión}
+
+\tablaSmall{Historia de usuario 7}{l l}{coste-1}
+{ \multicolumn{1}{l}{HU7}\\}{ 
+Título & Como un usuario autenticado, podrá cerrar sesión.\\
+Rol & Usuario autenticado. \\
+Descripción & Siempre y cuando el usuario se encuentre logeado, podrá cerrar sesión.\\
+Precondiciones & - El usuario debe estar previamente registrado.\\\
+& - Haber iniciado sesión. \\
+}
+
+\subsection{Historia de usuario 8: Recordar campos}
+
+\tablaSmall{Historia de usuario 8}{l l}{coste-1}
+{ \multicolumn{1}{l}{HU8}\\}{ 
+Título & Como un usuario autenticado, podrá recordar los campos.\\
+Rol & Usuario autenticado. \\
+Descripción & El sistema permitirá recordar los campos con los que usuario inicia sesión.\\
+Precondiciones & - El usuario debe estar previamente registrado.\\\
+& - Haber iniciado sesión. \\
+}
+
+\section{Diagrama de casos de uso}
+
+En la siguiente ilustración podemos ver el diagrama de los casos de uso de nuestro sistema:
+
+\imagen{DiagramaCasosDeUso}{Diagrama de casos de uso}
+
+\subsection{Caso de uso 1: Iniciar sesión}
+
+\tablaSmall{Caso de uso 1: Iniciar sesión}{l l}{coste-1}
+{ \multicolumn{1}{l}{CU1}\\}{ 
+Título & Iniciar sesión.\\
+Descripción & El sistema permitirá al usuario autenticado iniciar sesión para \\\ & acceder al sistema, así los cuestionarios para ese usuario serán \\\
+& visibles una vez el usuario inicie sesión.\\
+Secuencia & 1. El usuario introducirá los campos de cuenta y contraseña. \\\
+& 2. El sistema comprobará si los campos son correctos: \\\
+& \hspace{0.25cm} 2.1. Si son correctos, el usuario pasa a estar logeado teniendo pleno \\\ & \hspace{0.25cm} acceso a las funcionalidades del sistema. \\\
+& \hspace{0.25cm} 2.2. Si no son correctos, el sistema notificará que los campos son incorrectos. \\
+Precondiciones & - El usuario debe estar previamente registrado en Moodle. \\
+Comentarios & Este caso de uso, CU1, corresponde a la historia de usuario 1. \\	
+}
+
+
+\subsection{Caso de uso 2: Mostrar cuestionarios}
+
+\tablaSmall{Caso de uso 2: Mostrar cuestionarios}{l l}{coste-1}
+{ \multicolumn{1}{l}{CU2}\\}{ 
+Título & Mostrar cuestionarios.\\
+Descripción & El sistema permitirá al usuario ver los cuestionarios de QuickTest \\\
+& en los que se encuentra \\
+Secuencia & 1. El sistema mostrará los cuestionarios. \\
+Precondiciones & - El usuario debe estar previamente registrado en Moodle. \\\ & - El usuario debe estar logeado en la aplicación para poder acceder \\\
+& a esta funcionalidad. \\\
+& - Deben existir cuestionarios de QuickTest en cursos en los que el usuario \\\ & se encuentre matriculado.\\
+Comentarios & Este caso de uso, CU2, corresponde a la historia de usuario 2. \\
+}
+
+\subsection{Caso de uso 3: Mostrar cuestionarios resueltos}
+
+\tablaSmall{Caso de uso 3: Mostrar cuestionarios resueltos}{l l}{coste-1}
+{ \multicolumn{1}{l}{CU3}\\}{ 
+Título & Mostrar cuestionarios resueltos.\\
+Descripción & El sistema permitirá al usuario ver los cuestionarios de QuickTest \\\ & en los que se encuentra y ya ha resuelto. \\
+Secuencia & 1. El sistema mostrará los cuestionarios resueltos. \\\
+& \hspace{0.25cm} 1.1. Si existe algún cuestionario resuelto el usuario podrá seleccionar un  \\\ & \hspace{0.25cm} cuestionario y obtener la retroalimentación del mismo HU5, HU6. \\
+Precondiciones & - El usuario debe estar previamente registrado en Moodle.\\\
+& - El usuario debe estar logeado en la aplicación para poder acceder a esta \\\ & funcionalidad. \\\
+& - Deben existir cuestionarios de QuickTest en cursos en los que el usuario  \\\ & se encuentre matriculado y que hayan sido resueltos.\\
+Comentarios & Este caso de uso, CU3, corresponde a la historia de usuario 6. \\
+}
+
+\subsection{Caso de uso 4: Resolver cuestionario}
+
+\tablaSmall{Caso de uso 4: Resolver cuestionario}{l l}{coste-1}
+{ \multicolumn{1}{l}{CU4}\\}{ 
+Título & Resolver cuestionario.\\
+Descripción & El sistema permitirá al usuario resolver un cuestionario. \\
+Secuencia & 1. El usuario seleccionará un cuestionario a resolver. \\\
+& \hspace{0.25cm}1.1. Si el cuestionario está resuelto, el sistema mostrará la \\\
+& \hspace{0.25cm} retroalimentación del mismo. \\\
+& \hspace{0.25cm}1.2. Sino, el sistema mostrará el cuestionario a \hspace{0.25cm} resolver HU3. \\\
+& \hspace{0.5cm} 1.2.1. Una vez finalizado el cuestionario, el sistema \hspace{0.25cm} enviará el \\\
+& \hspace{0.5cm} cuestionario resuelto HU4. \\\
+& \hspace{0.5cm} 1.2.2. El sistema mostrará la retroalimentación del cuestionario \\\ & \hspace{0.5cm} resuelto HU5, HU6. \\
+Precondiciones & - El usuario debe estar previamente registrado en Moodle.\\\
+& - El usuario debe estar logeado en la aplicación para poder acceder a esta \\\ & funcionalidad. \\\
+& - Deben existir cuestionarios de QuickTest en cursos en los que el usuario  \\\ & se encuentre matriculado y que hayan sido resueltos.\\
+Comentarios & Este caso de uso, CU4, corresponde a la historia de usuario 3, 4, 5, 6. \\
+}
+
+\subsection{Caso de uso 5: Olvidar campos}
+
+\tablaSmall{Caso de uso 5: Olvidar campos}{l l}{coste-1}
+{ \multicolumn{1}{l}{CU5}\\}{ 
+Título & Recordar campos.\\
+Descripción & El sistema permitirá al usuario olvidar los campos con las que \\\ & el usuario inicia sesión.\\
+Secuencia & 1. El usuario seleccionara en el sistema cerrar sesión. \\\
+& 2. El sistema olvidará las credenciales del usuario.\\
+Precondiciones & - El usuario debe estar previamente registrado en Moodle.\\\
+& - El usuario debe haber iniciado sesión y haber activado la opción 
+\\\ & de recordar campos.\\
+Comentarios & Este caso de uso, CU5, corresponde a la historia de usuario 7. \\
+}
+
+\subsection{Caso de uso 6: Recordar campos}
+
+\tablaSmall{Caso de uso 6: Recordar campos}{l l}{coste-1}
+{ \multicolumn{1}{l}{CU6}\\}{ 
+Título & Olvidar campos.\\
+Descripción & El sistema permitirá al usuario recordar los campos con las que \\\ & el usuario inicia sesión.\\
+Secuencia & 1. El sistema recordará las credenciales del usuario. \\
+Precondiciones & - El usuario debe estar previamente registrado en Moodle.\\
+Comentarios & Este caso de uso, CU6, corresponde a la historia de usuario 8. \\
+}
+
+
+

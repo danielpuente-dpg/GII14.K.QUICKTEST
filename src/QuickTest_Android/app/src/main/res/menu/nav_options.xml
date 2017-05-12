@@ -4,6 +4,16 @@
     <group android:checkableBehavior="single">
 
         <item
+            android:id="@+id/menu_courses"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="Mis cuestionarios" />
+
+        <item
+            android:id="@+id/menu_courses_end"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="Mis cuestionarios resueltos" />
+
+        <item
             android:id="@+id/menu_info"
             android:icon="@android:drawable/ic_dialog_info"
             android:title="Ayuda" />

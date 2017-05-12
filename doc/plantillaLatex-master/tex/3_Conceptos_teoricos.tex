@@ -1,0 +1,86 @@
+\capitulo{3}{Conceptos teóricos}
+
+En esta sección se va proceder a la explicación de ciertos conceptos teóricos necesarios para la correcta compresión de este trabajo. Además, dichos conceptos han sido necesarios para llevar a cabo la toma decisiones sobre cómo resolver el trabajo junto con la realización del mismo.
+
+
+\section{Web API}
+
+Antes de hablar de que es un Web API tendremos que explicar que es un API, ya que la funcionalidad de un Web API es similar a la de un API, pero orientada a la Web.
+
+\subsection{API}
+
+Una posible definición podría ser la siguiente: \emph{Un API (siglas de Application Programming Interface) es un conjunto de reglas (código) y especificaciones que las aplicaciones pueden seguir para comunicarse entre ellas: sirviendo de interfaz entre programas diferentes de la misma manera en que la interfaz de usuario facilita la interacción humano-software"} \cite{wiki:api}.
+
+
+
+
+
+Es decir, permite la comunicación entre distintos componentes software. La mayor ventaja es que permite reutilizar métodos escrito en un determinado lenguaje o software, de esta manera evitamos la existencia de duplicidad de una misma funcionalidad en los diferentes componentes. Además, estas funcionalidades se encuentran testeadas y funcionan de forma adecuada en un determinado componente software.
+
+\subsection{Web API}
+
+En este caso y relacionado con lo anteriormente explicado la lógica de un Web API es la misma que un API salvo que en este caso esta comunicación, es decir, el intercambio de información se realiza entre un servicio web y una aplicación mediante una URL. Para llevar a cabo esta comunicación se utilizan peticiones HTTP o HTTPS y toda esta información se encuentra encapsulada generalmente en XML o JSON.
+Existen principalmente cuatro tipos de Web API.
+
+\subsubsection{SOAP}
+
+Es un protocolo estándar de intercambio de información y datos en XML entre dos objetos cuyas siglas son las siguientes Simple Object Access Protocol. Posteriormente en esta misma sección se dedicará un apartado donde se explicará en mayor.
+
+\subsection{XML-RPC}
+
+Es un protocolo que llama a un procedimiento remoto que utiliza XML para encapsular los datos y llamadas HTTP para llevar a cabo la comunicación.
+
+\subsubsection{JSON-RPC}
+
+Es un protocolo cuya lógica es igual que el protocolo explicado anteriormente, salvo que en este caso utiliza el formato JSON para encapsular los datos.
+
+\subsubsection{REST}
+
+En este caso es una arquitectura software para sistemas hipermedia en la World Wide Web. Además, esta arquitectura utiliza el protocolo HTTP para llevar a cabo la comunicación. No obstante, en esta misma sección se dedicará un apartado para llevar a cabo una explicación en mayor detalle. \cite{wiki:rest}
+
+
+\section{LTI}
+
+\section{SOAP}
+
+Anteriormente se ha llevado a cabo una pequeña explicación sobre este protocolo de comunicación. Relacionado con esto definíamos SOAP como un protocolo que posibilita el intercambio de información, es decir, la comunicación mediante internet entre aplicaciones. Para llevar a cabo este intercambio de datos se utiliza el formato XML, gracias a este el intercambio de datos se puede realizar independientemente de la plataforma o lenguaje utilizado.
+Hoy en día, estos mensajes de tipo SOAP se envían generalmente mediante el protocolo HTTP, aunque también se pueden utilizar otros como SMTP, TCP o JMS entre otros. Otro aspecto importante es que es un pilar fundamental para los Web Services, ya que estos utilizan también el formato XML para describir los servicios. Además, permite el intercambio de datos o llamadas a procedimientos remotos mediante RPC.
+Para poder llevar a cabo la correcta lectura de un mensaje SOAP el documento XML debe de tener una determinada estructura. Dicha estructura debe estar formada por las siguientes partes:
+
+\begin{itemize}
+
+	\item \textbf{Envelope:} esta parte de la estructura del mensaje es obligatoria, ya que identifica el mensaje.
+	
+	\item \textbf{Header:} esta parte de la estructura permite enviar información adicional sobre cómo debe de procesarse el mensaje. Es por esto por lo que esta parte no es obligatoria, debido a que únicamente aporta cierta información relacionada con la lectura del mismo.
+	
+	\item \textbf{Body:} esta parte de la estructura es la encargada de almacenar toda la información del mensaje.
+	
+	\item \textbf{Fault:} esta parte de la estructura al igual que el Header es opcional, ya que aporte información relacionada con ciertos errores producidos durante el procesado del mensaje.
+	
+\end{itemize}
+
+
+\imagen{EstructuraSoap}{Estructura de un mensaje SOAP \cite{wiki:soap} \cite{wiki:soap2}}
+
+\section{REST}
+
+Como ya hemos explicado anteriormente, es un estilo de arquitectura software para sistemas hipermedia distribuidos como la World Wide Web. \cite{wiki:rest2} cuyas siglas son las siguientes REpresentational State Transfer o en castellano Transferencia de Estado Representacional.
+En la actualidad, el termino REST se utiliza para aquellas interfaces que utilicen HTTP para el intercambio de información entre sistemas pudiendo utilizar cualquier formato para encapsular los datos, aunque generalmente los más utilizados son XML y JSON. Además, actualmente los sistemas que siguen las pautas o principios REST también se les suelen denominar RESTful.
+Para que un sistema se considere RESTful debe de cumplir con las siguientes pautas o principios.
+
+\begin{itemize}
+
+	\item \textbf{Protocolo cliente/servidor sin estado:} de manera que cada petición HTTP debe contener toda aquella información necesaria para poder ejecutarse, es decir, de esta forma evitamos que tanto el cliente como el servidor tengan que almacenar información sobre el estado previo de la misma para poder llevarla a cabo.
+	
+	\item \textbf{Operaciones:} un sistema REST debe poder llevar cabo las siguientes operaciones: POST (crear), GET (leer o consultar), PUT (editar) y DELETE (borrar). Estas operaciones como podemos observar se asemejan en gran parte a las operaciones CRUD en bases de datos.
+	
+	\item \textbf{Sistema de capas:} el sistema deberá de utilizar una arquitectura jerárquica entre los distintos componentes que la formen, de esta manera garantizamos que cada una de estas capas se encargue de llevar a cabo una única funcionalidad.
+	
+	\item \textbf{Manipulación de recursos:} para realizar la manipulación de los objetos se lleva a cabo mediante la URI. Dicha URI se utiliza como el identificador único para cada recurso, un recurso es un elemento de información. De esta manera se simplifica el acceso a la información para su posterior manipulación.
+	
+	\item \textbf{Uso de hipermedios:} para las transiciones entre los distintos estados de la aplicación y para la información de la misma.
+	
+\end{itemize}
+
+\cite{wiki:rest}
+ 
