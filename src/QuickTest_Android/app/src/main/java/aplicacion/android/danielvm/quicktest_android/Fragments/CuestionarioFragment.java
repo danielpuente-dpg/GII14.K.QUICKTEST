@@ -31,7 +31,7 @@ public class CuestionarioFragment extends Fragment {
     private List<Cuestionario> cuestionarios;
 
     public CuestionarioFragment() {
-        cuestionarios = new MainActivity().cuestionarios;
+        // Construtor vacio.
     }
 
     @Override
@@ -39,6 +39,8 @@ public class CuestionarioFragment extends Fragment {
                              Bundle savedInstanceState) {
 
 
+        MainActivity mainActivity = (MainActivity) getActivity();
+        cuestionarios = mainActivity.getDataExternalTools();
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_first, container, false);

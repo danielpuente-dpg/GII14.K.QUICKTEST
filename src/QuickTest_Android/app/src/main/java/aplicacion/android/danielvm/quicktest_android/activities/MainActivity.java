@@ -30,6 +30,7 @@ import aplicacion.android.danielvm.quicktest_android.API.APIServices.MoodleServi
 import aplicacion.android.danielvm.quicktest_android.Fragments.CuestionarioFragment;
 import aplicacion.android.danielvm.quicktest_android.Fragments.SecondFragment;
 import aplicacion.android.danielvm.quicktest_android.Fragments.ThirdFragment;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Mensaje;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Content;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Course;
@@ -53,18 +54,22 @@ public class MainActivity extends AppCompatActivity {
     // Shared Preferences
     private SharedPreferences prefs;
 
+    // Atributos que recuperamos del login
     public String token;
+    public String NAME;
+
+
     public int NUM_EXTERNAL_TOOLS;
     public Course[] courses;
     public List<Course> AllCourses;
     public List<Module> modules = new ArrayList<>();
 
-    public static ArrayList<Cuestionario> cuestionarios;
+    public ArrayList<Cuestionario> cuestionarios;
 
     public static final String USERNAME = "admin";
     public static final String PASSWORD = "Asdf1234!";
     public String TOKEN_WS;
-    public String NAME;
+
     public User user;
 
     @Override
@@ -75,8 +80,7 @@ public class MainActivity extends AppCompatActivity {
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
 
         // Recuperamos la informacion del login
-        getTokenUser();
-        getNameUser();
+        getDataLogin();
 
         // Obtenemos el numero de herramientas externas y el token del usuario encargado de interactuar con el WebServices
         getTokenWS();
@@ -85,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
         getCoursesLTI();
         getNumberOfCourses();
         getNumberExternalTools();
-
         cuestionarios = getAll();
+
 
         setToolbar();
 
@@ -145,6 +149,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void getDataLogin() {
+        getTokenUser();
+        getNameUser();
+    }
+
 
     private void logOut() {
         Intent intentLogin = new Intent(this, LoginActivity.class);
@@ -153,6 +162,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intentLogin);
     }
 
+    /**
+     * Metodo encargardo de la configuracion del toolbar y de añadir el icono
+     * del Navigation Drawer.
+     */
     private void setToolbar() {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -198,6 +211,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     */
+
+    public ArrayList<Cuestionario> getDataExternalTools(){
+        return cuestionarios;
+    }
 
     private void getTokenWS() {
         TokenUserWSRequest tokenUserWSRequest = new TokenUserWSRequest(APIMoodle.getApi());

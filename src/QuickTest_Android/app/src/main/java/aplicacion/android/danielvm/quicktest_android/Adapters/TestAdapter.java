@@ -40,8 +40,6 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
     public TestAdapter(List<Test> tests, int layout) {
         this.tests = tests;
         this.layout = layout;
-        //respuestas = new HashMap();
-        //flags = new HashMap<>();
     }
 
     @Override

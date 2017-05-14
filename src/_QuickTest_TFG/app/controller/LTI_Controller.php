@@ -278,7 +278,6 @@ class LTI_Controller
 
         $context = $lti_Model->establish_LTI_Context();
 
-        print_r($context);
 
         //PARAMETROS REQUERIDOS POR LTI
         $lis_outcome_service_url = $context->getLis_outcome_service_url();

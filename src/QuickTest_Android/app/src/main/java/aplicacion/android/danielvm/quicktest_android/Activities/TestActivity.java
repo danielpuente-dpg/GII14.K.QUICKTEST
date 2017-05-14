@@ -1,6 +1,7 @@
 package aplicacion.android.danielvm.quicktest_android.Activities;
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -9,11 +10,12 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import aplicacion.android.danielvm.quicktest_android.API.APIRest;
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.RestService;
@@ -52,12 +54,11 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        tests = new ArrayList<>();
         setIdCuestionarioAndKey();
-        getTest(ID_CUESTIONARIO);
+
+        tests = getContentTest();
 
         // Instanciamos los elementos de la UI
-
         button = (Button) findViewById(R.id.btnSendTest);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerViewTest);
@@ -78,7 +79,7 @@ public class TestActivity extends AppCompatActivity {
                 HashMap<Integer, Result> results = new TestAdapter(tests, R.layout.recycler_view_item_test).postTest;
 
                 List<Result> respuestas = new ArrayList<Result>();
-                for(Result r : results.values())
+                for (Result r : results.values())
                     respuestas.add(r);
 
                 TestRequest testRequest = new TestRequest(ID_CUESTIONARIO, respuestas);
@@ -104,49 +105,11 @@ public class TestActivity extends AppCompatActivity {
                     }
                 });
 
-
-
-                //Toast.makeText(TestActivity.this, postTest.toString(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
 
-    public void getTest(int id) {
-        Retrofit retrofit = APIRest.getApi();
-        RestService service = retrofit.create(RestService.class);
-
-        Call<RespuestaApi> call = service.getTest(String.valueOf(id));
-
-        call.enqueue(new Callback<RespuestaApi>() {
-            @Override
-            public void onResponse(Call<RespuestaApi> call, Response<RespuestaApi> response) {
-
-                if (response.isSuccessful()) {
-
-                    Log.d("Tests", "OnResponse: " + response.code());
-
-                    List<Mensaje> messages = response.body().getMensaje();
-                    addTests(messages);
-                } else {
-                    Toast.makeText(TestActivity.this, "Error en el formato de respuesta", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<RespuestaApi> call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void addTests(List<Mensaje> messages) {
-        for (Mensaje m : messages) {
-            Pregunta pregunta = m.getPregunta();
-            List<Respuesta> respuestas = m.getRespuestas();
-            tests.add(new Test(pregunta.getTitulo(), respuestas, pregunta.getIdPregunta()));
-        }
-    }
 
     public void setIdCuestionarioAndKey() {
 
@@ -160,5 +123,50 @@ public class TestActivity extends AppCompatActivity {
             CLAVE = bundle.getString("clave");
         }
 
+    }
+
+    private ArrayList<Test> getContentTest(){
+        ArrayList<Test> resultado = new ArrayList<>();
+        ContentTestRequest contentTestRequest = new ContentTestRequest(APIRest.getApi(), ID_CUESTIONARIO);
+        try {
+            List<Mensaje> mensajes = contentTestRequest.execute().get();
+            for(Mensaje mensaje : mensajes){
+                Pregunta pregunta = mensaje.getPregunta();
+                List<Respuesta> respuestas = mensaje.getRespuestas();
+                resultado.add(new Test(pregunta.getTitulo(), respuestas, pregunta.getIdPregunta()));
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return resultado;
+    }
+
+    public class ContentTestRequest extends AsyncTask<Void, Void, List<Mensaje>> {
+
+        private int idCuestionario;
+        private Retrofit retrofit;
+
+        public ContentTestRequest(Retrofit retrofit, int idCuestionario) {
+            this.retrofit = retrofit;
+            this.idCuestionario = idCuestionario;
+        }
+
+        @Override
+        protected List<Mensaje> doInBackground(Void... params) {
+            RestService service = retrofit.create(RestService.class);
+            Call<RespuestaApi> call = service.getTest(String.valueOf(idCuestionario));
+
+            List<Mensaje> messages = null;
+            try {
+                messages = call.execute().body().getMensaje();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            return messages;
+        }
     }
 }

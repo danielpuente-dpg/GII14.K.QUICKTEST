@@ -8,7 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class APIMoodle {
-    public static final String BASE_URL = "http://192.168.56.1/moodle/";
+    //public static final String BASE_URL = "http://192.168.56.1/moodle/";
+    public static final String BASE_URL = "http://192.168.1.37/moodle/";
     public static final String APP = "moodle_mobile_app";
     public static final String GET_EXTERNAL_TOOL = "mod_lti_get_tool_launch_data";
     public static final String FORMAT_JSON = "json";

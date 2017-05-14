@@ -33,6 +33,8 @@ class LTI_Model extends Database
         // Establish the context
         $context = new BLTI(array('table' => 'lti_keys_users'));
 
+        //print_r($context);
+
         return $context;
 
     }

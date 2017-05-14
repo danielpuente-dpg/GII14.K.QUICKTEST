@@ -38,58 +38,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="SolucionCuestionario.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SolucionCuestionario.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/apiREST/modelos/SolucionCuestionario.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="181" column="47" lean-forward="false" selection-start-line="181" selection-start-column="47" selection-end-line="181" selection-end-column="47" />
+            <state relative-caret-position="-693">
+              <caret line="279" column="18" lean-forward="true" selection-start-line="279" selection-start-column="18" selection-end-line="279" selection-end-column="18" />
               <folding>
                 <element signature="n#iniciarCuestionario#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
+                <element signature="n#calcularNotaMoodle#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
                 <element signature="n#mostrarResultados#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
+                <marker date="1494755825150" expanded="true" signature="11139:11813" ph="..." />
+                <marker date="1494755825150" expanded="true" signature="11159:11361" ph="..." />
+                <marker date="1494755825150" expanded="true" signature="11192:11340" ph="..." />
+                <marker date="1494755825150" expanded="true" signature="11379:11785" ph="..." />
+                <marker date="1494755825150" expanded="true" signature="11405:11748" ph="..." />
+                <marker date="1494755825150" expanded="true" signature="11427:11739" ph="..." />
+                <marker date="1494755825150" expanded="true" signature="11450:11538" ph="..." />
+                <marker date="1494755825150" expanded="true" signature="11556:11716" ph="..." />
+                <marker date="1494755825150" expanded="true" signature="11581:11697" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LTI_Controller.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/controller/LTI_Controller.php">
+      <file leaf-file-name="OAuthBody.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/ims-blti/OAuthBody.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="280" column="25" lean-forward="false" selection-start-line="280" selection-start-column="25" selection-end-line="280" selection-end-column="25" />
-              <folding>
-                <element signature="n#LTI_valid#0;n#LTI_Controller#0;n#!!top" expanded="false" />
-                <element signature="n#denegarAcceso#0;n#LTI_Controller#0;n#!!top" expanded="false" />
-                <element signature="n#isProfesor#0;n#LTI_Controller#0;n#!!top" expanded="false" />
-                <element signature="n#get_custom_idcuestionario#0;n#LTI_Controller#0;n#!!top" expanded="false" />
-                <marker date="1494088765706" expanded="true" signature="9311:9985" ph="..." />
-                <marker date="1494088765706" expanded="true" signature="9331:9533" ph="..." />
-                <marker date="1494088765706" expanded="true" signature="9364:9512" ph="..." />
-                <marker date="1494088765706" expanded="true" signature="9551:9957" ph="..." />
-                <marker date="1494088765706" expanded="true" signature="9577:9920" ph="..." />
-                <marker date="1494088765706" expanded="true" signature="9599:9911" ph="..." />
-                <marker date="1494088765706" expanded="true" signature="9622:9710" ph="..." />
-                <marker date="1494088765706" expanded="true" signature="9728:9888" ph="..." />
-                <marker date="1494088765706" expanded="true" signature="9753:9869" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LTI_Model.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/model/LTI_Model.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="23" column="21" lean-forward="true" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+            <state relative-caret-position="297">
+              <caret line="88" column="45" lean-forward="false" selection-start-line="88" selection-start-column="36" selection-end-line="88" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Usuarios_Controller.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controller/Usuarios_Controller.php">
+      <file leaf-file-name="OAuth.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/ims-blti/OAuth.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="175" column="24" lean-forward="true" selection-start-line="175" selection-start-column="24" selection-end-line="175" selection-end-column="24" />
+            <state relative-caret-position="593">
+              <caret line="292" column="36" lean-forward="false" selection-start-line="292" selection-start-column="27" selection-end-line="292" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -113,6 +99,8 @@
       <find>post</find>
       <find>LAST</find>
       <find>Cuestionario_Gesti</find>
+      <find>table</find>
+      <find>query</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -126,10 +114,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/apiAndroid/zend-xmlrpc/src/Client.php" />
-        <option value="$PROJECT_DIR$/app/apiAndroid/Zend/Http/AbstractMessage.php" />
-        <option value="$PROJECT_DIR$/app/apiAndroid/Zend/Stdlib/Message.php" />
-        <option value="$PROJECT_DIR$/app/apiAndroid/Zend/XmlRpc/Value/Text.php" />
         <option value="$PROJECT_DIR$/app/apiAndroid/Zend/Uri/Http.php" />
         <option value="$PROJECT_DIR$/app/apiAndroid/Zend/Uri/Uri.php" />
         <option value="$PROJECT_DIR$/app/apiAndroid/Zend/Validator/Ip.php" />
@@ -175,8 +159,12 @@
         <option value="$PROJECT_DIR$/app/model/Preguntas_Model.php" />
         <option value="$PROJECT_DIR$/app/apiREST/modelos/ObtenerCuestionario.php" />
         <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/app/apiREST/modelos/SolucionCuestionario.php" />
+        <option value="$PROJECT_DIR$/app/model/LTI_Model.php" />
+        <option value="$PROJECT_DIR$/lib/ims-blti/blti.php" />
         <option value="$PROJECT_DIR$/app/controller/LTI_Controller.php" />
+        <option value="$PROJECT_DIR$/lib/ims-blti/OAuthBody.php" />
+        <option value="$PROJECT_DIR$/lib/ims-blti/OAuth.php" />
+        <option value="$PROJECT_DIR$/app/apiREST/modelos/SolucionCuestionario.php" />
       </list>
     </option>
   </component>
@@ -203,10 +191,10 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1048" />
+    <option name="x" value="-1809" />
+    <option name="y" value="217" />
+    <option name="width" value="1818" />
+    <option name="height" value="1093" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -254,6 +242,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -318,7 +307,11 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ims-blti" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -333,32 +326,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="_QuickTest_TFG" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="_QuickTest_TFG" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cuestionarioView" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -398,49 +365,8 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="_QuickTest_TFG" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="_QuickTest_TFG" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apiREST" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="_QuickTest_TFG" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="_QuickTest_TFG" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apiREST" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modelos" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -639,11 +565,15 @@
       <workItem from="1492946367898" duration="2511000" />
       <workItem from="1493042998729" duration="6839000" />
       <workItem from="1494061756825" duration="12066000" />
+      <workItem from="1494228861191" duration="206000" />
+      <workItem from="1494407631551" duration="2236000" />
+      <workItem from="1494663236601" duration="13386000" />
+      <workItem from="1494754233849" duration="1849000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113968000" />
+    <option name="totallyTimeSpent" value="131645000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -666,10 +596,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-1809" y="217" width="1818" height="1093" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21041666" sideWeight="0.86165047" order="0" side_tool="true" content_ui="combo" x="-1370" y="369" width="500" height="956" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21" sideWeight="0.86165047" order="0" side_tool="true" content_ui="combo" x="-1370" y="369" width="500" height="956" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32692307" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282313" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1074,13 +1004,11 @@
           <option name="timeStamp" value="136" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="154" />
+      <option name="time" value="155" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/apiAndroid/Zend/Http/Client/Adapter/Exception/RuntimeException.php" />
-    <entry file="file://$PROJECT_DIR$/app/apiAndroid/Zend/Http/Client/Adapter/Socket.php" />
     <entry file="file://$PROJECT_DIR$/app/apiAndroid/Zend/Http/Client/Adapter/Curl.php" />
     <entry file="file://$PROJECT_DIR$/app/apiAndroid/Prueba2.php" />
     <entry file="file://$PROJECT_DIR$/app/apiAndroid/prueba.php" />
@@ -1247,7 +1175,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="296">
           <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1255,10 +1182,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="12" selection-end-column="85" />
-          <folding>
-            <element signature="e#1966#2554#0#PHP" expanded="false" />
-            <element signature="n#login#0;n#ControlAccesoProfesor#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1300,17 +1223,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
           <caret line="41" column="66" lean-forward="false" selection-start-line="41" selection-start-column="66" selection-end-line="41" selection-end-column="66" />
-          <folding>
-            <element signature="e#7#89#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controller/Cuestionario_Gestionar_Controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1860">
-          <caret line="47" column="50" lean-forward="false" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1382,7 +1294,7 @@
         <state relative-caret-position="-2376">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1399,7 +1311,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="22" column="67" lean-forward="false" selection-start-line="22" selection-start-column="67" selection-end-line="22" selection-end-column="67" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1423,27 +1334,36 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="747">
           <caret line="133" column="57" lean-forward="true" selection-start-line="131" selection-start-column="12" selection-end-line="133" selection-end-column="57" />
-          <folding>
-            <element signature="n#get#0;n#GestionCuestionario#0;n#!!top" expanded="false" />
-            <element signature="n#post#0;n#GestionCuestionario#0;n#!!top" expanded="false" />
-            <element signature="n#delete#0;n#GestionCuestionario#0;n#!!top" expanded="false" />
-            <element signature="n#duplicarCuestionario#0;n#GestionCuestionario#0;n#!!top" expanded="false" />
-            <element signature="n#borrarCuestionario#0;n#GestionCuestionario#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controller/Usuarios_Controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="175" column="24" lean-forward="true" selection-start-line="175" selection-start-column="24" selection-end-line="175" selection-end-column="24" />
+        <state relative-caret-position="847">
+          <caret line="175" column="24" lean-forward="false" selection-start-line="175" selection-start-column="24" selection-end-line="175" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/Database.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-246">
+          <caret line="26" column="12" lean-forward="false" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/Cuestionario_Gestionar_Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="47" column="50" lean-forward="false" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controller/Cuestionario_Resolver_Controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-698">
+        <state relative-caret-position="-5045">
           <caret line="118" column="13" lean-forward="false" selection-start-line="118" selection-start-column="13" selection-end-line="118" selection-end-column="13" />
           <folding>
             <element signature="n#registrarConexion#0;n#Cuestionario_Resolver_Controller#0;n#!!top" expanded="false" />
@@ -1456,61 +1376,79 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/ims-blti/OAuth.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="593">
+          <caret line="292" column="36" lean-forward="false" selection-start-line="292" selection-start-column="27" selection-end-line="292" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/ims-blti/OAuthBody.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="88" column="45" lean-forward="false" selection-start-line="88" selection-start-column="36" selection-end-line="88" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiREST/modelos/SolucionCuestionario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-693">
+          <caret line="279" column="18" lean-forward="true" selection-start-line="279" selection-start-column="18" selection-end-line="279" selection-end-column="18" />
+          <folding>
+            <element signature="n#iniciarCuestionario#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
+            <element signature="n#calcularNotaMoodle#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
+            <element signature="n#mostrarResultados#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
+            <marker date="1494755825150" expanded="true" signature="11139:11813" ph="..." />
+            <marker date="1494755825150" expanded="true" signature="11159:11361" ph="..." />
+            <marker date="1494755825150" expanded="true" signature="11192:11340" ph="..." />
+            <marker date="1494755825150" expanded="true" signature="11379:11785" ph="..." />
+            <marker date="1494755825150" expanded="true" signature="11405:11748" ph="..." />
+            <marker date="1494755825150" expanded="true" signature="11427:11739" ph="..." />
+            <marker date="1494755825150" expanded="true" signature="11450:11538" ph="..." />
+            <marker date="1494755825150" expanded="true" signature="11556:11716" ph="..." />
+            <marker date="1494755825150" expanded="true" signature="11581:11697" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/LTI_Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="33" column="26" lean-forward="false" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/ims-blti/blti.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="449" column="13" lean-forward="false" selection-start-line="449" selection-start-column="13" selection-end-line="449" selection-end-column="13" />
+        <state relative-caret-position="-7238">
+          <caret line="164" column="33" lean-forward="false" selection-start-line="164" selection-start-column="28" selection-end-line="164" selection-end-column="33" />
           <folding>
             <marker date="1489160502000" expanded="true" signature="5352:5530" ph="SELECT * FRO... ${$parm['table']}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/apiREST/modelos/SolucionCuestionario.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="181" column="47" lean-forward="false" selection-start-line="181" selection-start-column="47" selection-end-line="181" selection-end-column="47" />
-          <folding>
-            <element signature="n#iniciarCuestionario#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
-            <element signature="n#mostrarResultados#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/Database.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="52" column="20" lean-forward="false" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/LTI_Model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="23" column="21" lean-forward="true" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controller/LTI_Controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="280" column="25" lean-forward="false" selection-start-line="280" selection-start-column="25" selection-end-line="280" selection-end-column="25" />
+        <state relative-caret-position="-45">
+          <caret line="278" column="42" lean-forward="false" selection-start-line="278" selection-start-column="42" selection-end-line="278" selection-end-column="42" />
           <folding>
             <element signature="n#LTI_valid#0;n#LTI_Controller#0;n#!!top" expanded="false" />
             <element signature="n#denegarAcceso#0;n#LTI_Controller#0;n#!!top" expanded="false" />
             <element signature="n#isProfesor#0;n#LTI_Controller#0;n#!!top" expanded="false" />
             <element signature="n#get_custom_idcuestionario#0;n#LTI_Controller#0;n#!!top" expanded="false" />
-            <marker date="1494088765706" expanded="true" signature="9311:9985" ph="..." />
-            <marker date="1494088765706" expanded="true" signature="9331:9533" ph="..." />
-            <marker date="1494088765706" expanded="true" signature="9364:9512" ph="..." />
-            <marker date="1494088765706" expanded="true" signature="9551:9957" ph="..." />
-            <marker date="1494088765706" expanded="true" signature="9577:9920" ph="..." />
-            <marker date="1494088765706" expanded="true" signature="9599:9911" ph="..." />
-            <marker date="1494088765706" expanded="true" signature="9622:9710" ph="..." />
-            <marker date="1494088765706" expanded="true" signature="9728:9888" ph="..." />
-            <marker date="1494088765706" expanded="true" signature="9753:9869" ph="..." />
+            <marker date="1494688451096" expanded="true" signature="9284:9958" ph="..." />
+            <marker date="1494688451096" expanded="true" signature="9304:9506" ph="..." />
+            <marker date="1494688451096" expanded="true" signature="9337:9485" ph="..." />
+            <marker date="1494688451096" expanded="true" signature="9524:9930" ph="..." />
+            <marker date="1494688451096" expanded="true" signature="9550:9893" ph="..." />
+            <marker date="1494688451096" expanded="true" signature="9572:9884" ph="..." />
+            <marker date="1494688451096" expanded="true" signature="9595:9683" ph="..." />
+            <marker date="1494688451096" expanded="true" signature="9701:9861" ph="..." />
+            <marker date="1494688451096" expanded="true" signature="9726:9842" ph="..." />
           </folding>
         </state>
       </provider>
