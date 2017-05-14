@@ -168,33 +168,28 @@ class SolucionCuestionario
 
         $cuestionarioResolverController = new Cuestionario_Resolver_Controller();
 
-        //print_r($cuestionario);
 
 
         $idCuestionario = $cuestionario['idCuestionario'];
         $context = $cuestionario['context'];
 
-        //print_r(json_encode($context[0]['lis_result_sourcedid']));
-
-
         // Obtenemos las respuestas
         $respuestas = $cuestionario['respuestas'];
 
-        /*foreach ($respuestas as $r) {
+        foreach ($respuestas as $r) {
             $pregResuelta = $r['idPregunta'];
             $idRespuesta = $r['idRespuesta'];
             $tipoComUsado = $r['tipoComUsado'];
             $idAlumno = $r['idAlumno'];
 
             $cuestionarioResolverController->guardarCadaRespuesta($idRespuesta, $tipoComUsado, $idAlumno, $pregResuelta);
-        }*/
+        }
 
         $idAlumno = $respuestas[0]['idAlumno'];
 
         $retorno = self::calcularNotaMoodle($idCuestionario, $idAlumno, $context);
 
 
-        echo $retorno;
         if($retorno > 0){
         // Establecemos la respuesta indicando que se creo un recurso
         http_response_code(APIEstados::ESTADO_OK);
@@ -221,6 +216,10 @@ class SolucionCuestionario
 
         //Miramos en que orden ha contestado (los primeros, los del medio, los ultimos)
         $orden = $cuestionario_Controller->calculaOrdenPrimeraVez($idCuestionario);
+
+        /*// obtenemos el idAlumno
+        list($ini, $fin) = split(':', $idAlumno);*/
+
 
         //Se registra que el alumno ha finalizado ese cuestionario.
         $alumno_has_cuestionario->insertarAlumno_Cuestionario($idAlumno, $idCuestionario, $orden);
@@ -266,6 +265,8 @@ class SolucionCuestionario
         //Importamos la librería de seguridad OAuth
         require_once($_SERVER["DOCUMENT_ROOT"] . "/_QuickTest_TFG/lib/ims-blti/OAuthBody.php");
         $usuarios_Controller = new Usuarios_Controller();
+        $lti_Model = new LTI_Model();
+        $lti_Model->establish_LTI_Context();
 
         //PARAMETROS REQUERIDOS POR LTI
         $lis_outcome_service_url = $context[0]['lis_outcome_service_url'];
@@ -274,7 +275,7 @@ class SolucionCuestionario
         $oauth_consumer_secret = $usuarios_Controller->desencriptarPassword($context[0]['secret']);
 
 
-        echo $lis_outcome_service_url ;
+        /*echo $lis_outcome_service_url ;
         echo "\n";
         echo $lis_result_sourcedid;
         echo "\n";
@@ -284,7 +285,7 @@ class SolucionCuestionario
         echo "\n";
 
         echo $grade;
-        echo "\n";
+        echo "\n";*/
 
         //Tipo de petición a moodle:
         $operacion = "replaceResultRequest"; //Guardar Calificación
@@ -340,7 +341,7 @@ class SolucionCuestionario
 
         //Se firma la petición con OAuth
         $response = sendOAuthBodyPOST('POST', $lis_outcome_service_url, $oauth_consumer_key, $oauth_consumer_secret, 'application/xml', $bodyReplace);
-        return $response;
+        return 1;
     }
 
 

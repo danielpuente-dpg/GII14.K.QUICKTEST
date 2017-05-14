@@ -77,10 +77,10 @@ public class TestActivity extends AppCompatActivity {
 
                 // Obtenemoslas la informacion del cuestionario resuelto
                 HashMap<Integer, Result> results = new TestAdapter(tests, R.layout.recycler_view_item_test).postTest;
-
                 List<Result> respuestas = new ArrayList<Result>();
-                for (Result r : results.values())
+                for (Result r : results.values()) {
                     respuestas.add(r);
+                }
 
                 TestRequest testRequest = new TestRequest(ID_CUESTIONARIO, respuestas);
 

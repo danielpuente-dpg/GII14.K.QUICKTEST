@@ -14,7 +14,7 @@ import retrofit2.http.Path;
  */
 
 public interface RestService {
-    @GET("obtenerCuestionario/{idTest}")
+    @GET("obtenerCuestionario/obtener/{idTest}")
     Call<RespuestaApi> getTest(@Path("idTest") String idTest);
 
     @POST("solucionCuestionario/finalizar")

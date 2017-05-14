@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String PASSWORD = "Asdf1234!";
     public String TOKEN_WS;
 
-    public User user;
+    public static User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,6 +152,10 @@ public class MainActivity extends AppCompatActivity {
     private void getDataLogin() {
         getTokenUser();
         getNameUser();
+    }
+
+    public User getUser(){
+        return user;
     }
 
 

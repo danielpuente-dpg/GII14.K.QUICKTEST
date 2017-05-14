@@ -16,6 +16,7 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.List;
 
+import aplicacion.android.danielvm.quicktest_android.Activities.MainActivity;
 import aplicacion.android.danielvm.quicktest_android.Activities.TestActivity;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Result;
@@ -104,10 +105,9 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
                     int idPregunta = test.getIdPregunta();
                     int idRespuesta = test.getRespuestas().get(checkedId).getIdRespuesta();
                     String tipoComUsado = "";
-                    String idAlumno = new TestActivity().CLAVE + ":3";
+                    String idAlumno = new TestActivity().CLAVE + ":" + new MainActivity().user.getId();
 
                     Result result = new Result(idPregunta, idRespuesta, tipoComUsado, idAlumno);
-
                     postTest.put(getAdapterPosition(), result);
                 }
             });

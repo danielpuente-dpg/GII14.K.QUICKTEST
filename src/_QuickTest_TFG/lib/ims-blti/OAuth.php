@@ -291,7 +291,6 @@ class OAuthRequest {
 
         // Parse the query-string to find and add GET parameters
         $parts = parse_url($http_url);
-        print_r($parts);
         if ( $parts['query'] ) {
             $qparms = OAuthUtil::parse_parameters($parts['query']);
             $parameters = array_merge($qparms, $parameters);
