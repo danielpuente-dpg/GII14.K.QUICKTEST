@@ -1,79 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
     tools:context=".Activities.LoginActivity">
 
-    <TextView
-        android:id="@+id/textViewTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="46dp"
-        android:gravity="center"
-        android:text="Iniciar sesión"
-        android:textSize="26dp"
-        android:textStyle="bold" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/button"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginTop="250dp">
+        android:layout_margin="16dp"
+        android:orientation="vertical">
 
-        <View
+        <TextView
+            android:id="@+id/textViewTitle"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorDivider" />
-
-        <EditText
-            android:id="@+id/editTextName"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_marginTop="46dp"
+            android:gravity="center"
+            android:text="Iniciar sesión"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="26dp"
+            android:textStyle="bold" />
+        
+        <ImageView
+            android:layout_below="@id/textViewTitle"
+            android:id="@+id/imageViewLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
             android:layout_centerHorizontal="true"
-            android:ems="10"
-            android:hint="nombre"
-            android:inputType="textEmailAddress" />
+            android:src="@drawable/logo"/>
 
-        <EditText
-            android:id="@+id/editTextPassword"
-            android:layout_width="wrap_content"
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/editTextName"
-            android:layout_alignRight="@+id/editTextName"
-            android:layout_below="@+id/editTextName"
-            android:layout_marginTop="38dp"
-            android:ems="10"
-            android:hint="contraseña"
-            android:inputType="textPassword" />
+            android:layout_below="@id/imageViewLogo"
+            android:layout_marginTop="24dp">
+
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@android:drawable/ic_dialog_email"
+                android:hint="Name"
+                android:textColor="@color/cardview_light_background" />
+
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textInputName"
+            android:layout_marginTop="24dp"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@android:color/white">
+
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@android:drawable/ic_dialog_email"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textColor="@color/cardview_light_background"/>
+
+
+        </android.support.design.widget.TextInputLayout>
 
         <Switch
             android:id="@+id/switchRemember"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/editTextPassword"
-            android:layout_alignRight="@+id/editTextPassword"
-            android:layout_below="@+id/editTextPassword"
-            android:layout_marginTop="28dp"
-            android:text="Recordar campos" />
+            android:layout_alignEnd="@+id/textInputPassword"
+            android:layout_alignRight="@+id/textInputPassword"
+            android:layout_below="@+id/textInputPassword"
+            android:layout_marginTop="24dp"
+            android:text="Recordar campos"
+            android:textColor="@color/cardview_light_background" />
 
-
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/colorAccent"
+            android:text="Iniciar sesión"
+            android:textColor="#FFF" />
+        
     </RelativeLayout>
 
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="@color/colorPrimaryDark"
-        android:text="Iniciar sesión"
-        android:textColor="#FFF" />
+</LinearLayout>
 
-
-</RelativeLayout>

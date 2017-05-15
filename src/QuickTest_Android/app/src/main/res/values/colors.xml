@@ -5,14 +5,14 @@
     <color name="colorAccent">#FF4081</color>-->
 
 
-    <color name="colorPrimary">#673AB7</color>
+    <!--<color name="colorPrimary">#673AB7</color>
     <color name="colorPrimaryDark">#512DA8</color>
     <color name="colorLight">#D1C4E9</color>
     <color name="colorAccent">#E040FB</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#757575</color>
     <color name="colorIcons">#FFFFFF</color>
-    <color name="colorDivider">#BDBDBD</color>
+    <color name="colorDivider">#BDBDBD</color>-->
 
     <!--   <color name="colorPrimary">#FF9800</color>
        <color name="colorPrimaryDark">#F57C00</color>
@@ -23,4 +23,24 @@
        <color name="colorSecondaryText">#757575</color>
        <color name="colorIcons">#212121</color>
        <color name="colorDivider">#BDBDBD</color>-->
+
+<!--
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorLight">#C5CAE9</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#757575</color>
+    <color name="colorIcons">#FFFFFF</color>
+    <color name="colorDivider">#BDBDBD</color>-->
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorDarkGrey">#455A64</color>
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#757575</color>
+    <color name="colorIcons">#FFFFFF</color>
+    <color name="colorDivider">#BDBDBD</color>
+
 </resources>

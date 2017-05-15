@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -92,8 +93,14 @@ public class MainActivity extends AppCompatActivity {
         // Obtenemos todos los cuestionarios
         //cuestionarios = getAll();
         cuestionarios = getExternalTools();
+
+
+        HashMap<Integer, ArrayList<Cuestionario>> retorno = get();
+        cuestionarios = retorno.get(1);
+        resolvedQuestionnaires = retorno.get(0);
+
         // Obtenemos los cuestionarios resueltos
-        resolvedQuestionnaires = calculateExternalToolsResolved();
+        //resolvedQuestionnaires = calculateExternalToolsResolved();
 
         setToolbar();
 
@@ -224,7 +231,50 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public ArrayList<Cuestionario> getDataExternalToolsResolved(){
+
         return resolvedQuestionnaires;
+    }
+
+    public HashMap<Integer, ArrayList<Cuestionario>> get(){
+        HashMap<Integer, ArrayList<Cuestionario>> retorno = new HashMap<>();
+        retorno.put(0, new ArrayList<Cuestionario>());
+        retorno.put(1, new ArrayList<Cuestionario>());
+        for(Cuestionario c : cuestionarios){
+
+            // Obtenemos la info de la streamQuery
+            String oauth_consumer_key = c.getClaveCliente() + ":" + user.getId();
+            int idCuestionario = c.getIdCuestionario();
+
+            // Realizamos la peticion al APIRest
+            StatusQuestionaryRequest statusQuestionaryRequest =
+                    new StatusQuestionaryRequest(APIRest.getApi(), oauth_consumer_key, idCuestionario);
+
+            try {
+                int estado = statusQuestionaryRequest.execute().get();
+                if(estado != -1){
+                    // Si esta resuelto
+                    if(estado == 1){
+                        ArrayList<Cuestionario> lista = retorno.get(0);
+                        lista.add(c);
+                        retorno.put(0, lista);
+                     // Sino esta resuelto
+                    }else if(estado == 0){
+                        ArrayList<Cuestionario> lista = retorno.get(1);
+                        lista.add(c);
+                        retorno.put(1, lista);
+                    }
+                }else{
+                    Log.d("MainActivity", "calculateExternalToolsResolved: error en el resultado");
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        return retorno;
     }
 
     public ArrayList<Cuestionario> calculateExternalToolsResolved(){
@@ -296,7 +346,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getCoursesLTI() {
-        //modules = new ArrayList<>();
         for (int idCourse = 0; idCourse < courses.length; idCourse++) {
             ContentCourseRequest contentCourseRequest = new ContentCourseRequest(APIMoodle.getApi(), courses[idCourse].getId());
             try {

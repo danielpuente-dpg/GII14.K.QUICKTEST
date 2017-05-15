@@ -6,7 +6,7 @@
         <item
             android:id="@+id/menu_courses"
             android:icon="@android:drawable/ic_menu_agenda"
-            android:title="Mis cuestionarios" />
+            android:title="Mis cuestionarios sin resolver" />
 
         <item
             android:id="@+id/menu_courses_end"
