@@ -60,6 +60,8 @@ No obstante, en esta ocasión la versión de Moodle empleada es la más actual h
 
 	\item Si hemos realizado los anteriores pasos de forma correcta el sistema nos comunicará que el entorno cumple todos los requerimientos mínimos y continuamos con la instalación. Este proceso puede durar varios minutos dependiendo de la conexión a Internet.
 	
+	\item En esa misma página seleccionamos en Base de datos. Dentro de esta sección en el apartado Crear base de datos introducimos la siguiente información y la creamos. \imagen{CrecTabMoodle}{Creación de la tabla Moodle con el formato deseado}
+	
 	\item Una vez realizada la instalación de Moodle, es necesario la configuración de la plataforma. Para ello es necesario establecer un administrador de la misma. En nuestro caso la configuración es la que se puede ver en la siguiente ilustración. \imagen{ConfDatAdminMoodle}{Configuramos los datos del administrador de Moodle}
 	
 	\item A continuación, tendremos que configurar el sitio. Para ello introducimos la siguiente información. \imagen{ConfSites}{Configuramos el sitio}
@@ -103,7 +105,8 @@ Para poder utilizar QuickTest desde un LMS, en este caso Moodle, tendremos que e
 
 \begin{itemize}
 
-	\item Abrir una nueva pestaña en el navegador e introducir el siguiente enlace: \imagen{UrlIniQT}{Abrimos la página de inicio de QuickTest}
+	\item Abrir una nueva pestaña en el navegador e introducir el siguiente enlace: \url{http://localhost/_QuickTest_TFG/app/views/managementView/startQuickTest_View.php}
+	\imagen{UrlIniQT}{Abrimos la página de inicio de QuickTest}
 	
 	\item Seleccionamos Acceder/Registrarse. Una vez seleccionado este botón aparecerá una ventana emergente que permitirá Entrar o Registrarse.
 	
@@ -190,6 +193,38 @@ Para llevar a cabo la publicación de un cuestionario tendremos que:
 
 \end{itemize}
 
+\subsubsection{Configuración del Webservice Moodle}
+
+Antes de comenzar a la explicación de los distintos pasos a realizar, tendremos que encontrarnos logeado con los credenciales del administrador del sitio.
+
+\begin{itemize}
+
+	\item Una vez logeado nos dirigimos a Administración del sitio. Allí nos seleccionamos la categoría Extensiones y dentro de esta categoría en Servicios Web.
+	\item Si hemos realizado el punto anterior de manera correcta, nos encontramos en panel central de la configuración del Web Service. Este entorno de configuración se puede observar en la siguiente ilustración.
+	\imagen{PanelConfWSM}{Panel de configuración del Web Service de Moodle}
+	
+	\item Para llevar a cabo la correcta configuración vamos a realizar los pasos de manera ordenada de menor a mayor como se puede ver en la anterior ilustración. 
+	\begin{itemize}
+	
+		\item \textbf{Habilitar los Servicios Web:} para ello entramos en el paso 1, y activamos el checkbox y guardamos los cambios.
+		
+		\item \textbf{Administrar protocolos:} para poder interactuar con el Web Service tendremos que habilitar al menos uno de ellos. En nuestro caso utilizaremos REST al ser el mas común utilizado en la comunidad de los Web Service de Moodle. Además, permite mostrar el contenido de retorno en formato JSON, el cual es muy ventajoso para el el tratamiento de los datos en la aplicación Android. Por último, es aconsejable habilitar la documentación al ser un gran material de apoyo y guardamos los cambios.
+		
+		\item Como se ha comentado anteriormente, vamos a realizar la configuración de manera ordenada. No obstante, en el este ejemplo vamos a ignorar los pasos 3, 4, 5 y 6. En estos pasos, se crea un usuario especifico para interactuar con el Web Service, este usuario debe de tener ciertos privilegios para poder desempeñar esta funcionalidad, se crea un servicio y se agregan las funcionalidades de interés a dicho servicio. Estos pasos son ignorados, ya que se va ha utilizar el propio usuario administrador del sitio al tener todos los privilegios necesarios y de esta manera no limitaremos las funcionalidades del Web Service al incluir todas ellas. Destacar que no es recomendable utilizar el mismo usuario administrador de Moodle por motivos de seguridad, para interactuar con el Web Service. Al ser un trabajo meramente didáctico, utilizaremos este mismo usuario para evitar complicaciones.
+Por último, estos pasos omitidos se encuentran explicados en el siguiente enlace:
+\url{http://www.vitalinnova.com/servicios-web-en-moodle-2-0/}
+		
+		\item \textbf{Seleccione un servicio:} para poder habilitar el servicio externo tendremos que seleccionar el paso 5. Una vez allí, click sobre editar en servicio \emph{Moodle mobile web service} y activamos el checkbox.
+		
+	
+	\end{itemize}
+	
+La configuración del Web Service ha finalizado. Para poder comprobar el correcto funcionamiento del mismo, vamos a pedir a este, el token del administrador. Para ello abrimos un nuevo navegador e introducimos la siguiente url: \url{http://localhost/moodle/login/token.php?username=admin&password=Asdf1234!&service=moodle_mobile_app}. Si todo ha ido correctamente la respuesta será la siguiente:
+\imagen{ResTokAdmin}{Obtención del token del administador}
+	
+	
+
+\end{itemize}
 
 
 

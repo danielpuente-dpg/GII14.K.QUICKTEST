@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -17,7 +16,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,12 +23,13 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import aplicacion.android.danielvm.quicktest_android.API.APIMoodle;
+import aplicacion.android.danielvm.quicktest_android.API.APIRest;
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.MoodleService;
 
+import aplicacion.android.danielvm.quicktest_android.API.APIServices.RestService;
 import aplicacion.android.danielvm.quicktest_android.Fragments.CuestionarioFragment;
-import aplicacion.android.danielvm.quicktest_android.Fragments.SecondFragment;
+import aplicacion.android.danielvm.quicktest_android.Fragments.ResolvedQuestionnairesFragment;
 import aplicacion.android.danielvm.quicktest_android.Fragments.ThirdFragment;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Mensaje;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Content;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Course;
@@ -39,9 +38,9 @@ import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Module;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Token;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.User;
 import aplicacion.android.danielvm.quicktest_android.R;
+import aplicacion.android.danielvm.quicktest_android.Utils.SingleRespuestaAPI;
 import aplicacion.android.danielvm.quicktest_android.Utils.Util;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Retrofit;
 
 
@@ -71,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     public String TOKEN_WS;
 
     public static User user;
+    private ArrayList<Cuestionario> resolvedQuestionnaires;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,8 +89,11 @@ public class MainActivity extends AppCompatActivity {
         getCoursesLTI();
         getNumberOfCourses();
         getNumberExternalTools();
-        cuestionarios = getAll();
-
+        // Obtenemos todos los cuestionarios
+        //cuestionarios = getAll();
+        cuestionarios = getExternalTools();
+        // Obtenemos los cuestionarios resueltos
+        resolvedQuestionnaires = calculateExternalToolsResolved();
 
         setToolbar();
 
@@ -120,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.menu_courses_end:
-                        fragment = new SecondFragment();
+                        fragment = new ResolvedQuestionnairesFragment();
                         fragmentTransaction = true;
                         break;
 
@@ -218,6 +221,40 @@ public class MainActivity extends AppCompatActivity {
 
     public ArrayList<Cuestionario> getDataExternalTools(){
         return cuestionarios;
+    }
+
+    public ArrayList<Cuestionario> getDataExternalToolsResolved(){
+        return resolvedQuestionnaires;
+    }
+
+    public ArrayList<Cuestionario> calculateExternalToolsResolved(){
+        ArrayList<Cuestionario> retorno = new ArrayList<>();
+        for(Cuestionario c : cuestionarios){
+
+            // Obtenemos la info de la streamQuery
+            String oauth_consumer_key = c.getClaveCliente() + ":" + user.getId();
+            int idCuestionario = c.getIdCuestionario();
+
+            // Realizamos la peticion al APIRest
+            StatusQuestionaryRequest statusQuestionaryRequest =
+                    new StatusQuestionaryRequest(APIRest.getApi(), oauth_consumer_key, idCuestionario);
+
+            try {
+                int estado = statusQuestionaryRequest.execute().get();
+                if(estado != -1){
+                    if(estado == 1){
+                        retorno.add(c);
+                    }
+                }else{
+                    Log.d("MainActivity", "calculateExternalToolsResolved: error en el resultado");
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+        return retorno;
     }
 
     private void getTokenWS() {
@@ -319,44 +356,25 @@ public class MainActivity extends AppCompatActivity {
         Log.d("NAME", NAME);
     }
 
-    private ArrayList<Cuestionario> getAll() {
-        ArrayList<Cuestionario> cuestionarios = new ArrayList<>();
+    private ArrayList<Cuestionario> getExternalTools(){
+        ArrayList<Cuestionario> retorno = new ArrayList<>();
         for (int i = 1; i <= NUM_EXTERNAL_TOOLS; i++) {
-            getExternalTool(cuestionarios, i);
+            ExternalTollRequest externalTollRequest = new ExternalTollRequest(APIMoodle.getApi(), i);
+            try {
+                ExternalTool externalTool = externalTollRequest.execute().get();
+                addExternalTool(retorno, externalTool);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
         }
-        return cuestionarios;
+        return retorno;
     }
 
-    private void getExternalTool(final List<Cuestionario> cuestionarios, int counter) {
-        Retrofit retrofit = APIMoodle.getApi();
-        MoodleService service = retrofit.create(MoodleService.class);
-
-        Call<ExternalTool> call = service.getExternalTools(TOKEN_WS, APIMoodle.GET_EXTERNAL_TOOL, APIMoodle.FORMAT_JSON, counter);
-
-        call.enqueue(new Callback<ExternalTool>() {
-            @Override
-            public void onResponse(Call<ExternalTool> call, retrofit2.Response<ExternalTool> response) {
-                if (response.isSuccessful()) {
-                    if (response.body().getEndpoint() != null) {
-                        addExternalTool(cuestionarios, response.body());
-                    } else {
-                        addExternalTool(cuestionarios, response.body());
-                    }
-                } else {
-                    Toast.makeText(MainActivity.this, "Error en el formato de respuesta", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ExternalTool> call, Throwable t) {
-                Toast.makeText(MainActivity.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void addExternalTool(List<Cuestionario> cuestionarios, ExternalTool externalTool) {
+    private void addExternalTool(ArrayList<Cuestionario> retorno, ExternalTool externalTool) {
         Cuestionario cuestionario;
-        if (externalTool.getEndpoint().equals("http://localhost/_QuickTest_TFG/index.php")) {
+        if (externalTool.getEndpoint().equals( APIMoodle.BASE + "_QuickTest_TFG/index.php")) {
 
             // Comprobamos que ese usuario tenga asignado ese cuestionario
             // Obtenemos la descripcion
@@ -370,7 +388,7 @@ public class MainActivity extends AppCompatActivity {
                     String curso = externalTool.getParameters().get(9).getValue();
                     String claveCliente = externalTool.getParameters().get(3).getValue();
                     cuestionario = new Cuestionario(idCuestionario, description, R.mipmap.ic_icon_cuestionario, curso, claveCliente);
-                    cuestionarios.add(cuestionario);
+                    retorno.add(cuestionario);
 
                     Log.d("AddExternalTool", description);
                     break;
@@ -582,6 +600,65 @@ public class MainActivity extends AppCompatActivity {
 
         private void incNumberExternalTools() {
             ++cont;
+        }
+    }
+
+    public class StatusQuestionaryRequest extends AsyncTask<Void, Void, Integer>{
+
+        private Retrofit retrofit;
+        private String oauth_consumer_key;
+        private int idCuestionario;
+
+        public StatusQuestionaryRequest(Retrofit retrofit, String oauth_consumer_key, int idCuestionario) {
+            this.retrofit = retrofit;
+            this.oauth_consumer_key = oauth_consumer_key;
+            this.idCuestionario = idCuestionario;
+        }
+
+        @Override
+        protected Integer doInBackground(Void... params) {
+            int estado = -1;
+
+            RestService service = retrofit.create(RestService.class);
+            Call<SingleRespuestaAPI> call = service.getStatusTest(oauth_consumer_key, idCuestionario);
+
+            try {
+                estado = Integer.parseInt(call.execute().body().getMensaje());
+                return estado;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            return estado;
+        }
+    }
+
+    public class ExternalTollRequest extends AsyncTask<Void, Void, ExternalTool>{
+
+        private Retrofit retrofit;
+        private int toolId;
+
+        public ExternalTollRequest(Retrofit retrofit, int toolId) {
+            this.retrofit = retrofit;
+            this.toolId = toolId;
+        }
+
+        @Override
+        protected ExternalTool doInBackground(Void... params) {
+            ExternalTool externalTool = null;
+
+            MoodleService service = retrofit.create(MoodleService.class);
+            Call<ExternalTool> call = service.getExternalTools(TOKEN_WS, APIMoodle.GET_EXTERNAL_TOOL, APIMoodle.FORMAT_JSON, toolId);
+
+            try {
+                externalTool = call.execute().body();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            return externalTool;
         }
     }
 
