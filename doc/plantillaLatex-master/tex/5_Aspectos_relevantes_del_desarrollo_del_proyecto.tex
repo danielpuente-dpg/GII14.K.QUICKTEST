@@ -1,7 +1,108 @@
 \capitulo{5}{Aspectos relevantes del desarrollo del proyecto}
 
-Este apartado pretende recoger los aspectos más interesantes del desarrollo del proyecto, comentados por los autores del mismo.
-Debe incluir desde la exposición del ciclo de vida utilizado, hasta los detalles de mayor relevancia de las fases de análisis, diseño e implementación.
-Se busca que no sea una mera operación de copiar y pegar diagramas y extractos del código fuente, sino que realmente se justifiquen los caminos de solución que se han tomado, especialmente aquellos que no sean triviales.
-Puede ser el lugar más adecuado para documentar los aspectos más interesantes del diseño y de la implementación, con un mayor hincapié en aspectos tales como el tipo de arquitectura elegido, los índices de las tablas de la base de datos, normalización y desnormalización, distribución en ficheros3, reglas de negocio dentro de las bases de datos (EDVHV GH GDWRV DFWLYDV), aspectos de desarrollo relacionados con el WWW...
-Este apartado, debe convertirse en el resumen de la experiencia práctica del proyecto, y por sí mismo justifica que la memoria se convierta en un documento útil, fuente de referencia para los autores, los tutores y futuros alumnos.
+En este apartado se recogen los aspectos mas relevantes que han surgido a lo largo del desarrollo del proyecto, es decir todos aquellos puntos de inflexión que han marcado los pasos a seguir o la toma de decisiones frente a diferentes problemáticas.
+
+
+\section{Inicio del proyecto}
+
+La selección de este trabajo final de grado, nace de la necesidad propia de la construcción de una aplicación en Android. Una vez publicados las distintas propuestas, busque aquellas que mas se acercarán a mis necesidades. Aquí, es donde este proyecto destacó sobre las demás.
+
+Una vez realizada mi elección de proyecto, comunique a mis tutores mi interés en el mismo y que me explicarán en mayor profundidad las funcionalidades a desarrollar. Tras las explicaciones y aclaraciones pertinentes nos pusimos manos a la obra.
+
+\section{Metodología}
+
+Para la correcta gestión del proyecto se decidió utilizar una metodología ágil, en este caso Scrum \ref{scrum}. Destacar que no se siguió al pie de la letra, ya que el equipo de proyecto solamente estaba formado por 3 personas. No obstante, se siguieron las siguientes pautas:
+
+\begin{itemize}
+
+	\item Desarrollo incremental del proyecto basado en iteraciones o sprints.
+	
+	\item La duración ideal de las distintas iteraciones fue de 15 días.
+	
+	\item Al finalizar cada iteración, se realiza una revisión del sprint anterior y al finalizar esta, se realiza la planificación de las nuevas tareas a entregar en la siguiente iteración.
+	
+	\item Para manipular estas tareas se utiliza un tablero Kanban. Este tablero se incluye en GitHub gracias a la utilizacion de ZenHub \ref{zenhub}.
+	
+	\item Utilización de gráficos Burndown para monitorizar el progreso de proyecto.
+	
+
+\end{itemize}
+ 
+
+\section{Formación}
+
+La realización de este proyecto requería una serie de conocimientos que al comienzo del mismo no disponía. Para ello en las primeras iteraciones se realizarón estudios sobre estos conocimientos técnicos. Para ello se realizó:
+
+\begin{itemize}
+
+	\item Para la formación en PHP:
+	
+	\begin{itemize}
+		
+		\item Lectura de la documentación oficial que proporciona PHP. \cite{wiki:phpdoc}
+		
+		\item Curso de aprendizaje de PHP. \cite{wiki:phpcourse}
+		
+	\end{itemize}
+	
+	\item Para la formación en la plataforma Moodle:
+	
+	\begin{itemize}
+	
+			\item Lecturas varias, del funcionamiento de la misma.
+			
+			\item Documentación del proyecto de partida.
+	
+	\end{itemize}
+	
+	\item Para la formación en Android:
+	\begin{itemize}
+		
+		\item Programación de Android desde Cero + 35 horas (Udemy).
+		
+		\item Android. Guía De Desarrollo De Aplicaciones Para Smartphones Y Tabletas \cite{wiki:book} Libro proporcionado por mis tutores.
+		
+		\item \textbf{\textit{Documentación que utilice para el Testing.}}
+		
+	
+	\end{itemize}
+
+\end{itemize}
+
+
+\section{Desarrollo del API Rest}
+
+Para poder comunicar la aplicación Android con las propias funcionalidades del proyecto de partida, se utiliza un API. Las principales funcionalidades de este API, han sido desarrolladas durante las primeras iteraciones del proyecto, no obstante otras han sido desarrolladas fruto de la necesidad de las mismas. 
+
+Se ha decidido utilizar una arquitectura Rest para este API, ya que:
+
+\begin{itemize}
+	
+	\item \textbf{Separación cliente/servidor:} de esta manera al ser independiente, la comunicación entre cliente y servidor se realiza mediante un lenguaje común de intercambio, en este caso JSON \ref{json}. Gracias a esta idea, podemos realizar la construcción de un API que funcione de adaptador entre las funcionalidades del proyecto de partida y la información que la propia aplicación Android necesita. Además, de esta manera no es necesario modificar ninguna funcionalidad del proyecto de partida.
+	
+	\item \textbf{Lenguajes independientes:} permite la comunicación de información entre distintos lenguajes. En nuestro caso, este API esta desarrollado en PHP y el cliente que lo consume en Java.
+	
+	\item \textbf{Flexibilidad:} el cambio de alguno de estos nexos no implica la transformación de los mismos, siempre y cuando la devolución de los datos se realice de forma correcta.
+	
+	\item \textbf{Sin estado:} al no tener estado, no requiere un almacenamiento de este y por lo tanto permite un mayor número de peticiones.
+
+\end{itemize}
+
+Es por esto que la visión que podemos tener de este, es la del BackEnd de la app, es decir es el proveedor de los datos a mostrar en la aplicación.
+
+\section{Comunicación con el Web Service de Moodle}
+
+La aplicación Android nos permitirá resolver los mismos cuestionarios del proyecto de partida. Para ello, es necesario conocer cierta información que el propio API desarrollado no tiene. Es por esto, que la aplicación tendrá que comunicarse de alguna con Moodle para conocer estos datos, es aquí donde entra en juego los Web Service de Moodle. 
+
+Para llevar a cabo esta comunicación se han tenido que realizar previamente la instalación y configuración de estos. Una vez realizado esto, la aplicación Android podrá comunicarse con Moodle.
+
+
+\section{Desarrollo de la app}
+
+Una vez desarrolladas las principales funcionalidades del API en las primeras iteraciones, se comenzó con el desarrollo de la aplicación Android.
+La versión utilizada en el proyecto es Android 4.1 (Jelly Bean) al ser actualmente la que mayor soporte cubre, con un 95,2 \% al inicio del desarrollo de la app.
+
+La primera problemática que surgió fue la del tratamiento de las peticiones desde la app. Para ello y después de mucha investigación y pruebas se decidio utilizar la libreria Retrofit de Square \cite{wiki:retrofit} entre otras alternativas como Volley \cite{wiki:volley} de Google, al permitir esta la utilización de peticiones síncronas y la libreria Gson de Google \cite{wiki:gson} para facilitarla la transformación de los datos en formato JSON proporcionados por el propio API o el Web Service de Moodle, a objetos en Java. 
+
+
+\section{Testing}
