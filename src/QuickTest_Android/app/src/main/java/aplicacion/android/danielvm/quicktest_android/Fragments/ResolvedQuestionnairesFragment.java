@@ -14,6 +14,7 @@ import java.util.List;
 
 import aplicacion.android.danielvm.quicktest_android.Activities.MainActivity;
 import aplicacion.android.danielvm.quicktest_android.Adapters.ExternalToolAdapter;
+import aplicacion.android.danielvm.quicktest_android.Adapters.ResolvedExternalToolAdapter;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
 import aplicacion.android.danielvm.quicktest_android.R;
 
@@ -48,7 +49,7 @@ public class ResolvedQuestionnairesFragment extends Fragment {
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         mLayoutManager = new LinearLayoutManager(getContext());
-        mAdapter = new ExternalToolAdapter(this.resolvedQuestionnaires, getActivity(), R.layout.recycler_view_item);
+        mAdapter = new ResolvedExternalToolAdapter(this.resolvedQuestionnaires, getActivity(), R.layout.recycler_view_item);
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());

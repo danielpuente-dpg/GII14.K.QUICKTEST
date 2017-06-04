@@ -136,6 +136,7 @@ class Cuestionario_Resolver_Controller
         $idPregunta = $preguntasModel->getIdPregunta_respuesta($idRespuesta);
         $max = $preguntasModel->get_maxPunt_pregunta($idPregunta);
 
+
         $correctorVerdeTrue = (double)$correctores['correctorVerdeTrue'];
         $correctorVerdeFalse = (double)$correctores['correctorVerdeFalse'];
         $correctorAmarilloTrue = (double)$correctores['correctorAmarilloTrue'];

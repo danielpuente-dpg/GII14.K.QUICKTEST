@@ -1,6 +1,7 @@
 package aplicacion.android.danielvm.quicktest_android.Activities;
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -47,6 +48,9 @@ public class TestActivity extends AppCompatActivity {
     private List<Test> tests;
     private int ID_CUESTIONARIO;
     public static String CLAVE;
+    public static String ID_ALUMNO;
+    public static String NOMBRE_ALU;
+    public static String APE_ALU;
 
 
     @Override
@@ -77,12 +81,12 @@ public class TestActivity extends AppCompatActivity {
 
                 // Obtenemoslas la informacion del cuestionario resuelto
                 HashMap<Integer, Result> results = new TestAdapter(tests, R.layout.recycler_view_item_test).postTest;
-                List<Result> respuestas = new ArrayList<Result>();
+                List<Result> respuestas = new ArrayList<>();
                 for (Result r : results.values()) {
                     respuestas.add(r);
                 }
-
-                TestRequest testRequest = new TestRequest(ID_CUESTIONARIO, respuestas);
+                ID_ALUMNO = respuestas.get(0).getIdAlumno();
+                TestRequest testRequest = new TestRequest(ID_CUESTIONARIO, ID_ALUMNO, NOMBRE_ALU, APE_ALU ,respuestas);
 
                 Retrofit retrofit = APIRest.getApi();
                 RestService service = retrofit.create(RestService.class);
@@ -95,6 +99,8 @@ public class TestActivity extends AppCompatActivity {
                         int statusCode = response.code();
 
                         APIResponse apiResponse = response.body();
+                        double grade = Double.parseDouble(apiResponse.getMensaje());
+                        goToGradeActivity(grade);
 
                         Log.d("TestActivity", "onResponse: " + statusCode);
                     }
@@ -109,6 +115,11 @@ public class TestActivity extends AppCompatActivity {
         });
     }
 
+    private void goToGradeActivity(double grade) {
+        Intent intent = new Intent(TestActivity.this, InfoGradeActivity.class);
+        intent.putExtra("grade", grade);
+        startActivity(intent);
+    }
 
 
     public void setIdCuestionarioAndKey() {
@@ -121,6 +132,9 @@ public class TestActivity extends AppCompatActivity {
             Log.d("setIdCuestionarioAndKey", "Intent OK");
             ID_CUESTIONARIO = bundle.getInt("idCuestionario");
             CLAVE = bundle.getString("clave");
+            NOMBRE_ALU = bundle.getString("nombreAlu");
+            APE_ALU = bundle.getString("apeAlu");
+
         }
 
     }

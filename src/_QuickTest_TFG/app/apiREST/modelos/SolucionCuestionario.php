@@ -18,6 +18,8 @@ require_once($URL_GLOBAL . '/_QuickTest_TFG/app/model/Respuestas_Model.php');
 require_once($URL_GLOBAL . '/_QuickTest_TFG/app/controller/LTI_Controller.php');
 //Importamos la librería de seguridad OAuth
 require_once($URL_GLOBAL . "/_QuickTest_TFG/lib/ims-blti/OAuthBody.php");
+require_once($URL_GLOBAL . '/_QuickTest_TFG/app/apiREST/test_apiRest/TablaNota.php');
+
 
 /**
  *
@@ -168,10 +170,16 @@ class SolucionCuestionario
 
         $cuestionarioResolverController = new Cuestionario_Resolver_Controller();
 
-
-
         $idCuestionario = $cuestionario['idCuestionario'];
-        $context = $cuestionario['context'];
+
+        // Obtenemos el id del usuario
+        $idAlumno = $cuestionario['idAlumno'];
+        $nombreAlu = $cuestionario['nombreAlu'];
+        $apeAlu = $cuestionario['apeAlu'];
+
+        // Registramos al usuario que acaba de finalizar el cuestionario
+
+        $cuestionarioResolverController->registrarAlumno($idAlumno, $nombreAlu, $apeAlu);
 
         // Obtenemos las respuestas
         $respuestas = $cuestionario['respuestas'];
@@ -185,20 +193,22 @@ class SolucionCuestionario
             $cuestionarioResolverController->guardarCadaRespuesta($idRespuesta, $tipoComUsado, $idAlumno, $pregResuelta);
         }
 
-        $idAlumno = $respuestas[0]['idAlumno'];
 
-        $retorno = self::calcularNotaMoodle($idCuestionario, $idAlumno, $context);
+        // Calculamos nota y insertamos al alumno en que a realizado el cuestionario
+        $retorno = self::calcularNotaMoodle($idCuestionario, $idAlumno);
 
+        if ($retorno >= 0) {
+            // Incluimos la nota
+            self::insertarNota($idAlumno, $idCuestionario, $retorno);
 
-        if($retorno > 0){
-        // Establecemos la respuesta indicando que se creo un recurso
-        http_response_code(APIEstados::ESTADO_OK);
-        return
-            [
-                "estado" => self::ESTADO_EXITO,
-                "mensaje" => "Cuestionario finalizado correctamente"
-            ];
-        }else{
+            // Establecemos la respuesta indicando que se creo un recurso
+            http_response_code(APIEstados::ESTADO_OK);
+            return
+                [
+                    "estado" => self::ESTADO_EXITO,
+                    "mensaje" => $retorno
+                ];
+        } else {
             throw new APIException(self::ESTADO_ERROR_PARAMETROS,
                 "Error al finalizar un cuestionario " . "<class> " . SolucionCuestionario::class . " </class>",
                 APIEstados::ESTADO_UNPROCESSABLE_ENTITY);
@@ -206,7 +216,7 @@ class SolucionCuestionario
 
     }
 
-    public static function calcularNotaMoodle($idCuestionario, $idAlumno, $context)
+    public static function calcularNotaMoodle($idCuestionario, $idAlumno)
     {
 
         $preguntasModel = new Preguntas_Model();
@@ -253,97 +263,26 @@ class SolucionCuestionario
             $grade_moodle_format = 1; // moodle no permite calificaciones mayores que 1
         }
 
-        $retorno = self::enviarNotaAMoodle($grade_moodle_format, $context);
+        //$retorno = self::enviarNotaAMoodle($grade_moodle_format, $context);
 
-        return $retorno;
+        return $grade_moodle_format;
 
     }
 
-    private static function enviarNotaAMoodle($grade, $context)
+    public static function insertarNota($idAlumno, $idCuestionario, $nota)
     {
+        $db = new Database();
+        $db->conectar();
 
-        //Importamos la librería de seguridad OAuth
-        require_once($_SERVER["DOCUMENT_ROOT"] . "/_QuickTest_TFG/lib/ims-blti/OAuthBody.php");
-        $usuarios_Controller = new Usuarios_Controller();
-        $lti_Model = new LTI_Model();
-        $lti_Model->establish_LTI_Context();
-
-        //PARAMETROS REQUERIDOS POR LTI
-        $lis_outcome_service_url = $context[0]['lis_outcome_service_url'];
-        $lis_result_sourcedid = json_encode($context[0]['lis_result_sourcedid']);
-        $oauth_consumer_key = $context[0]['oauth_consumer_key'];
-        $oauth_consumer_secret = $usuarios_Controller->desencriptarPassword($context[0]['secret']);
+        $query = $db->consultaPreparada("INSERT INTO " . TablaNota::NOMBRE_TABLA .
+            " (" . TablaNota::ID_ALUMNO . " , " . TablaNota::ID_CUESTIONARIO . " , " .
+            TablaNota::NOTA . " ) VALUES (?, ?, ?)");
 
 
-        /*echo $lis_outcome_service_url ;
-        echo "\n";
-        echo $lis_result_sourcedid;
-        echo "\n";
-        echo $oauth_consumer_key;
-        echo "\n";
-        echo $oauth_consumer_secret;
-        echo "\n";
-
-        echo $grade;
-        echo "\n";*/
-
-        //Tipo de petición a moodle:
-        $operacion = "replaceResultRequest"; //Guardar Calificación
-
-        //XML impuesto por LTI para comunicar calificación al LMS
-        $bodyReplace = '<?xml version="1.0" encoding="UTF-8"?>
-
- <imsx_POXEnvelopeRequest xmlns="http://www.imsglobal.org/services/ltiv1p1/xsd/imsoms_v1p0">
-
-  <imsx_POXHeader>
-
-    <imsx_POXRequestHeaderInfo>
-
-      <imsx_version>V1.0</imsx_version>
-
-      <imsx_messageIdentifier>' . (time()) . '</imsx_messageIdentifier>
-
-    </imsx_POXRequestHeaderInfo>
-
-  </imsx_POXHeader>
-
-  <imsx_POXBody>
-
-    <' . $operacion . '>
-
-      <resultRecord>
-
-        <sourcedGUID>
-
-          <sourcedId>' . $lis_result_sourcedid . '</sourcedId>
-
-        </sourcedGUID>
-
-        <result>
-
-          <resultScore>
-
-            <language>en</language>
-
-            <textString>' . $grade . '</textString>
-
-          </resultScore>
-
-        </result>
-
-      </resultRecord>
-
-    </' . $operacion . '>
-
-  </imsx_POXBody>
-
-</imsx_POXEnvelopeRequest>';
-
-        //Se firma la petición con OAuth
-        $response = sendOAuthBodyPOST('POST', $lis_outcome_service_url, $oauth_consumer_key, $oauth_consumer_secret, 'application/xml', $bodyReplace);
-        return 1;
+        $ok = mysqli_stmt_bind_param($query, 'ssd', $idAlumno, $idCuestionario, $nota);
+        mysqli_stmt_execute($query);
+        $db->closeFreeStatement($query);
     }
-
 
     private
     static function mostrarResultados()

@@ -3,7 +3,6 @@ package aplicacion.android.danielvm.quicktest_android.Adapters;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -12,38 +11,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import aplicacion.android.danielvm.quicktest_android.API.APIRest;
-import aplicacion.android.danielvm.quicktest_android.API.APIServices.RestService;
+import aplicacion.android.danielvm.quicktest_android.Activities.InfoGradeActivity;
 import aplicacion.android.danielvm.quicktest_android.Activities.MainActivity;
 import aplicacion.android.danielvm.quicktest_android.Activities.TestActivity;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Mensaje;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Pregunta;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
-import aplicacion.android.danielvm.quicktest_android.Models.Android.Test;
 import aplicacion.android.danielvm.quicktest_android.R;
-import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApi;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 /**
  * Created by Daniel on 23/03/2017.
  */
 
-public class ExternalToolAdapter extends RecyclerView.Adapter<ExternalToolAdapter.ViewHolder> {
+public class ResolvedExternalToolAdapter extends RecyclerView.Adapter<ResolvedExternalToolAdapter.ViewHolder> {
 
     private List<Cuestionario> cuestionarios;
     private int layout;
     private Activity activity;
 
-    public ExternalToolAdapter(List<Cuestionario> cuestionarios, Activity activity, int layout) {
+    public ResolvedExternalToolAdapter(List<Cuestionario> cuestionarios, Activity activity, int layout) {
         this.cuestionarios = cuestionarios;
         this.layout = layout;
         this.activity = activity;
@@ -102,7 +89,7 @@ public class ExternalToolAdapter extends RecyclerView.Adapter<ExternalToolAdapte
         public boolean onMenuItemClick(MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.resolverCuestionario:
-                    goToTestActivity(getAdapterPosition());
+                    goToInfoQuestionaryActivity(getAdapterPosition());
                     return true;
                 case R.id.abortarCuestionario:
                     // TODO no hacer nada
@@ -120,7 +107,7 @@ public class ExternalToolAdapter extends RecyclerView.Adapter<ExternalToolAdapte
             contextMenu.setHeaderTitle(currentCuestionario.getDescripcion());
             // Inflamos el menu de contexto
             MenuInflater inflater = activity.getMenuInflater();
-            inflater.inflate(R.menu.action_cuestionario, contextMenu);
+            inflater.inflate(R.menu.action_cuestionario_resolved, contextMenu);
 
             // Este bucle se encarga de añadir el listener para cada Item Clicked
             // Es decir, a cada Item de /menu/action_cuestionario -> le asociamos el
@@ -132,7 +119,7 @@ public class ExternalToolAdapter extends RecyclerView.Adapter<ExternalToolAdapte
     }
 
 
-    private void goToTestActivity(int position) {
+    private void goToInfoQuestionaryActivity(int position) {
         // Obtenemos el cuestionario ha resolver
         Cuestionario cuestionario = cuestionarios.get(position);
 
@@ -142,11 +129,11 @@ public class ExternalToolAdapter extends RecyclerView.Adapter<ExternalToolAdapte
         String clave = cuestionario.getClaveCliente();
 
         // Vamos al activity encargado de resolver el Test
-        Intent intent = new Intent(activity, TestActivity.class);
+        Intent intent = new Intent(activity, InfoGradeActivity.class);
+
         intent.putExtra("idCuestionario", idCuestionario);
-        intent.putExtra("clave", clave);
-        intent.putExtra("nombreAlu", new MainActivity().user.getFirstname());
-        intent.putExtra("apeAlu", new MainActivity().user.getLastname());
+
+        intent.putExtra("idAlumno", clave);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         activity.startActivity(intent);

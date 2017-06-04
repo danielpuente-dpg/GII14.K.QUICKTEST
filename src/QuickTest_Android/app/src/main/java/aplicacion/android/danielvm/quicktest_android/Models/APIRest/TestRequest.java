@@ -12,10 +12,16 @@ import java.util.List;
 public class TestRequest {
 
     private int idCuestionario;
+    private String idAlumno;
+    private String nombreAlu;
+    private String apeAlu;
     private List<Result> respuestas;
 
-    public TestRequest(int idCuestionario, List<Result> respuestas) {
+    public TestRequest(int idCuestionario, String idAlumno, String nombreAlu, String apeAlu, List<Result> respuestas) {
         this.idCuestionario = idCuestionario;
+        this.idAlumno = idAlumno;
+        this.nombreAlu = nombreAlu;
+        this.apeAlu = apeAlu;
         this.respuestas = respuestas;
     }
 
@@ -25,6 +31,30 @@ public class TestRequest {
 
     public void setIdCuestionario(int idCuestionario) {
         this.idCuestionario = idCuestionario;
+    }
+
+    public String getIdAlumno() {
+        return idAlumno;
+    }
+
+    public void setIdAlumno(String idAlumno) {
+        this.idAlumno = idAlumno;
+    }
+
+    public String getNombreAlu() {
+        return nombreAlu;
+    }
+
+    public void setNombreAlu(String nombreAlu) {
+        this.nombreAlu = nombreAlu;
+    }
+
+    public String getApeAlu() {
+        return apeAlu;
+    }
+
+    public void setApeAlu(String apeAlu) {
+        this.apeAlu = apeAlu;
     }
 
     public List<Result> getRespuestas() {

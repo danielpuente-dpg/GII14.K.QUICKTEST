@@ -19,7 +19,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.MainActivity" />
-        <activity android:name=".Activities.TestActivity"></activity>
+        <activity android:name=".Activities.TestActivity" />
+        <activity
+            android:name=".Activities.InfoGradeActivity"
+            android:screenOrientation="landscape">
+
+        </activity>
     </application>
 
 </manifest>
