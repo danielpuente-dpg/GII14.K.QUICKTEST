@@ -10,28 +10,33 @@ import aplicacion.android.danielvm.quicktest_android.R;
 public class InfoGradeActivity extends AppCompatActivity {
 
     private static double GRADE;
+    private static String ID_CUESTIONARIO;
+    private static String ID_ALUMNO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_grade);
+        setContentView(R.layout.activity_info_grade);
 
-        // Obtenemos la nota
-        getGrade();
+        // Obtenemos la info
+        getDataBundle();
 
-        Toast.makeText(this, "Resultado: " + GRADE, Toast.LENGTH_SHORT).show();
+        // Obtenemos la calificacion de ese cuestionario
+
 
 
     }
 
-    private void getGrade() {
+    private void getDataBundle() {
         Bundle bundle = getIntent().getExtras();
         if (bundle == null)
             Log.d("InfoGradeActivity", "Intent was null");
         else {
             Log.d("InfoGradeActivity", "Intent OK");
-            GRADE = bundle.getDouble("grade");
-
+            ID_CUESTIONARIO = bundle.getString("idCuestionario");
+            ID_ALUMNO = bundle.getString("idAlumno");
         }
     }
+
+
 }

@@ -39,6 +39,18 @@ class SolucionCuestionario
     const ESTADO_SOY_PROFESOR = true;
 
 
+    public static function get($peticion)
+    {
+        if ($peticion[0] == 'obtenerNota') {
+            return self::getGrade($peticion[1], $peticion[2]);
+        } else {
+            throw new APIException(self::ESTADO_ERROR_PARAMETROS,
+                "Error al obtener Nota " . "<class> " . SolucionCuestionario::class . " </class>",
+                APIEstados::ESTADO_UNPROCESSABLE_ENTITY);
+        }
+
+    }
+
     public static function post($peticion)
     {
         // Si el alumno decide finalizar el cuestionario
@@ -50,7 +62,6 @@ class SolucionCuestionario
 
         } else if ($peticion[0] == 'resolver') {
             return self::iniciarCuestionario();
-
         } else {
             throw new APIException(self::ESTADO_ERROR_PARAMETROS,
                 "Error al finalizar un cuestionario " . "<class> " . SolucionCuestionario::class . " </class>",
@@ -58,7 +69,8 @@ class SolucionCuestionario
         }
     }
 
-    private static function iniciarCuestionario()
+    private
+    static function iniciarCuestionario()
     {
         $cuerpo = file_get_contents('php://input');
         $datos = json_decode($cuerpo, true);
@@ -162,7 +174,8 @@ class SolucionCuestionario
 
     }
 
-    private static function finalizarCuestionario()
+    private
+    static function finalizarCuestionario()
     {
         // Obtenemos la informacion necesaria sobre el cuestionario
         $body = file_get_contents('php://input');
@@ -199,15 +212,21 @@ class SolucionCuestionario
 
         if ($retorno >= 0) {
             // Incluimos la nota
-            self::insertarNota($idAlumno, $idCuestionario, $retorno);
+            if (self::insertarNota($idAlumno, $idCuestionario, $retorno)) {
+                // Establecemos la respuesta indicando que se creo un recurso
+                http_response_code(APIEstados::ESTADO_OK);
+                return
+                    [
+                        "estado" => self::ESTADO_EXITO,
+                        "mensaje" => $retorno
+                    ];
+            } else {
+                throw new APIException(self::ESTADO_ERROR_PARAMETROS,
+                    "Error al insertar un nota " . "<class> " . SolucionCuestionario::class . " </class>",
+                    APIEstados::ESTADO_UNPROCESSABLE_ENTITY);
+            }
 
-            // Establecemos la respuesta indicando que se creo un recurso
-            http_response_code(APIEstados::ESTADO_OK);
-            return
-                [
-                    "estado" => self::ESTADO_EXITO,
-                    "mensaje" => $retorno
-                ];
+
         } else {
             throw new APIException(self::ESTADO_ERROR_PARAMETROS,
                 "Error al finalizar un cuestionario " . "<class> " . SolucionCuestionario::class . " </class>",
@@ -216,7 +235,8 @@ class SolucionCuestionario
 
     }
 
-    public static function calcularNotaMoodle($idCuestionario, $idAlumno)
+    public
+    static function calcularNotaMoodle($idCuestionario, $idAlumno)
     {
 
         $preguntasModel = new Preguntas_Model();
@@ -269,7 +289,8 @@ class SolucionCuestionario
 
     }
 
-    public static function insertarNota($idAlumno, $idCuestionario, $nota)
+    public
+    static function insertarNota($idAlumno, $idCuestionario, $nota)
     {
         $db = new Database();
         $db->conectar();
@@ -282,6 +303,14 @@ class SolucionCuestionario
         $ok = mysqli_stmt_bind_param($query, 'ssd', $idAlumno, $idCuestionario, $nota);
         mysqli_stmt_execute($query);
         $db->closeFreeStatement($query);
+
+        if ($ok) {
+            return true;
+        } else {
+            return false;
+        }
+
+
     }
 
     private
@@ -306,5 +335,49 @@ class SolucionCuestionario
                 "mensaje" => $datos
             ];
     }
+
+    private static function getGrade($idAlumno, $idCuestionario)
+    {
+        $retorno = self::obtenerNota($idAlumno, $idCuestionario);
+        if($retorno == null){
+            $retorno = -1;
+        }
+        // Establecemos la respuesta
+        http_response_code(APIEstados::ESTADO_OK);
+        // Retornamos la informacion
+        return
+            [
+                "estado" => self::ESTADO_EXITO,
+                "mensaje" => $retorno
+
+            ];
+
+    }
+
+    public static function obtenerNota($idAlumno, $idCuestionario)
+    {
+        $db = new Database();
+        $db->conectar();
+
+        $query = $db->consultaPreparada("SELECT " . TablaNota::NOTA . " FROM "
+            . TablaNota::NOMBRE_TABLA . " WHERE "
+            . TablaNota::ID_ALUMNO . "=?" . " AND "
+            . TablaNota::ID_CUESTIONARIO . "=?");
+
+
+        $ok = mysqli_stmt_bind_param($query, 'si', $idAlumno, $idCuestionario);
+        mysqli_stmt_execute($query);
+        $ok = mysqli_stmt_bind_result($query, $grade);
+
+
+        if ($ok) {
+            mysqli_stmt_fetch($query);
+            $db->closeFreeStatement($query);
+            return $grade;
+        } else {
+            return -1;
+        }
+    }
+
 
 }

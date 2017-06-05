@@ -40,7 +40,6 @@ public class ResolvedQuestionnairesFragment extends Fragment {
         MainActivity mainActivity = (MainActivity) getActivity();
         resolvedQuestionnaires = mainActivity.getDataExternalToolsResolved();
 
-
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_second, container, false);
 

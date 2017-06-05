@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
+    android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".Activities.LoginActivity">
 
@@ -25,14 +26,14 @@
             android:textColor="@color/cardview_light_background"
             android:textSize="26dp"
             android:textStyle="bold" />
-        
+
         <ImageView
-            android:layout_below="@id/textViewTitle"
             android:id="@+id/imageViewLogo"
             android:layout_width="wrap_content"
             android:layout_height="120dp"
+            android:layout_below="@id/textViewTitle"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/logo"/>
+            android:src="@drawable/logo" />
 
 
         <android.support.design.widget.TextInputLayout
@@ -69,7 +70,7 @@
                 android:drawableRight="@android:drawable/ic_dialog_email"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:textColor="@color/cardview_light_background"/>
+                android:textColor="@color/cardview_light_background" />
 
 
         </android.support.design.widget.TextInputLayout>
@@ -95,7 +96,7 @@
             android:background="@color/colorAccent"
             android:text="Iniciar sesión"
             android:textColor="#FFF" />
-        
+
     </RelativeLayout>
 
 

@@ -1,6 +1,9 @@
 package aplicacion.android.danielvm.quicktest_android.API.APIServices;
 
+import java.util.List;
+
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.APIResponse;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.GradeRequest;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.TestRequest;
 import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApi;
 import aplicacion.android.danielvm.quicktest_android.Utils.SingleRespuestaAPI;
@@ -23,4 +26,7 @@ public interface RestService {
 
     @POST("solucionCuestionario/finalizar")
     Call<APIResponse> sendTest(@Body TestRequest testRequest);
+
+    @GET("solucionCuestionario/obtenerNota/{idAlumno}/{idCuestionario}")
+    Call<APIResponse> getGrade(@Path("idAlumno") String idAlumno, @Path("idCuestionario") int idCuestionario);
 }

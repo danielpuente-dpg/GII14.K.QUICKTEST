@@ -12,6 +12,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,6 +32,8 @@ import aplicacion.android.danielvm.quicktest_android.API.APIServices.RestService
 import aplicacion.android.danielvm.quicktest_android.Fragments.CuestionarioFragment;
 import aplicacion.android.danielvm.quicktest_android.Fragments.ResolvedQuestionnairesFragment;
 import aplicacion.android.danielvm.quicktest_android.Fragments.ThirdFragment;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.APIResponse;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.GradeRequest;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Content;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Course;
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     // Atributos que recuperamos del login
     public String token;
     public String NAME;
+    private Boolean flag = false;
 
 
     public int NUM_EXTERNAL_TOOLS;
@@ -81,7 +85,16 @@ public class MainActivity extends AppCompatActivity {
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
 
         // Recuperamos la informacion del login
-        getDataLogin();
+        token = Util.getTokenPrefs(prefs);
+        NAME = Util.getNamePrefs(prefs);
+
+        if (TextUtils.isEmpty(token) && TextUtils.isEmpty(NAME)) {
+            getDataLogin();
+            saveTokenAndNameOnPreferences(token, NAME);
+        } else {
+            token = Util.getTokenPrefs(prefs);
+            NAME = Util.getNamePrefs(prefs);
+        }
 
         // Obtenemos el numero de herramientas externas y el token del usuario encargado de interactuar con el WebServices
         getTokenWS();
@@ -99,8 +112,6 @@ public class MainActivity extends AppCompatActivity {
         cuestionarios = retorno.get(1);
         resolvedQuestionnaires = retorno.get(0);
 
-        // Obtenemos los cuestionarios resueltos
-        //resolvedQuestionnaires = calculateExternalToolsResolved();
 
         setToolbar();
 
@@ -145,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.menu_forget_and_log_out:
                         Util.removeUserToSharedPreferences(prefs);
+                        Util.removeTokenAndNameOfSharedPreferences(prefs);
                         logOut();
                         break;
                 }
@@ -164,8 +176,16 @@ public class MainActivity extends AppCompatActivity {
         getNameUser();
     }
 
-    public User getUser(){
+    public User getUser() {
         return user;
+    }
+
+
+    private void saveTokenAndNameOnPreferences(String token, String name) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("token", token);
+        editor.putString("name", NAME);
+        editor.apply();
     }
 
 
@@ -226,20 +246,20 @@ public class MainActivity extends AppCompatActivity {
 
     */
 
-    public ArrayList<Cuestionario> getDataExternalTools(){
+    public ArrayList<Cuestionario> getDataExternalTools() {
         return cuestionarios;
     }
 
-    public ArrayList<Cuestionario> getDataExternalToolsResolved(){
+    public ArrayList<Cuestionario> getDataExternalToolsResolved() {
 
         return resolvedQuestionnaires;
     }
 
-    public HashMap<Integer, ArrayList<Cuestionario>> get(){
+    public HashMap<Integer, ArrayList<Cuestionario>> get() {
         HashMap<Integer, ArrayList<Cuestionario>> retorno = new HashMap<>();
         retorno.put(0, new ArrayList<Cuestionario>());
         retorno.put(1, new ArrayList<Cuestionario>());
-        for(Cuestionario c : cuestionarios){
+        for (Cuestionario c : cuestionarios) {
 
             // Obtenemos la info de la streamQuery
             String oauth_consumer_key = c.getClaveCliente() + ":" + user.getId();
@@ -251,19 +271,19 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 int estado = statusQuestionaryRequest.execute().get();
-                if(estado != -1){
+                if (estado != -1) {
                     // Si esta resuelto
-                    if(estado == 1){
+                    if (estado == 1) {
                         ArrayList<Cuestionario> lista = retorno.get(0);
                         lista.add(c);
                         retorno.put(0, lista);
-                     // Sino esta resuelto
-                    }else if(estado == 0){
+                        // Sino esta resuelto
+                    } else if (estado == 0) {
                         ArrayList<Cuestionario> lista = retorno.get(1);
                         lista.add(c);
                         retorno.put(1, lista);
                     }
-                }else{
+                } else {
                     Log.d("MainActivity", "calculateExternalToolsResolved: error en el resultado");
                 }
             } catch (InterruptedException e) {
@@ -277,35 +297,6 @@ public class MainActivity extends AppCompatActivity {
         return retorno;
     }
 
-    public ArrayList<Cuestionario> calculateExternalToolsResolved(){
-        ArrayList<Cuestionario> retorno = new ArrayList<>();
-        for(Cuestionario c : cuestionarios){
-
-            // Obtenemos la info de la streamQuery
-            String oauth_consumer_key = c.getClaveCliente() + ":" + user.getId();
-            int idCuestionario = c.getIdCuestionario();
-
-            // Realizamos la peticion al APIRest
-            StatusQuestionaryRequest statusQuestionaryRequest =
-                    new StatusQuestionaryRequest(APIRest.getApi(), oauth_consumer_key, idCuestionario);
-
-            try {
-                int estado = statusQuestionaryRequest.execute().get();
-                if(estado != -1){
-                    if(estado == 1){
-                        retorno.add(c);
-                    }
-                }else{
-                    Log.d("MainActivity", "calculateExternalToolsResolved: error en el resultado");
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-        }
-        return retorno;
-    }
 
     private void getTokenWS() {
         TokenUserWSRequest tokenUserWSRequest = new TokenUserWSRequest(APIMoodle.getApi());
@@ -361,7 +352,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Modules", modules.size() + "");
     }
 
-
     private void getNumberOfCourses() {
         CourseRequest courseRequest = new CourseRequest(APIMoodle.getApi());
         try {
@@ -390,7 +380,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d("NUM_EXTERNAL_TOOLS", NUM_EXTERNAL_TOOLS + "");
     }
 
-
     private void getTokenUser() {
         Bundle bundle = new Bundle();
         bundle = getIntent().getExtras();
@@ -405,7 +394,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("NAME", NAME);
     }
 
-    private ArrayList<Cuestionario> getExternalTools(){
+    private ArrayList<Cuestionario> getExternalTools() {
         ArrayList<Cuestionario> retorno = new ArrayList<>();
         for (int i = 1; i <= NUM_EXTERNAL_TOOLS; i++) {
             ExternalTollRequest externalTollRequest = new ExternalTollRequest(APIMoodle.getApi(), i);
@@ -423,7 +412,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void addExternalTool(ArrayList<Cuestionario> retorno, ExternalTool externalTool) {
         Cuestionario cuestionario;
-        if (externalTool.getEndpoint().equals( APIMoodle.BASE + "_QuickTest_TFG/index.php")) {
+        if (externalTool.getEndpoint().equals(APIMoodle.BASE + "_QuickTest_TFG/index.php")) {
 
             // Comprobamos que ese usuario tenga asignado ese cuestionario
             // Obtenemos la descripcion
@@ -652,7 +641,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public class StatusQuestionaryRequest extends AsyncTask<Void, Void, Integer>{
+    public class StatusQuestionaryRequest extends AsyncTask<Void, Void, Integer> {
 
         private Retrofit retrofit;
         private String oauth_consumer_key;
@@ -683,7 +672,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public class ExternalTollRequest extends AsyncTask<Void, Void, ExternalTool>{
+    public class ExternalTollRequest extends AsyncTask<Void, Void, ExternalTool> {
 
         private Retrofit retrofit;
         private int toolId;

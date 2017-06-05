@@ -14,9 +14,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import aplicacion.android.danielvm.quicktest_android.Activities.InfoGradeActivity;
-import aplicacion.android.danielvm.quicktest_android.Activities.MainActivity;
-import aplicacion.android.danielvm.quicktest_android.Activities.TestActivity;
+import aplicacion.android.danielvm.quicktest_android.Activities.GradeActivity;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
 import aplicacion.android.danielvm.quicktest_android.R;
 
@@ -88,10 +86,10 @@ public class ResolvedExternalToolAdapter extends RecyclerView.Adapter<ResolvedEx
         @Override
         public boolean onMenuItemClick(MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.resolverCuestionario:
+                case R.id.revisarCuestionario:
                     goToInfoQuestionaryActivity(getAdapterPosition());
                     return true;
-                case R.id.abortarCuestionario:
+                case R.id.noRevisarCuestionario:
                     // TODO no hacer nada
                     return true;
                 default:
@@ -129,11 +127,11 @@ public class ResolvedExternalToolAdapter extends RecyclerView.Adapter<ResolvedEx
         String clave = cuestionario.getClaveCliente();
 
         // Vamos al activity encargado de resolver el Test
-        Intent intent = new Intent(activity, InfoGradeActivity.class);
+        Intent intent = new Intent(activity, GradeActivity.class);
 
         intent.putExtra("idCuestionario", idCuestionario);
-
         intent.putExtra("idAlumno", clave);
+        intent.putExtra("nombre", cuestionario.getDescripcion());
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         activity.startActivity(intent);
