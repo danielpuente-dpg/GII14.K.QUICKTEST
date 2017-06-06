@@ -43,4 +43,7 @@
     <color name="colorIcons">#FFFFFF</color>
     <color name="colorDivider">#BDBDBD</color>
 
+    <color name="colorGreenWildCard">#43A047</color>
+    <color name="colorAmberWildCard">#FFB300</color>
+
 </resources>

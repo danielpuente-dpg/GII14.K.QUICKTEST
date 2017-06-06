@@ -16,6 +16,7 @@ public class Test {
     private String pregunta;
     private List<Respuesta> respuesta;
     private int idPregunta;
+    private String comodin;
 
 
     public Test() {
@@ -25,6 +26,7 @@ public class Test {
         this.pregunta = pregunta;
         this.respuesta = respuesta;
         this.idPregunta = idPregunta;
+        this.comodin = "";
     }
 
     public String getPregunta() {
@@ -49,6 +51,22 @@ public class Test {
 
     public void setIdPregunta(int idPregunta) {
         this.idPregunta = idPregunta;
+    }
+
+    public List<Respuesta> getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(List<Respuesta> respuesta) {
+        this.respuesta = respuesta;
+    }
+
+    public String getComodin() {
+        return comodin;
+    }
+
+    public void setComodin(String comodin) {
+        this.comodin = comodin;
     }
 
     public static Respuesta parseJSON(String response) {

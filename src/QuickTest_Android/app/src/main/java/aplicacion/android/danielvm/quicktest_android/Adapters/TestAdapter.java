@@ -8,19 +8,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import aplicacion.android.danielvm.quicktest_android.Activities.MainActivity;
 import aplicacion.android.danielvm.quicktest_android.Activities.TestActivity;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Result;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.TestRequest;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.WildCard;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Test;
 import aplicacion.android.danielvm.quicktest_android.R;
 
@@ -34,13 +37,18 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
     private int layout;
     private Context context;
 
+    private OnItemClickListener listenerGreenWildCard;
+    private OnItemClickListener listenerAmberWildCard;
+
     public static HashMap<Integer, Integer> respuestas = new HashMap();
     public static HashMap<Integer, Boolean> flags = new HashMap<>();
     public static HashMap<Integer, Result> postTest = new HashMap();
 
-    public TestAdapter(List<Test> tests, int layout) {
+    public TestAdapter(List<Test> tests, int layout, OnItemClickListener listenerGreenWildCard, OnItemClickListener listenerAmberWildCard) {
         this.tests = tests;
         this.layout = layout;
+        this.listenerGreenWildCard = listenerGreenWildCard;
+        this.listenerAmberWildCard = listenerAmberWildCard;
     }
 
     @Override
@@ -56,7 +64,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // Llamamos la metodo encargado de añadir los datos propios de cada cuestionario
-        holder.dataBind(this.tests.get(position), position);
+        holder.dataBind(this.tests.get(position), position, this.listenerGreenWildCard, this.listenerAmberWildCard);
     }
 
     @Override
@@ -72,27 +80,32 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
 
         private TextView pregunta;
         private RadioGroup radioGroup;
+        private ImageView imageViewGreenWildCard;
+        private ImageView imageViewAmberWildCard;
 
         public ViewHolder(View view) {
             super(view);
 
             this.pregunta = (TextView) view.findViewById(R.id.textViewStatement);
             this.radioGroup = (RadioGroup) view.findViewById(R.id.radioGroup);
+            this.imageViewGreenWildCard = (ImageView) view.findViewById(R.id.imageViewGreenWildCard);
+            this.imageViewAmberWildCard = (ImageView) view.findViewById(R.id.imageViewAmberWildCard);
 
-            // Añadimos la vista de nuestro menu de contexto
-            //itemView.setOnCreateContextMenuListener(activity);
         }
 
-        public void dataBind(final Test test, final int position) {
+        public void dataBind(final Test test, final int position, final OnItemClickListener listenerGreenWildCard, final OnItemClickListener listenerAmberWildCard) {
 
             radioGroup.removeAllViews();
             this.pregunta.setText((position + 1) + " - " + test.getPregunta());
-            int i = 0;
             for (Respuesta r : test.getRespuestas()) {
-                RadioButton nuevoRadio = crearRadioButton(r.getTitulo(), i);
+                RadioButton nuevoRadio = crearRadioButton(r.getTitulo(), r.getIdRespuesta());
                 radioGroup.addView(nuevoRadio);
-                i++;
             }
+
+            hasWildCard(test);
+
+
+            checkWildCard(radioGroup, test);
 
             radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
@@ -112,6 +125,52 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
                 }
             });
 
+            // Evento para el comodin verde
+            imageViewGreenWildCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (v.getAlpha() == 1)
+                        listenerGreenWildCard.onItemClick(test, getAdapterPosition());
+
+                }
+            });
+            // Evento para el comodin ambar
+            imageViewAmberWildCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (v.getAlpha() == 1)
+                        listenerAmberWildCard.onItemClick(test, getAdapterPosition());
+                }
+            });
+
+        }
+
+        private void hasWildCard(Test test) {
+
+            // Verde
+            setVisibilityGreenWildCard(test);
+
+            // Ambar
+
+        }
+
+        private void setVisibilityGreenWildCard(Test test) {
+            List<WildCard> greenWildCard = new TestActivity().greenWildCard;
+            Iterator<WildCard> iter = greenWildCard.iterator();
+            boolean flag = false;
+            while (iter.hasNext()) {
+                if (iter.next().getPregunta_idPregunta() == test.getIdPregunta()) {
+                    float valor = 1;
+                    this.imageViewGreenWildCard.setAlpha(valor);
+                    flag = true;
+                    break;
+                }
+
+            }
+            if (flag == false) {
+                float valor = 0.3f;
+                this.imageViewGreenWildCard.setAlpha(valor);
+            }
         }
 
         private RadioButton crearRadioButton(String marca, int i) {
@@ -134,6 +193,61 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
             return nuevoRadio;
         }
 
+        private void checkWildCard(RadioGroup radioGroup, Test test) {
+            String type = test.getComodin();
+
+            if (type != "") {
+
+                WildCard wildCard = getRespuestaByIdPregunta(test);
+                if (wildCard != null) {
+                    int idRespuesta = wildCard.getIdRespuesta();
+                    if (type == "verde") {
+                        for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                            View view = radioGroup.getChildAt(i);
+                            if (view.getId() == idRespuesta) {
+                                view.setBackgroundResource(R.color.colorGreenWildCard);
+                            }
+                        }
+                        //radioGroup.getChildAt(0).setBackgroundResource(R.color.colorGreenWildCard);
+                    } else if (type == "ambar") {
+                        radioGroup.getChildAt(0).setBackgroundResource(R.color.colorAmberWildCard);
+                    }
+                }
+
+            }
+
+
+        }
+
+        private WildCard getRespuestaByIdPregunta(Test test) {
+            WildCard retorno = null;
+            // Obtenemos la informacion sobre que preguntas tiene comodin verde
+            List<WildCard> greenWildCard = new TestActivity().greenWildCard;
+            for (WildCard wildCard : greenWildCard) {
+                if (wildCard.getPregunta_idPregunta() == test.getIdPregunta()) {
+                    retorno = wildCard;
+                    break;
+                }
+            }
+            return retorno;
+        }
+
 
     }
+
+    public interface OnItemClickListener {
+        void onItemClick(Test test, int position);
+    }
+
+
+    /***
+     *
+     *
+     * for(int i = 0; i < greenWildCard.size(); i++){
+     if(greenWildCard.get(i).getPregunta_idPregunta() == Integer.parseInt(test.getPregunta())){
+
+
+     }
+     }
+     */
 }

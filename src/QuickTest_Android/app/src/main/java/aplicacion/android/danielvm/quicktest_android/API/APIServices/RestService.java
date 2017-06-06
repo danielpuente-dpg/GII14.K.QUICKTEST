@@ -1,11 +1,9 @@
 package aplicacion.android.danielvm.quicktest_android.API.APIServices;
 
-import java.util.List;
-
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.APIResponse;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.GradeRequest;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.TestRequest;
 import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApi;
+import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApiComodin;
 import aplicacion.android.danielvm.quicktest_android.Utils.SingleRespuestaAPI;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -29,4 +27,11 @@ public interface RestService {
 
     @GET("solucionCuestionario/obtenerNota/{idAlumno}/{idCuestionario}")
     Call<APIResponse> getGrade(@Path("idAlumno") String idAlumno, @Path("idCuestionario") int idCuestionario);
+
+    @GET("obtenerCuestionario/obtenerComodin/verde/{idCuestionario}")
+    Call<RespuestaApiComodin> getGreenWildCard(@Path("idCuestionario") int idCuestionario);
+
+    @GET("obtenerCuestionario/obtenerComodin/ambar/{idCuestionario}")
+    Call<RespuestaApiComodin> getAmberWildCard(@Path("idCuestionario") int idCuestionario);
+
 }

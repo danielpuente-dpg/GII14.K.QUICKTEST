@@ -22,6 +22,7 @@ import aplicacion.android.danielvm.quicktest_android.API.APIRest;
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.RestService;
 import aplicacion.android.danielvm.quicktest_android.Adapters.TestAdapter;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.APIResponse;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.WildCard;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Mensaje;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Pregunta;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
@@ -30,6 +31,7 @@ import aplicacion.android.danielvm.quicktest_android.Models.APIRest.TestRequest;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Test;
 import aplicacion.android.danielvm.quicktest_android.R;
 import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApi;
+import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApiComodin;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,6 +54,8 @@ public class TestActivity extends AppCompatActivity {
     public static String NOMBRE_ALU;
     public static String APE_ALU;
 
+    public static List<WildCard> greenWildCard;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,15 +63,29 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         setIdCuestionarioAndKey();
-
         tests = getContentTest();
+
+        // Comprobamos que tenga comodin
+        hasWildCard();
 
         // Instanciamos los elementos de la UI
         button = (Button) findViewById(R.id.btnSendTest);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerViewTest);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new TestAdapter(this.tests, R.layout.recycler_view_item_test);
+        mAdapter = new TestAdapter(this.tests, R.layout.recycler_view_item_test, new TestAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Test test, int position) {
+                test.setComodin("verde");
+                mAdapter.notifyItemChanged(position);
+            }
+        }, new TestAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Test test, int position) {
+                test.setComodin("ambar");
+                mAdapter.notifyItemChanged(position);
+            }
+        });
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -80,7 +98,7 @@ public class TestActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // Obtenemoslas la informacion del cuestionario resuelto
-                HashMap<Integer, Result> results = new TestAdapter(tests, R.layout.recycler_view_item_test).postTest;
+                HashMap<Integer, Result> results = new TestAdapter(tests, R.layout.recycler_view_item_test, null, null).postTest;
                 List<Result> respuestas = new ArrayList<>();
                 for (Result r : results.values()) {
                     respuestas.add(r);
@@ -157,6 +175,23 @@ public class TestActivity extends AppCompatActivity {
         return resultado;
     }
 
+    private void hasWildCard(){
+        greenWildCard = getGreenWildCardRequest();
+    }
+
+    private ArrayList<WildCard> getGreenWildCardRequest(){
+        ArrayList<WildCard> greenWildCard = new ArrayList<>();
+        GreenWildCardRequest greenWildCardRequest = new GreenWildCardRequest(APIRest.getApi(), ID_CUESTIONARIO);
+        try {
+            greenWildCard = (ArrayList<WildCard>) greenWildCardRequest.execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return greenWildCard;
+    }
+
     public class ContentTestRequest extends AsyncTask<Void, Void, List<Mensaje>> {
 
         private int idCuestionario;
@@ -181,6 +216,34 @@ public class TestActivity extends AppCompatActivity {
 
 
             return messages;
+        }
+    }
+
+    public class GreenWildCardRequest extends AsyncTask<Void, Void, List<WildCard>>{
+
+        private Retrofit retrofit;
+        private int idCuestionario;
+
+        public GreenWildCardRequest(Retrofit retrofit, int idCuestionario) {
+            this.retrofit = retrofit;
+            this.idCuestionario = idCuestionario;
+        }
+
+        @Override
+        protected List<WildCard> doInBackground(Void... params) {
+            List<WildCard> retorno = null;
+
+            RestService service = retrofit.create(RestService.class);
+            Call<RespuestaApiComodin> call = service.getGreenWildCard(idCuestionario);
+
+            try {
+                RespuestaApiComodin respuestaApiComodin = call.execute().body();
+                retorno = respuestaApiComodin.getMensaje();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return retorno;
         }
     }
 }
