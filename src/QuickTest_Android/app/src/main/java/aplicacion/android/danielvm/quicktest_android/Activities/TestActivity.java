@@ -15,7 +15,11 @@ import android.widget.Button;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import aplicacion.android.danielvm.quicktest_android.API.APIRest;
@@ -55,6 +59,8 @@ public class TestActivity extends AppCompatActivity {
     public static String APE_ALU;
 
     public static List<WildCard> greenWildCard;
+    public static HashMap<Integer, HashSet<Integer>> amberWildCard;
+    private HashMap<Integer, String> wildCardType = new HashMap<>();
 
 
     @Override
@@ -65,6 +71,8 @@ public class TestActivity extends AppCompatActivity {
         setIdCuestionarioAndKey();
         tests = getContentTest();
 
+        // Inicializamos el estado de los comodines
+        initWildCardType();
         // Comprobamos que tenga comodin
         hasWildCard();
 
@@ -76,13 +84,16 @@ public class TestActivity extends AppCompatActivity {
         mAdapter = new TestAdapter(this.tests, R.layout.recycler_view_item_test, new TestAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Test test, int position) {
-                test.setComodin("verde");
+                test.setComodin("bg-success");
+                // Almacenamos la informacion de en que pregunta se ha hecho uso de comodin
+                wildCardType.put(position, "bg-success");
                 mAdapter.notifyItemChanged(position);
             }
         }, new TestAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Test test, int position) {
-                test.setComodin("ambar");
+                test.setComodin("bg-warning");
+                wildCardType.put(position, "bg-warning");
                 mAdapter.notifyItemChanged(position);
             }
         });
@@ -100,11 +111,24 @@ public class TestActivity extends AppCompatActivity {
                 // Obtenemoslas la informacion del cuestionario resuelto
                 HashMap<Integer, Result> results = new TestAdapter(tests, R.layout.recycler_view_item_test, null, null).postTest;
                 List<Result> respuestas = new ArrayList<>();
-                for (Result r : results.values()) {
-                    respuestas.add(r);
+
+                Iterator<Map.Entry<Integer, Result>> iter = results.entrySet().iterator();
+                while (iter.hasNext()) {
+                    Map.Entry<Integer, Result> item = iter.next();
+                    Integer key = item.getKey();
+                    Result value = item.getValue();
+
+                    if (wildCardType.containsKey(key)) {
+                        String tipo = wildCardType.get(key);
+                        value.setTipoComUsado(tipo);
+                    }
+                    respuestas.add(value);
+
                 }
+
+
                 ID_ALUMNO = respuestas.get(0).getIdAlumno();
-                TestRequest testRequest = new TestRequest(ID_CUESTIONARIO, ID_ALUMNO, NOMBRE_ALU, APE_ALU ,respuestas);
+                TestRequest testRequest = new TestRequest(ID_CUESTIONARIO, ID_ALUMNO, NOMBRE_ALU, APE_ALU, respuestas);
 
                 Retrofit retrofit = APIRest.getApi();
                 RestService service = retrofit.create(RestService.class);
@@ -133,9 +157,15 @@ public class TestActivity extends AppCompatActivity {
         });
     }
 
+    private void initWildCardType() {
+        for (int i = 0; i < tests.size(); i++) {
+            wildCardType.put(i, "");
+        }
+    }
+
     private void goToGradeActivity(double grade) {
-        Intent intent = new Intent(TestActivity.this, InfoGradeActivity.class);
-        intent.putExtra("grade", grade);
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 
@@ -157,12 +187,12 @@ public class TestActivity extends AppCompatActivity {
 
     }
 
-    private ArrayList<Test> getContentTest(){
+    private ArrayList<Test> getContentTest() {
         ArrayList<Test> resultado = new ArrayList<>();
         ContentTestRequest contentTestRequest = new ContentTestRequest(APIRest.getApi(), ID_CUESTIONARIO);
         try {
             List<Mensaje> mensajes = contentTestRequest.execute().get();
-            for(Mensaje mensaje : mensajes){
+            for (Mensaje mensaje : mensajes) {
                 Pregunta pregunta = mensaje.getPregunta();
                 List<Respuesta> respuestas = mensaje.getRespuestas();
                 resultado.add(new Test(pregunta.getTitulo(), respuestas, pregunta.getIdPregunta()));
@@ -175,11 +205,12 @@ public class TestActivity extends AppCompatActivity {
         return resultado;
     }
 
-    private void hasWildCard(){
+    private void hasWildCard() {
         greenWildCard = getGreenWildCardRequest();
+        amberWildCard = getAmberWildCardRequest();
     }
 
-    private ArrayList<WildCard> getGreenWildCardRequest(){
+    private ArrayList<WildCard> getGreenWildCardRequest() {
         ArrayList<WildCard> greenWildCard = new ArrayList<>();
         GreenWildCardRequest greenWildCardRequest = new GreenWildCardRequest(APIRest.getApi(), ID_CUESTIONARIO);
         try {
@@ -190,6 +221,42 @@ public class TestActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return greenWildCard;
+    }
+
+    private HashMap<Integer, HashSet<Integer>> getAmberWildCardRequest() {
+        ArrayList<WildCard> amberWildCard = new ArrayList<>();
+        AmberWildCardRequest amberWildCardRequest = new AmberWildCardRequest(APIRest.getApi(), ID_CUESTIONARIO);
+
+        try {
+            amberWildCard = (ArrayList<WildCard>) amberWildCardRequest.execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        HashMap<Integer, HashSet<Integer>> retorno = formatAmberWildCard(amberWildCard);
+
+        return retorno;
+    }
+
+
+    private HashMap<Integer, HashSet<Integer>> formatAmberWildCard(ArrayList<WildCard> amberWildCard) {
+        HashMap<Integer, HashSet<Integer>> aux = new HashMap<>();
+        for (WildCard wildCard : amberWildCard) {
+            // Si esta vacio
+            if(!aux.containsKey(wildCard.getPregunta_idPregunta())){
+                HashSet<Integer> lista = new HashSet<>();
+                lista.add(wildCard.getIdRespuesta());
+                aux.put(wildCard.getPregunta_idPregunta(), lista);
+            }else{
+                HashSet<Integer> lista = aux.get(wildCard.getPregunta_idPregunta());
+                lista.add(wildCard.getIdRespuesta());
+                aux.put(wildCard.getPregunta_idPregunta(), lista);
+            }
+        }
+        return aux;
+
     }
 
     public class ContentTestRequest extends AsyncTask<Void, Void, List<Mensaje>> {
@@ -219,7 +286,7 @@ public class TestActivity extends AppCompatActivity {
         }
     }
 
-    public class GreenWildCardRequest extends AsyncTask<Void, Void, List<WildCard>>{
+    public class GreenWildCardRequest extends AsyncTask<Void, Void, List<WildCard>> {
 
         private Retrofit retrofit;
         private int idCuestionario;
@@ -235,6 +302,35 @@ public class TestActivity extends AppCompatActivity {
 
             RestService service = retrofit.create(RestService.class);
             Call<RespuestaApiComodin> call = service.getGreenWildCard(idCuestionario);
+
+            try {
+                RespuestaApiComodin respuestaApiComodin = call.execute().body();
+                retorno = respuestaApiComodin.getMensaje();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return retorno;
+        }
+    }
+
+    public class AmberWildCardRequest extends AsyncTask<Void, Void, List<WildCard>> {
+
+        private Retrofit retrofit;
+        private int idCuestionario;
+
+        public AmberWildCardRequest(Retrofit retrofit, int idCuestionario) {
+            this.retrofit = retrofit;
+            this.idCuestionario = idCuestionario;
+        }
+
+        @Override
+        protected List<WildCard> doInBackground(Void... params) {
+
+            List<WildCard> retorno = null;
+
+            RestService service = retrofit.create(RestService.class);
+            Call<RespuestaApiComodin> call = service.getAmberWildCard(idCuestionario);
 
             try {
                 RespuestaApiComodin respuestaApiComodin = call.execute().body();

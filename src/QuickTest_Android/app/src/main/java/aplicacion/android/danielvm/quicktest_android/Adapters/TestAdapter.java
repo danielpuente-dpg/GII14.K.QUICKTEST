@@ -110,6 +110,11 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
             radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+
+                    for(int i = 0; i < group.getChildCount(); i++){
+                        if(group.getChildAt(i).isClickable())
+                            checkedId = i;
+                    }
                     respuestas.put(getAdapterPosition(), checkedId);
                     flags.put(getAdapterPosition(), true);
                     Log.d("Listener->Position : " + getAdapterPosition(), "Btn: " + checkedId);
@@ -201,15 +206,14 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
                 WildCard wildCard = getRespuestaByIdPregunta(test);
                 if (wildCard != null) {
                     int idRespuesta = wildCard.getIdRespuesta();
-                    if (type == "verde") {
+                    if (type == "bg-success") {
                         for (int i = 0; i < radioGroup.getChildCount(); i++) {
                             View view = radioGroup.getChildAt(i);
                             if (view.getId() == idRespuesta) {
                                 view.setBackgroundResource(R.color.colorGreenWildCard);
                             }
                         }
-                        //radioGroup.getChildAt(0).setBackgroundResource(R.color.colorGreenWildCard);
-                    } else if (type == "ambar") {
+                    } else if (type == "bg-warning") {
                         radioGroup.getChildAt(0).setBackgroundResource(R.color.colorAmberWildCard);
                     }
                 }
