@@ -1,8 +1,11 @@
 package aplicacion.android.danielvm.quicktest_android.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,24 +48,19 @@ public class InfoGradeActivity extends AppCompatActivity {
     private TextView textViewClockMessageAIG;
     private TextView textViewPlusClockAIG;
 
-
-
-    private static double GRADE;
-    private static String ID_CUESTIONARIO;
-    private static String ID_ALUMNO;
-
     private static final String FAST = "MUY RÁPIDO";
     private static final String SLOW = "LENTO";
 
     private FeedBack feedBack;
+    private Toolbar myToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_grade);
 
-        // Obtenemos la info
-        getDataBundle();
+        // Incluimos el toolbar
+        enforceBar();
 
         // Obtenemos la info del FeedBack
         feedBack = new GradeActivity().feedBack;
@@ -155,18 +153,30 @@ public class InfoGradeActivity extends AppCompatActivity {
         textViewClockMessageAIG.setText(feedBack.getMensaje());
         textViewPlusClockAIG.setText(feedBack.getPremio() + " PUNTOS");
 
+
+        myToolbar.setNavigationIcon(R.drawable.ic_flecha_white);
+        // Evento de flecha atras
+        myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMainActivity();
+                finish();
+            }
+        });
+
     }
 
-    private void getDataBundle() {
-        Bundle bundle = getIntent().getExtras();
-        if (bundle == null)
-            Log.d("InfoGradeActivity", "Intent was null");
-        else {
-            Log.d("InfoGradeActivity", "Intent OK");
-            ID_CUESTIONARIO = bundle.getString("idCuestionario");
-            ID_ALUMNO = bundle.getString("idAlumno");
-        }
+    private void enforceBar() {
+        // Forzar y cargar iconos
+        myToolbar = (Toolbar) findViewById(R.id.toolbarActivityInfoGrade);
+        setSupportActionBar(myToolbar);
+        String cuestionario = new GradeActivity().cuestionario;
+        getSupportActionBar().setTitle(cuestionario);
     }
 
-
+    private void goToMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
 }

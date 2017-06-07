@@ -42,7 +42,7 @@ public class GradeActivity extends AppCompatActivity {
     private double grade;
     private String idAlumno;
     private int idCuestionario;
-    private String cuestionario;
+    public static String cuestionario;
 
     public static FeedBack feedBack;
 
