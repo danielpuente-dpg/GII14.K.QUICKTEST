@@ -44,7 +44,7 @@ public class GradeActivity extends AppCompatActivity {
     private int idCuestionario;
     private String cuestionario;
 
-    private FeedBack feedBack;
+    public static FeedBack feedBack;
 
     private static final String FAST = "MUY RÁPIDO";
     private static final String SLOW = "LENTO";
@@ -93,7 +93,6 @@ public class GradeActivity extends AppCompatActivity {
 
 
         // Logica de los setters
-
         // Obtenemos la informacion
 
         // Si la informacion no esta disponible desde la app
@@ -116,8 +115,6 @@ public class GradeActivity extends AppCompatActivity {
         }else{
             linearLayoutColor.setBackgroundResource(R.color.colorAmberWildCard);
         }
-
-
 
     }
 

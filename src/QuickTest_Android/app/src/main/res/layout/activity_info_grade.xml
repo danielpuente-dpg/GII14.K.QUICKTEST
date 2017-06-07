@@ -34,31 +34,36 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Modo respuesta"
-                        android:textSize="8dp" />
+                        android:textSize="8dp"
+                        android:textStyle="bold"/>
 
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Preguntas contestadas"
-                        android:textSize="8dp" />
+                        android:textSize="8dp"
+                        android:textStyle="bold"/>
 
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Aciertos"
-                        android:textSize="8dp" />
+                        android:textSize="8dp"
+                        android:textStyle="bold"/>
 
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Fallos"
-                        android:textSize="8dp" />
+                        android:textSize="8dp"
+                        android:textStyle="bold"/>
 
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Puntuación"
-                        android:textSize="8dp" />
+                        android:textSize="8dp"
+                        android:textStyle="bold"/>
 
                 </TableRow>
 
@@ -73,6 +78,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Sin comodín"
+                        android:textStyle="bold"
                         android:textSize="12dp" />
 
                     <TextView
@@ -80,6 +86,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textStyle="bold"
                         android:hint="Nº preguntas"
                         android:textSize="12dp" />
 
@@ -88,6 +95,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textStyle="bold"
                         android:hint="Nº aciertos"
                         android:textSize="12dp" />
 
@@ -97,12 +105,14 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:hint="Nº fallos"
+                        android:textStyle="bold"
                         android:textSize="12dp" />
 
                     <TextView
                         android:id="@+id/textViewGrade"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:gravity="center"
                         android:hint="Nota"
                         android:textSize="12dp" />
@@ -120,6 +130,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Comodín verde"
+                        android:textStyle="bold"
                         android:textSize="12dp" />
 
                     <TextView
@@ -127,6 +138,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textStyle="bold"
                         android:hint="Nº preguntas"
                         android:textSize="12dp" />
 
@@ -135,6 +147,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textStyle="bold"
                         android:hint="Nº aciertos"
                         android:textSize="12dp" />
 
@@ -144,6 +157,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:hint="Nº fallos"
+                        android:textStyle="bold"
                         android:textSize="12dp" />
 
                     <TextView
@@ -152,6 +166,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:hint="Nota"
+                        android:textStyle="bold"
                         android:textSize="12dp" />
 
                 </TableRow>
@@ -166,6 +181,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textStyle="bold"
                         android:text="Comodín ámbar"
                         android:textSize="12dp" />
 
@@ -174,6 +190,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textStyle="bold"
                         android:hint="Nº preguntas"
                         android:textSize="12dp" />
 
@@ -182,6 +199,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textStyle="bold"
                         android:hint="Nº aciertos"
                         android:textSize="12dp" />
 
@@ -190,6 +208,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textStyle="bold"
                         android:hint="Nº fallos"
                         android:textSize="12dp" />
 
@@ -198,6 +217,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textStyle="bold"
                         android:hint="Nota"
                         android:textSize="12dp" />
 
@@ -215,6 +235,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:hint="Estado"
+                        android:textStyle="bold"
                         android:textSize="12dp" />
 
                     <TextView
@@ -238,6 +259,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:hint="Nota"
+                        android:textStyle="bold"
                         android:textSize="12dp" />
 
                 </TableRow>
@@ -253,6 +275,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Total"
+                        android:textStyle="bold"
                         android:textSize="12dp" />
 
                     <TextView
@@ -260,6 +283,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textStyle="bold"
                         android:hint="Nº preguntas"
                         android:textSize="12dp" />
 
@@ -268,12 +292,14 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:hint="Nº aciertos"
+                        android:textStyle="bold"
                         android:textSize="12dp" />
 
                     <TextView
                         android:id="@+id/textViewNumberAnswerQuestionsError"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:gravity="center"
                         android:hint="Nº fallos"
                         android:textSize="12dp" />
@@ -283,6 +309,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textStyle="bold"
                         android:hint="Nota"
                         android:textSize="12dp" />
 
@@ -317,10 +344,10 @@
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/linearLayoutColorAIG"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="0.2"
-                        android:background="#009688"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -333,7 +360,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:hint="Has sido MUY RÁPIDO respondiendo, has conseguido "
                             android:textColor="#FFF" />
 
                     </LinearLayout>
@@ -345,7 +371,6 @@
                         android:layout_gravity="center"
                         android:layout_weight="0.15"
                         android:gravity="center"
-                        android:hint="+6.7 PUNTOS"
                         android:textSize="24dp"
                         android:textStyle="bold" />
 
