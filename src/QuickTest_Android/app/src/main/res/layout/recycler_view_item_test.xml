@@ -48,8 +48,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginRight="16dp"
-                android:src="@mipmap/ic_green_wildcard"
-                android:alpha="0.3"/>
+                android:src="@mipmap/ic_green_wildcard" />
+                <!--android:alpha="0.3"-->/>
 
             <ImageView
                 android:id="@+id/imageViewAmberWildCard"
@@ -57,8 +57,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginRight="16dp"
-                android:src="@mipmap/ic_amber_wildcard"
-                android:alpha="0.3"/>
+                android:src="@mipmap/ic_amber_wildcard" />
+                <!--android:alpha="0.3"/>-->
 
         </LinearLayout>
 

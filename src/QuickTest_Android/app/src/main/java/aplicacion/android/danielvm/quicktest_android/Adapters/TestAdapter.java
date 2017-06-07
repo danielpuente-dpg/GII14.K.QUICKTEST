@@ -16,8 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import aplicacion.android.danielvm.quicktest_android.Activities.MainActivity;
 import aplicacion.android.danielvm.quicktest_android.Activities.TestActivity;
@@ -111,8 +113,8 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
                 @Override
                 public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
 
-                    for(int i = 0; i < group.getChildCount(); i++){
-                        if(group.getChildAt(i).isClickable())
+                    for (int i = 0; i < group.getChildCount(); i++) {
+                        if (group.getChildAt(i).isClickable())
                             checkedId = i;
                     }
                     respuestas.put(getAdapterPosition(), checkedId);
@@ -151,12 +153,10 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
         }
 
         private void hasWildCard(Test test) {
-
             // Verde
             setVisibilityGreenWildCard(test);
-
             // Ambar
-
+            setVisibilityAmberWildCard(test);
         }
 
         private void setVisibilityGreenWildCard(Test test) {
@@ -165,16 +165,39 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
             boolean flag = false;
             while (iter.hasNext()) {
                 if (iter.next().getPregunta_idPregunta() == test.getIdPregunta()) {
-                    float valor = 1;
-                    this.imageViewGreenWildCard.setAlpha(valor);
+                    /*float valor = 1;
+                    this.imageViewGreenWildCard.setAlpha(valor);*/
                     flag = true;
+                    this.imageViewGreenWildCard.setVisibility(View.VISIBLE);
                     break;
                 }
 
             }
             if (flag == false) {
-                float valor = 0.3f;
-                this.imageViewGreenWildCard.setAlpha(valor);
+                //float valor = 0.3f;
+                //this.imageViewGreenWildCard.setAlpha(valor);
+                this.imageViewGreenWildCard.setVisibility(View.GONE);
+            }
+        }
+
+        private void setVisibilityAmberWildCard(Test test) {
+            Set<Integer> amberWildCard = new TestActivity().amberWildCard.keySet();
+            Iterator<Integer> iter = amberWildCard.iterator();
+            boolean flag = false;
+            while (iter.hasNext()) {
+                if (iter.next() == test.getIdPregunta()) {
+                    //float valor = 1;
+                    //this.imageViewAmberWildCard.setAlpha(valor);
+                    flag = true;
+                    this.imageViewAmberWildCard.setVisibility(View.VISIBLE);
+                    break;
+                }
+
+            }
+            if (flag == false) {
+                //float valor = 0.3f;
+                //this.imageViewAmberWildCard.setAlpha(valor);
+                this.imageViewAmberWildCard.setVisibility(View.GONE);
             }
         }
 
@@ -202,25 +225,33 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
             String type = test.getComodin();
 
             if (type != "") {
-
-                WildCard wildCard = getRespuestaByIdPregunta(test);
-                if (wildCard != null) {
-                    int idRespuesta = wildCard.getIdRespuesta();
-                    if (type == "bg-success") {
+                if (type == "bg-success") {
+                    WildCard wildCard = getRespuestaByIdPregunta(test);
+                    if (wildCard != null) {
+                        int idRespuesta = wildCard.getIdRespuesta();
                         for (int i = 0; i < radioGroup.getChildCount(); i++) {
                             View view = radioGroup.getChildAt(i);
                             if (view.getId() == idRespuesta) {
                                 view.setBackgroundResource(R.color.colorGreenWildCard);
                             }
                         }
-                    } else if (type == "bg-warning") {
-                        radioGroup.getChildAt(0).setBackgroundResource(R.color.colorAmberWildCard);
+                    }
+                } else if (type == "bg-warning") {
+                    HashMap<Integer, HashSet<Integer>> amberWildCard = new TestActivity().amberWildCard;
+                    int idPregunta = test.getIdPregunta();
+                    if(amberWildCard.containsKey(idPregunta)){
+                        HashSet<Integer> amberRespuestas = amberWildCard.get(idPregunta);
+                        for(int i = 0; i < radioGroup.getChildCount(); i++){
+                            View view = radioGroup.getChildAt(i);
+                            if(amberRespuestas.contains(view.getId())){
+                                radioGroup.getChildAt(i).setBackgroundResource(R.color.colorAmberWildCard);
+                            }
+                        }
                     }
                 }
 
+
             }
-
-
         }
 
         private WildCard getRespuestaByIdPregunta(Test test) {
@@ -243,15 +274,4 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
         void onItemClick(Test test, int position);
     }
 
-
-    /***
-     *
-     *
-     * for(int i = 0; i < greenWildCard.size(); i++){
-     if(greenWildCard.get(i).getPregunta_idPregunta() == Integer.parseInt(test.getPregunta())){
-
-
-     }
-     }
-     */
 }
