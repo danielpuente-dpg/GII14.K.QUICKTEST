@@ -57,11 +57,11 @@ class SolucionCuestionario
         if ($peticion[0] == 'finalizar') {
             return self::finalizarCuestionario();
 
-        } else if ($peticion[0] == 'mostrar') {
+        /*} else if ($peticion[0] == 'mostrar') {
             return self::mostrarResultados();
 
         } else if ($peticion[0] == 'resolver') {
-            return self::iniciarCuestionario();
+            return self::iniciarCuestionario();*/
         } else {
             throw new APIException(self::ESTADO_ERROR_PARAMETROS,
                 "Error al finalizar un cuestionario " . "<class> " . SolucionCuestionario::class . " </class>",
@@ -69,7 +69,7 @@ class SolucionCuestionario
         }
     }
 
-    private
+    /*private
     static function iniciarCuestionario()
     {
         $cuerpo = file_get_contents('php://input');
@@ -172,7 +172,7 @@ class SolucionCuestionario
                 ];
         }
 
-    }
+    }*/
 
     private
     static function finalizarCuestionario()
@@ -313,7 +313,7 @@ class SolucionCuestionario
 
     }
 
-    private
+    /*private
     static function mostrarResultados()
     {
         // Obtenemos la informacion necesaria sobre el cuestionario ya resuelto
@@ -334,7 +334,7 @@ class SolucionCuestionario
                 "estado" => self::ESTADO_EXITO,
                 "mensaje" => $datos
             ];
-    }
+    }*/
 
     private static function getGrade($idAlumno, $idCuestionario)
     {
