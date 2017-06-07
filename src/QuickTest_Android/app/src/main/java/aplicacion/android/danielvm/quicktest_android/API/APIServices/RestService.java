@@ -4,6 +4,7 @@ import aplicacion.android.danielvm.quicktest_android.Models.APIRest.APIResponse;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.TestRequest;
 import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApi;
 import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApiComodin;
+import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApiFeedback;
 import aplicacion.android.danielvm.quicktest_android.Utils.SingleRespuestaAPI;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -33,5 +34,9 @@ public interface RestService {
 
     @GET("obtenerCuestionario/obtenerComodin/ambar/{idCuestionario}")
     Call<RespuestaApiComodin> getAmberWildCard(@Path("idCuestionario") int idCuestionario);
+
+    @GET("obtenerCuestionario/feedback/{idCuestionario}/{idAlumno}")
+    Call<RespuestaApiFeedback> getFeedBack(@Path("idCuestionario") int idCuestionario, @Path("idAlumno") String idAlumno);
+
 
 }

@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
@@ -18,28 +21,34 @@ import aplicacion.android.danielvm.quicktest_android.API.APIRest;
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.MoodleService;
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.RestService;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.APIResponse;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.FeedBack;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.GradeRequest;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Token;
 import aplicacion.android.danielvm.quicktest_android.R;
+import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApiFeedback;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
 public class GradeActivity extends AppCompatActivity {
 
     private TextView textViewGrade;
-    private ImageView imageView;
+    private TextView textViewClockMessage;
+    private TextView textViewPlusClock;
+    private Button buttonViewResult;
+    private LinearLayout linearLayoutColor;
 
     private Toolbar myToolbar;
 
     private double grade;
-    private int state;
     private String idAlumno;
     private int idCuestionario;
     private String cuestionario;
 
-    private static final int FAST = 0;
-    private static final int NORMAL = 1;
-    private static final int SLOW = 2;
+    private FeedBack feedBack;
+
+    private static final String FAST = "MUY RÁPIDO";
+    private static final String SLOW = "LENTO";
+
     private static final int NOT_AVAILABLE = -1;
 
     @Override
@@ -53,9 +62,13 @@ public class GradeActivity extends AppCompatActivity {
         getInfo();
 
         textViewGrade = (TextView) findViewById(R.id.textViewTextGrade);
-        imageView = (ImageView) findViewById(R.id.imageViewStatusGradeActivity);
+        textViewClockMessage = (TextView) findViewById(R.id.textViewClockMessage);
+        textViewPlusClock = (TextView) findViewById(R.id.textViewPlusClock);
+        buttonViewResult = (Button) findViewById(R.id.buttonViewResults);
+        linearLayoutColor = (LinearLayout) findViewById(R.id.linearLayoutColor);
 
         myToolbar.setNavigationIcon(R.drawable.ic_flecha_white);
+        // Evento de flecha atras
         myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,26 +76,57 @@ public class GradeActivity extends AppCompatActivity {
                 finish();
             }
         });
-        if(grade != NOT_AVAILABLE){
-            // Cambiamos la info
+
+
+        // Evento de Ver mas resultados
+        buttonViewResult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (grade == NOT_AVAILABLE) {
+                    goToGradeActivity();
+                } else {
+                    Toast.makeText(GradeActivity.this,
+                            "Esta información no esta disponible desde la app", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+        // Logica de los setters
+
+        // Obtenemos la informacion
+
+        // Si la informacion no esta disponible desde la app
+        if (grade == NOT_AVAILABLE) {
+            textViewGrade.setText("La calificación de este cuestionario no se encuentra disponible desde la app movil.");
+
+        // Si la info solo esta disponible desde la app
+        }else{
             grade *= 10;
             textViewGrade.setText("Su calificación final en este cuestionario es " + grade + "/10");
+        }
 
-        /*if (state == FAST) {
-            imageView.setImageResource(R.drawable.status_slow);
-        } else if (state == SLOW) {
-            imageView.setImageResource(R.drawable.status_slow);
-        } else {
-            imageView.setImageResource(R.drawable.status_slow);
-        }*/
+        textViewClockMessage.setText(feedBack.getMensaje());
+        textViewPlusClock.setText(feedBack.getPremio() + " PUNTOS");
 
-            imageView.setImageResource(R.drawable.status_slow);
+        if(feedBack.getOrdenRespuesta().equals(FAST)){
+            linearLayoutColor.setBackgroundResource(R.color.colorFast);
+        }else if(feedBack.getOrdenRespuesta().equals(SLOW)){
+            linearLayoutColor.setBackgroundResource(R.color.colorSlow);
         }else{
-            textViewGrade.setText("La calificación de este cuestionario no se encuentra disponible desde la app movil.");
+            linearLayoutColor.setBackgroundResource(R.color.colorAmberWildCard);
         }
 
 
 
+    }
+
+    private void goToGradeActivity() {
+        Intent intent = new Intent(this, InfoGradeActivity.class);
+        intent.putExtra("idCuestionario", idCuestionario);
+        intent.putExtra("idAlumno", idAlumno);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
     private void goToMainActivity() {
@@ -112,6 +156,7 @@ public class GradeActivity extends AppCompatActivity {
 
     public void getInfo() {
         grade = getGrade();
+        feedBack = getInfoFeedBack();
     }
 
     private Double getGrade() {
@@ -127,6 +172,19 @@ public class GradeActivity extends AppCompatActivity {
         }
 
 
+        return retorno;
+    }
+
+    private FeedBack getInfoFeedBack(){
+        FeedBack retorno = null;
+        UserInfoGradeRequest userInfoGradeRequest = new UserInfoGradeRequest(APIRest.getApi(), idCuestionario, idAlumno);
+        try {
+            retorno = userInfoGradeRequest.execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
         return retorno;
     }
 
@@ -157,6 +215,37 @@ public class GradeActivity extends AppCompatActivity {
 
 
             return grade;
+        }
+    }
+
+    public class UserInfoGradeRequest extends AsyncTask<Void, Void, FeedBack> {
+
+        private Retrofit retrofit;
+        private int idCuestionario;
+        private String idAlumno;
+
+        public UserInfoGradeRequest(Retrofit retrofit, int idCuestionario, String idAlumno) {
+            this.retrofit = retrofit;
+            this.idCuestionario = idCuestionario;
+            this.idAlumno = idAlumno;
+        }
+
+        @Override
+        protected FeedBack doInBackground(Void... params) {
+            FeedBack feedBack = null;
+
+            RestService service = retrofit.create(RestService.class);
+            Call<RespuestaApiFeedback> call = service.getFeedBack(idCuestionario, idAlumno);
+
+            try {
+                RespuestaApiFeedback respuestaApiFeedback = call.execute().body();
+                feedBack = respuestaApiFeedback.getMensaje();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            return feedBack;
         }
     }
 }

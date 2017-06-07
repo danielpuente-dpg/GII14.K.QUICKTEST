@@ -19,7 +19,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import aplicacion.android.danielvm.quicktest_android.API.APIRest;
@@ -142,7 +141,7 @@ public class TestActivity extends AppCompatActivity {
 
                         APIResponse apiResponse = response.body();
                         double grade = Double.parseDouble(apiResponse.getMensaje());
-                        goToGradeActivity(grade);
+                        goToMainActivity(grade);
 
                         Log.d("TestActivity", "onResponse: " + statusCode);
                     }
@@ -163,7 +162,7 @@ public class TestActivity extends AppCompatActivity {
         }
     }
 
-    private void goToGradeActivity(double grade) {
+    private void goToMainActivity(double grade) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);

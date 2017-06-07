@@ -45,5 +45,7 @@
 
     <color name="colorGreenWildCard">#43A047</color>
     <color name="colorAmberWildCard">#FFB300</color>
+    <color name="colorFast">#009688</color>
+    <color name="colorSlow">#F44336</color>
 
 </resources>
