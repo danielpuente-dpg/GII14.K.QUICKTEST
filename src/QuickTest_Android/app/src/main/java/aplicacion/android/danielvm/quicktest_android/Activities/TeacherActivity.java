@@ -103,7 +103,7 @@ public class TeacherActivity extends AppCompatActivity implements AdapterView.On
 
     private void goToSecondTeacherActivity(int position) {
         Intent intent =  new Intent(TeacherActivity.this, SecondTeacherActivity.class);
-        intent.putExtra("course", this.courses.get(position).getId());
+        intent.putExtra("idCourse", this.courses.get(position).getId());
         startActivity(intent);
     }
 
