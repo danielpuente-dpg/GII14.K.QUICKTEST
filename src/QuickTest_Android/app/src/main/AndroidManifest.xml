@@ -14,7 +14,6 @@
         <activity
             android:name=".Activities.LoginActivity"
             android:theme="@style/AppThemeNoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +29,8 @@
             android:screenOrientation="landscape" />
         <activity android:name=".Activities.GradeActivity" />
         <activity android:name=".Activities.SecondActivity" />
-        <activity android:name=".Activities.TeacherActivity"></activity>
+        <activity android:name=".Activities.TeacherActivity" />
+        <activity android:name=".Activities.SecondTeacherActivity"></activity>
     </application>
 
 </manifest>

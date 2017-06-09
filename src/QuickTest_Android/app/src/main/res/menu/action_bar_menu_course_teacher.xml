@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/itemListView"
+        android:icon="@mipmap/ic_list_view"
+        android:orderInCategory="2"
+        android:title="List View"
+        android:visible="false"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/itemGridView"
+        android:icon="@mipmap/ic_grid_view"
+        android:orderInCategory="2"
+        android:title="Grid View"
+        app:showAsAction="ifRoom" />
+
+</menu>

@@ -46,6 +46,8 @@ public class SecondActivity extends AppCompatActivity {
     private int numExternalTools = 0;
     public static ArrayList<Cuestionario> questionaries;
     public static ArrayList<Cuestionario> resolvedQuestionnaires;
+    public static HashMap<Integer, List<Cuestionario>> questionariesInACourse = new HashMap<>();
+    public static HashMap<Integer, Course> coursesById = new HashMap<>();
 
 
     private String ROLE_OF_USER;
@@ -287,6 +289,7 @@ public class SecondActivity extends AppCompatActivity {
 
             for (Module module : modules) {
                 if (description.equals(module.getName())) {
+                    Course course = null;
 
                     // Obtenemos el Id cuestionario
                     int idCuestionario = Integer.parseInt(externalTool.getParameters().get(11).getValue().split("=")[1].trim());
@@ -294,6 +297,27 @@ public class SecondActivity extends AppCompatActivity {
                     String claveCliente = externalTool.getParameters().get(3).getValue();
                     cuestionario = new Cuestionario(idCuestionario, description, R.mipmap.ic_icon_cuestionario, curso, claveCliente);
                     retorno.add(cuestionario);
+
+                    // Creamos el curso al que corresponde ese cuestionario
+                    int idCourse = Integer.parseInt(externalTool.getParameters().get(7).getValue());
+                    String shortName = externalTool.getParameters().get(8).getValue();
+                    String fullName = externalTool.getParameters().get(9).getValue();
+                    course = new Course(idCourse, shortName, fullName);
+
+
+                    // Mapas de apoyo
+                    if(questionariesInACourse.containsKey(idCourse)){
+                        List<Cuestionario> lista = questionariesInACourse.get(idCourse);
+                        lista.add(cuestionario);
+                        questionariesInACourse.put(idCourse, lista);
+
+                    }else{
+                        List<Cuestionario> lista = new ArrayList<>();
+                        lista.add(cuestionario);
+                        questionariesInACourse.put(idCourse, lista);
+
+                        coursesById.put(idCourse, course);
+                    }
 
                     Log.d("SecondActivity", "addExternalTool: " + description);
                     break;
@@ -352,6 +376,7 @@ public class SecondActivity extends AppCompatActivity {
 
     private void gotToTeacherActivity() {
         Intent intentLogin = new Intent(this, TeacherActivity.class);
+        intentLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intentLogin);
     }
 }
