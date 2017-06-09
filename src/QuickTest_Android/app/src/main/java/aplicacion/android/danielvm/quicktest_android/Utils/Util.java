@@ -37,17 +37,4 @@ public class Util {
         return prefs.getString("pass", "");
     }
 
-    public static String getTokenPrefs(SharedPreferences prefs) {
-        return prefs.getString("token", "");
-    }
-
-    public static String getNamePrefs(SharedPreferences prefs) {
-        return prefs.getString("name", "");
-    }
-    public static void removeTokenAndNameOfSharedPreferences(SharedPreferences prefs) {
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.remove("token");
-        editor.remove("name");
-        editor.apply();
-    }
 }

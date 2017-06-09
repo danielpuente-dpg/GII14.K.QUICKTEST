@@ -1,0 +1,307 @@
+package aplicacion.android.danielvm.quicktest_android.Activities;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import aplicacion.android.danielvm.quicktest_android.API.APIMoodle;
+import aplicacion.android.danielvm.quicktest_android.API.APIRest;
+import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
+import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Course;
+import aplicacion.android.danielvm.quicktest_android.Models.Moodle.ExternalTool;
+import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Module;
+import aplicacion.android.danielvm.quicktest_android.Models.Moodle.User;
+import aplicacion.android.danielvm.quicktest_android.R;
+import aplicacion.android.danielvm.quicktest_android.Requests.ContentCourseRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.CourseRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.EnrolUserCourseRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.ExternalTollRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.NumberContentCourseRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.StatusQuestionaryRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.TokenUserWebServiceRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.UserFieldRequest;
+import aplicacion.android.danielvm.quicktest_android.Utils.Util;
+
+public class SecondActivity extends AppCompatActivity {
+
+    // Atributos
+    private String token;
+    private String name;
+
+    private String tokenWebService;
+    private static final String USERNAME = "admin";
+    private static final String PASSWORD = "Asdf1234!";
+    public static User user;
+    private Course[] courses;
+    private List<Module> modules;
+    private List<Course> allCourses;
+    private int numExternalTools = 0;
+    public static ArrayList<Cuestionario> questionaries;
+    public static ArrayList<Cuestionario> resolvedQuestionnaires;
+
+
+    private String ROLE_OF_USER;
+    private static final String IS_STUDENT = "student";
+    private static final String IS_EDIT_TEACHER = "editingyeacher";
+    private static final String IS_TEACHER = "editingyeacher";
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second);
+
+        getDataBundle();
+
+        // Obtenemos la informacion necesaria para determinar el rol de ese usario
+        getAllInfo();
+
+        // Filtramos en funcion del estado del cuestionario
+        HashMap<Integer, ArrayList<Cuestionario>> retorno = getQuestionariesFilterByStatus();
+        // Obtenemos los cuestionarios resueltos
+        resolvedQuestionnaires = retorno.get(0);
+        // Obtenemos los cuestionarios sin resolver
+        questionaries = retorno.get(1);
+
+
+        goToMainActivity();
+
+        // En funcion del rol, determinamos la logica a seguir
+        /*if (ROLE_OF_USER.equals(IS_STUDENT)) {
+            goToMainActivity();
+
+        } else if (ROLE_OF_USER.equals(IS_EDIT_TEACHER) || ROLE_OF_USER.equals(IS_TEACHER)) {
+            gotToTeacherActivity();
+        } else {
+            // TODO
+        }*/
+
+    }
+
+    private void getDataBundle() {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle == null)
+            Log.d("SecondActivity", "Error en el paso de datos entre el LoginActivity y SecondActivity");
+        else {
+            Log.d("SecondActivity", "Intent OK");
+            token = bundle.getString("token");
+            name = bundle.getString("name");
+        }
+    }
+
+    private void getAllInfo() {
+        // Obtenemos el token del usuario con permisos al Web Service
+        tokenWebService = getTokenWebService();
+        // Obtenemos la informacion del usario logeado
+        user = getUserField();
+        // Obtenemos los cursos en los que se encuentra matriculado ese alumno
+        courses = getEnrolUserCourse();
+        // Para cada curso comprobamos, para todos sus cuestionarios,
+        // si es de tipo LTI, y si es asi, los añadiomos
+        // Es decir, todos los cuestionarios que son e tipo lti
+        modules = getCoursesLTI();
+
+        // Obtenemos todos los cursos, sin distinciones
+        allCourses = getNumberOfCourses();
+        // Para cada curso, comprobamos que herramientas externas hay y cuales son de tipo lti
+        // y obtenemos el numero de estas
+        numExternalTools = getNumberExternalTools();
+
+        questionaries = getExternalTools();
+    }
+
+    private String getTokenWebService() {
+        String tokenWebService = null;
+        TokenUserWebServiceRequest tokenUserWSRequest = new TokenUserWebServiceRequest(APIMoodle.getApi(), USERNAME, PASSWORD);
+        try {
+            tokenWebService = tokenUserWSRequest.execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        Log.d("SecondActivity", "tokenWebService: " + tokenWebService);
+        return tokenWebService;
+    }
+
+    private User getUserField() {
+        User user = null;
+        UserFieldRequest userFieldRequest = new UserFieldRequest(APIMoodle.getApi(), tokenWebService, name);
+        try {
+            user = userFieldRequest.execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        Log.d("SecondActivity", "user: " + user.getUsername());
+        return user;
+    }
+
+    private Course[] getEnrolUserCourse() {
+        Course[] courses = null;
+        EnrolUserCourseRequest enrolUserCourse = new EnrolUserCourseRequest(APIMoodle.getApi(), tokenWebService, user.getId());
+        try {
+            courses = enrolUserCourse.execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        Log.d("SecondActivity", "courses: " + courses.length + "");
+        return courses;
+    }
+
+    private List<Module> getCoursesLTI() {
+        List<Module> modules = new ArrayList<>();
+        for (int idCourse = 0; idCourse < courses.length; idCourse++) {
+            ContentCourseRequest contentCourseRequest = new ContentCourseRequest(APIMoodle.getApi(), courses[idCourse].getId(), tokenWebService);
+            try {
+                List<Module> currentModules = contentCourseRequest.execute().get();
+                modules.addAll(currentModules);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+
+        }
+        Log.d("SecondActivity", "modules: " + modules.size() + "");
+        return modules;
+    }
+
+    private List<Course> getNumberOfCourses() {
+        List<Course> allCourses = null;
+        CourseRequest courseRequest = new CourseRequest(APIMoodle.getApi(), tokenWebService);
+        try {
+            allCourses = courseRequest.execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        Log.d("SecondActivity", "allCourses: " + allCourses.size());
+        return allCourses;
+    }
+
+    private int getNumberExternalTools() {
+        int num = 0;
+        for (int idCourse = 1; idCourse <= allCourses.size(); idCourse++) {
+            NumberContentCourseRequest contentCourseRequest = new NumberContentCourseRequest(APIMoodle.getApi(), tokenWebService, idCourse);
+            int cont = 0;
+            try {
+                cont = contentCourseRequest.execute().get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+            num += cont;
+        }
+        Log.d("SecondActivity", "numExternalTools: " + num);
+        return num;
+    }
+
+    private ArrayList<Cuestionario> getExternalTools() {
+        ArrayList<Cuestionario> retorno = new ArrayList<>();
+        for (int i = 1; i <= numExternalTools; i++) {
+            ExternalTollRequest externalTollRequest = new ExternalTollRequest(APIMoodle.getApi(), tokenWebService, i);
+            try {
+                ExternalTool externalTool = externalTollRequest.execute().get();
+                addExternalTool(retorno, externalTool);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+        return retorno;
+    }
+
+    private void addExternalTool(ArrayList<Cuestionario> retorno, ExternalTool externalTool) {
+        Cuestionario cuestionario;
+        if (externalTool.getEndpoint().equals(APIMoodle.BASE + "_QuickTest_TFG/index.php")) {
+
+            // Comprobamos que ese usuario tenga asignado ese cuestionario
+            // Obtenemos la descripcion
+            String description = externalTool.getParameters().get(10).getValue();
+
+            for (Module module : modules) {
+                if (description.equals(module.getName())) {
+
+                    // Obtenemos el Id cuestionario
+                    int idCuestionario = Integer.parseInt(externalTool.getParameters().get(11).getValue().split("=")[1].trim());
+                    String curso = externalTool.getParameters().get(9).getValue();
+                    String claveCliente = externalTool.getParameters().get(3).getValue();
+                    cuestionario = new Cuestionario(idCuestionario, description, R.mipmap.ic_icon_cuestionario, curso, claveCliente);
+                    retorno.add(cuestionario);
+
+                    Log.d("SecondActivity", "addExternalTool: " + description);
+                    break;
+                }
+            }
+        }
+    }
+
+    private HashMap<Integer, ArrayList<Cuestionario>> getQuestionariesFilterByStatus() {
+        HashMap<Integer, ArrayList<Cuestionario>> retorno = new HashMap<>();
+        retorno.put(0, new ArrayList<Cuestionario>());
+        retorno.put(1, new ArrayList<Cuestionario>());
+        for (Cuestionario c : questionaries) {
+
+            // Obtenemos la info de la streamQuery
+            String oauth_consumer_key = c.getClaveCliente() + ":" + user.getId();
+            int idCuestionario = c.getIdCuestionario();
+
+            // Realizamos la peticion al APIRest
+            StatusQuestionaryRequest statusQuestionaryRequest =
+                    new StatusQuestionaryRequest(APIRest.getApi(), oauth_consumer_key, idCuestionario);
+
+            try {
+                int estado = statusQuestionaryRequest.execute().get();
+                if (estado != -1) {
+                    // Si esta resuelto
+                    if (estado == 1) {
+                        ArrayList<Cuestionario> lista = retorno.get(0);
+                        lista.add(c);
+                        retorno.put(0, lista);
+                        // Sino esta resuelto
+                    } else if (estado == 0) {
+                        ArrayList<Cuestionario> lista = retorno.get(1);
+                        lista.add(c);
+                        retorno.put(1, lista);
+                    }
+                } else {
+                    Log.d("SecondActivity", "calculateExternalToolsResolved: error en el resultado");
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        return retorno;
+    }
+
+    private void goToMainActivity() {
+        Intent intentLogin = new Intent(this, MainActivity.class);
+        intentLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intentLogin);
+    }
+
+    private void gotToTeacherActivity() {
+        Intent intentLogin = new Intent(this, TeacherActivity.class);
+        startActivity(intentLogin);
+    }
+}

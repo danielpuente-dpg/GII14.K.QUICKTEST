@@ -150,10 +150,15 @@ public class LoginActivity extends AppCompatActivity {
      * @param name, nombre del usuario
      */
     private void goToMain(String token, String name) {
-        Intent intentLogin = new Intent(this, MainActivity.class);
+        /*Intent intentLogin = new Intent(this, MainActivity.class);
         intentLogin.putExtra("token", token);
         intentLogin.putExtra("name", name);
         intentLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intentLogin);*/
+
+        Intent intentLogin = new Intent(this, SecondActivity.class);
+        intentLogin.putExtra("token", token);
+        intentLogin.putExtra("name", name);
         startActivity(intentLogin);
     }
 

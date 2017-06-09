@@ -59,59 +59,27 @@ public class MainActivity extends AppCompatActivity {
 
     // Atributos que recuperamos del login
     public String token;
-    public String NAME;
-    private Boolean flag = false;
+    public String name;
 
 
-    public int NUM_EXTERNAL_TOOLS;
-    public Course[] courses;
-    public List<Course> AllCourses;
-    public List<Module> modules = new ArrayList<>();
+    public ArrayList<Cuestionario> questionaries;
+    public ArrayList<Cuestionario> resolvedQuestionnaires;
 
-    public ArrayList<Cuestionario> cuestionarios;
-
-    public static final String USERNAME = "admin";
-    public static final String PASSWORD = "Asdf1234!";
-    public String TOKEN_WS;
 
     public static User user;
-    private ArrayList<Cuestionario> resolvedQuestionnaires;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        // Establecemos la preferencias
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
 
-        // Recuperamos la informacion del login
-        token = Util.getTokenPrefs(prefs);
-        NAME = Util.getNamePrefs(prefs);
-
-        if (TextUtils.isEmpty(token) && TextUtils.isEmpty(NAME)) {
-            getDataLogin();
-            saveTokenAndNameOnPreferences(token, NAME);
-        } else {
-            token = Util.getTokenPrefs(prefs);
-            NAME = Util.getNamePrefs(prefs);
-        }
-
-        // Obtenemos el numero de herramientas externas y el token del usuario encargado de interactuar con el WebServices
-        getTokenWS();
-        getUserField();
-        getEnrolUserCourse(user.getId());
-        getCoursesLTI();
-        getNumberOfCourses();
-        getNumberExternalTools();
-        // Obtenemos todos los cuestionarios
-        //cuestionarios = getAll();
-        cuestionarios = getExternalTools();
-
-
-        HashMap<Integer, ArrayList<Cuestionario>> retorno = get();
-        cuestionarios = retorno.get(1);
-        resolvedQuestionnaires = retorno.get(0);
-
+        questionaries = new SecondActivity().questionaries;
+        resolvedQuestionnaires = new SecondActivity().resolvedQuestionnaires;
 
         setToolbar();
 
@@ -124,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         // en funcion del usuario
         View header = navigationView.getHeaderView(0);
         TextView user = (TextView) header.findViewById(R.id.textView);
-        user.setText(NAME);
+        user.setText(new SecondActivity().user.getFirstname());
 
         // Evento Navigation Drawer
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -156,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.menu_forget_and_log_out:
                         Util.removeUserToSharedPreferences(prefs);
-                        Util.removeTokenAndNameOfSharedPreferences(prefs);
                         logOut();
                         break;
                 }
@@ -171,21 +138,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void getDataLogin() {
-        getTokenUser();
-        getNameUser();
-    }
 
     public User getUser() {
         return user;
-    }
-
-
-    private void saveTokenAndNameOnPreferences(String token, String name) {
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("token", token);
-        editor.putString("name", NAME);
-        editor.apply();
     }
 
 
@@ -238,466 +193,13 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-    /*
-
-    Logica del Webservices Moodle
-
-
-    */
-
     public ArrayList<Cuestionario> getDataExternalTools() {
-        return cuestionarios;
+        return questionaries;
     }
 
     public ArrayList<Cuestionario> getDataExternalToolsResolved() {
 
         return resolvedQuestionnaires;
-    }
-
-    public HashMap<Integer, ArrayList<Cuestionario>> get() {
-        HashMap<Integer, ArrayList<Cuestionario>> retorno = new HashMap<>();
-        retorno.put(0, new ArrayList<Cuestionario>());
-        retorno.put(1, new ArrayList<Cuestionario>());
-        for (Cuestionario c : cuestionarios) {
-
-            // Obtenemos la info de la streamQuery
-            String oauth_consumer_key = c.getClaveCliente() + ":" + user.getId();
-            int idCuestionario = c.getIdCuestionario();
-
-            // Realizamos la peticion al APIRest
-            StatusQuestionaryRequest statusQuestionaryRequest =
-                    new StatusQuestionaryRequest(APIRest.getApi(), oauth_consumer_key, idCuestionario);
-
-            try {
-                int estado = statusQuestionaryRequest.execute().get();
-                if (estado != -1) {
-                    // Si esta resuelto
-                    if (estado == 1) {
-                        ArrayList<Cuestionario> lista = retorno.get(0);
-                        lista.add(c);
-                        retorno.put(0, lista);
-                        // Sino esta resuelto
-                    } else if (estado == 0) {
-                        ArrayList<Cuestionario> lista = retorno.get(1);
-                        lista.add(c);
-                        retorno.put(1, lista);
-                    }
-                } else {
-                    Log.d("MainActivity", "calculateExternalToolsResolved: error en el resultado");
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-        return retorno;
-    }
-
-
-    private void getTokenWS() {
-        TokenUserWSRequest tokenUserWSRequest = new TokenUserWSRequest(APIMoodle.getApi());
-        try {
-            TOKEN_WS = tokenUserWSRequest.execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        Log.d("TOKEN_WS", TOKEN_WS);
-
-    }
-
-
-    private void getUserField() {
-        UserFieldRequest userFieldRequest = new UserFieldRequest(APIMoodle.getApi());
-        try {
-            user = userFieldRequest.execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        Log.d("USER", user.getUsername());
-    }
-
-    private void getEnrolUserCourse(int userId) {
-        EnrolUserCourse enrolUserCourse = new EnrolUserCourse(APIMoodle.getApi(), userId);
-        try {
-            courses = enrolUserCourse.execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        Log.d("COURSE", courses.length + "");
-    }
-
-    private void getCoursesLTI() {
-        for (int idCourse = 0; idCourse < courses.length; idCourse++) {
-            ContentCourseRequest contentCourseRequest = new ContentCourseRequest(APIMoodle.getApi(), courses[idCourse].getId());
-            try {
-                List<Module> currentModules = contentCourseRequest.execute().get();
-                modules.addAll(currentModules);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-
-        }
-        Log.d("Modules", modules.size() + "");
-    }
-
-    private void getNumberOfCourses() {
-        CourseRequest courseRequest = new CourseRequest(APIMoodle.getApi());
-        try {
-            AllCourses = courseRequest.execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        Log.d("AllCourses", AllCourses.size() + "");
-    }
-
-    private void getNumberExternalTools() {
-        for (int idCourse = 1; idCourse <= AllCourses.size(); idCourse++) {
-            NumberContentCourseRequest contentCourseRequest = new NumberContentCourseRequest(APIMoodle.getApi(), idCourse);
-            int cont = 0;
-            try {
-                cont = contentCourseRequest.execute().get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-            NUM_EXTERNAL_TOOLS += cont;
-        }
-        Log.d("NUM_EXTERNAL_TOOLS", NUM_EXTERNAL_TOOLS + "");
-    }
-
-    private void getTokenUser() {
-        Bundle bundle = new Bundle();
-        bundle = getIntent().getExtras();
-        token = bundle.getString("token");
-        Log.d("token", token);
-    }
-
-    private void getNameUser() {
-        Bundle bundle = new Bundle();
-        bundle = getIntent().getExtras();
-        NAME = bundle.getString("name");
-        Log.d("NAME", NAME);
-    }
-
-    private ArrayList<Cuestionario> getExternalTools() {
-        ArrayList<Cuestionario> retorno = new ArrayList<>();
-        for (int i = 1; i <= NUM_EXTERNAL_TOOLS; i++) {
-            ExternalTollRequest externalTollRequest = new ExternalTollRequest(APIMoodle.getApi(), i);
-            try {
-                ExternalTool externalTool = externalTollRequest.execute().get();
-                addExternalTool(retorno, externalTool);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-        }
-        return retorno;
-    }
-
-    private void addExternalTool(ArrayList<Cuestionario> retorno, ExternalTool externalTool) {
-        Cuestionario cuestionario;
-        if (externalTool.getEndpoint().equals(APIMoodle.BASE + "_QuickTest_TFG/index.php")) {
-
-            // Comprobamos que ese usuario tenga asignado ese cuestionario
-            // Obtenemos la descripcion
-            String description = externalTool.getParameters().get(10).getValue();
-
-            for (Module module : modules) {
-                if (description.equals(module.getName())) {
-
-                    // Obtenemos el Id cuestionario
-                    int idCuestionario = Integer.parseInt(externalTool.getParameters().get(11).getValue().split("=")[1].trim());
-                    String curso = externalTool.getParameters().get(9).getValue();
-                    String claveCliente = externalTool.getParameters().get(3).getValue();
-                    cuestionario = new Cuestionario(idCuestionario, description, R.mipmap.ic_icon_cuestionario, curso, claveCliente);
-                    retorno.add(cuestionario);
-
-                    Log.d("AddExternalTool", description);
-                    break;
-                }
-            }
-        }
-    }
-
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-    /// Clases internas para realizar peticiones de manera sincrona en el BackGround.
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-
-    // Ejecutamos en el blackground y asi no se bloquea el hilo principal
-
-    public class TokenUserWSRequest extends AsyncTask<Void, Void, String> {
-        private Retrofit retrofit;
-        private Token token;
-
-        public TokenUserWSRequest(Retrofit retrofit) {
-            this.retrofit = retrofit;
-
-        }
-
-        @Override
-        protected String doInBackground(Void... params) {
-
-            MoodleService service = retrofit.create(MoodleService.class);
-            Call<Token> call = service.getToken(USERNAME, PASSWORD, APIMoodle.APP);
-
-
-            try {
-                token = call.execute().body();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
-            return token.getToken();
-        }
-    }
-
-    public class UserFieldRequest extends AsyncTask<Void, Void, User> {
-
-        private Retrofit retrofit;
-        private User[] user;
-
-        public UserFieldRequest(Retrofit retrofit) {
-            this.retrofit = retrofit;
-
-        }
-
-        @Override
-        protected User doInBackground(Void... params) {
-
-            MoodleService service = retrofit.create(MoodleService.class);
-            Call<User[]> call = service.getUserByField(TOKEN_WS, APIMoodle.GET_USER_BY_FIELD, APIMoodle.FORMAT_JSON, "username", NAME);
-
-            try {
-                user = call.execute().body();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return user[0];
-        }
-    }
-
-    public class EnrolUserCourse extends AsyncTask<Void, Void, Course[]> {
-
-        private Retrofit retrofit;
-        private Course[] course;
-        private int userId;
-
-        public EnrolUserCourse(Retrofit retrofit, int userId) {
-            this.retrofit = retrofit;
-            this.userId = userId;
-        }
-
-        @Override
-        protected Course[] doInBackground(Void... params) {
-
-            MoodleService service = retrofit.create(MoodleService.class);
-            Call<Course[]> call = service.getCoursesByUserId(TOKEN_WS, APIMoodle.GET_COURSES_BY_USER_ID, APIMoodle.FORMAT_JSON, userId);
-
-            try {
-                course = call.execute().body();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return course;
-        }
-    }
-
-    public class CourseRequest extends AsyncTask<Void, Void, List<Course>> {
-
-        private Retrofit retrofit;
-        private List<Course> courses;
-
-        public CourseRequest(Retrofit retrofit) {
-            this.retrofit = retrofit;
-        }
-
-        @Override
-        protected List<Course> doInBackground(Void... params) {
-            MoodleService service = retrofit.create(MoodleService.class);
-            Call<List<Course>> call = service.getCourses(TOKEN_WS, APIMoodle.GET_COURSES, APIMoodle.FORMAT_JSON);
-
-            try {
-                courses = call.execute().body();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return courses;
-        }
-    }
-
-    public class ContentCourseRequest extends AsyncTask<Void, Void, List<Module>> {
-
-        private int idCourse;
-        private List<Module> modules;
-        private Retrofit retrofit;
-
-        public ContentCourseRequest(Retrofit retrofit, int idCourse) {
-            this.retrofit = retrofit;
-            this.idCourse = idCourse;
-            modules = new ArrayList<>();
-        }
-
-        @Override
-        protected List<Module> doInBackground(Void... params) {
-            MoodleService service = retrofit.create(MoodleService.class);
-            Call<Content[]> call = service.getContentCourse(TOKEN_WS, APIMoodle.GET_CONTENT_COURSE, APIMoodle.FORMAT_JSON, idCourse);
-
-            try {
-                Content[] content = call.execute().body();
-                if (content != null)
-                    addContentCourse(content);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return modules;
-        }
-
-        private void addContentCourse(Content[] content) {
-            for (int i = 0; i < content.length; i++) {
-                if (content[i] != null) {
-                    List<Module> modules = content[i].getModules();
-                    for (Module module : modules) {
-                        if (module.getModname().equals("lti")) {
-                            addExternalTool(module);
-                        }
-                    }
-                }
-
-            }
-        }
-
-        private void addExternalTool(Module module) {
-            modules.add(module);
-        }
-    }
-
-    public class NumberContentCourseRequest extends AsyncTask<Void, Void, Integer> {
-
-        private int idCourse;
-        private int cont = 0;
-        private Retrofit retrofit;
-
-        public NumberContentCourseRequest(Retrofit retrofit, int idCourse) {
-            this.retrofit = retrofit;
-            this.idCourse = idCourse;
-        }
-
-        @Override
-        protected Integer doInBackground(Void... params) {
-            MoodleService service = retrofit.create(MoodleService.class);
-            Call<Content[]> call = service.getContentCourse(TOKEN_WS, APIMoodle.GET_CONTENT_COURSE, APIMoodle.FORMAT_JSON, idCourse);
-
-            try {
-                Content[] content = call.execute().body();
-                if (content != null)
-                    addContentCourse(content);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return cont;
-        }
-
-        private void addContentCourse(Content[] content) {
-            for (int i = 0; i < content.length; i++) {
-                if (content[i] != null) {
-                    List<Module> modules = content[i].getModules();
-                    for (Module module : modules) {
-                        if (module.getModname().equals("lti")) {
-                            incNumberExternalTools();
-                        }
-                    }
-                }
-
-            }
-        }
-
-        private void incNumberExternalTools() {
-            ++cont;
-        }
-    }
-
-    public class StatusQuestionaryRequest extends AsyncTask<Void, Void, Integer> {
-
-        private Retrofit retrofit;
-        private String oauth_consumer_key;
-        private int idCuestionario;
-
-        public StatusQuestionaryRequest(Retrofit retrofit, String oauth_consumer_key, int idCuestionario) {
-            this.retrofit = retrofit;
-            this.oauth_consumer_key = oauth_consumer_key;
-            this.idCuestionario = idCuestionario;
-        }
-
-        @Override
-        protected Integer doInBackground(Void... params) {
-            int estado = -1;
-
-            RestService service = retrofit.create(RestService.class);
-            Call<SingleRespuestaAPI> call = service.getStatusTest(oauth_consumer_key, idCuestionario);
-
-            try {
-                estado = Integer.parseInt(call.execute().body().getMensaje());
-                return estado;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
-            return estado;
-        }
-    }
-
-    public class ExternalTollRequest extends AsyncTask<Void, Void, ExternalTool> {
-
-        private Retrofit retrofit;
-        private int toolId;
-
-        public ExternalTollRequest(Retrofit retrofit, int toolId) {
-            this.retrofit = retrofit;
-            this.toolId = toolId;
-        }
-
-        @Override
-        protected ExternalTool doInBackground(Void... params) {
-            ExternalTool externalTool = null;
-
-            MoodleService service = retrofit.create(MoodleService.class);
-            Call<ExternalTool> call = service.getExternalTools(TOKEN_WS, APIMoodle.GET_EXTERNAL_TOOL, APIMoodle.FORMAT_JSON, toolId);
-
-            try {
-                externalTool = call.execute().body();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
-            return externalTool;
-        }
     }
 
 
