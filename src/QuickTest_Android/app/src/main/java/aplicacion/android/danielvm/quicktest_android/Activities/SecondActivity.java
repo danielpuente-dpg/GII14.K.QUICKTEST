@@ -1,15 +1,13 @@
 package aplicacion.android.danielvm.quicktest_android.Activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -19,9 +17,11 @@ import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Course;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.ExternalTool;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Module;
+import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Role;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.User;
 import aplicacion.android.danielvm.quicktest_android.R;
 import aplicacion.android.danielvm.quicktest_android.Requests.ContentCourseRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.CoreUserGetCourseUserRequest;
 import aplicacion.android.danielvm.quicktest_android.Requests.CourseRequest;
 import aplicacion.android.danielvm.quicktest_android.Requests.EnrolUserCourseRequest;
 import aplicacion.android.danielvm.quicktest_android.Requests.ExternalTollRequest;
@@ -29,7 +29,6 @@ import aplicacion.android.danielvm.quicktest_android.Requests.NumberContentCours
 import aplicacion.android.danielvm.quicktest_android.Requests.StatusQuestionaryRequest;
 import aplicacion.android.danielvm.quicktest_android.Requests.TokenUserWebServiceRequest;
 import aplicacion.android.danielvm.quicktest_android.Requests.UserFieldRequest;
-import aplicacion.android.danielvm.quicktest_android.Utils.Util;
 
 public class SecondActivity extends AppCompatActivity {
 
@@ -51,8 +50,8 @@ public class SecondActivity extends AppCompatActivity {
 
     private String ROLE_OF_USER;
     private static final String IS_STUDENT = "student";
-    private static final String IS_EDIT_TEACHER = "editingyeacher";
-    private static final String IS_TEACHER = "editingyeacher";
+    private static final String IS_EDIT_TEACHER = "editingteacher";
+    private static final String IS_TEACHER = "teacher";
 
 
     @Override
@@ -73,17 +72,15 @@ public class SecondActivity extends AppCompatActivity {
         questionaries = retorno.get(1);
 
 
-        goToMainActivity();
-
         // En funcion del rol, determinamos la logica a seguir
-        /*if (ROLE_OF_USER.equals(IS_STUDENT)) {
+        if (ROLE_OF_USER.equals(IS_STUDENT)) {
             goToMainActivity();
 
-        } else if (ROLE_OF_USER.equals(IS_EDIT_TEACHER) || ROLE_OF_USER.equals(IS_TEACHER)) {
+        } else if (ROLE_OF_USER.equals(IS_TEACHER)) {
             gotToTeacherActivity();
         } else {
             // TODO
-        }*/
+        }
 
     }
 
@@ -105,6 +102,40 @@ public class SecondActivity extends AppCompatActivity {
         user = getUserField();
         // Obtenemos los cursos en los que se encuentra matriculado ese alumno
         courses = getEnrolUserCourse();
+        // Obtenemos para cada curso el rol en el que se encuentra matriculado ese alumno.
+        List<String> rolesInCourse = getRolInCourses();
+        if (isStudent(rolesInCourse)) {
+            ROLE_OF_USER = IS_STUDENT;
+        }else if(isTeacher(rolesInCourse)){
+            ROLE_OF_USER = IS_TEACHER;
+        }
+
+        getExternalToolByCourses();
+
+    }
+
+    private boolean isTeacher(List<String> rolesInCourse) {
+        boolean retorno = true;
+        for(String type : rolesInCourse){
+            if(!(type.equals(IS_TEACHER) || type.equals(IS_EDIT_TEACHER))){
+                retorno = false;
+                break;
+            }
+        }
+        return retorno;
+    }
+    private boolean isStudent(List<String> rolesInCourse) {
+        boolean retorno = true;
+        for(String type : rolesInCourse){
+            if(!type.equals(IS_STUDENT)){
+                retorno = false;
+                break;
+            }
+        }
+        return retorno;
+    }
+
+    private void getExternalToolByCourses() {
         // Para cada curso comprobamos, para todos sus cuestionarios,
         // si es de tipo LTI, y si es asi, los añadiomos
         // Es decir, todos los cuestionarios que son e tipo lti
@@ -159,6 +190,25 @@ public class SecondActivity extends AppCompatActivity {
         }
         Log.d("SecondActivity", "courses: " + courses.length + "");
         return courses;
+    }
+
+    private List<String> getRolInCourses() {
+        List<String> rolesInCourse = new ArrayList<>();
+        for (Course course : courses) {
+            CoreUserGetCourseUserRequest coreUserGetCourseUserRequest = new CoreUserGetCourseUserRequest(APIMoodle.getApi(),
+                    tokenWebService, user.getId(), course.getId());
+
+            try {
+                List<Role> roles = coreUserGetCourseUserRequest.execute().get();
+                rolesInCourse.add(roles.get(0).getShortname());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+        return rolesInCourse;
+
     }
 
     private List<Module> getCoursesLTI() {

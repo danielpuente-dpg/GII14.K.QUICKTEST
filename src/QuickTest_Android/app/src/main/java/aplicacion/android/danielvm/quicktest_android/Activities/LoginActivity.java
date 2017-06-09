@@ -51,7 +51,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
         // Inicializamos los elementos de la UI
         bindUI();
 

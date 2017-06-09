@@ -6,8 +6,10 @@ import java.util.List;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Content;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Course;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.ExternalTool;
+import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Role;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Token;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.User;
+import aplicacion.android.danielvm.quicktest_android.Models.Moodle.UserProfilesByCourse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -71,5 +73,10 @@ public interface MoodleService {
     Call<Course[]> getCoursesByUserId(@Query("wstoken") String token, @Query("wsfunction") String function
             , @Query("moodlewsrestformat") String format, @Query("userid") int id);
 
+
+    @GET("webservice/rest/server.php")
+    Call<UserProfilesByCourse[]> getUserGetCourse(@Query("wstoken") String token, @Query("wsfunction") String function
+            , @Query("moodlewsrestformat") String format, @Query("userlist[0][userid]") int idUser
+            , @Query("userlist[0][courseid]") int idCourse);
 
 }
