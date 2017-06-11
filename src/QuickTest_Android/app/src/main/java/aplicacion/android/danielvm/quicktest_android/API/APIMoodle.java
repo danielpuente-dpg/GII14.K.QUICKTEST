@@ -19,6 +19,7 @@ public class APIMoodle {
     public static final String GET_USER_BY_FIELD = "core_user_get_users_by_field";
     public static final String GET_COURSES_BY_USER_ID = "core_enrol_get_users_courses";
     public static final String GET_PROFILES_USER_BY_USER = "core_user_get_course_user_profiles";
+    public static final String GET_USERS_ENROLLED_IN_COURSE = "core_enrol_get_enrolled_users";
 
     private static Retrofit retrofit = null;
 

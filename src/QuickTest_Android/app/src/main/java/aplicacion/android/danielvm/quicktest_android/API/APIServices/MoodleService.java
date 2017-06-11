@@ -3,13 +3,16 @@ package aplicacion.android.danielvm.quicktest_android.API.APIServices;
 
 import java.util.List;
 
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.EnrolCourse;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Content;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Course;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.ExternalTool;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Role;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Token;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.User;
+import aplicacion.android.danielvm.quicktest_android.Models.Moodle.UserEnrol;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.UserProfilesByCourse;
+import aplicacion.android.danielvm.quicktest_android.Requests.EnrolUserCourseRequest;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -78,5 +81,11 @@ public interface MoodleService {
     Call<UserProfilesByCourse[]> getUserGetCourse(@Query("wstoken") String token, @Query("wsfunction") String function
             , @Query("moodlewsrestformat") String format, @Query("userlist[0][userid]") int idUser
             , @Query("userlist[0][courseid]") int idCourse);
+
+
+    @GET("webservice/rest/server.php")
+    Call<UserEnrol[]> getUsersEnrolledInCourse(@Query("wstoken") String token, @Query("wsfunction") String function
+            , @Query("moodlewsrestformat") String format, @Query("courseid") int id);
+
 
 }

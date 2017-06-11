@@ -1,5 +1,6 @@
 package aplicacion.android.danielvm.quicktest_android.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import aplicacion.android.danielvm.quicktest_android.Adapters.CourseAdapter;
@@ -19,7 +21,7 @@ import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Course;
 import aplicacion.android.danielvm.quicktest_android.R;
 
-public class SecondTeacherActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
+public class SecondTeacherActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     // Elementos de la UI
     private ListView listView;
@@ -34,10 +36,11 @@ public class SecondTeacherActivity extends AppCompatActivity implements AdapterV
     private QuestionaryAdapter gridViewAdapter;
 
     // Atributos
-    private List<Cuestionario> cuestionarios;
+    private static List<Cuestionario> cuestionarios;
     private static final int SWITCH_TO_LIST_VIEW = 0;
     private static final int SWITCH_TO_GRID_VIEW = 1;
-    private int idCourse;
+    private static int idCourse;
+    private static String tokenWebService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,10 @@ public class SecondTeacherActivity extends AppCompatActivity implements AdapterV
 
         // Recuperamos le identificador del curso seleccionado
         getDataBundle();
+
+
+        TeacherActivity activity = new TeacherActivity();
+        tokenWebService = activity.getTokenWebService();
 
         // Forzamos la carga del icono de la aplicacion
         enforceIconBar();
@@ -77,6 +84,18 @@ public class SecondTeacherActivity extends AppCompatActivity implements AdapterV
         return new SecondActivity().questionariesInACourse.get(idCourse);
     }
 
+    public Cuestionario getQuestionaryByPosition(int position) {
+        return this.cuestionarios.get(position);
+    }
+
+    public int getIdCourse() {
+        return idCourse;
+    }
+
+    public String getTokenWebService(){
+        return tokenWebService;
+    }
+
     private void getDataBundle() {
         Bundle bundle = getIntent().getExtras();
         if (bundle == null)
@@ -95,7 +114,14 @@ public class SecondTeacherActivity extends AppCompatActivity implements AdapterV
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.d("SecondTeacherActivity", "Cuestionario: id: " + this.cuestionarios.get(position).getIdCuestionario());
+        goToThirdTeacherActivity(position);
+    }
 
+    private void goToThirdTeacherActivity(int position) {
+        Intent intent = new Intent(SecondTeacherActivity.this, ThirdTeacherActivity.class);
+        intent.putExtra("position", position);
+        startActivity(intent);
     }
 
     @Override
@@ -113,7 +139,7 @@ public class SecondTeacherActivity extends AppCompatActivity implements AdapterV
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.itemListView:
                 switchView(this.SWITCH_TO_LIST_VIEW);
                 return true;
@@ -124,6 +150,7 @@ public class SecondTeacherActivity extends AppCompatActivity implements AdapterV
                 return super.onOptionsItemSelected(item);
         }
     }
+
     private void switchView(int option) {
         if (option == SWITCH_TO_LIST_VIEW) {
             if (this.listView.getVisibility() == View.INVISIBLE) {

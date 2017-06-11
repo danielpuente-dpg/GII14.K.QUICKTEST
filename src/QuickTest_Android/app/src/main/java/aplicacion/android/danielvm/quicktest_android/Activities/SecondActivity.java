@@ -35,7 +35,7 @@ public class SecondActivity extends AppCompatActivity {
     private String token;
     private String name;
 
-    private String tokenWebService;
+    private static String tokenWebService;
     private static final String USERNAME = "admin";
     private static final String PASSWORD = "Asdf1234!";
     public static User user;
@@ -87,6 +87,9 @@ public class SecondActivity extends AppCompatActivity {
         }
     }
 
+
+    public String getPassTokenWebService(){return tokenWebService;}
+
     private void getAllInfo() {
         // Obtenemos el token del usuario con permisos al Web Service
         tokenWebService = getTokenWebService();
@@ -98,11 +101,12 @@ public class SecondActivity extends AppCompatActivity {
         List<String> rolesInCourse = getRolInCourses();
         if (isStudent(rolesInCourse)) {
             ROLE_OF_USER = IS_STUDENT;
+            getExternalToolByCourses();
         } else if (isTeacher(rolesInCourse)) {
             ROLE_OF_USER = IS_TEACHER;
+            getExternalToolByCourses();
         }
 
-        getExternalToolByCourses();
 
     }
 
@@ -283,7 +287,7 @@ public class SecondActivity extends AppCompatActivity {
 
             for (Module module : modules) {
                 if (description.equals(module.getName())) {
-                    Course course = null;
+                    Course course;
 
                     // Obtenemos el Id cuestionario
                     int idCuestionario = Integer.parseInt(externalTool.getParameters().get(11).getValue().split("=")[1].trim());

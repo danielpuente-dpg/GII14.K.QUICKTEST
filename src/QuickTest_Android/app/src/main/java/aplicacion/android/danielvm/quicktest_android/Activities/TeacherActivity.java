@@ -44,6 +44,7 @@ public class TeacherActivity extends AppCompatActivity implements AdapterView.On
     private List<Course> courses;
     private static final int SWITCH_TO_LIST_VIEW = 0;
     private static final int SWITCH_TO_GRID_VIEW = 1;
+    private static String tokenWebService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,9 @@ public class TeacherActivity extends AppCompatActivity implements AdapterView.On
 
         // Forzamos la carga del icono de la aplicacion
         enforceIconBar();
+
+        SecondActivity activity = new SecondActivity();
+        tokenWebService = activity.getPassTokenWebService();
 
         // Añadimos los cursos de eso profesor
         this.courses = loadCourses();
@@ -77,6 +81,8 @@ public class TeacherActivity extends AppCompatActivity implements AdapterView.On
 
     }
 
+    public String getTokenWebService(){return tokenWebService;}
+
     private List<Course> loadCourses() {
         List<Course> retorno = new ArrayList<>();
         HashMap<Integer, Course> coursesById = new SecondActivity().coursesById;
@@ -90,7 +96,7 @@ public class TeacherActivity extends AppCompatActivity implements AdapterView.On
     }
 
     private void enforceIconBar() {
-        getSupportActionBar().setIcon(R.mipmap.ic_action_bar_icon);
+        getSupportActionBar().setIcon(R.mipmap.ic_action_bar_student);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Cursos");
