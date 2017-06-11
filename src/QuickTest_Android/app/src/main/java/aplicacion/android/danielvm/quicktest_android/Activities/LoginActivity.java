@@ -51,6 +51,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        getSupportActionBar().hide();
+
         // Inicializamos los elementos de la UI
         bindUI();
 
@@ -102,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                 Token body = response.body();
                 // Si hemos obtenido un Token
                 if (body.getToken() != null)
-                    goToMain(body.getToken(), name);
+                    goToSecondActivity(body.getToken(), name);
                 else
                     Toast.makeText(LoginActivity.this, "Correo o contraseña erroneos", Toast.LENGTH_SHORT).show();
 
@@ -144,16 +146,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     * Metodo encargano de re-direccionar al MainActivity.
+     * Metodo encargano de re-direccionar al SecondActivity.
      * @param token, token del usuario.
      * @param name, nombre del usuario
      */
-    private void goToMain(String token, String name) {
-        /*Intent intentLogin = new Intent(this, MainActivity.class);
-        intentLogin.putExtra("token", token);
-        intentLogin.putExtra("name", name);
-        intentLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intentLogin);*/
+    private void goToSecondActivity(String token, String name) {
 
         Intent intentLogin = new Intent(this, SecondActivity.class);
         intentLogin.putExtra("token", token);

@@ -3,7 +3,6 @@ package aplicacion.android.danielvm.quicktest_android.Activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,21 +11,16 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import aplicacion.android.danielvm.quicktest_android.Adapters.CourseAdapter;
-import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Course;
 import aplicacion.android.danielvm.quicktest_android.R;
 
-public class TeacherActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
+public class StudentActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     // Elementos de la UI
     private ListView listView;
@@ -48,7 +42,7 @@ public class TeacherActivity extends AppCompatActivity implements AdapterView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher);
+        setContentView(R.layout.activity_student);
 
         // Forzamos la carga del icono de la aplicacion
         enforceIconBar();
@@ -74,7 +68,13 @@ public class TeacherActivity extends AppCompatActivity implements AdapterView.On
         // Registre los cambios sobre ambas vistas
         registerForContextMenu(this.listView);
         registerForContextMenu(this.gridView);
+    }
 
+    private void enforceIconBar() {
+        getSupportActionBar().setIcon(R.mipmap.ic_action_bar_icon);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Cursos");
     }
 
     private List<Course> loadCourses() {
@@ -86,24 +86,16 @@ public class TeacherActivity extends AppCompatActivity implements AdapterView.On
             retorno.add(course);
         }
         return retorno;
-
-    }
-
-    private void enforceIconBar() {
-        getSupportActionBar().setIcon(R.mipmap.ic_action_bar_icon);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Cursos");
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.d("TeacherActivity", "Curso: " + this.courses.get(position));
-        goToSecondTeacherActivity(position);
+        Log.d("StudentActivity", "Curso: " + this.courses.get(position));
+        goToMainActivity(position);
     }
 
-    private void goToSecondTeacherActivity(int position) {
-        Intent intent =  new Intent(TeacherActivity.this, SecondTeacherActivity.class);
+    private void goToMainActivity(int position) {
+        Intent intent =  new Intent(StudentActivity.this, MainActivity.class);
         intent.putExtra("idCourse", this.courses.get(position).getId());
         startActivity(intent);
     }

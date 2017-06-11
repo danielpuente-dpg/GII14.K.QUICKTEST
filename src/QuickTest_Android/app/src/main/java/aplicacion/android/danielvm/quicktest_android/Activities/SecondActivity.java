@@ -7,7 +7,6 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -45,7 +44,6 @@ public class SecondActivity extends AppCompatActivity {
     private List<Course> allCourses;
     private int numExternalTools = 0;
     public static ArrayList<Cuestionario> questionaries;
-    public static ArrayList<Cuestionario> resolvedQuestionnaires;
     public static HashMap<Integer, List<Cuestionario>> questionariesInACourse = new HashMap<>();
     public static HashMap<Integer, Course> coursesById = new HashMap<>();
 
@@ -66,17 +64,9 @@ public class SecondActivity extends AppCompatActivity {
         // Obtenemos la informacion necesaria para determinar el rol de ese usario
         getAllInfo();
 
-        // Filtramos en funcion del estado del cuestionario
-        HashMap<Integer, ArrayList<Cuestionario>> retorno = getQuestionariesFilterByStatus();
-        // Obtenemos los cuestionarios resueltos
-        resolvedQuestionnaires = retorno.get(0);
-        // Obtenemos los cuestionarios sin resolver
-        questionaries = retorno.get(1);
-
-
         // En funcion del rol, determinamos la logica a seguir
         if (ROLE_OF_USER.equals(IS_STUDENT)) {
-            goToMainActivity();
+            goToStudentActivity();
 
         } else if (ROLE_OF_USER.equals(IS_TEACHER)) {
             gotToTeacherActivity();
@@ -108,7 +98,7 @@ public class SecondActivity extends AppCompatActivity {
         List<String> rolesInCourse = getRolInCourses();
         if (isStudent(rolesInCourse)) {
             ROLE_OF_USER = IS_STUDENT;
-        }else if(isTeacher(rolesInCourse)){
+        } else if (isTeacher(rolesInCourse)) {
             ROLE_OF_USER = IS_TEACHER;
         }
 
@@ -118,18 +108,19 @@ public class SecondActivity extends AppCompatActivity {
 
     private boolean isTeacher(List<String> rolesInCourse) {
         boolean retorno = true;
-        for(String type : rolesInCourse){
-            if(!(type.equals(IS_TEACHER) || type.equals(IS_EDIT_TEACHER))){
+        for (String type : rolesInCourse) {
+            if (!(type.equals(IS_TEACHER) || type.equals(IS_EDIT_TEACHER))) {
                 retorno = false;
                 break;
             }
         }
         return retorno;
     }
+
     private boolean isStudent(List<String> rolesInCourse) {
         boolean retorno = true;
-        for(String type : rolesInCourse){
-            if(!type.equals(IS_STUDENT)){
+        for (String type : rolesInCourse) {
+            if (!type.equals(IS_STUDENT)) {
                 retorno = false;
                 break;
             }
@@ -265,6 +256,9 @@ public class SecondActivity extends AppCompatActivity {
 
     private ArrayList<Cuestionario> getExternalTools() {
         ArrayList<Cuestionario> retorno = new ArrayList<>();
+        // Instanciamos los dic
+        questionariesInACourse = new HashMap<>();
+        coursesById = new HashMap<>();
         for (int i = 1; i <= numExternalTools; i++) {
             ExternalTollRequest externalTollRequest = new ExternalTollRequest(APIMoodle.getApi(), tokenWebService, i);
             try {
@@ -306,12 +300,12 @@ public class SecondActivity extends AppCompatActivity {
 
 
                     // Mapas de apoyo
-                    if(questionariesInACourse.containsKey(idCourse)){
+                    if (questionariesInACourse.containsKey(idCourse)) {
                         List<Cuestionario> lista = questionariesInACourse.get(idCourse);
                         lista.add(cuestionario);
                         questionariesInACourse.put(idCourse, lista);
 
-                    }else{
+                    } else {
                         List<Cuestionario> lista = new ArrayList<>();
                         lista.add(cuestionario);
                         questionariesInACourse.put(idCourse, lista);
@@ -326,57 +320,15 @@ public class SecondActivity extends AppCompatActivity {
         }
     }
 
-    private HashMap<Integer, ArrayList<Cuestionario>> getQuestionariesFilterByStatus() {
-        HashMap<Integer, ArrayList<Cuestionario>> retorno = new HashMap<>();
-        retorno.put(0, new ArrayList<Cuestionario>());
-        retorno.put(1, new ArrayList<Cuestionario>());
-        for (Cuestionario c : questionaries) {
-
-            // Obtenemos la info de la streamQuery
-            String oauth_consumer_key = c.getClaveCliente() + ":" + user.getId();
-            int idCuestionario = c.getIdCuestionario();
-
-            // Realizamos la peticion al APIRest
-            StatusQuestionaryRequest statusQuestionaryRequest =
-                    new StatusQuestionaryRequest(APIRest.getApi(), oauth_consumer_key, idCuestionario);
-
-            try {
-                int estado = statusQuestionaryRequest.execute().get();
-                if (estado != -1) {
-                    // Si esta resuelto
-                    if (estado == 1) {
-                        ArrayList<Cuestionario> lista = retorno.get(0);
-                        lista.add(c);
-                        retorno.put(0, lista);
-                        // Sino esta resuelto
-                    } else if (estado == 0) {
-                        ArrayList<Cuestionario> lista = retorno.get(1);
-                        lista.add(c);
-                        retorno.put(1, lista);
-                    }
-                } else {
-                    Log.d("SecondActivity", "calculateExternalToolsResolved: error en el resultado");
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-        return retorno;
-    }
-
-    private void goToMainActivity() {
-        Intent intentLogin = new Intent(this, MainActivity.class);
-        intentLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intentLogin);
+    private void goToStudentActivity() {
+        Intent intent = new Intent(this, StudentActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
     private void gotToTeacherActivity() {
-        Intent intentLogin = new Intent(this, TeacherActivity.class);
-        intentLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intentLogin);
+        Intent intent = new Intent(this, TeacherActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }

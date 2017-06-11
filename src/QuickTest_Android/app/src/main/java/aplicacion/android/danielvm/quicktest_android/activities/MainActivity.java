@@ -42,6 +42,7 @@ import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Module;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Token;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.User;
 import aplicacion.android.danielvm.quicktest_android.R;
+import aplicacion.android.danielvm.quicktest_android.Requests.StatusQuestionaryRequest;
 import aplicacion.android.danielvm.quicktest_android.Utils.SingleRespuestaAPI;
 import aplicacion.android.danielvm.quicktest_android.Utils.Util;
 import retrofit2.Call;
@@ -66,7 +67,9 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<Cuestionario> resolvedQuestionnaires;
 
 
+
     public static User user;
+    private int idCourse;
 
 
     @Override
@@ -74,12 +77,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Recuperamos le identificador del curso seleccionado
+        getDataBundle();
+
+        // Obtenemos la informacion del usuario
+        this.user = new SecondActivity().user;
 
         // Establecemos la preferencias
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
 
-        questionaries = new SecondActivity().questionaries;
-        resolvedQuestionnaires = new SecondActivity().resolvedQuestionnaires;
+        // Obtenemos los cuestionarios en funcion de su estado
+        HashMap<Integer, ArrayList<Cuestionario>> retorno = getQuestionariesFilterByStatus();
+        resolvedQuestionnaires = retorno.get(0);
+        questionaries = retorno.get(1);
 
         setToolbar();
 
@@ -92,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         // en funcion del usuario
         View header = navigationView.getHeaderView(0);
         TextView user = (TextView) header.findViewById(R.id.textView);
-        user.setText(new SecondActivity().user.getFirstname());
+        user.setText(this.user.getFirstname());
 
         // Evento Navigation Drawer
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -138,16 +148,70 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void getDataBundle() {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle == null)
+            Log.d("MainActivity", "Intent was null");
+        else {
+            Log.d("MainActivity", "Intent OK");
+            idCourse = bundle.getInt("idCourse");
+        }
+    }
+
+    private HashMap<Integer, ArrayList<Cuestionario>> getQuestionariesFilterByStatus() {
+        HashMap<Integer, ArrayList<Cuestionario>> retorno = new HashMap<>();
+        retorno.put(0, new ArrayList<Cuestionario>());
+        retorno.put(1, new ArrayList<Cuestionario>());
+        ArrayList<Cuestionario> questionaries = getQuestionariesById(idCourse);
+        for (Cuestionario c : questionaries) {
+
+            // Obtenemos la info de la streamQuery
+            String oauth_consumer_key = c.getClaveCliente() + ":" + user.getId();
+            int idCuestionario = c.getIdCuestionario();
+
+            // Realizamos la peticion al APIRest
+            StatusQuestionaryRequest statusQuestionaryRequest =
+                    new StatusQuestionaryRequest(APIRest.getApi(), oauth_consumer_key, idCuestionario);
+
+            try {
+                int estado = statusQuestionaryRequest.execute().get();
+                if (estado != -1) {
+                    // Si esta resuelto
+                    if (estado == 1) {
+                        ArrayList<Cuestionario> lista = retorno.get(0);
+                        lista.add(c);
+                        retorno.put(0, lista);
+                        // Sino esta resuelto
+                    } else if (estado == 0) {
+                        ArrayList<Cuestionario> lista = retorno.get(1);
+                        lista.add(c);
+                        retorno.put(1, lista);
+                    }
+                } else {
+                    Log.d("SecondActivity", "calculateExternalToolsResolved: error en el resultado");
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        return retorno;
+    }
+    private ArrayList<Cuestionario> getQuestionariesById(int idCourse){
+        HashMap<Integer, List<Cuestionario>> questionariesInCourse = new SecondActivity().questionariesInACourse;
+        return new ArrayList<>(questionariesInCourse.get(idCourse));
+    }
 
     public User getUser() {
         return user;
     }
 
-
     private void logOut() {
         Intent intentLogin = new Intent(this, LoginActivity.class);
-        // Al hacer clicked Atras, cerramos la App
-        intentLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
         startActivity(intentLogin);
     }
 
@@ -164,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setFragmentByDefault() {
-        changeFragment(new ThirdFragment(), navigationView.getMenu().getItem(2));
+        changeFragment(new CuestionarioFragment(), navigationView.getMenu().getItem(0));
     }
 
     private void changeFragment(Fragment fragment, MenuItem item) {
@@ -198,9 +262,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public ArrayList<Cuestionario> getDataExternalToolsResolved() {
-
         return resolvedQuestionnaires;
     }
+
 
 
 }

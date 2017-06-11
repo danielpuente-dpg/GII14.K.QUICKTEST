@@ -91,6 +91,7 @@ public class SecondTeacherActivity extends AppCompatActivity implements AdapterV
         getSupportActionBar().setIcon(R.mipmap.ic_action_bar_icon);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Cuestionarios");
     }
 
     @Override
