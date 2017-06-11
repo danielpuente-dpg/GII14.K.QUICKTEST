@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public static User user;
-    private int idCourse;
+    public int idCourse;
 
 
     @Override

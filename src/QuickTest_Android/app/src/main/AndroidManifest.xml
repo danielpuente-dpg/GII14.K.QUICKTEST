@@ -26,9 +26,12 @@
             android:name=".Activities.InfoGradeActivity"
             android:screenOrientation="landscape" />
         <activity android:name=".Activities.GradeActivity" />
+
         <activity android:name=".Activities.SecondActivity" />
         <activity android:name=".Activities.TeacherActivity" />
-        <activity android:name=".Activities.SecondTeacherActivity" />
+        <activity
+            android:name=".Activities.SecondTeacherActivity"
+            android:parentActivityName=".Activities.TeacherActivity" />
         <activity android:name=".Activities.StudentActivity"></activity>
     </application>
 

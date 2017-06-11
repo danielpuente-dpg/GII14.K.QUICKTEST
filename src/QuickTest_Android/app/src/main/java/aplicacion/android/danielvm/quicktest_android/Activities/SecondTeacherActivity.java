@@ -88,9 +88,8 @@ public class SecondTeacherActivity extends AppCompatActivity implements AdapterV
     }
 
     private void enforceIconBar() {
-        getSupportActionBar().setIcon(R.mipmap.ic_action_bar_icon);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Cuestionarios");
     }
 

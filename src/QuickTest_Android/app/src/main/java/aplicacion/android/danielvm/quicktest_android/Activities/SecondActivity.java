@@ -44,8 +44,8 @@ public class SecondActivity extends AppCompatActivity {
     private List<Course> allCourses;
     private int numExternalTools = 0;
     public static ArrayList<Cuestionario> questionaries;
-    public static HashMap<Integer, List<Cuestionario>> questionariesInACourse = new HashMap<>();
-    public static HashMap<Integer, Course> coursesById = new HashMap<>();
+    public static HashMap<Integer, List<Cuestionario>> questionariesInACourse;
+    public static HashMap<Integer, Course> coursesById;
 
 
     private String ROLE_OF_USER;

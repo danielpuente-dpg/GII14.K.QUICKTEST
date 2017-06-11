@@ -52,7 +52,6 @@ public class InfoGradeActivity extends AppCompatActivity {
     private static final String SLOW = "LENTO";
 
     private FeedBack feedBack;
-    private Toolbar myToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,29 +153,14 @@ public class InfoGradeActivity extends AppCompatActivity {
         textViewPlusClockAIG.setText(feedBack.getPremio() + " PUNTOS");
 
 
-        myToolbar.setNavigationIcon(R.drawable.ic_flecha_white);
-        // Evento de flecha atras
-        myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToMainActivity();
-                finish();
-            }
-        });
-
     }
 
     private void enforceBar() {
         // Forzar y cargar iconos
-        myToolbar = (Toolbar) findViewById(R.id.toolbarActivityInfoGrade);
-        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         String cuestionario = new GradeActivity().cuestionario;
         getSupportActionBar().setTitle(cuestionario);
-    }
-
-    private void goToMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
     }
 }

@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,14 +14,10 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-import aplicacion.android.danielvm.quicktest_android.API.APIMoodle;
 import aplicacion.android.danielvm.quicktest_android.API.APIRest;
-import aplicacion.android.danielvm.quicktest_android.API.APIServices.MoodleService;
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.RestService;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.APIResponse;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.FeedBack;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.GradeRequest;
-import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Token;
 import aplicacion.android.danielvm.quicktest_android.R;
 import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApiFeedback;
 import retrofit2.Call;
@@ -36,8 +30,6 @@ public class GradeActivity extends AppCompatActivity {
     private TextView textViewPlusClock;
     private Button buttonViewResult;
     private LinearLayout linearLayoutColor;
-
-    private Toolbar myToolbar;
 
     private double grade;
     private String idAlumno;
@@ -67,23 +59,13 @@ public class GradeActivity extends AppCompatActivity {
         buttonViewResult = (Button) findViewById(R.id.buttonViewResults);
         linearLayoutColor = (LinearLayout) findViewById(R.id.linearLayoutColor);
 
-        myToolbar.setNavigationIcon(R.drawable.ic_flecha_white);
-        // Evento de flecha atras
-        myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToMainActivity();
-                finish();
-            }
-        });
-
 
         // Evento de Ver mas resultados
         buttonViewResult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (grade == NOT_AVAILABLE) {
-                    goToGradeActivity();
+                    goToInfoGradeActivity();
                 } else {
                     Toast.makeText(GradeActivity.this,
                             "Esta información no esta disponible desde la app", Toast.LENGTH_SHORT).show();
@@ -118,25 +100,18 @@ public class GradeActivity extends AppCompatActivity {
 
     }
 
-    private void goToGradeActivity() {
+    private void goToInfoGradeActivity() {
         Intent intent = new Intent(this, InfoGradeActivity.class);
         intent.putExtra("idCuestionario", idCuestionario);
         intent.putExtra("idAlumno", idAlumno);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-    }
-
-    private void goToMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 
     private void enforceBar() {
         // Forzar y cargar iconos
-        myToolbar = (Toolbar) findViewById(R.id.toolbarActivityGrade);
-        setSupportActionBar(myToolbar);
-        getSupportActionBar().setTitle(cuestionario);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Calificación");
     }
 
     private void getDataBundle() {

@@ -133,7 +133,6 @@ public class ResolvedExternalToolAdapter extends RecyclerView.Adapter<ResolvedEx
         intent.putExtra("idAlumno", clave);
         intent.putExtra("nombre", cuestionario.getDescripcion());
 
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         activity.startActivity(intent);
 
 

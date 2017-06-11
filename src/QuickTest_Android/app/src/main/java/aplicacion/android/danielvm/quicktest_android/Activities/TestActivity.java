@@ -61,6 +61,8 @@ public class TestActivity extends AppCompatActivity {
     public static HashMap<Integer, HashSet<Integer>> amberWildCard;
     private HashMap<Integer, String> wildCardType = new HashMap<>();
 
+    private int idCourse;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,7 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         setIdCuestionarioAndKey();
+
         tests = getContentTest();
 
         // Inicializamos el estado de los comodines
@@ -124,6 +127,7 @@ public class TestActivity extends AppCompatActivity {
                     respuestas.add(value);
 
                 }
+                idCourse = new MainActivity().idCourse;
 
 
                 ID_ALUMNO = respuestas.get(0).getIdAlumno();
@@ -141,9 +145,12 @@ public class TestActivity extends AppCompatActivity {
 
                         APIResponse apiResponse = response.body();
                         double grade = Double.parseDouble(apiResponse.getMensaje());
-                        goToMainActivity(grade);
-
-                        Log.d("TestActivity", "onResponse: " + statusCode);
+                        if(grade > 0){
+                            Log.d("TestActivity", "onResponse: " + statusCode);
+                            goToMainActivity(idCourse);
+                        }else {
+                            Log.d("TestActivity", "onResponse: " + statusCode + ", grade is < 0");
+                        }
                     }
 
                     @Override
@@ -162,9 +169,10 @@ public class TestActivity extends AppCompatActivity {
         }
     }
 
-    private void goToMainActivity(double grade) {
+    private void goToMainActivity(int idCourse) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra("idCourse", idCourse);
         startActivity(intent);
     }
 
@@ -181,7 +189,6 @@ public class TestActivity extends AppCompatActivity {
             CLAVE = bundle.getString("clave");
             NOMBRE_ALU = bundle.getString("nombreAlu");
             APE_ALU = bundle.getString("apeAlu");
-
         }
 
     }
