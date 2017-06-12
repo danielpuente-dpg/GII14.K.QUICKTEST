@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -21,7 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import aplicacion.android.danielvm.quicktest_android.Activities.MainActivity;
+import aplicacion.android.danielvm.quicktest_android.Activities.Student.MainActivity;
 import aplicacion.android.danielvm.quicktest_android.Activities.TestActivity;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Result;

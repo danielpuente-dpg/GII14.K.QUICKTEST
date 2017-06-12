@@ -8,7 +8,7 @@
         android:orderInCategory="2"
         android:title="List View"
         android:visible="false"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/itemGridView"
@@ -16,15 +16,6 @@
         android:orderInCategory="2"
         android:title="Grid View"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/log_out_teacher"
-        android:title="Cerrar sesión"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/log_forget_out_teacher"
-        android:title="Olvidar y cerrar sesión"
-        app:showAsAction="never" />
 
 
 </menu>

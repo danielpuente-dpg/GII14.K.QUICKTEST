@@ -46,12 +46,7 @@ public class SecondActivity extends AppCompatActivity {
     public static ArrayList<Cuestionario> questionaries;
     public static HashMap<Integer, List<Cuestionario>> questionariesInACourse;
     public static HashMap<Integer, Course> coursesById;
-
-
-    private String ROLE_OF_USER;
-    private static final String IS_STUDENT = "student";
-    private static final String IS_EDIT_TEACHER = "editingteacher";
-    private static final String IS_TEACHER = "teacher";
+    public static HashMap<Integer, Role> coursesByRol;
 
 
     @Override
@@ -64,16 +59,15 @@ public class SecondActivity extends AppCompatActivity {
         // Obtenemos la informacion necesaria para determinar el rol de ese usario
         getAllInfo();
 
-        // En funcion del rol, determinamos la logica a seguir
-        if (ROLE_OF_USER.equals(IS_STUDENT)) {
-            goToStudentActivity();
+        goToCourseActivity();
 
-        } else if (ROLE_OF_USER.equals(IS_TEACHER)) {
-            gotToTeacherActivity();
-        } else {
-            // TODO
-        }
 
+    }
+
+    private void goToCourseActivity() {
+        Intent intent = new Intent(this, CourseActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
     private void getDataBundle() {
@@ -87,10 +81,9 @@ public class SecondActivity extends AppCompatActivity {
         }
     }
 
-
-    public String getPassTokenWebService(){return tokenWebService;}
-
     private void getAllInfo() {
+        coursesByRol = new HashMap<>();
+
         // Obtenemos el token del usuario con permisos al Web Service
         tokenWebService = getTokenWebService();
         // Obtenemos la informacion del usario logeado
@@ -98,38 +91,17 @@ public class SecondActivity extends AppCompatActivity {
         // Obtenemos los cursos en los que se encuentra matriculado ese alumno
         courses = getEnrolUserCourse();
         // Obtenemos para cada curso el rol en el que se encuentra matriculado ese alumno.
-        List<String> rolesInCourse = getRolInCourses();
-        if (isStudent(rolesInCourse)) {
-            ROLE_OF_USER = IS_STUDENT;
-            getExternalToolByCourses();
-        } else if (isTeacher(rolesInCourse)) {
-            ROLE_OF_USER = IS_TEACHER;
-            getExternalToolByCourses();
-        }
+        getRolInCourses();
+        getExternalToolByCourses();
 
+        Log.d("SecondActivity", "coursesById: " + coursesById);
+        Log.d("SecondActivity", "coursesByRol: " + coursesByRol);
 
     }
 
-    private boolean isTeacher(List<String> rolesInCourse) {
-        boolean retorno = true;
-        for (String type : rolesInCourse) {
-            if (!(type.equals(IS_TEACHER) || type.equals(IS_EDIT_TEACHER))) {
-                retorno = false;
-                break;
-            }
-        }
-        return retorno;
-    }
 
-    private boolean isStudent(List<String> rolesInCourse) {
-        boolean retorno = true;
-        for (String type : rolesInCourse) {
-            if (!type.equals(IS_STUDENT)) {
-                retorno = false;
-                break;
-            }
-        }
-        return retorno;
+    public String getToken() {
+        return tokenWebService;
     }
 
     private void getExternalToolByCourses() {
@@ -189,22 +161,20 @@ public class SecondActivity extends AppCompatActivity {
         return courses;
     }
 
-    private List<String> getRolInCourses() {
-        List<String> rolesInCourse = new ArrayList<>();
+    private void getRolInCourses() {
         for (Course course : courses) {
             CoreUserGetCourseUserRequest coreUserGetCourseUserRequest = new CoreUserGetCourseUserRequest(APIMoodle.getApi(),
                     tokenWebService, user.getId(), course.getId());
 
             try {
                 List<Role> roles = coreUserGetCourseUserRequest.execute().get();
-                rolesInCourse.add(roles.get(0).getShortname());
+                coursesByRol.put(course.getId(), roles.get(0));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
         }
-        return rolesInCourse;
 
     }
 
@@ -322,17 +292,5 @@ public class SecondActivity extends AppCompatActivity {
                 }
             }
         }
-    }
-
-    private void goToStudentActivity() {
-        Intent intent = new Intent(this, StudentActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-    }
-
-    private void gotToTeacherActivity() {
-        Intent intent = new Intent(this, TeacherActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
     }
 }

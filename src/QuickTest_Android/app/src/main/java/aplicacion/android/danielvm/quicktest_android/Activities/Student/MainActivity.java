@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Activities;
+package aplicacion.android.danielvm.quicktest_android.Activities.Student;
 
 import android.content.Context;
 import android.content.Intent;
@@ -29,6 +29,8 @@ import aplicacion.android.danielvm.quicktest_android.API.APIRest;
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.MoodleService;
 
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.RestService;
+import aplicacion.android.danielvm.quicktest_android.Activities.LoginActivity;
+import aplicacion.android.danielvm.quicktest_android.Activities.SecondActivity;
 import aplicacion.android.danielvm.quicktest_android.Fragments.CuestionarioFragment;
 import aplicacion.android.danielvm.quicktest_android.Fragments.ResolvedQuestionnairesFragment;
 import aplicacion.android.danielvm.quicktest_android.Fragments.ThirdFragment;

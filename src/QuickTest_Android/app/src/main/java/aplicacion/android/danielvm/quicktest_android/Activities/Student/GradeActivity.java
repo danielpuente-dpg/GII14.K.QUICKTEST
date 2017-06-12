@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Activities;
+package aplicacion.android.danielvm.quicktest_android.Activities.Student;
 
 import android.content.Intent;
 import android.os.AsyncTask;

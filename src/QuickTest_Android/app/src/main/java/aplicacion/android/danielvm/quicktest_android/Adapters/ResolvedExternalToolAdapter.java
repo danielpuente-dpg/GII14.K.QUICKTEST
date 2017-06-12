@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import aplicacion.android.danielvm.quicktest_android.Activities.GradeActivity;
+import aplicacion.android.danielvm.quicktest_android.Activities.Student.GradeActivity;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
 import aplicacion.android.danielvm.quicktest_android.R;
 

@@ -3,7 +3,6 @@ package aplicacion.android.danielvm.quicktest_android.Adapters;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -12,26 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import aplicacion.android.danielvm.quicktest_android.API.APIRest;
-import aplicacion.android.danielvm.quicktest_android.API.APIServices.RestService;
-import aplicacion.android.danielvm.quicktest_android.Activities.MainActivity;
+import aplicacion.android.danielvm.quicktest_android.Activities.Student.MainActivity;
 import aplicacion.android.danielvm.quicktest_android.Activities.TestActivity;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Mensaje;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Pregunta;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
-import aplicacion.android.danielvm.quicktest_android.Models.Android.Test;
 import aplicacion.android.danielvm.quicktest_android.R;
-import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApi;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 /**
  * Created by Daniel on 23/03/2017.

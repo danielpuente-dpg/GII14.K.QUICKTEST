@@ -1,14 +1,9 @@
-package aplicacion.android.danielvm.quicktest_android.Activities;
+package aplicacion.android.danielvm.quicktest_android.Activities.Student;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.FeedBack;
 import aplicacion.android.danielvm.quicktest_android.R;

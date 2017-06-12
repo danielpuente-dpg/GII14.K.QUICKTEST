@@ -8,9 +8,7 @@ public class Course {
     private int id;
     private String shortname;
     private String fullname;
-
-    public Course() {
-    }
+    private String rol;
 
     public Course(int id, String shortname, String fullname) {
         this.id = id;
@@ -40,5 +38,13 @@ public class Course {
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 }

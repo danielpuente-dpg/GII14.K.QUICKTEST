@@ -1,16 +1,12 @@
-package aplicacion.android.danielvm.quicktest_android.Activities;
+package aplicacion.android.danielvm.quicktest_android.Activities.Teacher;
 
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,12 +16,10 @@ import java.util.concurrent.ExecutionException;
 
 import aplicacion.android.danielvm.quicktest_android.API.APIMoodle;
 import aplicacion.android.danielvm.quicktest_android.API.APIRest;
-import aplicacion.android.danielvm.quicktest_android.Adapters.CourseAdapter;
 import aplicacion.android.danielvm.quicktest_android.Adapters.StudentAdapter;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.EnrolCourse;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Student;
-import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Course;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.UserEnrol;
 import aplicacion.android.danielvm.quicktest_android.R;
 import aplicacion.android.danielvm.quicktest_android.Requests.StatusQuestionaryRequest;
@@ -36,9 +30,6 @@ public class ThirdTeacherActivity extends AppCompatActivity implements AdapterVi
 
     // Elementos de la UI
     private ListView listView;
-
-    // Elementos que forman el MENU de la UI
-    private MenuItem itemListView;
 
     // Adaptador
     private StudentAdapter listViewAdapter;

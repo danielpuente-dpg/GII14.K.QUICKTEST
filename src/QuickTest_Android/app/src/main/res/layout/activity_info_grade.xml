@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activities.InfoGradeActivity">
+    tools:context=".Activities.Student.InfoGradeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

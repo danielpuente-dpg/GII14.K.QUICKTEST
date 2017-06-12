@@ -1,21 +1,18 @@
 package aplicacion.android.danielvm.quicktest_android.Fragments;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import aplicacion.android.danielvm.quicktest_android.Activities.MainActivity;
+import aplicacion.android.danielvm.quicktest_android.Activities.Student.MainActivity;
 import aplicacion.android.danielvm.quicktest_android.Adapters.ExternalToolAdapter;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
 import aplicacion.android.danielvm.quicktest_android.R;

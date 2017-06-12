@@ -12,8 +12,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import aplicacion.android.danielvm.quicktest_android.Activities.MainActivity;
-import aplicacion.android.danielvm.quicktest_android.Adapters.ExternalToolAdapter;
+import aplicacion.android.danielvm.quicktest_android.Activities.Student.MainActivity;
 import aplicacion.android.danielvm.quicktest_android.Adapters.ResolvedExternalToolAdapter;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
 import aplicacion.android.danielvm.quicktest_android.R;
