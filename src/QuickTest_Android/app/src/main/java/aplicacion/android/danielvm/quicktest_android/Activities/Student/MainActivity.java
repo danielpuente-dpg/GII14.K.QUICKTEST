@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
     public String name;
 
 
-    public ArrayList<Cuestionario> questionaries;
-    public ArrayList<Cuestionario> resolvedQuestionnaires;
+    private static ArrayList<Cuestionario> questionaries;
+    private static ArrayList<Cuestionario> resolvedQuestionnaires;
 
 
 
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         // en funcion del usuario
         View header = navigationView.getHeaderView(0);
         TextView user = (TextView) header.findViewById(R.id.textView);
-        user.setText(this.user.getFirstname());
+        user.setText(this.user.getFullname());
 
         // Evento Navigation Drawer
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

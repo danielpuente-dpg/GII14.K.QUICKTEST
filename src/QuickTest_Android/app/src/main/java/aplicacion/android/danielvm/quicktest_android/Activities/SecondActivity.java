@@ -1,7 +1,10 @@
 package aplicacion.android.danielvm.quicktest_android.Activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -28,11 +31,14 @@ import aplicacion.android.danielvm.quicktest_android.Requests.NumberContentCours
 import aplicacion.android.danielvm.quicktest_android.Requests.StatusQuestionaryRequest;
 import aplicacion.android.danielvm.quicktest_android.Requests.TokenUserWebServiceRequest;
 import aplicacion.android.danielvm.quicktest_android.Requests.UserFieldRequest;
+import aplicacion.android.danielvm.quicktest_android.Utils.Util;
 
 public class SecondActivity extends AppCompatActivity {
 
+    // Shared Preferences
+    private SharedPreferences prefs;
+
     // Atributos
-    private String token;
     private String name;
 
     private static String tokenWebService;
@@ -52,9 +58,8 @@ public class SecondActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
 
-        getDataBundle();
+        prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
 
         // Obtenemos la informacion necesaria para determinar el rol de ese usario
         getAllInfo();
@@ -70,20 +75,9 @@ public class SecondActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void getDataBundle() {
-        Bundle bundle = getIntent().getExtras();
-        if (bundle == null)
-            Log.d("SecondActivity", "Error en el paso de datos entre el LoginActivity y SecondActivity");
-        else {
-            Log.d("SecondActivity", "Intent OK");
-            token = bundle.getString("token");
-            name = bundle.getString("name");
-        }
-    }
-
     private void getAllInfo() {
         coursesByRol = new HashMap<>();
-
+        this.name = Util.getUserMailPrefs(prefs);
         // Obtenemos el token del usuario con permisos al Web Service
         tokenWebService = getTokenWebService();
         // Obtenemos la informacion del usario logeado

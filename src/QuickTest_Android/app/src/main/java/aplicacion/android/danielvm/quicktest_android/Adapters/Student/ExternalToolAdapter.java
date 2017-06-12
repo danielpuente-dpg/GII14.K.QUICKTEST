@@ -133,8 +133,8 @@ public class ExternalToolAdapter extends RecyclerView.Adapter<ExternalToolAdapte
         intent.putExtra("clave", clave);
         intent.putExtra("nombreAlu", new MainActivity().user.getFirstname());
         intent.putExtra("apeAlu", new MainActivity().user.getLastname());
+        intent.putExtra("position", position);
 
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         activity.startActivity(intent);
 
 

@@ -31,6 +31,7 @@ import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Pregunta;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Result;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.TestRequest;
+import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Test;
 import aplicacion.android.danielvm.quicktest_android.R;
 import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApi;
@@ -51,11 +52,13 @@ public class TestActivity extends AppCompatActivity {
 
     // Atributos
     private List<Test> tests;
-    private int ID_CUESTIONARIO;
-    public static String CLAVE;
-    public static String ID_ALUMNO;
-    public static String NOMBRE_ALU;
-    public static String APE_ALU;
+    private int idCuestionario;
+    public static String clave;
+    public static String idAlumno;
+    public static String nombreAlu;
+    public static String apeAlu;
+    private Cuestionario cuestionario;
+    private int position;
 
     public static List<WildCard> greenWildCard;
     public static HashMap<Integer, HashSet<Integer>> amberWildCard;
@@ -70,6 +73,12 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         setIdCuestionarioAndKey();
+
+        MainActivity activity = new MainActivity();
+        cuestionario = activity.getDataExternalTools().get(position);
+
+        // Forzamos la carga del icono de la aplicacion
+        enforceIconBar();
 
         tests = getContentTest();
 
@@ -130,8 +139,8 @@ public class TestActivity extends AppCompatActivity {
                 idCourse = new MainActivity().idCourse;
 
 
-                ID_ALUMNO = respuestas.get(0).getIdAlumno();
-                TestRequest testRequest = new TestRequest(ID_CUESTIONARIO, ID_ALUMNO, NOMBRE_ALU, APE_ALU, respuestas);
+                idAlumno = respuestas.get(0).getIdAlumno();
+                TestRequest testRequest = new TestRequest(idCuestionario, idAlumno, nombreAlu, apeAlu, respuestas);
 
                 Retrofit retrofit = APIRest.getApi();
                 RestService service = retrofit.create(RestService.class);
@@ -145,10 +154,10 @@ public class TestActivity extends AppCompatActivity {
 
                         APIResponse apiResponse = response.body();
                         double grade = Double.parseDouble(apiResponse.getMensaje());
-                        if(grade > 0){
+                        if (grade > 0) {
                             Log.d("TestActivity", "onResponse: " + statusCode);
                             goToMainActivity(idCourse);
-                        }else {
+                        } else {
                             Log.d("TestActivity", "onResponse: " + statusCode + ", grade is < 0");
                         }
                     }
@@ -161,6 +170,12 @@ public class TestActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void enforceIconBar() {
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(cuestionario.getDescripcion());
     }
 
     private void initWildCardType() {
@@ -185,17 +200,18 @@ public class TestActivity extends AppCompatActivity {
             Log.d("setIdCuestionarioAndKey", "Intent was null");
         else {
             Log.d("setIdCuestionarioAndKey", "Intent OK");
-            ID_CUESTIONARIO = bundle.getInt("idCuestionario");
-            CLAVE = bundle.getString("clave");
-            NOMBRE_ALU = bundle.getString("nombreAlu");
-            APE_ALU = bundle.getString("apeAlu");
+            idCuestionario = bundle.getInt("idCuestionario");
+            clave = bundle.getString("clave");
+            nombreAlu = bundle.getString("nombreAlu");
+            apeAlu = bundle.getString("apeAlu");
+            position = bundle.getInt("position");
         }
 
     }
 
     private ArrayList<Test> getContentTest() {
         ArrayList<Test> resultado = new ArrayList<>();
-        ContentTestRequest contentTestRequest = new ContentTestRequest(APIRest.getApi(), ID_CUESTIONARIO);
+        ContentTestRequest contentTestRequest = new ContentTestRequest(APIRest.getApi(), idCuestionario);
         try {
             List<Mensaje> mensajes = contentTestRequest.execute().get();
             for (Mensaje mensaje : mensajes) {
@@ -213,12 +229,14 @@ public class TestActivity extends AppCompatActivity {
 
     private void hasWildCard() {
         greenWildCard = getGreenWildCardRequest();
+        Log.d("TestActivity", "greenWildCard:" + greenWildCard.size());
         amberWildCard = getAmberWildCardRequest();
+        Log.d("TestActivity", "amberWildCard:" + amberWildCard.size());
     }
 
     private ArrayList<WildCard> getGreenWildCardRequest() {
         ArrayList<WildCard> greenWildCard = new ArrayList<>();
-        GreenWildCardRequest greenWildCardRequest = new GreenWildCardRequest(APIRest.getApi(), ID_CUESTIONARIO);
+        GreenWildCardRequest greenWildCardRequest = new GreenWildCardRequest(APIRest.getApi(), idCuestionario);
         try {
             greenWildCard = (ArrayList<WildCard>) greenWildCardRequest.execute().get();
         } catch (InterruptedException e) {
@@ -231,7 +249,7 @@ public class TestActivity extends AppCompatActivity {
 
     private HashMap<Integer, HashSet<Integer>> getAmberWildCardRequest() {
         ArrayList<WildCard> amberWildCard = new ArrayList<>();
-        AmberWildCardRequest amberWildCardRequest = new AmberWildCardRequest(APIRest.getApi(), ID_CUESTIONARIO);
+        AmberWildCardRequest amberWildCardRequest = new AmberWildCardRequest(APIRest.getApi(), idCuestionario);
 
         try {
             amberWildCard = (ArrayList<WildCard>) amberWildCardRequest.execute().get();
@@ -240,9 +258,10 @@ public class TestActivity extends AppCompatActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-
-        HashMap<Integer, HashSet<Integer>> retorno = formatAmberWildCard(amberWildCard);
-
+        HashMap<Integer, HashSet<Integer>> retorno = new HashMap<>();
+        if (amberWildCard.size() > 0) {
+            retorno = formatAmberWildCard(amberWildCard);
+        }
         return retorno;
     }
 
@@ -251,11 +270,11 @@ public class TestActivity extends AppCompatActivity {
         HashMap<Integer, HashSet<Integer>> aux = new HashMap<>();
         for (WildCard wildCard : amberWildCard) {
             // Si esta vacio
-            if(!aux.containsKey(wildCard.getPregunta_idPregunta())){
+            if (!aux.containsKey(wildCard.getPregunta_idPregunta())) {
                 HashSet<Integer> lista = new HashSet<>();
                 lista.add(wildCard.getIdRespuesta());
                 aux.put(wildCard.getPregunta_idPregunta(), lista);
-            }else{
+            } else {
                 HashSet<Integer> lista = aux.get(wildCard.getPregunta_idPregunta());
                 lista.add(wildCard.getIdRespuesta());
                 aux.put(wildCard.getPregunta_idPregunta(), lista);

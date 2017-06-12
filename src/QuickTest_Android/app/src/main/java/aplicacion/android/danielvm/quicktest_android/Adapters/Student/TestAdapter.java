@@ -124,7 +124,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
                     int idPregunta = test.getIdPregunta();
                     int idRespuesta = test.getRespuestas().get(checkedId).getIdRespuesta();
                     String tipoComUsado = "";
-                    String idAlumno = new TestActivity().CLAVE + ":" + new MainActivity().user.getId();
+                    String idAlumno = new TestActivity().clave + ":" + new MainActivity().user.getId();
 
                     Result result = new Result(idPregunta, idRespuesta, tipoComUsado, idAlumno);
                     postTest.put(getAdapterPosition(), result);
