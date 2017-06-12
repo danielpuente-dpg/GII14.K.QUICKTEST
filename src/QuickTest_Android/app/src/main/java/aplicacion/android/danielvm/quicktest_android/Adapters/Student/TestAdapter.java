@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Adapters;
+package aplicacion.android.danielvm.quicktest_android.Adapters.Student;
 
 
 import android.content.Context;
@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 import aplicacion.android.danielvm.quicktest_android.Activities.Student.MainActivity;
-import aplicacion.android.danielvm.quicktest_android.Activities.TestActivity;
+import aplicacion.android.danielvm.quicktest_android.Activities.Student.TestActivity;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Result;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.WildCard;

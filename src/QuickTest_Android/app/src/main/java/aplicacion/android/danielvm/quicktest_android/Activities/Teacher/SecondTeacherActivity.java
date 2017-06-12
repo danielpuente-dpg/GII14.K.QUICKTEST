@@ -18,7 +18,7 @@ import java.util.List;
 
 import aplicacion.android.danielvm.quicktest_android.Activities.LoginActivity;
 import aplicacion.android.danielvm.quicktest_android.Activities.SecondActivity;
-import aplicacion.android.danielvm.quicktest_android.Adapters.QuestionaryAdapter;
+import aplicacion.android.danielvm.quicktest_android.Adapters.Teacher.QuestionaryAdapter;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
 import aplicacion.android.danielvm.quicktest_android.R;
 import aplicacion.android.danielvm.quicktest_android.Utils.Util;

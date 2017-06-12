@@ -22,7 +22,7 @@
             android:name=".Activities.Student.MainActivity"
             android:parentActivityName=".Activities.CourseActivity"
             android:theme="@style/AppThemeNoActionBar" />
-        <activity android:name=".Activities.TestActivity" />
+        <activity android:name=".Activities.Student.TestActivity" />
         <activity
             android:name=".Activities.Student.InfoGradeActivity"
             android:screenOrientation="landscape" />
@@ -34,7 +34,9 @@
         <activity
             android:name=".Activities.Teacher.ThirdTeacherActivity"
             android:parentActivityName=".Activities.Teacher.SecondTeacherActivity" />
-        <activity android:name=".Activities.CourseActivity"></activity>
+        <activity android:name=".Activities.CourseActivity" />
+        <activity android:name=".Activities.Teacher.ViewTestActivity"
+            android:parentActivityName=".Activities.Teacher.ThirdTeacherActivity"></activity>
     </application>
 
 </manifest>

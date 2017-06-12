@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Adapters;
+package aplicacion.android.danielvm.quicktest_android.Adapters.Student;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,7 +15,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import aplicacion.android.danielvm.quicktest_android.Activities.Student.MainActivity;
-import aplicacion.android.danielvm.quicktest_android.Activities.TestActivity;
+import aplicacion.android.danielvm.quicktest_android.Activities.Student.TestActivity;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
 import aplicacion.android.danielvm.quicktest_android.R;
 

@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Adapters;
+package aplicacion.android.danielvm.quicktest_android.Adapters.Teacher;
 
 import android.content.Context;
 import android.util.Log;

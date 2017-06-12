@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#BDBDBD"
-    tools:context=".Activities.TestActivity">
+    tools:context=".Activities.Student.TestActivity">
 
 
     <android.support.v7.widget.RecyclerView

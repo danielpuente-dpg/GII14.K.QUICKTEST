@@ -1,9 +1,12 @@
 package aplicacion.android.danielvm.quicktest_android.Activities.Teacher;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,7 +19,7 @@ import java.util.concurrent.ExecutionException;
 
 import aplicacion.android.danielvm.quicktest_android.API.APIMoodle;
 import aplicacion.android.danielvm.quicktest_android.API.APIRest;
-import aplicacion.android.danielvm.quicktest_android.Adapters.StudentAdapter;
+import aplicacion.android.danielvm.quicktest_android.Adapters.Teacher.StudentAdapter;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.EnrolCourse;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Student;
@@ -36,7 +39,7 @@ public class ThirdTeacherActivity extends AppCompatActivity implements AdapterVi
 
     // Atributos
     private int position;
-    private Cuestionario cuestionario;
+    private static Cuestionario cuestionario;
     private int idCuestionario;
     private int idCourse;
     private String tokenWebService;
@@ -191,6 +194,10 @@ public class ThirdTeacherActivity extends AppCompatActivity implements AdapterVi
         }
     }
 
+    public Cuestionario getCuestionario(){
+        return cuestionario;
+    }
+
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -210,4 +217,28 @@ public class ThirdTeacherActivity extends AppCompatActivity implements AdapterVi
         return message;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.action_bar_menu_questionary, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.view_questionary:
+                goToViewTestActivity();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void goToViewTestActivity() {
+        Intent intent = new Intent(this, ViewTestActivity.class);
+        intent.putExtra("idCuestionario", idCuestionario);
+        startActivity(intent);
+    }
 }

@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Adapters;
+package aplicacion.android.danielvm.quicktest_android.Adapters.Student;
 
 import android.app.Activity;
 import android.content.Intent;
