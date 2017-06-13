@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Requests;
+package aplicacion.android.danielvm.quicktest_android.Requests.APIRest;
 
 import android.os.AsyncTask;
 
@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.RestService;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.FeedBack;
-import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApiFeedback;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.RespuestaApiFeedback;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 

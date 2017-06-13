@@ -19,7 +19,7 @@ import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnaire;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Test;
 import aplicacion.android.danielvm.quicktest_android.R;
-import aplicacion.android.danielvm.quicktest_android.Requests.ContentTestRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.ContentTestRequest;
 
 /**
  * Clase ViewTestActivity encargada de mostrar un cuestionario al profesor.

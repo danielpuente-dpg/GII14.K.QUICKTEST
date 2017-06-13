@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Requests;
+package aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle;
 
 import android.os.AsyncTask;
 
@@ -11,7 +11,10 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 
 /**
- * Created by Daniel on 08/06/2017.
+ * Clase EnrolUserCourseRequest encargada de obtener los usuarios que se encuentran
+ * matriculados en un curso.
+ *
+ * @author Daniel Puente Gabarri.
  */
 
 public class EnrolUserCourseRequest extends AsyncTask<Void, Void, Course[]> {
@@ -19,12 +22,25 @@ public class EnrolUserCourseRequest extends AsyncTask<Void, Void, Course[]> {
     private String token;
     private int userId;
 
+    /**
+     * Constructor de la clase.
+     *
+     * @param retrofit, retrofit.
+     * @param token,    token del web service.
+     * @param userId,   identidicados del usuario.
+     */
     public EnrolUserCourseRequest(Retrofit retrofit, String token, int userId) {
         this.retrofit = retrofit;
         this.token = token;
         this.userId = userId;
     }
 
+    /**
+     * Metodo encargado de realizar la peticion de manera sincrona, bloqueando el hilo principal.
+     *
+     * @param params, params.
+     * @return, Course[], courses.
+     */
     @Override
     protected Course[] doInBackground(Void... params) {
         Course[] course = null;

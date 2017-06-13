@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Requests;
+package aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle;
 
 import android.os.AsyncTask;
 
@@ -12,18 +12,32 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 
 /**
- * Created by Daniel on 08/06/2017.
+ * Clase CourseRequest encargada de obtener todos los cursos.
+ *
+ * @author Daniel Puente Gabarri.
  */
 
 public class CourseRequest extends AsyncTask<Void, Void, List<Course>> {
     private Retrofit retrofit;
     private String token;
 
+    /**
+     * Constructor de la clase.
+     *
+     * @param retrofit, retrofit.
+     * @param token,    token del web service
+     */
     public CourseRequest(Retrofit retrofit, String token) {
         this.retrofit = retrofit;
         this.token = token;
     }
 
+    /**
+     * Metodo encargado de realizar la peticion de manera sincrona, bloqueando el hilo principal.
+     *
+     * @param params, params.
+     * @return List<Course>, courses.
+     */
     @Override
     protected List<Course> doInBackground(Void... params) {
         List<Course> courses = null;

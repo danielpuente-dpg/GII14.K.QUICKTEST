@@ -1,11 +1,10 @@
 package aplicacion.android.danielvm.quicktest_android.API.APIServices;
 
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.APIResponse;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.TestRequest;
-import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApi;
-import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApiComodin;
-import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApiFeedback;
-import aplicacion.android.danielvm.quicktest_android.Utils.SingleRespuestaAPI;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.APIResponse;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.RespuestaApiComodin;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.RespuestaApiFeedback;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.SingleRespuestaAPI;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -25,10 +24,10 @@ public interface RestService {
      * Peticion que nos permite obtener un cuestionario.
      *
      * @param idTest, idQuestionnaire.
-     * @return RespuestaApi, questionnaire.
+     * @return APIResponse, questionnaire.
      */
     @GET("obtenerCuestionario/obtener/{idTest}")
-    Call<RespuestaApi> getTest(@Path("idTest") String idTest);
+    Call<APIResponse> getTest(@Path("idTest") String idTest);
 
     /**
      * Peticion que nos permite obtener el estado de un cuestionario.
@@ -47,7 +46,7 @@ public interface RestService {
      * @return APIResponse, respuesta.
      */
     @POST("solucionCuestionario/finalizar")
-    Call<APIResponse> sendTest(@Body TestRequest testRequest);
+    Call<aplicacion.android.danielvm.quicktest_android.Models.APIRest.APIResponse> sendTest(@Body TestRequest testRequest);
 
     /**
      * Peticion que nos permite obtener la calificacion de un cuestionario resuelto desde la app.
@@ -57,7 +56,7 @@ public interface RestService {
      * @return APIResponse, respuesta.
      */
     @GET("solucionCuestionario/obtenerNota/{idAlumno}/{idCuestionario}")
-    Call<APIResponse> getGrade(@Path("idAlumno") String idAlumno, @Path("idCuestionario") int idCuestionario);
+    Call<aplicacion.android.danielvm.quicktest_android.Models.APIRest.APIResponse> getGrade(@Path("idAlumno") String idAlumno, @Path("idCuestionario") int idCuestionario);
 
     /**
      * Peticion que nos permite obtener aquellas preguntas que tienen comodin verde

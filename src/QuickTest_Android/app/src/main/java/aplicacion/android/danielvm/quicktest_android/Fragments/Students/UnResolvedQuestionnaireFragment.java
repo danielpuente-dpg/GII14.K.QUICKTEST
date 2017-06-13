@@ -17,17 +17,23 @@ import aplicacion.android.danielvm.quicktest_android.Adapters.Student.ExternalTo
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnaire;
 import aplicacion.android.danielvm.quicktest_android.R;
 
-public class CuestionarioFragment extends Fragment {
+/**
+ * Clase UnResolvedQuestionnaireFragment encargada de mostrar los cuestionarios
+ * por resolver
+ *
+ * @author Daniel Puente Gabarri.
+ */
+public class UnResolvedQuestionnaireFragment extends Fragment {
 
     // Elemento de la UI mediante RecyclerView
-
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    // Atributos
     private List<Questionnaire> questionaries;
 
-    public CuestionarioFragment() {
+    public UnResolvedQuestionnaireFragment() {
         // Construtor vacio.
     }
 

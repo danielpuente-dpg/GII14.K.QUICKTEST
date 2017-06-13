@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Requests;
+package aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle;
 
 import android.os.AsyncTask;
 
@@ -12,7 +12,9 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 
 /**
- * Created by Daniel on 08/06/2017.
+ * Clase TokenUserWebServiceRequest encargada de proporcionar el token del usuario.
+ *
+ * @author Daniel Puente Gabarri.
  */
 
 public class TokenUserWebServiceRequest extends AsyncTask<Void, Void, String> {
@@ -20,12 +22,23 @@ public class TokenUserWebServiceRequest extends AsyncTask<Void, Void, String> {
     private String username;
     private String password;
 
+    /**
+     * Constructor de la clase.
+     * @param retrofit, retrofit.
+     * @param username, nombre del usuario.
+     * @param password, contraseña del usuario.
+     */
     public TokenUserWebServiceRequest(Retrofit retrofit, String username, String password) {
         this.retrofit = retrofit;
         this.username = username;
         this.password = password;
     }
 
+    /**
+     * Metodo encargado de realizar la peticion de manera sincrona, bloqueando el hilo principal.
+     * @param params, params.
+     * @return String, token.
+     */
     @Override
     protected String doInBackground(Void... params) {
         Token token = null;

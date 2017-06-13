@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Requests;
+package aplicacion.android.danielvm.quicktest_android.Requests.APIRest;
 
 import android.os.AsyncTask;
 

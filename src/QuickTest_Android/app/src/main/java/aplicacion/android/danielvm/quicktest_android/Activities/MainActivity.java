@@ -20,14 +20,14 @@ import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Module;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Role;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.User;
 import aplicacion.android.danielvm.quicktest_android.R;
-import aplicacion.android.danielvm.quicktest_android.Requests.ContentCourseRequest;
-import aplicacion.android.danielvm.quicktest_android.Requests.CoreUserGetCourseUserRequest;
-import aplicacion.android.danielvm.quicktest_android.Requests.CourseRequest;
-import aplicacion.android.danielvm.quicktest_android.Requests.EnrolUserCourseRequest;
-import aplicacion.android.danielvm.quicktest_android.Requests.ExternalTollRequest;
-import aplicacion.android.danielvm.quicktest_android.Requests.NumberContentCourseRequest;
-import aplicacion.android.danielvm.quicktest_android.Requests.TokenUserWebServiceRequest;
-import aplicacion.android.danielvm.quicktest_android.Requests.UserFieldRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle.ContentCourseRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle.CoreUserGetCourseUserRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle.CourseRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle.EnrolUserCourseRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle.ExternalTollRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle.NumberContentCourseRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle.TokenUserWebServiceRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle.UserFieldRequest;
 import aplicacion.android.danielvm.quicktest_android.Utils.Util;
 
 /**

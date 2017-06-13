@@ -24,13 +24,13 @@ import java.util.concurrent.ExecutionException;
 import aplicacion.android.danielvm.quicktest_android.API.APIRest;
 import aplicacion.android.danielvm.quicktest_android.Activities.LoginActivity;
 import aplicacion.android.danielvm.quicktest_android.Activities.MainActivity;
-import aplicacion.android.danielvm.quicktest_android.Fragments.Students.CuestionarioFragment;
+import aplicacion.android.danielvm.quicktest_android.Fragments.Students.UnResolvedQuestionnaireFragment;
 import aplicacion.android.danielvm.quicktest_android.Fragments.Students.ResolvedQuestionnairesFragment;
-import aplicacion.android.danielvm.quicktest_android.Fragments.Students.ThirdFragment;
+import aplicacion.android.danielvm.quicktest_android.Fragments.Students.HelpFragment;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnaire;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.User;
 import aplicacion.android.danielvm.quicktest_android.R;
-import aplicacion.android.danielvm.quicktest_android.Requests.StatusQuestionaryRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.StatusQuestionaryRequest;
 import aplicacion.android.danielvm.quicktest_android.Utils.Util;
 
 /**
@@ -115,7 +115,7 @@ public class StudentActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.menu_courses:
-                fragment = new CuestionarioFragment();
+                fragment = new UnResolvedQuestionnaireFragment();
                 fragmentTransaction = true;
                 break;
 
@@ -125,7 +125,7 @@ public class StudentActivity extends AppCompatActivity {
                 break;
 
             case R.id.menu_info:
-                fragment = new ThirdFragment();
+                fragment = new HelpFragment();
                 fragmentTransaction = true;
                 break;
 
@@ -251,7 +251,7 @@ public class StudentActivity extends AppCompatActivity {
      * Metodo encargado de establecer el fragment por defecto.
      */
     private void setFragmentByDefault() {
-        changeFragment(new CuestionarioFragment(), navigationView.getMenu().getItem(0));
+        changeFragment(new UnResolvedQuestionnaireFragment(), navigationView.getMenu().getItem(0));
     }
 
     /**

@@ -9,10 +9,12 @@ import android.view.ViewGroup;
 
 import aplicacion.android.danielvm.quicktest_android.R;
 
+/**
+ * Clase HelpFragment encargada de mostrar una ayuda sobre el funcionamiento de los comodines
+ */
+public class HelpFragment extends Fragment {
 
-public class ThirdFragment extends Fragment {
-
-    public ThirdFragment() {
+    public HelpFragment() {
     }
 
     @Override

@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Requests;
+package aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle;
 
 import android.os.AsyncTask;
 
@@ -15,7 +15,9 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 
 /**
- * Created by Daniel on 09/06/2017.
+ * Clase CoreUserGetCourseUserRequest encargada de obtener los usuarios de un curso.
+ *
+ * @author Daniel Puente Gabarri.
  */
 
 public class CoreUserGetCourseUserRequest extends AsyncTask<Void, Void, List<Role>> {
@@ -25,6 +27,14 @@ public class CoreUserGetCourseUserRequest extends AsyncTask<Void, Void, List<Rol
     private int idUser;
     private int idCourse;
 
+    /**
+     * Constructor de la clase.
+     *
+     * @param retrofit, retrofit.
+     * @param token,    token del web service.
+     * @param idUser,   identificador del usuario.
+     * @param idCourse, identificador del curso.
+     */
     public CoreUserGetCourseUserRequest(Retrofit retrofit, String token, int idUser, int idCourse) {
         this.retrofit = retrofit;
         this.token = token;
@@ -32,6 +42,12 @@ public class CoreUserGetCourseUserRequest extends AsyncTask<Void, Void, List<Rol
         this.idCourse = idCourse;
     }
 
+    /**
+     * Metodo encargado de realizar la peticion de manera sincrona, bloqueando el hilo principal.
+     *
+     * @param params, params.
+     * @return List<Role>, roles.
+     */
     @Override
     protected List<Role> doInBackground(Void... params) {
         List<Role> roles = null;

@@ -2,7 +2,6 @@ package aplicacion.android.danielvm.quicktest_android.Activities.Teacher;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -25,9 +24,9 @@ import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnair
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Student;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.UserEnrol;
 import aplicacion.android.danielvm.quicktest_android.R;
-import aplicacion.android.danielvm.quicktest_android.Requests.StatusQuestionaryRequest;
-import aplicacion.android.danielvm.quicktest_android.Requests.UserGradeRequest;
-import aplicacion.android.danielvm.quicktest_android.Requests.UsersEnrolledInCourse;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.StatusQuestionaryRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.UserGradeRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle.UsersEnrolledInCourse;
 
 /**
  * Clase StudentsGradesActivity encargada de mostrar al profesor las calificaciones obtenidas por sus alumno.

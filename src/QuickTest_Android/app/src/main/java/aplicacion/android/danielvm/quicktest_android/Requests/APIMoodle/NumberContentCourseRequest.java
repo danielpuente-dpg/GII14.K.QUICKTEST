@@ -1,9 +1,8 @@
-package aplicacion.android.danielvm.quicktest_android.Requests;
+package aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle;
 
 import android.os.AsyncTask;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import aplicacion.android.danielvm.quicktest_android.API.APIMoodle;
@@ -14,25 +13,38 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 
 /**
- * Created by Daniel on 08/06/2017.
+ * Clase NumberContentCourseRequest encargada de obtener el numero de herramientas externas.
+ *
+ * @author Daniel Puente Gabarri.
  */
 
-public class ContentCourseRequest extends AsyncTask<Void, Void, List<Module>> {
+public class NumberContentCourseRequest extends AsyncTask<Void, Void, Integer> {
 
     private Retrofit retrofit;
-    private int idCourse;
     private String token;
-    private List<Module> modules;
+    private int idCourse;
+    private int cont;
 
-    public ContentCourseRequest(Retrofit retrofit, int idCourse, String token) {
+    /**
+     * Constructor de la clase.
+     * @param retrofit, retrofit.
+     * @param token, token del web service.
+     * @param idCourse, identificador del curso.
+     */
+    public NumberContentCourseRequest(Retrofit retrofit, String token, int idCourse) {
         this.retrofit = retrofit;
-        this.idCourse = idCourse;
         this.token = token;
-        modules = new ArrayList<>();
+        this.idCourse = idCourse;
+        this.cont = 0;
     }
 
+    /**
+     * Metodo encargado de realizar la peticion de manera sincrona, bloqueando el hilo principal.
+     * @param params, params.
+     * @return Integer, numero de herramientas externas.
+     */
     @Override
-    protected List<Module> doInBackground(Void... params) {
+    protected Integer doInBackground(Void... params) {
         MoodleService service = retrofit.create(MoodleService.class);
         Call<Content[]> call = service.getContentCourse(token, APIMoodle.GET_CONTENT_COURSE, APIMoodle.FORMAT_JSON, idCourse);
 
@@ -44,16 +56,20 @@ public class ContentCourseRequest extends AsyncTask<Void, Void, List<Module>> {
             e.printStackTrace();
         }
 
-        return modules;
+        return cont;
     }
 
+    /**
+     * Metodo encargado de comprobar si es de tipo LTI.
+     * @param content
+     */
     private void addContentCourse(Content[] content) {
         for (int i = 0; i < content.length; i++) {
             if (content[i] != null) {
                 List<Module> modules = content[i].getModules();
                 for (Module module : modules) {
                     if (module.getModname().equals("lti")) {
-                        addExternalTool(module);
+                        incNumberExternalTools();
                     }
                 }
             }
@@ -61,7 +77,10 @@ public class ContentCourseRequest extends AsyncTask<Void, Void, List<Module>> {
         }
     }
 
-    private void addExternalTool(Module module) {
-        modules.add(module);
+    /**
+     * Metodo encargado de incrementar el numero
+     */
+    private void incNumberExternalTools() {
+        ++cont;
     }
 }

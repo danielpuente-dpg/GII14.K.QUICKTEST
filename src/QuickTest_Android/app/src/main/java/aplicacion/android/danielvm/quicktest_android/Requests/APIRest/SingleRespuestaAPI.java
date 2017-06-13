@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Utils;
+package aplicacion.android.danielvm.quicktest_android.Requests.APIRest;
 
 /**
  * Created by Daniel on 15/05/2017.

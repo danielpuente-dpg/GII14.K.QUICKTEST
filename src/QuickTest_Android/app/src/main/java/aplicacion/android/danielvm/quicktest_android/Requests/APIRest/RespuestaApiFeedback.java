@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Utils;
+package aplicacion.android.danielvm.quicktest_android.Requests.APIRest;
 
 import java.util.List;
 

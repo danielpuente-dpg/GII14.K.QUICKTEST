@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Requests;
+package aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle;
 
 import android.os.AsyncTask;
 
@@ -11,7 +11,9 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 
 /**
- * Created by Daniel on 08/06/2017.
+ * Clase UserFieldRequest encargada de proporcionar la informacion de un usuario.
+ *
+ * @author Daniel Puente Gabarri.
  */
 
 public class UserFieldRequest extends AsyncTask<Void, Void, User> {
@@ -19,12 +21,25 @@ public class UserFieldRequest extends AsyncTask<Void, Void, User> {
     private String token;
     private String name;
 
+    /**
+     * Constructor de la clase.
+     *
+     * @param retrofit, retrofit.
+     * @param token,    token del web service.
+     * @param name,     nombre del usuario.
+     */
     public UserFieldRequest(Retrofit retrofit, String token, String name) {
         this.retrofit = retrofit;
         this.token = token;
         this.name = name;
     }
 
+    /**
+     * Metodo encargado de realizar la peticion de manera sincrona, bloqueando el hilo principal.
+     *
+     * @param params
+     * @return
+     */
     @Override
     protected User doInBackground(Void... params) {
         User user = null;

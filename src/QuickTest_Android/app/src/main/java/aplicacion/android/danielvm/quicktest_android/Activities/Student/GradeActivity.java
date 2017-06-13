@@ -14,8 +14,8 @@ import java.util.concurrent.ExecutionException;
 import aplicacion.android.danielvm.quicktest_android.API.APIRest;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.FeedBack;
 import aplicacion.android.danielvm.quicktest_android.R;
-import aplicacion.android.danielvm.quicktest_android.Requests.UserGradeRequest;
-import aplicacion.android.danielvm.quicktest_android.Requests.UserInfoGradeRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.UserGradeRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.UserInfoGradeRequest;
 
 /**
  * Clase GradeActivity encarga de proporcionar informacion sobre el resultado obtenido

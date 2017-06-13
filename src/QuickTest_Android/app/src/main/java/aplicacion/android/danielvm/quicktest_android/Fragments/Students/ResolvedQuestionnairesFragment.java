@@ -17,7 +17,11 @@ import aplicacion.android.danielvm.quicktest_android.Adapters.Student.ResolvedEx
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnaire;
 import aplicacion.android.danielvm.quicktest_android.R;
 
-
+/**
+ * Clase ResolvedQuestionnairesFragment encargada de mostrar los cuestionarios resueltos.
+ *
+ * @author Daniel Puente Gabarri.
+ */
 public class ResolvedQuestionnairesFragment extends Fragment {
 
 
@@ -27,6 +31,7 @@ public class ResolvedQuestionnairesFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    // Atributos
     private List<Questionnaire> resolvedQuestionnaires;
 
     public ResolvedQuestionnairesFragment() {

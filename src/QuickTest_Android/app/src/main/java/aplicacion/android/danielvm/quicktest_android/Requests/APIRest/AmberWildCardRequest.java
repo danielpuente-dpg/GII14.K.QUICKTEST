@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Requests;
+package aplicacion.android.danielvm.quicktest_android.Requests.APIRest;
 
 import android.os.AsyncTask;
 
@@ -7,12 +7,13 @@ import java.util.List;
 
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.RestService;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.WildCard;
-import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApiComodin;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
 /**
- * Created by Daniel on 13/06/2017.
+ * Clase AmberWildCardRequest encargada de obtener aquellas preguntas que tienen comodin ambar.
+ *
+ * @author Daniel Puente Gabarri.
  */
 
 public class AmberWildCardRequest extends AsyncTask<Void, Void, List<WildCard>> {
@@ -20,11 +21,21 @@ public class AmberWildCardRequest extends AsyncTask<Void, Void, List<WildCard>> 
     private Retrofit retrofit;
     private int idQuestionnaire;
 
+    /**
+     * Constructor de la clase.
+     * @param retrofit, retrofit
+     * @param idQuestionnaire, identificador del cuestionario.
+     */
     public AmberWildCardRequest(Retrofit retrofit, int idQuestionnaire) {
         this.retrofit = retrofit;
         this.idQuestionnaire = idQuestionnaire;
     }
 
+    /**
+     * Metodo encargado de realizar la peticion de manera sincrona, bloqueando el hilo principal.
+     * @param params, params.
+     * @return List<WildCard>, wildCards.
+     */
     @Override
     protected List<WildCard> doInBackground(Void... params) {
 
