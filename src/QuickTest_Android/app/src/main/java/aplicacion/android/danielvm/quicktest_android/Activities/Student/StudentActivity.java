@@ -58,7 +58,7 @@ public class StudentActivity extends AppCompatActivity {
 
 
     public static User user;
-    public static int idCourse;
+    private static int idCourse;
 
 
     @Override
@@ -306,6 +306,14 @@ public class StudentActivity extends AppCompatActivity {
      */
     public ArrayList<Questionnaire> getDataExternalToolsResolved() {
         return resolvedQuestionnaires;
+    }
+
+    /**
+     * Metodo que proporciona el identificador del curso
+     * @return
+     */
+    public int getIdCourse(){
+        return idCourse;
     }
 
 

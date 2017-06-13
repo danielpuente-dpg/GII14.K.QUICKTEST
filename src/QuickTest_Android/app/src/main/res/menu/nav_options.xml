@@ -6,12 +6,12 @@
         <item
             android:id="@+id/menu_courses"
             android:icon="@android:drawable/ic_menu_agenda"
-            android:title="Mis questionaries sin resolver" />
+            android:title="Mis cuestionarios sin resolver" />
 
         <item
             android:id="@+id/menu_courses_end"
             android:icon="@android:drawable/ic_menu_agenda"
-            android:title="Mis questionaries resueltos" />
+            android:title="Mis cuestionarios resueltos" />
 
         <item
             android:id="@+id/menu_info"

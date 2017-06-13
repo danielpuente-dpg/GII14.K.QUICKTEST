@@ -2,7 +2,6 @@ package aplicacion.android.danielvm.quicktest_android.Activities.Student;
 
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -12,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -34,15 +32,17 @@ import aplicacion.android.danielvm.quicktest_android.Models.APIRest.WildCard;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnaire;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Test;
 import aplicacion.android.danielvm.quicktest_android.R;
-import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApi;
-import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApiComodin;
+import aplicacion.android.danielvm.quicktest_android.Requests.AmberWildCardRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.ContentTestRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.GreenWildCardRequest;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
 /**
- * Clase TestActivity encargada de mostrar al alumno el cuestionario a resolver.
+ * Clase TestActivity encargada de mostrar al alumno el nameQuestionnaire a resolver.
+ *
  * @author Daniel Puente Gabarri.
  */
 public class TestActivity extends AppCompatActivity {
@@ -56,40 +56,36 @@ public class TestActivity extends AppCompatActivity {
 
     // Atributos
     private List<Test> tests;
-    private int idCuestionario;
-    public static String clave;
-    public static String idAlumno;
-    public static String nombreAlu;
-    public static String apeAlu;
+    private int idQuestionnaire;
+    public static String key;
+    public static String idStudent;
+    public static String nameStudent;
+    public static String surname;
     private Questionnaire questionnaire;
     private int position;
-
     public static List<WildCard> greenWildCard;
     public static HashMap<Integer, HashSet<Integer>> amberWildCard;
     private HashMap<Integer, String> wildCardType = new HashMap<>();
-
     private int idCourse;
-
+    private StudentActivity activity = new StudentActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        setIdCuestionarioAndKey();
-
-        StudentActivity activity = new StudentActivity();
+        // Recuperamos informacion
+        getDataBundle();
         questionnaire = activity.getDataExternalTools().get(position);
 
         // Forzamos la carga del icono de la aplicacion
         enforceIconBar();
 
+        // Obtenemos el nameQuestionnaire
         tests = getContentTest();
 
-        // Inicializamos el estado de los comodines
-        initWildCardType();
-        // Comprobamos que tenga comodin
-        hasWildCard();
+        // Obtenemos para ese nameQuestionnaire sus comodines
+        getWildCard();
 
         // Instanciamos los elementos de la UI
         button = (Button) findViewById(R.id.btnSendTest);
@@ -122,125 +118,157 @@ public class TestActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                // Obtenemoslas la informacion del questionnaire resuelto
-                HashMap<Integer, Result> results = new TestAdapter(tests, R.layout.recycler_view_item_test, null, null).postTest;
-                List<Result> respuestas = new ArrayList<>();
-
-                Iterator<Map.Entry<Integer, Result>> iter = results.entrySet().iterator();
-                while (iter.hasNext()) {
-                    Map.Entry<Integer, Result> item = iter.next();
-                    Integer key = item.getKey();
-                    Result value = item.getValue();
-
-                    if (wildCardType.containsKey(key)) {
-                        String tipo = wildCardType.get(key);
-                        value.setTipoComUsado(tipo);
-                    }
-                    respuestas.add(value);
-
-                }
-                idCourse = new StudentActivity().idCourse;
-
-
-                idAlumno = respuestas.get(0).getIdAlumno();
-                TestRequest testRequest = new TestRequest(idCuestionario, idAlumno, nombreAlu, apeAlu, respuestas);
-
-                Retrofit retrofit = APIRest.getApi();
-                RestService service = retrofit.create(RestService.class);
-
-                Call<APIResponse> call = service.sendTest(testRequest);
-
-                call.enqueue(new Callback<APIResponse>() {
-                    @Override
-                    public void onResponse(Call<APIResponse> call, Response<APIResponse> response) {
-                        int statusCode = response.code();
-
-                        APIResponse apiResponse = response.body();
-                        double grade = Double.parseDouble(apiResponse.getMensaje());
-                        if (grade > 0) {
-                            Log.d("TestActivity", "onResponse: " + statusCode);
-                            goToMainActivity(idCourse);
-                        } else {
-                            Log.d("TestActivity", "onResponse: " + statusCode + ", grade is < 0");
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<APIResponse> call, Throwable t) {
-                        Log.d("TestActivity", "onFailure: " + t.getMessage());
-                    }
-                });
-
+                // Obtenemoslas la informacion del questionnaire resuelto y lo enviamos
+                sendResolvedQuestionnaire();
             }
         });
     }
 
+    /**
+     * Metodo encargado de obtener lainformacion del nameQuestionnaire y enviar las answers.
+     */
+    private void sendResolvedQuestionnaire() {
+        HashMap<Integer, Result> results = new TestAdapter(tests, R.layout.recycler_view_item_test, null, null).postTest;
+        List<Result> respuestas = new ArrayList<>();
+
+        Iterator<Map.Entry<Integer, Result>> iter = results.entrySet().iterator();
+        while (iter.hasNext()) {
+            Map.Entry<Integer, Result> item = iter.next();
+            Integer key = item.getKey();
+            Result value = item.getValue();
+
+            if (wildCardType.containsKey(key)) {
+                String tipo = wildCardType.get(key);
+                value.setTipoComUsado(tipo);
+            }
+            respuestas.add(value);
+
+        }
+        idCourse = activity.getIdCourse();
+        idStudent = respuestas.get(0).getIdAlumno();
+
+        TestRequest testRequest = new TestRequest(idQuestionnaire, idStudent, nameStudent, surname, respuestas);
+
+        Retrofit retrofit = APIRest.getApi();
+        RestService service = retrofit.create(RestService.class);
+
+        Call<APIResponse> call = service.sendTest(testRequest);
+
+        call.enqueue(new Callback<APIResponse>() {
+            @Override
+            public void onResponse(Call<APIResponse> call, Response<APIResponse> response) {
+                int statusCode = response.code();
+
+                APIResponse apiResponse = response.body();
+                double grade = Double.parseDouble(apiResponse.getMensaje());
+                if (grade > 0) {
+                    Log.d("TestActivity", "onResponse: " + statusCode);
+                    goToStudentActivity(idCourse);
+                } else {
+                    Log.d("TestActivity", "onResponse: " + statusCode + ", grade is < 0");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<APIResponse> call, Throwable t) {
+                Log.d("TestActivity", "onFailure: " + t.getMessage());
+            }
+        });
+    }
+
+    /**
+     * Metodo encargado de forzar la carga del action bar.
+     */
     private void enforceIconBar() {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle(questionnaire.getDescripcion());
     }
 
+    /**
+     * Metodo encargado de inicializar el estado de los comodines.
+     */
     private void initWildCardType() {
         for (int i = 0; i < tests.size(); i++) {
             wildCardType.put(i, "");
         }
     }
 
-    private void goToMainActivity(int idCourse) {
+    /**
+     * Metodo encargado de direccionar al StudentActivity al finalizar el nameQuestionnaire.
+     *
+     * @param idCourse, idCourse.
+     */
+    private void goToStudentActivity(int idCourse) {
         Intent intent = new Intent(this, StudentActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra("idCourse", idCourse);
         startActivity(intent);
     }
 
-
-    public void setIdCuestionarioAndKey() {
-
+    /**
+     * Metodo encargado de recuperar la informacion proporcionada por el activity de origen.
+     */
+    public void getDataBundle() {
         // Recogemos el nombre introducido en la anterior actividad
         Bundle bundle = getIntent().getExtras();
         if (bundle == null)
-            Log.d("setIdCuestionarioAndKey", "Intent was null");
+            Log.d("TestActivity", "Intent was null");
         else {
-            Log.d("setIdCuestionarioAndKey", "Intent OK");
-            idCuestionario = bundle.getInt("idCuestionario");
-            clave = bundle.getString("clave");
-            nombreAlu = bundle.getString("nombreAlu");
-            apeAlu = bundle.getString("apeAlu");
+            Log.d("TestActivity", "Intent OK");
+            idQuestionnaire = bundle.getInt("idQuestionnaire");
+            key = bundle.getString("key");
+            nameStudent = bundle.getString("nameStudent");
+            surname = bundle.getString("surname");
             position = bundle.getInt("position");
         }
 
     }
 
+    /**
+     * Metodo encargado de obtener el nameQuestionnaire.
+     *
+     * @return ArrayList<Test>, tests.
+     */
     private ArrayList<Test> getContentTest() {
         ArrayList<Test> resultado = new ArrayList<>();
-        ContentTestRequest contentTestRequest = new ContentTestRequest(APIRest.getApi(), idCuestionario);
+        ContentTestRequest contentTestRequest = new ContentTestRequest(APIRest.getApi(), idQuestionnaire);
         try {
-            List<Mensaje> mensajes = contentTestRequest.execute().get();
-            for (Mensaje mensaje : mensajes) {
-                Pregunta pregunta = mensaje.getPregunta();
-                List<Respuesta> respuestas = mensaje.getRespuestas();
-                resultado.add(new Test(pregunta.getTitulo(), respuestas, pregunta.getIdPregunta()));
+            List<Mensaje> messages = contentTestRequest.execute().get();
+            for (Mensaje mensaje : messages) {
+                Pregunta question = mensaje.getPregunta();
+                List<Respuesta> answers = mensaje.getRespuestas();
+                resultado.add(new Test(question.getTitulo(), answers, question.getIdPregunta()));
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+        Log.d("TestActivity", "getContentTest:" + resultado.size());
         return resultado;
     }
 
-    private void hasWildCard() {
+    /**
+     * Metodo encargado de obtener los comodines para el nameQuestionnaire
+     */
+    private void getWildCard() {
+        // Inicializamos el estado de los comodines
+        initWildCardType();
         greenWildCard = getGreenWildCardRequest();
         Log.d("TestActivity", "greenWildCard:" + greenWildCard.size());
         amberWildCard = getAmberWildCardRequest();
         Log.d("TestActivity", "amberWildCard:" + amberWildCard.size());
     }
 
+    /**
+     * Metodo encargado de obtener los comodines verdes del nameQuestionnaire.
+     *
+     * @return ArrayList<WildCard>, greenWildCard.
+     */
     private ArrayList<WildCard> getGreenWildCardRequest() {
         ArrayList<WildCard> greenWildCard = new ArrayList<>();
-        GreenWildCardRequest greenWildCardRequest = new GreenWildCardRequest(APIRest.getApi(), idCuestionario);
+        GreenWildCardRequest greenWildCardRequest = new GreenWildCardRequest(APIRest.getApi(), idQuestionnaire);
         try {
             greenWildCard = (ArrayList<WildCard>) greenWildCardRequest.execute().get();
         } catch (InterruptedException e) {
@@ -251,9 +279,14 @@ public class TestActivity extends AppCompatActivity {
         return greenWildCard;
     }
 
+    /**
+     * Metodo encargado de obtener los comodines ambar del nameQuestionnaire.
+     *
+     * @return ArrayList<WildCard>, amberWildCard.
+     */
     private HashMap<Integer, HashSet<Integer>> getAmberWildCardRequest() {
         ArrayList<WildCard> amberWildCard = new ArrayList<>();
-        AmberWildCardRequest amberWildCardRequest = new AmberWildCardRequest(APIRest.getApi(), idCuestionario);
+        AmberWildCardRequest amberWildCardRequest = new AmberWildCardRequest(APIRest.getApi(), idQuestionnaire);
 
         try {
             amberWildCard = (ArrayList<WildCard>) amberWildCardRequest.execute().get();
@@ -269,7 +302,12 @@ public class TestActivity extends AppCompatActivity {
         return retorno;
     }
 
-
+    /**
+     * Metodo encargado de convertir los comodines ambar para su posterior uso.
+     *
+     * @param amberWildCard, amberWildCard
+     * @return HashMap<Integer, HashSet<Integer>>, aux.
+     */
     private HashMap<Integer, HashSet<Integer>> formatAmberWildCard(ArrayList<WildCard> amberWildCard) {
         HashMap<Integer, HashSet<Integer>> aux = new HashMap<>();
         for (WildCard wildCard : amberWildCard) {
@@ -288,87 +326,4 @@ public class TestActivity extends AppCompatActivity {
 
     }
 
-    public class ContentTestRequest extends AsyncTask<Void, Void, List<Mensaje>> {
-
-        private int idCuestionario;
-        private Retrofit retrofit;
-
-        public ContentTestRequest(Retrofit retrofit, int idCuestionario) {
-            this.retrofit = retrofit;
-            this.idCuestionario = idCuestionario;
-        }
-
-        @Override
-        protected List<Mensaje> doInBackground(Void... params) {
-            RestService service = retrofit.create(RestService.class);
-            Call<RespuestaApi> call = service.getTest(String.valueOf(idCuestionario));
-
-            List<Mensaje> messages = null;
-            try {
-                messages = call.execute().body().getMensaje();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
-            return messages;
-        }
-    }
-
-    public class GreenWildCardRequest extends AsyncTask<Void, Void, List<WildCard>> {
-
-        private Retrofit retrofit;
-        private int idCuestionario;
-
-        public GreenWildCardRequest(Retrofit retrofit, int idCuestionario) {
-            this.retrofit = retrofit;
-            this.idCuestionario = idCuestionario;
-        }
-
-        @Override
-        protected List<WildCard> doInBackground(Void... params) {
-            List<WildCard> retorno = null;
-
-            RestService service = retrofit.create(RestService.class);
-            Call<RespuestaApiComodin> call = service.getGreenWildCard(idCuestionario);
-
-            try {
-                RespuestaApiComodin respuestaApiComodin = call.execute().body();
-                retorno = respuestaApiComodin.getMensaje();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return retorno;
-        }
-    }
-
-    public class AmberWildCardRequest extends AsyncTask<Void, Void, List<WildCard>> {
-
-        private Retrofit retrofit;
-        private int idCuestionario;
-
-        public AmberWildCardRequest(Retrofit retrofit, int idCuestionario) {
-            this.retrofit = retrofit;
-            this.idCuestionario = idCuestionario;
-        }
-
-        @Override
-        protected List<WildCard> doInBackground(Void... params) {
-
-            List<WildCard> retorno = null;
-
-            RestService service = retrofit.create(RestService.class);
-            Call<RespuestaApiComodin> call = service.getAmberWildCard(idCuestionario);
-
-            try {
-                RespuestaApiComodin respuestaApiComodin = call.execute().body();
-                retorno = respuestaApiComodin.getMensaje();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return retorno;
-        }
-    }
 }

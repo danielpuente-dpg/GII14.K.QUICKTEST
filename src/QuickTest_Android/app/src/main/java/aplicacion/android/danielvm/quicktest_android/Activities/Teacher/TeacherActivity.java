@@ -103,7 +103,7 @@ public class TeacherActivity extends AppCompatActivity implements AdapterView.On
     }
 
     /**
-     * Metodo encarcado de proporcionar un cuestionario en funcion de la posicion dada.
+     * Metodo encarcado de proporcionar un nameQuestionnaire en funcion de la posicion dada.
      * @param position, position
      * @return Questionnaire, questionnaire.
      */
@@ -150,7 +150,7 @@ public class TeacherActivity extends AppCompatActivity implements AdapterView.On
     }
 
     /**
-     * Metodo encargado de direccionar al siguiente activity en funcion del cuestionario dado.
+     * Metodo encargado de direccionar al siguiente activity en funcion del nameQuestionnaire dado.
      * @param parent, parent.
      * @param view, parent.
      * @param position, parent.
@@ -163,7 +163,7 @@ public class TeacherActivity extends AppCompatActivity implements AdapterView.On
     }
 
     /**
-     * Metodo encargado de direccionar al siguiente activity en funcion del cuestionario dado.
+     * Metodo encargado de direccionar al siguiente activity en funcion del nameQuestionnaire dado.
      * @param position, position.
      */
     private void goToStudentsGradesActivity(int position) {

@@ -355,11 +355,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Metodo encargado de crear un cuestionario en funcion de los parametros dados.
+     * Metodo encargado de crear un nameQuestionnaire en funcion de los parametros dados.
      *
      * @param retorno,      para ese curso, aquellas que son de QuickTest.
      * @param externalTool, herramienta externa a comprobar.
-     * @param description,  descripcion del cuestionario
+     * @param description,  descripcion del nameQuestionnaire
      * @return Questionnaire, questionary.
      */
     private Questionnaire createQuestionary(ArrayList<Questionnaire> retorno, ExternalTool externalTool, String description) {

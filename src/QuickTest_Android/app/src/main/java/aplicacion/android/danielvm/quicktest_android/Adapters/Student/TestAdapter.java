@@ -29,7 +29,9 @@ import aplicacion.android.danielvm.quicktest_android.Models.Android.Test;
 import aplicacion.android.danielvm.quicktest_android.R;
 
 /**
- * Created by Daniel on 23/03/2017.
+ * Clase TestAdapter encargada de tratar la logica del adaptor de un cuestionario a resolver.
+ *
+ * @author Daniel Puente Gabarri.
  */
 
 public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
@@ -37,14 +39,21 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
     private List<Test> tests;
     private int layout;
     private Context context;
-
     private OnItemClickListener listenerGreenWildCard;
     private OnItemClickListener listenerAmberWildCard;
 
-    public static HashMap<Integer, Integer> respuestas = new HashMap();
+    public static HashMap<Integer, Integer> answers = new HashMap();
     public static HashMap<Integer, Boolean> flags = new HashMap<>();
     public static HashMap<Integer, Result> postTest = new HashMap();
 
+    /**
+     * Constructor de la clase.
+     *
+     * @param tests,                 tests.
+     * @param layout,                layout.
+     * @param listenerGreenWildCard, listenerGreenWildCard.
+     * @param listenerAmberWildCard, listenerAmberWildCard.
+     */
     public TestAdapter(List<Test> tests, int layout, OnItemClickListener listenerGreenWildCard, OnItemClickListener listenerAmberWildCard) {
         this.tests = tests;
         this.layout = layout;
@@ -52,6 +61,13 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
         this.listenerAmberWildCard = listenerAmberWildCard;
     }
 
+    /**
+     * Metodo encargado de inflar la vista.
+     *
+     * @param parent,   parent.
+     * @param viewType, viewType.
+     * @return ViewHolder, view.
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -62,12 +78,23 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
+    /**
+     * Metodo encargado de enlazar el contenido de cada vista.
+     *
+     * @param holder,   holder.
+     * @param position, position.
+     */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        // Llamamos la metodo encargado de añadir los datos propios de cada cuestionario
+        // Llamamos la metodo encargado de añadir los datos propios de cada nameQuestionnaire
         holder.dataBind(this.tests.get(position), position, this.listenerGreenWildCard, this.listenerAmberWildCard);
     }
 
+    /**
+     * Metodo encargado de proporcionar el numero de preguntas del cuestionario.
+     *
+     * @return int, tamaño.
+     */
     @Override
     public int getItemCount() {
         if (tests != null)
@@ -75,59 +102,79 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
         return 0;
     }
 
+    /**
+     * Clase interna ViewHolder encarga de instanciar y de actualizar la
+     * informacion de los elementos que forman la UI.
+     *
+     * @author Daniel Puente Gabarri.
+     */
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        // Elementos que forman parte de la UI del CuestionarioFragment
-
-        private TextView pregunta;
+        // Elementos de la UI
+        private TextView answer;
         private RadioGroup radioGroup;
         private ImageView imageViewGreenWildCard;
         private ImageView imageViewAmberWildCard;
 
+        // Atributos
+        private TestActivity testActivity = new TestActivity();
+        private StudentActivity studentActivity= new StudentActivity();
+
+        /**
+         * Constructor de la clase.
+         *
+         * @param view, view.
+         */
         public ViewHolder(View view) {
             super(view);
 
-            this.pregunta = (TextView) view.findViewById(R.id.textViewStatement);
+            this.answer = (TextView) view.findViewById(R.id.textViewStatement);
             this.radioGroup = (RadioGroup) view.findViewById(R.id.radioGroup);
             this.imageViewGreenWildCard = (ImageView) view.findViewById(R.id.imageViewGreenWildCard);
             this.imageViewAmberWildCard = (ImageView) view.findViewById(R.id.imageViewAmberWildCard);
 
         }
 
+        /**
+         * Metodo encargado de instanciar los elementos de para cada vista.
+         *
+         * @param test
+         * @param position
+         * @param listenerGreenWildCard
+         * @param listenerAmberWildCard
+         */
         public void dataBind(final Test test, final int position, final OnItemClickListener listenerGreenWildCard, final OnItemClickListener listenerAmberWildCard) {
 
             radioGroup.removeAllViews();
-            this.pregunta.setText((position + 1) + " - " + test.getPregunta());
+
+            this.answer.setText((position + 1) + " - " + test.getPregunta());
             for (Respuesta r : test.getRespuestas()) {
-                RadioButton nuevoRadio = crearRadioButton(r.getTitulo(), r.getIdRespuesta());
-                radioGroup.addView(nuevoRadio);
+                RadioButton newRadio = createRadioButton(r.getTitulo(), r.getIdRespuesta());
+                radioGroup.addView(newRadio);
             }
 
+            // Si esa answer tiene comodin, lo activa en la vista
             hasWildCard(test);
 
-
+            // Si el comodin ha sido usado.
             checkWildCard(radioGroup, test);
 
+            // Evento al seleccionar una answer
             radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
 
-                    for (int i = 0; i < group.getChildCount(); i++) {
-                        if (group.getChildAt(i).isClickable())
-                            checkedId = i;
-                    }
-                    respuestas.put(getAdapterPosition(), checkedId);
+                    answers.put(getAdapterPosition(), checkedId);
                     flags.put(getAdapterPosition(), true);
-                    Log.d("Listener->Position : " + getAdapterPosition(), "Btn: " + checkedId);
 
+                    int idQuestion = test.getIdPregunta();
+                    int idAnswer = checkedId;
+                    String typeWildCard = "";
+                    String idStudent = testActivity.key + ":" + studentActivity.user.getId();
+                    Result result = new Result(idQuestion, idAnswer, typeWildCard, idStudent);
 
-                    int idPregunta = test.getIdPregunta();
-                    int idRespuesta = test.getRespuestas().get(checkedId).getIdRespuesta();
-                    String tipoComUsado = "";
-                    String idAlumno = new TestActivity().clave + ":" + new StudentActivity().user.getId();
-
-                    Result result = new Result(idPregunta, idRespuesta, tipoComUsado, idAlumno);
                     postTest.put(getAdapterPosition(), result);
+                    Log.d("TestAdapter", "Listener->Position: " + getAdapterPosition() +  " - Btn: " + checkedId);
                 }
             });
 
@@ -151,98 +198,116 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
 
         }
 
+        /**
+         * Metodo encargado de la visibilidad de los comodines.
+         *
+         * @param test, test.
+         */
         private void hasWildCard(Test test) {
-            // Verde
+            // Si tiene comodin Verde
             setVisibilityGreenWildCard(test);
-            // Ambar
+            // Si tiene comodin Ambar
             setVisibilityAmberWildCard(test);
         }
 
+        /**
+         * Metodo encargado de mostrar o ocultar el comodin verde.
+         *
+         * @param test, test.
+         */
         private void setVisibilityGreenWildCard(Test test) {
-            List<WildCard> greenWildCard = new TestActivity().greenWildCard;
+            List<WildCard> greenWildCard = testActivity.greenWildCard;
             Iterator<WildCard> iter = greenWildCard.iterator();
             boolean flag = false;
             while (iter.hasNext()) {
                 if (iter.next().getPregunta_idPregunta() == test.getIdPregunta()) {
-                    /*float valor = 1;
-                    this.imageViewGreenWildCard.setAlpha(valor);*/
                     flag = true;
                     this.imageViewGreenWildCard.setVisibility(View.VISIBLE);
                     break;
                 }
-
             }
             if (flag == false) {
-                //float valor = 0.3f;
-                //this.imageViewGreenWildCard.setAlpha(valor);
                 this.imageViewGreenWildCard.setVisibility(View.GONE);
             }
         }
 
+        /**
+         * Metodo encargado de mostrar o ocultar el comodin ambar.
+         *
+         * @param test, test.
+         */
         private void setVisibilityAmberWildCard(Test test) {
-            Set<Integer> amberWildCard = new TestActivity().amberWildCard.keySet();
+            Set<Integer> amberWildCard = testActivity.amberWildCard.keySet();
             Iterator<Integer> iter = amberWildCard.iterator();
             boolean flag = false;
             while (iter.hasNext()) {
                 if (iter.next() == test.getIdPregunta()) {
-                    //float valor = 1;
-                    //this.imageViewAmberWildCard.setAlpha(valor);
                     flag = true;
                     this.imageViewAmberWildCard.setVisibility(View.VISIBLE);
                     break;
                 }
-
             }
             if (flag == false) {
-                //float valor = 0.3f;
-                //this.imageViewAmberWildCard.setAlpha(valor);
                 this.imageViewAmberWildCard.setVisibility(View.GONE);
             }
         }
 
-        private RadioButton crearRadioButton(String marca, int i) {
+        /**
+         * Metodo encargado de crear radio button.
+         *
+         * @param title,    title.
+         * @param idButton, id.
+         * @return RadioButton, newRadioButton.
+         */
+        private RadioButton createRadioButton(String title, int idButton) {
 
-            RadioButton nuevoRadio = new RadioButton(context);
+            RadioButton newRadioButton = new RadioButton(context);
             LinearLayout.LayoutParams params = new RadioGroup.LayoutParams(
                     RadioGroup.LayoutParams.WRAP_CONTENT,
                     RadioGroup.LayoutParams.WRAP_CONTENT);
-            nuevoRadio.setLayoutParams(params);
-            nuevoRadio.setText(marca);
-            nuevoRadio.setTag(marca);
-            nuevoRadio.setId(i);
+            newRadioButton.setLayoutParams(params);
+            newRadioButton.setText(title);
+            newRadioButton.setTag(title);
+            newRadioButton.setId(idButton);
 
-            if (flags.containsKey(getAdapterPosition()) == true && respuestas.get(getAdapterPosition()) == i) {
-                int id = respuestas.get(getAdapterPosition());
-                Log.d("Position : " + i, "Btn: " + id);
-                nuevoRadio.setChecked(true);
+            if (flags.containsKey(getAdapterPosition()) == true && answers.get(getAdapterPosition()) == idButton) {
+                int position = answers.get(getAdapterPosition());
+                newRadioButton.setChecked(true);
+                Log.d("Position : " + position, "Btn: " + idButton);
             }
 
-            return nuevoRadio;
+            return newRadioButton;
         }
 
+        /**
+         * Metodo encargado de pintar aquella respuesta de una answer al usar el comodin verde.
+         *
+         * @param radioGroup, radioGroup.
+         * @param test,       test.
+         */
         private void checkWildCard(RadioGroup radioGroup, Test test) {
             String type = test.getComodin();
 
             if (type != "") {
                 if (type == "bg-success") {
-                    WildCard wildCard = getRespuestaByIdPregunta(test);
+                    WildCard wildCard = getAnswersByIdPregunta(test);
                     if (wildCard != null) {
-                        int idRespuesta = wildCard.getIdRespuesta();
+                        int idAnswer = wildCard.getIdRespuesta();
                         for (int i = 0; i < radioGroup.getChildCount(); i++) {
                             View view = radioGroup.getChildAt(i);
-                            if (view.getId() == idRespuesta) {
+                            if (view.getId() == idAnswer) {
                                 view.setBackgroundResource(R.color.colorGreenWildCard);
                             }
                         }
                     }
                 } else if (type == "bg-warning") {
                     HashMap<Integer, HashSet<Integer>> amberWildCard = new TestActivity().amberWildCard;
-                    int idPregunta = test.getIdPregunta();
-                    if(amberWildCard.containsKey(idPregunta)){
-                        HashSet<Integer> amberRespuestas = amberWildCard.get(idPregunta);
-                        for(int i = 0; i < radioGroup.getChildCount(); i++){
+                    int idAnswer = test.getIdPregunta();
+                    if (amberWildCard.containsKey(idAnswer)) {
+                        HashSet<Integer> amberRespuestas = amberWildCard.get(idAnswer);
+                        for (int i = 0; i < radioGroup.getChildCount(); i++) {
                             View view = radioGroup.getChildAt(i);
-                            if(amberRespuestas.contains(view.getId())){
+                            if (amberRespuestas.contains(view.getId())) {
                                 radioGroup.getChildAt(i).setBackgroundResource(R.color.colorAmberWildCard);
                             }
                         }
@@ -253,10 +318,16 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
             }
         }
 
-        private WildCard getRespuestaByIdPregunta(Test test) {
+        /**
+         * Metodo que proporciona las answers de una answer que tienen comodion verde.
+         *
+         * @param test, test.
+         * @return WildCard, wildCard.
+         */
+        private WildCard getAnswersByIdPregunta(Test test) {
             WildCard retorno = null;
             // Obtenemos la informacion sobre que preguntas tiene comodin verde
-            List<WildCard> greenWildCard = new TestActivity().greenWildCard;
+            List<WildCard> greenWildCard = testActivity.greenWildCard;
             for (WildCard wildCard : greenWildCard) {
                 if (wildCard.getPregunta_idPregunta() == test.getIdPregunta()) {
                     retorno = wildCard;
@@ -269,6 +340,11 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
 
     }
 
+    /**
+     * Interfaz OnItemClickListener encargada de la logica al seleccionar un oomodin.
+     *
+     * @author Daniel Puente Gabarri.
+     */
     public interface OnItemClickListener {
         void onItemClick(Test test, int position);
     }

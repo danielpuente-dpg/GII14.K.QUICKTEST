@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/revisarCuestionario"
+        android:id="@+id/checkQuestionnaire"
         android:title="Revisar" />
     <item
-        android:id="@+id/noRevisarCuestionario"
+        android:id="@+id/doNotCheckQuestionnaire"
         android:title="No revisar" />
 </menu>

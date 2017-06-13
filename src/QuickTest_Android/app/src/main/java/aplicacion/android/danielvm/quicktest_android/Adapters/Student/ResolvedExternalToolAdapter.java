@@ -19,21 +19,36 @@ import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnair
 import aplicacion.android.danielvm.quicktest_android.R;
 
 /**
- * Created by Daniel on 23/03/2017.
+ * Clase ResolvedExternalToolAdapter encargada de tratar la logica del adaptor de los
+ * cuestionarios resueltos.
+ *
+ * @author Daniel Puente Gabarri.
  */
-
 public class ResolvedExternalToolAdapter extends RecyclerView.Adapter<ResolvedExternalToolAdapter.ViewHolder> {
 
-    private List<Questionnaire> questionaries;
+    private List<Questionnaire> questionnaires;
     private int layout;
     private Activity activity;
 
-    public ResolvedExternalToolAdapter(List<Questionnaire> questionaries, Activity activity, int layout) {
-        this.questionaries = questionaries;
+    /**
+     * Constructor de la clase.
+     * @param questionnaires, questionnaires.
+     * @param activity, activity.
+     * @param layout, layout.
+     */
+    public ResolvedExternalToolAdapter(List<Questionnaire> questionnaires, Activity activity, int layout) {
+        this.questionnaires = questionnaires;
         this.layout = layout;
         this.activity = activity;
     }
 
+    /**
+     * Metodo encargado de inflar la vista.
+     *
+     * @param parent,   parent.
+     * @param viewType, viewType.
+     * @return ViewHolder, view.
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -43,28 +58,47 @@ public class ResolvedExternalToolAdapter extends RecyclerView.Adapter<ResolvedEx
         return new ViewHolder(view);
     }
 
+    /**
+     * Metodo encargado de enlazar el contenido de cada vista.
+     *
+     * @param holder,   holder.
+     * @param position, position.
+     */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        // Llamamos la metodo encargado de añadir los datos propios de cada cuestionario
-        holder.dataBind(this.questionaries.get(position));
+        // Llamamos la metodo encargado de añadir los datos propios de cada nameQuestionnaire
+        holder.dataBind(this.questionnaires.get(position));
     }
 
+    /**
+     * Metodo encargado de proporcionar el numero de cuestionarios.
+     *
+     * @return int, tamaño.
+     */
     @Override
     public int getItemCount() {
-        if (questionaries != null)
-            return questionaries.size();
+        if (questionnaires != null)
+            return questionnaires.size();
         return 0;
     }
 
-
+    /**
+     * Clase interna ViewHolder encarga de instanciar y de actualizar la
+     * informacion de los elementos que forman la UI.
+     *
+     * @author Daniel Puente Gabarri.
+     */
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
 
-        // Elementos que forman parte de la UI del CuestionarioFragment
-
+        // Elementos de la UI.
         private ImageView imgCuestionario;
         private TextView textViewName;
         private TextView textViewDescription;
 
+        /**
+         * Constructor de la clase.
+         * @param view, view.
+         */
         public ViewHolder(View view) {
             super(view);
             this.imgCuestionario = (ImageView) view.findViewById(R.id.imageViewCuestionario);
@@ -75,6 +109,11 @@ public class ResolvedExternalToolAdapter extends RecyclerView.Adapter<ResolvedEx
             itemView.setOnCreateContextMenuListener(this);
         }
 
+        /**
+         * Metodo encargado de instanciar los elementos de para cada vista.
+         *
+         * @param questionnaire
+         */
         public void dataBind(final Questionnaire questionnaire) {
             this.textViewName.setText(questionnaire.getDescripcion());
             this.textViewDescription.setText(questionnaire.getCurso());
@@ -82,27 +121,40 @@ public class ResolvedExternalToolAdapter extends RecyclerView.Adapter<ResolvedEx
 
         }
 
-
+        /**
+         * Metodo encarcago de la logica a seguir en el menu de contexto.
+         *
+         * @param item, item.
+         * @return boolean, boolean.
+         */
         @Override
         public boolean onMenuItemClick(MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.revisarCuestionario:
-                    goToInfoQuestionaryActivity(getAdapterPosition());
+                case R.id.checkQuestionnaire:
+                    goToGradeActivity(getAdapterPosition());
                     return true;
-                case R.id.noRevisarCuestionario:
-                    // TODO no hacer nada
+                case R.id.doNotCheckQuestionnaire:
+                    // no hacer nada.
                     return true;
                 default:
                     return false;
             }
         }
 
+        /**
+         * Metodo encargado de inflar el menu de contexto.
+         *
+         * @param contextMenu, contextMenu
+         * @param v,           view.
+         * @param menuInfo,    menuInfo.
+         */
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            // Obtenemos el cuestionario actual
-            Questionnaire currentQuestionnaire = questionaries.get(this.getAdapterPosition());
-            // Modificamos el nombre del cuestionario en función del seleccionado
-            contextMenu.setHeaderTitle(currentQuestionnaire.getDescripcion());
+            // Obtenemos el nameQuestionnaire actual
+            Questionnaire currentQuestionnaire = questionnaires.get(this.getAdapterPosition());
+            // Modificamos el nombre del nameQuestionnaire en función del seleccionado
+            String msg = "¿Desea revisar el " + currentQuestionnaire.getDescripcion() + "?";
+            contextMenu.setHeaderTitle(msg);
             // Inflamos el menu de contexto
             MenuInflater inflater = activity.getMenuInflater();
             inflater.inflate(R.menu.action_cuestionario_resolved, contextMenu);
@@ -116,22 +168,26 @@ public class ResolvedExternalToolAdapter extends RecyclerView.Adapter<ResolvedEx
 
     }
 
-
-    private void goToInfoQuestionaryActivity(int position) {
+    /**
+     * Metodo encargado de direccionar a GradeActivity para resolver el cuestionario.
+     *
+     * @param position, position.
+     */
+    private void goToGradeActivity(int position) {
         // Obtenemos el questionnaire ha resolver
-        Questionnaire questionnaire = questionaries.get(position);
+        Questionnaire questionnaire = questionnaires.get(position);
 
         // Obtenemos el Id del questionnaire a resolver
-        int idCuestionario = questionnaire.getIdCuestionario();
+        int idQuestionnaire = questionnaire.getIdCuestionario();
         // Obtenemos la clave del ciente;
-        String clave = questionnaire.getClaveCliente();
+        String idStudent = questionnaire.getClaveCliente();
 
         // Vamos al activity encargado de resolver el Test
         Intent intent = new Intent(activity, GradeActivity.class);
 
-        intent.putExtra("idCuestionario", idCuestionario);
-        intent.putExtra("idAlumno", clave);
-        intent.putExtra("nombre", questionnaire.getDescripcion());
+        intent.putExtra("idQuestionnaire", idQuestionnaire);
+        intent.putExtra("idStudent", idStudent);
+        intent.putExtra("nameQuestionnaire", questionnaire.getDescripcion());
 
         activity.startActivity(intent);
 

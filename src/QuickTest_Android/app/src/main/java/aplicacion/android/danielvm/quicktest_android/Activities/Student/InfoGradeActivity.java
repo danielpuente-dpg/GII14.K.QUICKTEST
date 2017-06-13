@@ -1,13 +1,19 @@
 package aplicacion.android.danielvm.quicktest_android.Activities.Student;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.FeedBack;
 import aplicacion.android.danielvm.quicktest_android.R;
 
+/**
+ * Clase InfoGradeActivity encargada de mostrar mas informacion sobre el cuestionario resuelto
+ * a los alumnos.
+ *
+ * @author Daniel Puente Gabarri.
+ */
 public class InfoGradeActivity extends AppCompatActivity {
 
     // Elementos de la UI
@@ -43,9 +49,10 @@ public class InfoGradeActivity extends AppCompatActivity {
     private TextView textViewClockMessageAIG;
     private TextView textViewPlusClockAIG;
 
+    // Atributos
     private static final String FAST = "MUY RÁPIDO";
     private static final String SLOW = "LENTO";
-
+    private GradeActivity activity = new GradeActivity();
     private FeedBack feedBack;
 
     @Override
@@ -57,10 +64,19 @@ public class InfoGradeActivity extends AppCompatActivity {
         enforceBar();
 
         // Obtenemos la info del FeedBack
-        feedBack = new GradeActivity().feedBack;
+        feedBack = activity.getFeedBack();
 
         // Instanciamos los elementos de la UI
+        bindUI();
 
+        // Actualizamos la info
+        setDataView();
+    }
+
+    /**
+     * Metodo encargado de instanciar los elementos de la UI.
+     */
+    private void bindUI() {
         // Primera fila
         textViewNumberQuestions = (TextView) findViewById(R.id.textViewNumberQuestions);
         textViewNumberQuestionsTrue = (TextView) findViewById(R.id.textViewNumberQuestionsTrue);
@@ -98,10 +114,12 @@ public class InfoGradeActivity extends AppCompatActivity {
         linearLayoutColorAIG = (LinearLayout) findViewById(R.id.linearLayoutColorAIG);
         textViewClockMessageAIG = (TextView) findViewById(R.id.textViewClockMessageAIG);
         textViewPlusClockAIG = (TextView) findViewById(R.id.textViewPlusClockAIG);
+    }
 
-
-
-        // Actualizamos la info
+    /**
+     * Metodo encargado de actualizar la informacion en los elementos de la UI.
+     */
+    private void setDataView() {
         // Primera fila
         textViewNumberQuestions.setText(String.valueOf(feedBack.getcSin()));
         textViewNumberQuestionsTrue.setText(String.valueOf(feedBack.getAciertoSin()));
@@ -136,26 +154,27 @@ public class InfoGradeActivity extends AppCompatActivity {
 
         // Cuadro
 
-        if(feedBack.getOrdenRespuesta().equals(FAST)){
+        if (feedBack.getOrdenRespuesta().equals(FAST)) {
             linearLayoutColorAIG.setBackgroundResource(R.color.colorFast);
-        }else if(feedBack.getOrdenRespuesta().equals(SLOW)){
+        } else if (feedBack.getOrdenRespuesta().equals(SLOW)) {
             linearLayoutColorAIG.setBackgroundResource(R.color.colorSlow);
-        }else{
+        } else {
             linearLayoutColorAIG.setBackgroundResource(R.color.colorAmberWildCard);
         }
 
         textViewClockMessageAIG.setText(feedBack.getMensaje());
         textViewPlusClockAIG.setText(feedBack.getPremio() + " PUNTOS");
-
-
     }
 
+    /**
+     * Metodo encargado de forzar la carga del action bar.
+     */
     private void enforceBar() {
         // Forzar y cargar iconos
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        String cuestionario = new GradeActivity().cuestionario;
+        String cuestionario = activity.getNameQuestionnaire();
         getSupportActionBar().setTitle(cuestionario);
     }
 }
