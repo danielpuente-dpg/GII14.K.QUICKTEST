@@ -64,12 +64,12 @@ public class GradeActivity extends AppCompatActivity {
         buttonViewResult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (grade == NOT_AVAILABLE) {
+                //if (grade == NOT_AVAILABLE) {
                     goToInfoGradeActivity();
-                } else {
+                //} else {
                     Toast.makeText(GradeActivity.this,
                             "Esta información no esta disponible desde la app", Toast.LENGTH_SHORT).show();
-                }
+                //}
             }
         });
 

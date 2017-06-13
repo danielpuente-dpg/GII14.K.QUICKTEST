@@ -84,7 +84,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="Nº preguntas"
+                        android:hint="-"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
@@ -93,7 +93,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="Nº aciertos"
+                        android:hint="-"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
@@ -102,7 +102,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="Nº fallos"
+                        android:hint="-"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
@@ -111,7 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="Nota"
+                        android:hint="-"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
@@ -136,7 +136,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="Nº preguntas"
+                        android:hint="-"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
@@ -145,7 +145,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="Nº aciertos"
+                        android:hint="-"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
@@ -154,7 +154,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="Nº fallos"
+                        android:hint="-"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
@@ -163,7 +163,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="Nota"
+                        android:hint="-"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
@@ -188,7 +188,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="Nº preguntas"
+                        android:hint="-"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
@@ -197,7 +197,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="Nº aciertos"
+                        android:hint="-"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
@@ -206,7 +206,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="Nº fallos"
+                        android:hint="-"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
@@ -215,7 +215,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="Nota"
+                        android:hint="-"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
@@ -256,7 +256,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="Nota"
+                        android:hint="-"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
@@ -281,7 +281,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="Nº preguntas"
+                        android:hint="-"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
@@ -289,7 +289,7 @@
                         android:id="@+id/textViewNumberAnswerQuestionsTrue"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="Nº aciertos"
+                        android:hint="-"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
@@ -298,7 +298,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="Nº fallos"
+                        android:hint="-"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
@@ -307,7 +307,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="Nota"
+                        android:hint="-"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 

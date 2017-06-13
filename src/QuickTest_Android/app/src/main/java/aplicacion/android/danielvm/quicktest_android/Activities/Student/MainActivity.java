@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public static User user;
-    public int idCourse;
+    public static int idCourse;
 
 
     @Override
@@ -204,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private ArrayList<Cuestionario> getQuestionariesById(int idCourse){
         HashMap<Integer, List<Cuestionario>> questionariesInCourse = new SecondActivity().questionariesInACourse;
+        Log.d("MainActivity", "questionariesInCourse: " + questionariesInCourse.size());
         return new ArrayList<>(questionariesInCourse.get(idCourse));
     }
 
