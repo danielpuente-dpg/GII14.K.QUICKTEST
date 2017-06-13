@@ -22,7 +22,7 @@ import aplicacion.android.danielvm.quicktest_android.R;
 import aplicacion.android.danielvm.quicktest_android.Requests.ContentTestRequest;
 
 /**
- * Clase ViewTestActivity encargada de mostrar un nameQuestionnaire al profesor.
+ * Clase ViewTestActivity encargada de mostrar un cuestionario al profesor.
  *
  * @author Daniel Puente Gabarri.
  */
@@ -76,7 +76,7 @@ public class ViewTestActivity extends AppCompatActivity {
     }
 
     /**
-     * Metodo devuelve el nameQuestionnaire.
+     * Metodo devuelve el cuestionario.
      *
      * @return ArrayList<Test>, tests.
      */
@@ -85,7 +85,7 @@ public class ViewTestActivity extends AppCompatActivity {
     }
 
     /**
-     * Metodo que obtiene el nameQuestionnaire en funcion del identificador dado.
+     * Metodo que obtiene el cuestionario en funcion del identificador dado.
      *
      * @return ArrayList<Test>, tests.
      */

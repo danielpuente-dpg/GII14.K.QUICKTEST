@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Fragments;
+package aplicacion.android.danielvm.quicktest_android.Fragments.Students;
 
 
 import android.os.Bundle;

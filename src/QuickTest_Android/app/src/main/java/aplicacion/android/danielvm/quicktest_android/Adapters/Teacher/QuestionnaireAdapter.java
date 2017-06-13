@@ -13,37 +13,67 @@ import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnair
 import aplicacion.android.danielvm.quicktest_android.R;
 
 /**
- * Created by Daniel on 09/06/2017.
+ * Clase QuestionnaireAdapter encargada de tratar la logica del adaptor de los
+ * alumnos.
+ *
+ * @author Daniel Puente Gabarri.
  */
 
-public class QuestionaryAdapter extends BaseAdapter {
+public class QuestionnaireAdapter extends BaseAdapter {
 
     // Atributos
     private Context context;
     private int layout;
-    private List<Questionnaire> questionaries;
+    private List<Questionnaire> questionnaires;
 
-    public QuestionaryAdapter(Context context, int layout, List<Questionnaire> questionaries) {
+    /**
+     * Construtor de la clase.
+     * @param context, context.
+     * @param layout, layout.
+     * @param questionnaires, questionnaires.
+     */
+    public QuestionnaireAdapter(Context context, int layout, List<Questionnaire> questionnaires) {
         this.context = context;
         this.layout = layout;
-        this.questionaries = questionaries;
+        this.questionnaires = questionnaires;
     }
 
+    /**
+     * Metodo encargado de devolver el numero de cuestionarios.
+     * @return int, numero de cursos.
+     */
     @Override
     public int getCount() {
-        return this.questionaries.size();
+        return this.questionnaires.size();
     }
 
+    /**
+     * Metodo encargado de obtener un cuestionario dado.
+     * @param position, position
+     * @return Questionnaire, questionnaire.
+     */
     @Override
     public Questionnaire getItem(int position) {
-        return this.questionaries.get(position);
+        return this.questionnaires.get(position);
     }
 
+    /**
+     * Metodo que proporciona el id.
+     * @param id, id.
+     * @return long, id.
+     */
     @Override
     public long getItemId(int id) {
         return id;
     }
 
+    /**
+     * Metodo encargado de para cada vista de inflarla y añadir la informacion.
+     * @param position, position.
+     * @param convertView, convertView.
+     * @param parent, parent.
+     * @return View, convertView.
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
@@ -75,6 +105,10 @@ public class QuestionaryAdapter extends BaseAdapter {
         return convertView;
     }
 
+    /**
+     * Clase ViewHolder interna encarga de abstraer los elementos que forman la UI.
+     * @author Daniel Puente Gabarri.
+     */
     static class ViewHolder{
         private TextView textViewTeacherName;
         private TextView textViewTeacherNameCourse;

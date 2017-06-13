@@ -16,7 +16,10 @@ import aplicacion.android.danielvm.quicktest_android.Models.Android.Student;
 import aplicacion.android.danielvm.quicktest_android.R;
 
 /**
- * Created by Daniel on 11/06/2017.
+ * Clase StudentAdapter encargada de tratar la logica del adaptor de los
+ * cuestionarios sin resolver.
+ *
+ * @author Daniel Puente Gabarri.
  */
 
 public class StudentAdapter extends BaseAdapter {
@@ -26,31 +29,58 @@ public class StudentAdapter extends BaseAdapter {
     private int layout;
     private List<Student> students;
 
+    /**
+     * Contructor de la clase.
+     * @param context, context.
+     * @param layout, layout.
+     * @param students, students.
+     */
     public StudentAdapter(Context context, int layout, List<Student> students) {
         this.context = context;
         this.layout = layout;
         this.students = students;
     }
 
+    /**
+     * Metodo encargado de devolver el numero de alumnos.
+     * @return int, numero de cursos.
+     */
     @Override
     public int getCount() {
         return this.students.size();
     }
 
+    /**
+     * Metodo encargado de obtener un alumno dado.
+     * @param position, position
+     * @return Student, student.
+     */
     @Override
     public Student getItem(int position) {
         return this.students.get(position);
     }
 
+    /**
+     * Metodo que proporciona el id.
+     * @param position, position.
+     * @return long, position.
+     */
     @Override
     public long getItemId(int position) {
         return position;
     }
 
+    /**
+     * Metodo encargado de para cada vista de inflarla y añadir la informacion.
+     * @param position, position.
+     * @param convertView, convertView.
+     * @param parent, parent.
+     * @return View, convertView.
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        Log.d("StudentAdapter", position + "");
+
         if (convertView == null) {
             holder = new ViewHolder();
 
@@ -92,6 +122,10 @@ public class StudentAdapter extends BaseAdapter {
         return convertView;
     }
 
+    /**
+     * Clase ViewHolder interna encarga de abstraer los elementos que forman la UI.
+     * @author Daniel Puente Gabarri.
+     */
     static class ViewHolder {
         private TextView textViewFullName;
         private TextView textViewEmailName;

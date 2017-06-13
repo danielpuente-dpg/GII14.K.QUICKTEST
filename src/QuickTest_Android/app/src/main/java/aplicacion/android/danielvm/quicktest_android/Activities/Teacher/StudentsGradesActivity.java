@@ -143,7 +143,7 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
     }
 
     /**
-     * Metodo encargado de actualizar el estado del nameQuestionnaire para cada alumno.
+     * Metodo encargado de actualizar el estado del cuestionario para cada alumno.
      * @param students, students.
      */
     private void setAllStudentsStates(List<Student> students) {
@@ -171,7 +171,7 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
     }
 
     /**
-     * Metodo encargado de obtener la calificacion del nameQuestionnaire para cada alumno.
+     * Metodo encargado de obtener la calificacion del cuestionario para cada alumno.
      * @param students, students.
      */
     public void setAllStudentsGrades(List<Student> students) {
@@ -227,7 +227,7 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
     }
 
     /**
-     * Metodo que devuelve el nameQuestionnaire.
+     * Metodo que devuelve el cuestionario.
      * @return Questionnaire, questionnaire.
      */
     public Questionnaire getQuestionnaire() {
@@ -279,7 +279,7 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
     }
 
     /**
-     * Metodo encargado de proporcionar una vista del nameQuestionnaire al que se han enfrentado los alumnos.
+     * Metodo encargado de proporcionar una vista del cuestionario al que se han enfrentado los alumnos.
      * @param item, item
      * @return boolean, true.
      */
@@ -295,7 +295,7 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
     }
 
     /**
-     * Metodo encargado de direccionar a la vista del nameQuestionnaire
+     * Metodo encargado de direccionar a la vista del cuestionario
      */
     private void goToViewTestActivity() {
         Intent intent = new Intent(this, ViewTestActivity.class);

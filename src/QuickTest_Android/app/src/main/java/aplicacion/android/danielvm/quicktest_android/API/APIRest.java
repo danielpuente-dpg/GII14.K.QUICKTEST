@@ -4,7 +4,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by Daniel on 26/04/2017.
+ * Clase APIRest encargada de proporcionar una unica instancia para poder comunicarse
+ * con el Api rest de QuickTest
+ *
+ * @author Daniel Puente Gabarri.
  */
 
 public class APIRest {
@@ -15,7 +18,12 @@ public class APIRest {
 
     private static Retrofit retrofit = null;
 
-
+    /**
+     * Metodo encargado de proporcionar la isntancia para poder comunicarse con el
+     * Api rest de QuickTest.
+     *
+     * @return Retrofit, retrofit.
+     */
     public static Retrofit getApi() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()

@@ -18,7 +18,7 @@ import java.util.List;
 
 import aplicacion.android.danielvm.quicktest_android.Activities.LoginActivity;
 import aplicacion.android.danielvm.quicktest_android.Activities.MainActivity;
-import aplicacion.android.danielvm.quicktest_android.Adapters.Teacher.QuestionaryAdapter;
+import aplicacion.android.danielvm.quicktest_android.Adapters.Teacher.QuestionnaireAdapter;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnaire;
 import aplicacion.android.danielvm.quicktest_android.R;
 import aplicacion.android.danielvm.quicktest_android.Utils.Util;
@@ -42,8 +42,8 @@ public class TeacherActivity extends AppCompatActivity implements AdapterView.On
     private MenuItem itemGridView;
 
     // Adaptador
-    private QuestionaryAdapter listViewAdapter;
-    private QuestionaryAdapter gridViewAdapter;
+    private QuestionnaireAdapter listViewAdapter;
+    private QuestionnaireAdapter gridViewAdapter;
 
     // Atributos
     private static List<Questionnaire> questionnaries;
@@ -82,8 +82,8 @@ public class TeacherActivity extends AppCompatActivity implements AdapterView.On
         this.gridView.setOnItemClickListener(this);
 
         // Enlazamos con el adaptador de Cursos
-        this.listViewAdapter = new QuestionaryAdapter(this, R.layout.list_view_questionary, questionnaries);
-        this.gridViewAdapter = new QuestionaryAdapter(this, R.layout.grid_view_questionary, questionnaries);
+        this.listViewAdapter = new QuestionnaireAdapter(this, R.layout.list_view_questionary, questionnaries);
+        this.gridViewAdapter = new QuestionnaireAdapter(this, R.layout.grid_view_questionary, questionnaries);
 
         this.listView.setAdapter(listViewAdapter);
         this.gridView.setAdapter(gridViewAdapter);
@@ -103,7 +103,7 @@ public class TeacherActivity extends AppCompatActivity implements AdapterView.On
     }
 
     /**
-     * Metodo encarcado de proporcionar un nameQuestionnaire en funcion de la posicion dada.
+     * Metodo encarcado de proporcionar un cuestionario en funcion de la posicion dada.
      * @param position, position
      * @return Questionnaire, questionnaire.
      */
@@ -150,7 +150,7 @@ public class TeacherActivity extends AppCompatActivity implements AdapterView.On
     }
 
     /**
-     * Metodo encargado de direccionar al siguiente activity en funcion del nameQuestionnaire dado.
+     * Metodo encargado de direccionar al siguiente activity en funcion del cuestionario dado.
      * @param parent, parent.
      * @param view, parent.
      * @param position, parent.
@@ -163,7 +163,7 @@ public class TeacherActivity extends AppCompatActivity implements AdapterView.On
     }
 
     /**
-     * Metodo encargado de direccionar al siguiente activity en funcion del nameQuestionnaire dado.
+     * Metodo encargado de direccionar al siguiente activity en funcion del cuestionario dado.
      * @param position, position.
      */
     private void goToStudentsGradesActivity(int position) {

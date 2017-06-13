@@ -152,9 +152,9 @@ public class ExternalToolAdapter extends RecyclerView.Adapter<ExternalToolAdapte
          */
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            // Obtenemos el nameQuestionnaire actual
+            // Obtenemos el cuestionario actual
             Questionnaire currentQuestionnaire = questionnaires.get(this.getAdapterPosition());
-            // Modificamos el nombre del nameQuestionnaire en función del seleccionado
+            // Modificamos el nombre del cuestionario en función del seleccionado
             String msg = "¿Desea resolver el " + currentQuestionnaire.getDescripcion() + "?";
             contextMenu.setHeaderTitle(msg);
             // Inflamos el menu de contexto

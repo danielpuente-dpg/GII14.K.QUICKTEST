@@ -66,7 +66,7 @@ public class ResolvedExternalToolAdapter extends RecyclerView.Adapter<ResolvedEx
      */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        // Llamamos la metodo encargado de añadir los datos propios de cada nameQuestionnaire
+        // Llamamos la metodo encargado de añadir los datos propios de cada cuestionario
         holder.dataBind(this.questionnaires.get(position));
     }
 
@@ -150,9 +150,9 @@ public class ResolvedExternalToolAdapter extends RecyclerView.Adapter<ResolvedEx
          */
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            // Obtenemos el nameQuestionnaire actual
+            // Obtenemos el cuestionario actual
             Questionnaire currentQuestionnaire = questionnaires.get(this.getAdapterPosition());
-            // Modificamos el nombre del nameQuestionnaire en función del seleccionado
+            // Modificamos el nombre del cuestionario en función del seleccionado
             String msg = "¿Desea revisar el " + currentQuestionnaire.getDescripcion() + "?";
             contextMenu.setHeaderTitle(msg);
             // Inflamos el menu de contexto
