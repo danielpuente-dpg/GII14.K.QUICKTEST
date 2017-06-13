@@ -14,9 +14,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import aplicacion.android.danielvm.quicktest_android.Activities.Student.MainActivity;
+import aplicacion.android.danielvm.quicktest_android.Activities.Student.StudentActivity;
 import aplicacion.android.danielvm.quicktest_android.Activities.Student.TestActivity;
-import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
+import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnaire;
 import aplicacion.android.danielvm.quicktest_android.R;
 
 /**
@@ -25,12 +25,12 @@ import aplicacion.android.danielvm.quicktest_android.R;
 
 public class ExternalToolAdapter extends RecyclerView.Adapter<ExternalToolAdapter.ViewHolder> {
 
-    private List<Cuestionario> cuestionarios;
+    private List<Questionnaire> questionaries;
     private int layout;
     private Activity activity;
 
-    public ExternalToolAdapter(List<Cuestionario> cuestionarios, Activity activity, int layout) {
-        this.cuestionarios = cuestionarios;
+    public ExternalToolAdapter(List<Questionnaire> questionaries, Activity activity, int layout) {
+        this.questionaries = questionaries;
         this.layout = layout;
         this.activity = activity;
     }
@@ -47,13 +47,13 @@ public class ExternalToolAdapter extends RecyclerView.Adapter<ExternalToolAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // Llamamos la metodo encargado de añadir los datos propios de cada cuestionario
-        holder.dataBind(this.cuestionarios.get(position));
+        holder.dataBind(this.questionaries.get(position));
     }
 
     @Override
     public int getItemCount() {
-        if (cuestionarios != null)
-            return cuestionarios.size();
+        if (questionaries != null)
+            return questionaries.size();
         return 0;
     }
 
@@ -76,10 +76,10 @@ public class ExternalToolAdapter extends RecyclerView.Adapter<ExternalToolAdapte
             itemView.setOnCreateContextMenuListener(this);
         }
 
-        public void dataBind(final Cuestionario cuestionario) {
-            this.textViewName.setText(cuestionario.getDescripcion());
-            this.textViewDescription.setText(cuestionario.getCurso());
-            this.imgCuestionario.setImageResource(cuestionario.getImgIcon());
+        public void dataBind(final Questionnaire questionnaire) {
+            this.textViewName.setText(questionnaire.getDescripcion());
+            this.textViewDescription.setText(questionnaire.getCurso());
+            this.imgCuestionario.setImageResource(questionnaire.getImgIcon());
 
         }
 
@@ -101,9 +101,9 @@ public class ExternalToolAdapter extends RecyclerView.Adapter<ExternalToolAdapte
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             // Obtenemos el cuestionario actual
-            Cuestionario currentCuestionario = cuestionarios.get(this.getAdapterPosition());
+            Questionnaire currentQuestionnaire = questionaries.get(this.getAdapterPosition());
             // Modificamos el nombre del cuestionario en función del seleccionado
-            contextMenu.setHeaderTitle(currentCuestionario.getDescripcion());
+            contextMenu.setHeaderTitle(currentQuestionnaire.getDescripcion());
             // Inflamos el menu de contexto
             MenuInflater inflater = activity.getMenuInflater();
             inflater.inflate(R.menu.action_cuestionario, contextMenu);
@@ -119,20 +119,20 @@ public class ExternalToolAdapter extends RecyclerView.Adapter<ExternalToolAdapte
 
 
     private void goToTestActivity(int position) {
-        // Obtenemos el cuestionario ha resolver
-        Cuestionario cuestionario = cuestionarios.get(position);
+        // Obtenemos el questionnaire ha resolver
+        Questionnaire questionnaire = questionaries.get(position);
 
-        // Obtenemos el Id del cuestionario a resolver
-        int idCuestionario = cuestionario.getIdCuestionario();
+        // Obtenemos el Id del questionnaire a resolver
+        int idCuestionario = questionnaire.getIdCuestionario();
         // Obtenemos la clave del ciente;
-        String clave = cuestionario.getClaveCliente();
+        String clave = questionnaire.getClaveCliente();
 
         // Vamos al activity encargado de resolver el Test
         Intent intent = new Intent(activity, TestActivity.class);
         intent.putExtra("idCuestionario", idCuestionario);
         intent.putExtra("clave", clave);
-        intent.putExtra("nombreAlu", new MainActivity().user.getFirstname());
-        intent.putExtra("apeAlu", new MainActivity().user.getLastname());
+        intent.putExtra("nombreAlu", new StudentActivity().user.getFirstname());
+        intent.putExtra("apeAlu", new StudentActivity().user.getLastname());
         intent.putExtra("position", position);
 
         activity.startActivity(intent);

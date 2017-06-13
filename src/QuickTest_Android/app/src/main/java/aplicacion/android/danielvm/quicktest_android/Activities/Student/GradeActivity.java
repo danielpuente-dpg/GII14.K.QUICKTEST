@@ -64,12 +64,7 @@ public class GradeActivity extends AppCompatActivity {
         buttonViewResult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //if (grade == NOT_AVAILABLE) {
-                    goToInfoGradeActivity();
-                //} else {
-                    Toast.makeText(GradeActivity.this,
-                            "Esta información no esta disponible desde la app", Toast.LENGTH_SHORT).show();
-                //}
+                goToInfoGradeActivity();
             }
         });
 
@@ -81,8 +76,8 @@ public class GradeActivity extends AppCompatActivity {
         if (grade == NOT_AVAILABLE) {
             textViewGrade.setText("La calificación de este cuestionario no se encuentra disponible desde la app movil.");
 
-        // Si la info solo esta disponible desde la app
-        }else{
+            // Si la info solo esta disponible desde la app
+        } else {
             grade *= 10;
             textViewGrade.setText("Su calificación final en este cuestionario es " + grade + "/10");
         }
@@ -90,11 +85,11 @@ public class GradeActivity extends AppCompatActivity {
         textViewClockMessage.setText(feedBack.getMensaje());
         textViewPlusClock.setText(feedBack.getPremio() + " PUNTOS");
 
-        if(feedBack.getOrdenRespuesta().equals(FAST)){
+        if (feedBack.getOrdenRespuesta().equals(FAST)) {
             linearLayoutColor.setBackgroundResource(R.color.colorFast);
-        }else if(feedBack.getOrdenRespuesta().equals(SLOW)){
+        } else if (feedBack.getOrdenRespuesta().equals(SLOW)) {
             linearLayoutColor.setBackgroundResource(R.color.colorSlow);
-        }else{
+        } else {
             linearLayoutColor.setBackgroundResource(R.color.colorAmberWildCard);
         }
 
@@ -133,7 +128,7 @@ public class GradeActivity extends AppCompatActivity {
 
     private Double getGrade() {
         Double retorno = null;
-        idAlumno += ":" + new MainActivity().getUser().getId();
+        idAlumno += ":" + new StudentActivity().getUser().getId();
         UserGradeRequest userGradeRequest = new UserGradeRequest(APIRest.getApi(), idCuestionario, idAlumno);
         try {
             retorno = userGradeRequest.execute().get();
@@ -147,7 +142,7 @@ public class GradeActivity extends AppCompatActivity {
         return retorno;
     }
 
-    private FeedBack getInfoFeedBack(){
+    private FeedBack getInfoFeedBack() {
         FeedBack retorno = null;
         UserInfoGradeRequest userInfoGradeRequest = new UserInfoGradeRequest(APIRest.getApi(), idCuestionario, idAlumno);
         try {

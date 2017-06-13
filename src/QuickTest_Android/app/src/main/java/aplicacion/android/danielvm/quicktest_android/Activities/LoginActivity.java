@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -24,22 +23,14 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 
 /**
- * Clase LoginActivity encargada de la Logica del inicio de sesion de un usuario
+ * Clase LoginActivity encargada de la Logica del inicio de sesión de un usuario
  * @author Daniel Puente
- *
  */
 public class LoginActivity extends AppCompatActivity {
 
     // Elementos de la UI
-    //private EditText editTextName;
-    //private EditText editTextPassword;
-
-
     private EditText editTextName;
     private EditText editTextPassword;
-    private TextInputLayout textInputName;
-    private TextInputLayout textInputPassword;
-
     private Switch switchRemember;
     private Button btnLogIn;
 
@@ -51,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Ocultamos el action bar
         getSupportActionBar().hide();
 
         // Inicializamos los elementos de la UI
@@ -123,9 +115,6 @@ public class LoginActivity extends AppCompatActivity {
      * Metoodo encargado de enlazar e inicializar los elementos de UI.
      */
     private void bindUI() {
-
-        textInputName = (TextInputLayout) findViewById(R.id.textInputName);
-        textInputPassword = (TextInputLayout) findViewById(R.id.textInputPassword);
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         switchRemember = (Switch) findViewById(R.id.switchRemember);
@@ -146,13 +135,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     * Metodo encargano de re-direccionar al SecondActivity.
+     * Metodo encargano de re-direccionar al MainActivity.
      * @param token, token del usuario.
      * @param name, nombre del usuario
      */
     private void goToSecondActivity(String token, String name) {
-
-        Intent intentLogin = new Intent(this, SecondActivity.class);
+        Intent intentLogin = new Intent(this, MainActivity.class);
         intentLogin.putExtra("token", token);
         intentLogin.putExtra("name", name);
         startActivity(intentLogin);

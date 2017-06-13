@@ -20,7 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import aplicacion.android.danielvm.quicktest_android.Activities.Student.MainActivity;
+import aplicacion.android.danielvm.quicktest_android.Activities.Student.StudentActivity;
 import aplicacion.android.danielvm.quicktest_android.Activities.Student.TestActivity;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Result;
@@ -124,7 +124,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
                     int idPregunta = test.getIdPregunta();
                     int idRespuesta = test.getRespuestas().get(checkedId).getIdRespuesta();
                     String tipoComUsado = "";
-                    String idAlumno = new TestActivity().clave + ":" + new MainActivity().user.getId();
+                    String idAlumno = new TestActivity().clave + ":" + new StudentActivity().user.getId();
 
                     Result result = new Result(idPregunta, idRespuesta, tipoComUsado, idAlumno);
                     postTest.put(getAdapterPosition(), result);

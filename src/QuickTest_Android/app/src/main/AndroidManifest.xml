@@ -14,7 +14,7 @@
 
         </activity>
         <activity
-            android:name=".Activities.Student.MainActivity"
+            android:name=".Activities.Student.StudentActivity"
             android:parentActivityName=".Activities.CourseActivity"
             android:theme="@style/AppThemeNoActionBar" />
         <activity android:name=".Activities.Student.TestActivity" />
@@ -22,17 +22,17 @@
             android:name=".Activities.Student.InfoGradeActivity"
             android:screenOrientation="landscape" />
         <activity android:name=".Activities.Student.GradeActivity" />
-        <activity android:name=".Activities.SecondActivity" />
+        <activity android:name=".Activities.MainActivity" />
         <activity
-            android:name=".Activities.Teacher.SecondTeacherActivity"
+            android:name=".Activities.Teacher.TeacherActivity"
             android:parentActivityName=".Activities.CourseActivity" />
         <activity
-            android:name=".Activities.Teacher.ThirdTeacherActivity"
-            android:parentActivityName=".Activities.Teacher.SecondTeacherActivity" />
+            android:name=".Activities.Teacher.StudentsGradesActivity"
+            android:parentActivityName=".Activities.Teacher.TeacherActivity" />
         <activity android:name=".Activities.CourseActivity" />
         <activity
             android:name=".Activities.Teacher.ViewTestActivity"
-            android:parentActivityName=".Activities.Teacher.ThirdTeacherActivity" />
+            android:parentActivityName=".Activities.Teacher.StudentsGradesActivity" />
         <activity
             android:name=".Activities.SplashActivity"
             android:theme="@style/SplashScreen">

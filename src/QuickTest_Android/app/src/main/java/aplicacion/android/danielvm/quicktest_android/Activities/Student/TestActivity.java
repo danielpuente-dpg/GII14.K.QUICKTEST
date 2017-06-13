@@ -25,13 +25,13 @@ import aplicacion.android.danielvm.quicktest_android.API.APIRest;
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.RestService;
 import aplicacion.android.danielvm.quicktest_android.Adapters.Student.TestAdapter;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.APIResponse;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.WildCard;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Mensaje;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Pregunta;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Result;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.TestRequest;
-import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.WildCard;
+import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnaire;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Test;
 import aplicacion.android.danielvm.quicktest_android.R;
 import aplicacion.android.danielvm.quicktest_android.Utils.RespuestaApi;
@@ -41,6 +41,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Clase TestActivity encargada de mostrar al alumno el cuestionario a resolver.
+ * @author Daniel Puente Gabarri.
+ */
 public class TestActivity extends AppCompatActivity {
 
     // Atributos para el Adapter
@@ -57,7 +61,7 @@ public class TestActivity extends AppCompatActivity {
     public static String idAlumno;
     public static String nombreAlu;
     public static String apeAlu;
-    private Cuestionario cuestionario;
+    private Questionnaire questionnaire;
     private int position;
 
     public static List<WildCard> greenWildCard;
@@ -74,8 +78,8 @@ public class TestActivity extends AppCompatActivity {
 
         setIdCuestionarioAndKey();
 
-        MainActivity activity = new MainActivity();
-        cuestionario = activity.getDataExternalTools().get(position);
+        StudentActivity activity = new StudentActivity();
+        questionnaire = activity.getDataExternalTools().get(position);
 
         // Forzamos la carga del icono de la aplicacion
         enforceIconBar();
@@ -119,7 +123,7 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                // Obtenemoslas la informacion del cuestionario resuelto
+                // Obtenemoslas la informacion del questionnaire resuelto
                 HashMap<Integer, Result> results = new TestAdapter(tests, R.layout.recycler_view_item_test, null, null).postTest;
                 List<Result> respuestas = new ArrayList<>();
 
@@ -136,7 +140,7 @@ public class TestActivity extends AppCompatActivity {
                     respuestas.add(value);
 
                 }
-                idCourse = new MainActivity().idCourse;
+                idCourse = new StudentActivity().idCourse;
 
 
                 idAlumno = respuestas.get(0).getIdAlumno();
@@ -175,7 +179,7 @@ public class TestActivity extends AppCompatActivity {
     private void enforceIconBar() {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle(cuestionario.getDescripcion());
+        getSupportActionBar().setTitle(questionnaire.getDescripcion());
     }
 
     private void initWildCardType() {
@@ -185,7 +189,7 @@ public class TestActivity extends AppCompatActivity {
     }
 
     private void goToMainActivity(int idCourse) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, StudentActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra("idCourse", idCourse);
         startActivity(intent);

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.Teacher.ThirdTeacherActivity">
+    tools:context=".Activities.Teacher.StudentsGradesActivity">
 
     <ListView
         android:id="@+id/listViewStudentGrade"

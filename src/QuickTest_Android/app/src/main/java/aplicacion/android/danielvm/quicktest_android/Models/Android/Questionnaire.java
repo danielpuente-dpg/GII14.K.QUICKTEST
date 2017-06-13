@@ -9,7 +9,7 @@ import android.os.Parcelable;
 
 
 
-public class Cuestionario implements Parcelable {
+public class Questionnaire implements Parcelable {
 
     private int idCuestionario;
     private String descripcion;
@@ -17,7 +17,7 @@ public class Cuestionario implements Parcelable {
     private String curso;
     private String claveCliente;
 
-    public Cuestionario(int idCuestionario, String descripcion, int imgIcon, String curso, String claveCliente) {
+    public Questionnaire(int idCuestionario, String descripcion, int imgIcon, String curso, String claveCliente) {
         this.idCuestionario = idCuestionario;
         this.descripcion = descripcion;
         this.imgIcon = imgIcon;
@@ -65,7 +65,7 @@ public class Cuestionario implements Parcelable {
         this.claveCliente = claveCliente;
     }
 
-    protected Cuestionario(Parcel in) {
+    protected Questionnaire(Parcel in) {
         idCuestionario = in.readInt();
         descripcion = in.readString();
         imgIcon = in.readInt();
@@ -88,15 +88,15 @@ public class Cuestionario implements Parcelable {
     }
 
     @SuppressWarnings("unused")
-    public static final Parcelable.Creator<Cuestionario> CREATOR = new Parcelable.Creator<Cuestionario>() {
+    public static final Parcelable.Creator<Questionnaire> CREATOR = new Parcelable.Creator<Questionnaire>() {
         @Override
-        public Cuestionario createFromParcel(Parcel in) {
-            return new Cuestionario(in);
+        public Questionnaire createFromParcel(Parcel in) {
+            return new Questionnaire(in);
         }
 
         @Override
-        public Cuestionario[] newArray(int size) {
-            return new Cuestionario[size];
+        public Questionnaire[] newArray(int size) {
+            return new Questionnaire[size];
         }
     };
 }

@@ -21,6 +21,14 @@ public class APIMoodle {
     public static final String GET_PROFILES_USER_BY_USER = "core_user_get_course_user_profiles";
     public static final String GET_USERS_ENROLLED_IN_COURSE = "core_enrol_get_enrolled_users";
 
+
+    public static final String USERNAME = "admin";
+    public static final String PASSWORD = "Asdf1234!";
+
+    public static final String IS_STUDENT = "student";
+    public static final String IS_EDIT_TEACHER = "editingteacher";
+    public static final String IS_TEACHER = "teacher";
+
     private static Retrofit retrofit = null;
 
 

@@ -1,9 +1,9 @@
 package aplicacion.android.danielvm.quicktest_android.Activities.Teacher;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,7 +21,7 @@ import aplicacion.android.danielvm.quicktest_android.API.APIMoodle;
 import aplicacion.android.danielvm.quicktest_android.API.APIRest;
 import aplicacion.android.danielvm.quicktest_android.Adapters.Teacher.StudentAdapter;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.EnrolCourse;
-import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
+import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnaire;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Student;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.UserEnrol;
 import aplicacion.android.danielvm.quicktest_android.R;
@@ -29,7 +29,12 @@ import aplicacion.android.danielvm.quicktest_android.Requests.StatusQuestionaryR
 import aplicacion.android.danielvm.quicktest_android.Requests.UserGradeRequest;
 import aplicacion.android.danielvm.quicktest_android.Requests.UsersEnrolledInCourse;
 
-public class ThirdTeacherActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
+/**
+ * Clase StudentsGradesActivity encargada de mostrar al profesor las calificaciones obtenidas por sus alumno.
+ *
+ * @author Daniel Puente Gabarri
+ */
+public class StudentsGradesActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     // Elementos de la UI
     private ListView listView;
@@ -39,11 +44,10 @@ public class ThirdTeacherActivity extends AppCompatActivity implements AdapterVi
 
     // Atributos
     private int position;
-    private static Cuestionario cuestionario;
-    private int idCuestionario;
+    private static Questionnaire questionnaire;
+    private int idQuestionnarie;
     private int idCourse;
     private String tokenWebService;
-    private static final String IS_STUDENT = "student";
     private static final int RESOLVED = 1;
     private static final int UNRESOLVED = 0;
     private static final int NOT_INFO = -1;
@@ -61,9 +65,9 @@ public class ThirdTeacherActivity extends AppCompatActivity implements AdapterVi
         // Forzamos la carga del icono de la aplicacion
         enforceIconBar();
 
-        // Obtenemos los estudiantes dado un curso y cuestionario
+        // Obtenemos los estudiantes dado un curso y questionnaire
         this.students = loadStudents();
-        Log.d("ThirdTeacherActivity", this.students.size() + "");
+        Log.d("StudentsGradesActivity", this.students.size() + "");
 
         // Instanciamos los elementos de la UI
         this.listView = (ListView) findViewById(R.id.listViewStudentGrade);
@@ -82,23 +86,33 @@ public class ThirdTeacherActivity extends AppCompatActivity implements AdapterVi
 
     }
 
+    /**
+     * Metodo encargado de forzar la carga del action bar.
+     */
     private void enforceIconBar() {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(cuestionario.getDescripcion());
+        getSupportActionBar().setTitle(questionnaire.getDescripcion());
     }
 
+    /**
+     * Metodo encargado de obtener informacion necesaria del TeacherActivity.
+     */
     private void getOthersData() {
-        SecondTeacherActivity activity = new SecondTeacherActivity();
-        cuestionario = activity.getQuestionaryByPosition(position);
-        idCuestionario = cuestionario.getIdCuestionario();
+        TeacherActivity activity = new TeacherActivity();
+        questionnaire = activity.getQuestionaryByPosition(position);
+        idQuestionnarie = questionnaire.getIdCuestionario();
         idCourse = activity.getIdCourse();
         tokenWebService = activity.getTokenWebService();
         usersEnrol = getUserEnrolsInCourse();
     }
 
-    @Nullable
+    /**
+     * Metodo encargado de obtener los usuarios matriculados en curso.
+     *
+     * @return UserEnrol[], usersEnrol.
+     */
     private UserEnrol[] getUserEnrolsInCourse() {
 
         UsersEnrolledInCourse usersEnrolledInCourse = new UsersEnrolledInCourse(APIMoodle.getApi(), tokenWebService, idCourse);
@@ -110,26 +124,33 @@ public class ThirdTeacherActivity extends AppCompatActivity implements AdapterVi
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        Log.d("ThirdTeacherActivity", usersEnrol.length + "");
+        Log.d("StudentsGradesActivity", "usersEnrol: " + usersEnrol.length);
         return usersEnrol;
     }
 
+    /**
+     * Metododo encargado de obtener los alumnos.
+     * @return ArrayList<Student>, students.
+     */
     private ArrayList<Student> loadStudents() {
         // Obtenemos los estudiantes matriculados en el curso
         List<Student> students = getStudents();
-        // Actualizamos el estado de ese cuestionario para cada alumno
+        // Actualizamos el estado de ese questionnaire para cada alumno
         setAllStudentsStates(students);
-        // Actualizamos la calificacion para aquellos estudiantes que han resuelto el cuestionario desde la app movil.
+        // Actualizamos la calificacion para aquellos estudiantes que han resuelto el questionnaire desde la app movil.
         setAllStudentsGrades(students);
-
         return new ArrayList<>(students);
     }
 
+    /**
+     * Metodo encargado de actualizar el estado del cuestionario para cada alumno.
+     * @param students, students.
+     */
     private void setAllStudentsStates(List<Student> students) {
         for (Student student : students) {
-            String oauth_consumer_key = cuestionario.getClaveCliente() + ":" + student.getId();
+            String oauth_consumer_key = questionnaire.getClaveCliente() + ":" + student.getId();
             StatusQuestionaryRequest statusQuestionaryRequest =
-                    new StatusQuestionaryRequest(APIRest.getApi(), oauth_consumer_key, idCuestionario);
+                    new StatusQuestionaryRequest(APIRest.getApi(), oauth_consumer_key, idQuestionnarie);
 
             try {
                 int status = statusQuestionaryRequest.execute().get();
@@ -138,7 +159,7 @@ public class ThirdTeacherActivity extends AppCompatActivity implements AdapterVi
                 } else if (status == UNRESOLVED) {
                     student.setStatus(false);
                 } else {
-                    Log.d("ThirdTeacherActivity", "error in getStatus");
+                    Log.d("StudentsGradesActivity", "error in getStatus");
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -149,10 +170,14 @@ public class ThirdTeacherActivity extends AppCompatActivity implements AdapterVi
         }
     }
 
+    /**
+     * Metodo encargado de obtener la calificacion del cuestionario para cada alumno.
+     * @param students, students.
+     */
     public void setAllStudentsGrades(List<Student> students) {
         for (Student student : students) {
-            String idAlumno = cuestionario.getClaveCliente() + ":" + student.getId();
-            UserGradeRequest userGradeRequest = new UserGradeRequest(APIRest.getApi(), idCuestionario, idAlumno);
+            String idAlumno = questionnaire.getClaveCliente() + ":" + student.getId();
+            UserGradeRequest userGradeRequest = new UserGradeRequest(APIRest.getApi(), idQuestionnarie, idAlumno);
             try {
                 Double grade = userGradeRequest.execute().get();
                 student.setGrade(grade);
@@ -164,11 +189,15 @@ public class ThirdTeacherActivity extends AppCompatActivity implements AdapterVi
         }
     }
 
+    /**
+     * Metodo encargado de obtener los alumnos.
+     * @return ArrayList<Student>, students.
+     */
     private ArrayList<Student> getStudents() {
         ArrayList<Student> retorno = new ArrayList<>();
         for (UserEnrol userEnrol : usersEnrol) {
             String userRol = userEnrol.getRoles().get(0).getShortname();
-            if (userRol.equals(IS_STUDENT)) {
+            if (userRol.equals(APIMoodle.IS_STUDENT)) {
                 for (EnrolCourse enrolCourse : userEnrol.getEnrolledcourses()) {
                     int id = enrolCourse.getId();
                     if (id == idCourse) {
@@ -184,39 +213,63 @@ public class ThirdTeacherActivity extends AppCompatActivity implements AdapterVi
 
     }
 
+    /**
+     * Metodo encargado de recuperar la informacion proporciona del anterior activity.
+     */
     private void getDataBundle() {
         Bundle bundle = getIntent().getExtras();
         if (bundle == null)
-            Log.d("ThirdTeacherActivity", "Intent was null");
+            Log.d("StudentsGradesActivity", "Intent was null");
         else {
-            Log.d("ThirdTeacherActivity", "Intent OK");
+            Log.d("StudentsGradesActivity", "Intent OK");
             position = bundle.getInt("position");
         }
     }
 
-    public Cuestionario getCuestionario(){
-        return cuestionario;
+    /**
+     * Metodo que devuelve el cuestionario.
+     * @return Questionnaire, questionnaire.
+     */
+    public Questionnaire getQuestionnaire() {
+        return questionnaire;
     }
 
 
+    /**
+     * Metodo encargado de lanzar un mensaje en funcion del alumno seleccionado.
+     * @param parent, parent.
+     * @param view, parent.
+     * @param position, parent.
+     * @param id, parent.
+     */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.d("ThirdTeacherActivity", "Cuestionarios: " + this.students.get(position));
+        Log.d("StudentsGradesActivity", "Cuestionarios: " + this.students.get(position));
         Toast.makeText(this, createMessage(position), Toast.LENGTH_SHORT).show();
     }
 
-    public String createMessage(int position){
+    /**
+     * Metodo encargado de proporcionar el mensaje correspondiente en funcion del alumno.
+     * @param position, position.
+     * @return String, message.
+     */
+    public String createMessage(int position) {
         Student student = this.students.get(position);
         String message;
-        if(student.getGrade() == NOT_INFO){
-            message = "La calificación de este alumno se encuentra ya en Moodle o no ha resuelto aún el cuestionario";
-        }else{
+        if (student.getGrade() == NOT_INFO) {
+            message = "La calificación de este alumno se encuentra ya en Moodle o no ha resuelto aún el questionnaire";
+        } else {
             message = "El alumno " + student.getFullname() + " ha obtenido una calificación de " +
                     (student.getGrade() * 10);
         }
         return message;
     }
 
+    /**
+     * Metodo encargado de inflar el action bar del activity.
+     * @param menu, menu.
+     * @return boolean, true.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -225,6 +278,11 @@ public class ThirdTeacherActivity extends AppCompatActivity implements AdapterVi
         return true;
     }
 
+    /**
+     * Metodo encargado de proporcionar una vista del cuestionario al que se han enfrentado los alumnos.
+     * @param item, item
+     * @return boolean, true.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -236,9 +294,12 @@ public class ThirdTeacherActivity extends AppCompatActivity implements AdapterVi
         }
     }
 
+    /**
+     * Metodo encargado de direccionar a la vista del cuestionario
+     */
     private void goToViewTestActivity() {
         Intent intent = new Intent(this, ViewTestActivity.class);
-        intent.putExtra("idCuestionario", idCuestionario);
+        intent.putExtra("idQuestionnarie", idQuestionnarie);
         startActivity(intent);
     }
 }

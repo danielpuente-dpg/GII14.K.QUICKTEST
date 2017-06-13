@@ -1,8 +1,8 @@
 package aplicacion.android.danielvm.quicktest_android.Activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,13 +16,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import aplicacion.android.danielvm.quicktest_android.Activities.Student.MainActivity;
-import aplicacion.android.danielvm.quicktest_android.Activities.Teacher.SecondTeacherActivity;
+import aplicacion.android.danielvm.quicktest_android.API.APIMoodle;
+import aplicacion.android.danielvm.quicktest_android.Activities.Student.StudentActivity;
+import aplicacion.android.danielvm.quicktest_android.Activities.Teacher.TeacherActivity;
 import aplicacion.android.danielvm.quicktest_android.Adapters.CourseAdapter;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Course;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Role;
 import aplicacion.android.danielvm.quicktest_android.R;
 
+/**
+ * Clase CourseActivity encarga de mostrar los cursos para ese usuario.
+ * @author Daniel Puente Gabarri.
+ */
 public class CourseActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     // Elementos de la UI
@@ -42,9 +47,7 @@ public class CourseActivity extends AppCompatActivity implements AdapterView.OnI
     private static final int SWITCH_TO_LIST_VIEW = 0;
     private static final int SWITCH_TO_GRID_VIEW = 1;
     private String ROLE_OF_USER;
-    private static final String IS_STUDENT = "student";
-    private static final String IS_EDIT_TEACHER = "editingteacher";
-    private static final String IS_TEACHER = "teacher";
+    private MainActivity activity = new MainActivity();
 
 
     @Override
@@ -78,6 +81,9 @@ public class CourseActivity extends AppCompatActivity implements AdapterView.OnI
         registerForContextMenu(this.gridView);
     }
 
+    /**
+     * Metodo encargado de forzar la carga del action bar.
+     */
     private void enforceIconBar() {
         getSupportActionBar().setIcon(R.mipmap.ic_action_bar_student);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
@@ -85,10 +91,16 @@ public class CourseActivity extends AppCompatActivity implements AdapterView.OnI
         getSupportActionBar().setTitle("Cursos");
     }
 
+
+    /**
+     * Metodo encargado de obtener los cursos en los que se encuentra matriculado
+     * el usuario,
+     * @return List<Course>, retorno.
+     */
     private List<Course> loadCourses() {
         List<Course> retorno = new ArrayList<>();
-        HashMap<Integer, Course> coursesById = new SecondActivity().coursesById;
-        HashMap<Integer, Role> coursesByRol = new SecondActivity().coursesByRol;
+        HashMap<Integer, Course> coursesById = activity.getQuestionnariesById();
+        HashMap<Integer, Role> coursesByRol = activity.getCoursesByRol();
 
         for(Integer idCourse : coursesById.keySet()){
             Course course = coursesById.get(idCourse);
@@ -102,39 +114,69 @@ public class CourseActivity extends AppCompatActivity implements AdapterView.OnI
     }
 
 
+    /**
+     * Metodo encargado de direccionar al siguiente activity en funcion del rol del usuario
+     * en dicho curso.
+     * @param parent, parent.
+     * @param view, view.
+     * @param position, position.
+     * @param id, id.
+     */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Log.d("CourseActivity", "Curso: " + this.courses.get(position));
         goToMainOrSecondTeacherActivity(position);
     }
 
+    /**
+     * Metodo encargado de la logica de onItemClick en funcion del rol del usuario.
+     * @param position, position.
+     */
     private void goToMainOrSecondTeacherActivity(int position) {
         ROLE_OF_USER = getUserRolInCourse(position);
-        if (ROLE_OF_USER.equals(IS_EDIT_TEACHER) || ROLE_OF_USER.equals(IS_TEACHER)) {
-            goToSecondTeacherActivity(position);
-        } else if (ROLE_OF_USER.equals(IS_STUDENT)) {
-            goToMainActivity(position);
+        if (ROLE_OF_USER.equals(APIMoodle.IS_EDIT_TEACHER) || ROLE_OF_USER.equals(APIMoodle.IS_TEACHER)) {
+            goToTeacherActivity(position);
+        } else if (ROLE_OF_USER.equals(APIMoodle.IS_STUDENT)) {
+            goToStudentActivity(position);
         } else {
             Log.d("CourseActivity", "Rol: " + this.courses.get(position).getRol() + " no contemplado");
         }
     }
 
+    /**
+     * Metodo encargado de proporcionar el rol del usuario en funcion del curso seleccionado.
+     * @param position, position.
+     * @return Strinf, rol.
+     */
     private String getUserRolInCourse(int position) {
         return this.courses.get(position).getRol();
     }
 
-    private void goToMainActivity(int position) {
-        Intent intent = new Intent(this, MainActivity.class);
+    /**
+     * Metodo encargado de direccionar al activity del alumno.
+     * @param position, position.
+     */
+    private void goToStudentActivity(int position) {
+        Intent intent = new Intent(this, StudentActivity.class);
         intent.putExtra("idCourse", this.courses.get(position).getId());
         startActivity(intent);
     }
 
-    private void goToSecondTeacherActivity(int position) {
-        Intent intent = new Intent(this, SecondTeacherActivity.class);
+    /**
+     * Metodo encargado de direccionar al activity del profesor.
+     * @param position, position.
+     */
+    private void goToTeacherActivity(int position) {
+        Intent intent = new Intent(this, TeacherActivity.class);
         intent.putExtra("idCourse", this.courses.get(position).getId());
         startActivity(intent);
     }
 
+    /**
+     * Metodo encargado de inflar la vista del action bar.
+     * @param menu, menu.
+     * @return boolean, true.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -148,6 +190,11 @@ public class CourseActivity extends AppCompatActivity implements AdapterView.OnI
         return true;
     }
 
+    /**
+     * Metodo encargado de la logica a seguir en funcion del boton seleccionado del action bar.
+     * @param item, item.
+     * @return boolean, true.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -162,6 +209,11 @@ public class CourseActivity extends AppCompatActivity implements AdapterView.OnI
         }
     }
 
+    /**
+     * Metodo encargado de activar o desactivar las propiedas del ListView o GridView,
+     * en funcion de la opcion selecconada.
+     * @param option, option.
+     */
     private void switchView(int option) {
         if (option == SWITCH_TO_LIST_VIEW) {
             if (this.listView.getVisibility() == View.INVISIBLE) {

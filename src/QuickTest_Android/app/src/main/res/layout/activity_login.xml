@@ -47,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableRight="@android:drawable/ic_dialog_email"
-                android:hint="Name"
+                android:hint="Nombre"
                 android:textColor="@color/cardview_light_background" />
 
 
@@ -67,7 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableRight="@android:drawable/ic_dialog_email"
-                android:hint="Password"
+                android:hint="Contraseña"
                 android:inputType="textPassword"
                 android:textColor="@color/cardview_light_background" />
 

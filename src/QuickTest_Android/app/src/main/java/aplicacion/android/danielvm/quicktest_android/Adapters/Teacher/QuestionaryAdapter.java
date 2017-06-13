@@ -9,8 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
-import aplicacion.android.danielvm.quicktest_android.Models.Moodle.Course;
+import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnaire;
 import aplicacion.android.danielvm.quicktest_android.R;
 
 /**
@@ -22,22 +21,22 @@ public class QuestionaryAdapter extends BaseAdapter {
     // Atributos
     private Context context;
     private int layout;
-    private List<Cuestionario> cuestionarios;
+    private List<Questionnaire> questionaries;
 
-    public QuestionaryAdapter(Context context, int layout, List<Cuestionario> cuestionarios) {
+    public QuestionaryAdapter(Context context, int layout, List<Questionnaire> questionaries) {
         this.context = context;
         this.layout = layout;
-        this.cuestionarios = cuestionarios;
+        this.questionaries = questionaries;
     }
 
     @Override
     public int getCount() {
-        return this.cuestionarios.size();
+        return this.questionaries.size();
     }
 
     @Override
-    public Cuestionario getItem(int position) {
-        return this.cuestionarios.get(position);
+    public Questionnaire getItem(int position) {
+        return this.questionaries.get(position);
     }
 
     @Override
@@ -67,11 +66,11 @@ public class QuestionaryAdapter extends BaseAdapter {
         }
 
         // Obtenemos la informacion sobre la vista actual
-        final Cuestionario currenQuestionary = getItem(position);
+        final Questionnaire currenQuestionnaire = getItem(position);
 
         // Cambiamos la vista con los nuevos valores
-        holder.textViewTeacherName.setText(currenQuestionary.getDescripcion());
-        holder.textViewTeacherNameCourse.setText(currenQuestionary.getCurso());
+        holder.textViewTeacherName.setText(currenQuestionnaire.getDescripcion());
+        holder.textViewTeacherNameCourse.setText(currenQuestionnaire.getCurso());
 
         return convertView;
     }

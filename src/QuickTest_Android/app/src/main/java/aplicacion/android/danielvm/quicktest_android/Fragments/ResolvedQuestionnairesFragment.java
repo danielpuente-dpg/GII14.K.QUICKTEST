@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import aplicacion.android.danielvm.quicktest_android.Activities.Student.MainActivity;
+import aplicacion.android.danielvm.quicktest_android.Activities.Student.StudentActivity;
 import aplicacion.android.danielvm.quicktest_android.Adapters.Student.ResolvedExternalToolAdapter;
-import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
+import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnaire;
 import aplicacion.android.danielvm.quicktest_android.R;
 
 
@@ -27,7 +27,7 @@ public class ResolvedQuestionnairesFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    private List<Cuestionario> resolvedQuestionnaires;
+    private List<Questionnaire> resolvedQuestionnaires;
 
     public ResolvedQuestionnairesFragment() {
     }
@@ -36,8 +36,8 @@ public class ResolvedQuestionnairesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        MainActivity mainActivity = (MainActivity) getActivity();
-        resolvedQuestionnaires = mainActivity.getDataExternalToolsResolved();
+        StudentActivity studentActivity = (StudentActivity) getActivity();
+        resolvedQuestionnaires = studentActivity.getDataExternalToolsResolved();
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_second, container, false);

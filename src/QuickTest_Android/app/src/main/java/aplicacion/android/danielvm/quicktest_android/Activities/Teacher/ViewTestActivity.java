@@ -16,11 +16,16 @@ import aplicacion.android.danielvm.quicktest_android.Adapters.Teacher.TestAdapte
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Mensaje;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Pregunta;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
-import aplicacion.android.danielvm.quicktest_android.Models.Android.Cuestionario;
+import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnaire;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Test;
 import aplicacion.android.danielvm.quicktest_android.R;
 import aplicacion.android.danielvm.quicktest_android.Requests.ContentTestRequest;
 
+/**
+ * Clase ViewTestActivity encargada de mostrar un cuestionario al profesor.
+ *
+ * @author Daniel Puente Gabarri.
+ */
 public class ViewTestActivity extends AppCompatActivity {
 
     // Atributos para el Adapter
@@ -30,8 +35,8 @@ public class ViewTestActivity extends AppCompatActivity {
 
 
     private List<Test> tests;
-    private Cuestionario cuestionario;
-    private int idCuestionario;
+    private Questionnaire questionnaire;
+    private int idQuestionnarie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +46,8 @@ public class ViewTestActivity extends AppCompatActivity {
         // Recuperamos la información
         getDataBundle();
 
-        ThirdTeacherActivity activity =  new ThirdTeacherActivity();
-        this.cuestionario = activity.getCuestionario();
+        StudentsGradesActivity activity = new StudentsGradesActivity();
+        this.questionnaire = activity.getQuestionnaire();
 
         // Forzamos la carga del icono de la aplicacion
         enforceIconBar();
@@ -60,26 +65,39 @@ public class ViewTestActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
     }
 
+    /**
+     * Metodo encargado de forzar la carga del action bar.
+     */
     private void enforceIconBar() {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        String title = cuestionario.getDescripcion();
+        String title = questionnaire.getDescripcion();
         getSupportActionBar().setTitle(title);
     }
 
-    private ArrayList loadTest() {
+    /**
+     * Metodo devuelve el cuestionario.
+     *
+     * @return ArrayList<Test>, tests.
+     */
+    private ArrayList<Test> loadTest() {
         return getTest();
     }
 
-    private ArrayList<Test> getTest(){
+    /**
+     * Metodo que obtiene el cuestionario en funcion del identificador dado.
+     *
+     * @return ArrayList<Test>, tests.
+     */
+    private ArrayList<Test> getTest() {
         ArrayList<Test> retorno = new ArrayList<>();
-        ContentTestRequest contentTestRequest = new ContentTestRequest(APIRest.getApi(), idCuestionario);
+        ContentTestRequest contentTestRequest = new ContentTestRequest(APIRest.getApi(), idQuestionnarie);
         try {
-            List<Mensaje> mensajes = contentTestRequest.execute().get();
-            for (Mensaje mensaje : mensajes) {
-                Pregunta pregunta = mensaje.getPregunta();
-                List<Respuesta> respuestas = mensaje.getRespuestas();
-                retorno.add(new Test(pregunta.getTitulo(), respuestas, pregunta.getIdPregunta()));
+            List<Mensaje> messages = contentTestRequest.execute().get();
+            for (Mensaje msg : messages) {
+                Pregunta pregunta = msg.getPregunta();
+                List<Respuesta> answers = msg.getRespuestas();
+                retorno.add(new Test(pregunta.getTitulo(), answers, pregunta.getIdPregunta()));
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -89,13 +107,16 @@ public class ViewTestActivity extends AppCompatActivity {
         return retorno;
     }
 
+    /**
+     * Metodo encargado de recuperar informacion del anterior activity.
+     */
     public void getDataBundle() {
         Bundle bundle = getIntent().getExtras();
         if (bundle == null)
             Log.d("ViewTestActivity", "Intent was null");
         else {
             Log.d("ViewTestActivity", "Intent OK");
-            idCuestionario = bundle.getInt("idCuestionario");
+            idQuestionnarie = bundle.getInt("idQuestionnarie");
         }
     }
 }
