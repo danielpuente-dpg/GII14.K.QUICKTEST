@@ -10,26 +10,42 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 
 /**
- * Created by Daniel on 11/06/2017.
+ * Clase UserGradeRequest encargada de obtener la calificacion de un cuestionario
+ * resuelto desde la app.
+ *
+ * @author Daniel Puente Gabarri.
  */
 
 public class UserGradeRequest extends AsyncTask<Void, Void, Double> {
 
     private Retrofit retrofit;
-    private int idCuestionario;
-    private String idAlumno;
+    private int idQuestionnaire;
+    private String idStudent;
 
-    public UserGradeRequest(Retrofit retrofit, int idCuestionario, String idAlumno) {
+    /**
+     * Constructor de la clase.
+     *
+     * @param retrofit,        retrofit.
+     * @param idQuestionnaire, identificador del cuestionionario.
+     * @param idStudent,       identificador del alumno.
+     */
+    public UserGradeRequest(Retrofit retrofit, int idQuestionnaire, String idStudent) {
         this.retrofit = retrofit;
-        this.idCuestionario = idCuestionario;
-        this.idAlumno = idAlumno;
+        this.idQuestionnaire = idQuestionnaire;
+        this.idStudent = idStudent;
     }
 
+    /**
+     * Metodo encargado de realizar la peticion de manera sincrona, bloqueando el hilo principal.
+     *
+     * @param params, params.
+     * @return Double, grade.
+     */
     @Override
     protected Double doInBackground(Void... params) {
 
         RestService service = retrofit.create(RestService.class);
-        Call<APIResponse> call = service.getGrade(idAlumno, idCuestionario);
+        Call<APIResponse> call = service.getGrade(idStudent, idQuestionnaire);
 
         double grade = 0;
         try {

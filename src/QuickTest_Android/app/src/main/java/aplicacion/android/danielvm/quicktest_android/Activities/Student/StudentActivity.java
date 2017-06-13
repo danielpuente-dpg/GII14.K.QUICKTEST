@@ -30,7 +30,7 @@ import aplicacion.android.danielvm.quicktest_android.Fragments.Students.HelpFrag
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnaire;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.User;
 import aplicacion.android.danielvm.quicktest_android.R;
-import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.StatusQuestionaryRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.StatusQuestionnaireRequest;
 import aplicacion.android.danielvm.quicktest_android.Utils.Util;
 
 /**
@@ -175,11 +175,11 @@ public class StudentActivity extends AppCompatActivity {
             int idCuestionario = c.getIdCuestionario();
 
             // Realizamos la peticion al APIRest
-            StatusQuestionaryRequest statusQuestionaryRequest =
-                    new StatusQuestionaryRequest(APIRest.getApi(), oauth_consumer_key, idCuestionario);
+            StatusQuestionnaireRequest statusQuestionnaireRequest =
+                    new StatusQuestionnaireRequest(APIRest.getApi(), oauth_consumer_key, idCuestionario);
 
             try {
-                int estado = statusQuestionaryRequest.execute().get();
+                int estado = statusQuestionnaireRequest.execute().get();
                 if (estado != -1) {
                     // Si esta resuelto
                     if (estado == 1) {

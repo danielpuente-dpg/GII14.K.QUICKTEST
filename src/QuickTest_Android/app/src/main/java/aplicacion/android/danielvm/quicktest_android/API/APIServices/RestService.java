@@ -2,9 +2,9 @@ package aplicacion.android.danielvm.quicktest_android.API.APIServices;
 
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.TestRequest;
 import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.APIResponse;
-import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.RespuestaApiComodin;
-import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.RespuestaApiFeedback;
-import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.SingleRespuestaAPI;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.FeedbackApiResponse;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.WildcardApiResponse;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.SingleApiResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -34,10 +34,10 @@ public interface RestService {
      *
      * @param oauth_consumer_key, clave del usuario.
      * @param id,                 identificador del cuestionario.
-     * @return SingleRespuestaAPI, respuesta.
+     * @return SingleApiResponse, respuesta.
      */
     @GET("obtenerCuestionario/estado/{oauth_consumer_key}/{idCuestionario}")
-    Call<SingleRespuestaAPI> getStatusTest(@Path("oauth_consumer_key") String oauth_consumer_key, @Path("idCuestionario") int id);
+    Call<SingleApiResponse> getStatusTest(@Path("oauth_consumer_key") String oauth_consumer_key, @Path("idCuestionario") int id);
 
     /**
      * Peticion que nos permite insertar un las respuesta de un cuestionario.
@@ -63,29 +63,29 @@ public interface RestService {
      * dado un cuestionario.
      *
      * @param idCuestionario, identificador del cuestionario.
-     * @return RespuestaApiComodin, respuesta.
+     * @return WildcardApiResponse, respuesta.
      */
     @GET("obtenerCuestionario/obtenerComodin/verde/{idCuestionario}")
-    Call<RespuestaApiComodin> getGreenWildCard(@Path("idCuestionario") int idCuestionario);
+    Call<WildcardApiResponse> getGreenWildCard(@Path("idCuestionario") int idCuestionario);
 
     /**
      * Peticion que nos permite obtener aquellas preguntas que tienen comodin ambar.
      *
      * @param idCuestionario, identificador del cuestionario.
-     * @return RespuestaApiComodin, respuesta.
+     * @return WildcardApiResponse, respuesta.
      */
     @GET("obtenerCuestionario/obtenerComodin/ambar/{idCuestionario}")
-    Call<RespuestaApiComodin> getAmberWildCard(@Path("idCuestionario") int idCuestionario);
+    Call<WildcardApiResponse> getAmberWildCard(@Path("idCuestionario") int idCuestionario);
 
     /**
      * Peticion que nos permite obtener la tabla con la informacion del cuestionario resuelto.
      *
      * @param idCuestionario, identificador del cuestionario.
      * @param idAlumno,       identificador del alumno.
-     * @return RespuestaApiFeedback, respuesta.
+     * @return FeedbackApiResponse, respuesta.
      */
     @GET("obtenerCuestionario/feedback/{idCuestionario}/{idAlumno}")
-    Call<RespuestaApiFeedback> getFeedBack(@Path("idCuestionario") int idCuestionario, @Path("idAlumno") String idAlumno);
+    Call<FeedbackApiResponse> getFeedBack(@Path("idCuestionario") int idCuestionario, @Path("idAlumno") String idAlumno);
 
 
 }

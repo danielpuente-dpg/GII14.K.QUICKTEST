@@ -43,11 +43,11 @@ public class GreenWildCardRequest extends AsyncTask<Void, Void, List<WildCard>> 
         List<WildCard> retorno = null;
 
         RestService service = retrofit.create(RestService.class);
-        Call<RespuestaApiComodin> call = service.getGreenWildCard(idQuestionnaire);
+        Call<WildcardApiResponse> call = service.getGreenWildCard(idQuestionnaire);
 
         try {
-            RespuestaApiComodin respuestaApiComodin = call.execute().body();
-            retorno = respuestaApiComodin.getMensaje();
+            WildcardApiResponse wildcardApiResponse = call.execute().body();
+            retorno = wildcardApiResponse.getWildCards();
         } catch (IOException e) {
             e.printStackTrace();
         }

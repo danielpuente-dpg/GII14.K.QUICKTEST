@@ -34,7 +34,7 @@ public class AmberWildCardRequest extends AsyncTask<Void, Void, List<WildCard>> 
     /**
      * Metodo encargado de realizar la peticion de manera sincrona, bloqueando el hilo principal.
      * @param params, params.
-     * @return List<WildCard>, wildCards.
+     * @return List<WildCard>, wildCards
      */
     @Override
     protected List<WildCard> doInBackground(Void... params) {
@@ -42,11 +42,11 @@ public class AmberWildCardRequest extends AsyncTask<Void, Void, List<WildCard>> 
         List<WildCard> retorno = null;
 
         RestService service = retrofit.create(RestService.class);
-        Call<RespuestaApiComodin> call = service.getAmberWildCard(idQuestionnaire);
+        Call<WildcardApiResponse> call = service.getAmberWildCard(idQuestionnaire);
 
         try {
-            RespuestaApiComodin respuestaApiComodin = call.execute().body();
-            retorno = respuestaApiComodin.getMensaje();
+            WildcardApiResponse wildcardApiResponse = call.execute().body();
+            retorno = wildcardApiResponse.getWildCards();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -24,7 +24,7 @@ import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnair
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Student;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.UserEnrol;
 import aplicacion.android.danielvm.quicktest_android.R;
-import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.StatusQuestionaryRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.StatusQuestionnaireRequest;
 import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.UserGradeRequest;
 import aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle.UsersEnrolledInCourse;
 
@@ -148,11 +148,11 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
     private void setAllStudentsStates(List<Student> students) {
         for (Student student : students) {
             String oauth_consumer_key = questionnaire.getClaveCliente() + ":" + student.getId();
-            StatusQuestionaryRequest statusQuestionaryRequest =
-                    new StatusQuestionaryRequest(APIRest.getApi(), oauth_consumer_key, idQuestionnarie);
+            StatusQuestionnaireRequest statusQuestionnaireRequest =
+                    new StatusQuestionnaireRequest(APIRest.getApi(), oauth_consumer_key, idQuestionnarie);
 
             try {
-                int status = statusQuestionaryRequest.execute().get();
+                int status = statusQuestionnaireRequest.execute().get();
                 if (status == RESOLVED) {
                     student.setStatus(true);
                 } else if (status == UNRESOLVED) {
