@@ -110,7 +110,9 @@ class ObtenerCuestionario
     private static function getComodinVerde($idCuestionario)
     {
         $preguntasVerde = self::getInfoComodinVerde($idCuestionario);
-
+        if(empty($preguntasVerde)){
+            $preguntasVerde = array();
+        }
         // Establecemos la respuesta
         http_response_code(APIEstados::ESTADO_OK);
         // Retornamos la informacion
@@ -213,7 +215,9 @@ class ObtenerCuestionario
     private static function getComodinAmbar($idCuestionario)
     {
         $preguntasAmbar = self::getInfoComodinAbar($idCuestionario);
-
+        if(empty($preguntasAmbar)){
+            $preguntasAmbar =  array();
+        }
         // Establecemos la respuesta
         http_response_code(APIEstados::ESTADO_OK);
         // Retornamos la informacion
