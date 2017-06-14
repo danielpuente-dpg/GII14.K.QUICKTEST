@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.RestService;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Mensaje;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Message;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
@@ -16,7 +16,7 @@ import retrofit2.Retrofit;
  * @author Daniel Puente Gabarri.
  */
 
-public class ContentTestRequest extends AsyncTask<Void, Void, List<Mensaje>> {
+public class ContentTestRequest extends AsyncTask<Void, Void, List<Message>> {
     private int idQuestionnaire;
     private Retrofit retrofit;
 
@@ -35,14 +35,14 @@ public class ContentTestRequest extends AsyncTask<Void, Void, List<Mensaje>> {
      * Metodo encargado de realizar la peticion de manera sincrona, bloqueando el hilo principal.
      *
      * @param params, params.
-     * @return List<Mensaje>, messages.
+     * @return List<Message>, messages.
      */
     @Override
-    protected List<Mensaje> doInBackground(Void... params) {
+    protected List<Message> doInBackground(Void... params) {
         RestService service = retrofit.create(RestService.class);
         Call<APIResponse> call = service.getTest(String.valueOf(idQuestionnaire));
 
-        List<Mensaje> messages = null;
+        List<Message> messages = null;
         try {
             messages = call.execute().body().getMessages();
         } catch (IOException e) {

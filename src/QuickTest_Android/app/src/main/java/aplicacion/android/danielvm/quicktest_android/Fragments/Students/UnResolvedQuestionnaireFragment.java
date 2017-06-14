@@ -46,7 +46,7 @@ public class UnResolvedQuestionnaireFragment extends Fragment {
         questionaries = studentActivity.getDataExternalTools();
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_first, container, false);
+        View view = inflater.inflate(R.layout.fragment_un_resolved_questionnaire, container, false);
 
         // Instanciamos los elementos de la UI
 

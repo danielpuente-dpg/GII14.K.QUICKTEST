@@ -22,7 +22,7 @@ import java.util.Set;
 
 import aplicacion.android.danielvm.quicktest_android.Activities.Student.StudentActivity;
 import aplicacion.android.danielvm.quicktest_android.Activities.Student.TestActivity;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Answer;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Result;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.WildCard;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Test;
@@ -147,8 +147,8 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
 
             radioGroup.removeAllViews();
 
-            this.answer.setText((position + 1) + " - " + test.getPregunta());
-            for (Respuesta r : test.getRespuestas()) {
+            this.answer.setText((position + 1) + " - " + test.getQuestion());
+            for (Answer r : test.getAnswers()) {
                 RadioButton newRadio = createRadioButton(r.getTitulo(), r.getIdRespuesta());
                 radioGroup.addView(newRadio);
             }
@@ -167,7 +167,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
                     answers.put(getAdapterPosition(), checkedId);
                     flags.put(getAdapterPosition(), true);
 
-                    int idQuestion = test.getIdPregunta();
+                    int idQuestion = test.getIdQuestion();
                     int idAnswer = checkedId;
                     String typeWildCard = "";
                     String idStudent = testActivity.key + ":" + studentActivity.user.getId();
@@ -220,7 +220,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
             Iterator<WildCard> iter = greenWildCard.iterator();
             boolean flag = false;
             while (iter.hasNext()) {
-                if (iter.next().getPregunta_idPregunta() == test.getIdPregunta()) {
+                if (iter.next().getIdQuestion() == test.getIdQuestion()) {
                     flag = true;
                     this.imageViewGreenWildCard.setVisibility(View.VISIBLE);
                     break;
@@ -241,7 +241,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
             Iterator<Integer> iter = amberWildCard.iterator();
             boolean flag = false;
             while (iter.hasNext()) {
-                if (iter.next() == test.getIdPregunta()) {
+                if (iter.next() == test.getIdQuestion()) {
                     flag = true;
                     this.imageViewAmberWildCard.setVisibility(View.VISIBLE);
                     break;
@@ -286,13 +286,13 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
          * @param test,       test.
          */
         private void checkWildCard(RadioGroup radioGroup, Test test) {
-            String type = test.getComodin();
+            String type = test.getWildCard();
 
             if (type != "") {
                 if (type == "bg-success") {
-                    WildCard wildCard = getAnswersByIdPregunta(test);
+                    WildCard wildCard = getAnswersByIdQuestion(test);
                     if (wildCard != null) {
-                        int idAnswer = wildCard.getIdRespuesta();
+                        int idAnswer = wildCard.getIdAnswer();
                         for (int i = 0; i < radioGroup.getChildCount(); i++) {
                             View view = radioGroup.getChildAt(i);
                             if (view.getId() == idAnswer) {
@@ -302,7 +302,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
                     }
                 } else if (type == "bg-warning") {
                     HashMap<Integer, HashSet<Integer>> amberWildCard = new TestActivity().amberWildCard;
-                    int idAnswer = test.getIdPregunta();
+                    int idAnswer = test.getIdQuestion();
                     if (amberWildCard.containsKey(idAnswer)) {
                         HashSet<Integer> amberRespuestas = amberWildCard.get(idAnswer);
                         for (int i = 0; i < radioGroup.getChildCount(); i++) {
@@ -324,12 +324,12 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
          * @param test, test.
          * @return WildCard, wildCard.
          */
-        private WildCard getAnswersByIdPregunta(Test test) {
+        private WildCard getAnswersByIdQuestion(Test test) {
             WildCard retorno = null;
             // Obtenemos la informacion sobre que preguntas tiene comodin verde
             List<WildCard> greenWildCard = testActivity.greenWildCard;
             for (WildCard wildCard : greenWildCard) {
-                if (wildCard.getPregunta_idPregunta() == test.getIdPregunta()) {
+                if (wildCard.getIdQuestion() == test.getIdQuestion()) {
                     retorno = wildCard;
                     break;
                 }

@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import java.io.IOException;
 
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.RestService;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.APIResponse;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
@@ -45,12 +44,12 @@ public class UserGradeRequest extends AsyncTask<Void, Void, Double> {
     protected Double doInBackground(Void... params) {
 
         RestService service = retrofit.create(RestService.class);
-        Call<APIResponse> call = service.getGrade(idStudent, idQuestionnaire);
+        Call<SingleApiResponse> call = service.getGrade(idStudent, idQuestionnaire);
 
         double grade = 0;
         try {
-            APIResponse apiResponse = call.execute().body();
-            grade = Double.parseDouble(apiResponse.getMensaje());
+            SingleApiResponse singleApiResponse = call.execute().body();
+            grade = Double.parseDouble(singleApiResponse.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
         }

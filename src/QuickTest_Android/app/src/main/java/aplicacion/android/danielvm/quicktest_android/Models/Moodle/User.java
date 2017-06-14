@@ -1,7 +1,10 @@
 package aplicacion.android.danielvm.quicktest_android.Models.Moodle;
 
 /**
- * Created by Daniel on 01/05/2017.
+ * Clase User encargada de encapsular el contenido de la respuesta JSON proporcionada
+ * por el web service de Moodle en un objeto Java.
+ *
+ * @autor Daniel Puente Gabarri.
  */
 
 public class User {

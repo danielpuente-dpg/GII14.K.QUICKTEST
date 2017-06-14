@@ -99,8 +99,8 @@ public class QuestionnaireAdapter extends BaseAdapter {
         final Questionnaire currenQuestionnaire = getItem(position);
 
         // Cambiamos la vista con los nuevos valores
-        holder.textViewTeacherName.setText(currenQuestionnaire.getDescripcion());
-        holder.textViewTeacherNameCourse.setText(currenQuestionnaire.getCurso());
+        holder.textViewTeacherName.setText(currenQuestionnaire.getDescription());
+        holder.textViewTeacherNameCourse.setText(currenQuestionnaire.getCourseName());
 
         return convertView;
     }

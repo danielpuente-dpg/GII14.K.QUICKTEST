@@ -1,31 +1,38 @@
 package aplicacion.android.danielvm.quicktest_android.Models.APIRest;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
- * Created by Daniel on 06/06/2017.
+ * Clase WildCard encargada de encapsular el contenido de la respuesta JSON proporcionada
+ * por el API Rest en un objeto Java.
+ *
+ * @autor Daniel Puente Gabarri.
  */
 
 public class WildCard {
-    private int pregunta_idPregunta;
-    private int idRespuesta;
+    @SerializedName("pregunta_idPregunta")
+    private int idQuestion;
+    @SerializedName("idRespuesta")
+    private int idAnswer;
 
-    public WildCard(int pregunta_idPregunta, int idRespuesta) {
-        this.pregunta_idPregunta = pregunta_idPregunta;
-        this.idRespuesta = idRespuesta;
+    public WildCard(int idQuestion, int idAnswer) {
+        this.idQuestion = idQuestion;
+        this.idAnswer = idAnswer;
     }
 
-    public int getPregunta_idPregunta() {
-        return pregunta_idPregunta;
+    public int getIdQuestion() {
+        return idQuestion;
     }
 
-    public void setPregunta_idPregunta(int pregunta_idPregunta) {
-        this.pregunta_idPregunta = pregunta_idPregunta;
+    public void setIdQuestion(int idQuestion) {
+        this.idQuestion = idQuestion;
     }
 
-    public int getIdRespuesta() {
-        return idRespuesta;
+    public int getIdAnswer() {
+        return idAnswer;
     }
 
-    public void setIdRespuesta(int idRespuesta) {
-        this.idRespuesta = idRespuesta;
+    public void setIdAnswer(int idAnswer) {
+        this.idAnswer = idAnswer;
     }
 }

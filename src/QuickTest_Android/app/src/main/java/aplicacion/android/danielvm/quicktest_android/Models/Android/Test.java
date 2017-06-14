@@ -5,73 +5,64 @@ import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Answer;
 
 /**
- * Created by Daniel on 23/04/2017.
+ * Clase Test encapsular el contenido de la respuesta JSON proporcionada
+ * por el API Rest en un objeto Java.
+ *
+ * @autor Daniel Puente Gabarri.
  */
 
 public class Test {
 
-    private String pregunta;
-    private List<Respuesta> respuesta;
-    private int idPregunta;
-    private String comodin;
+    private String question;
+    private List<Answer> answers;
+    private int idQuestion;
+    private String wildCard;
 
-
-    public Test() {
+    public Test(String question, List<Answer> answers, int idQuestion) {
+        this.question = question;
+        this.answers = answers;
+        this.idQuestion = idQuestion;
+        this.wildCard = "";
     }
 
-    public Test(String pregunta, List<Respuesta> respuesta, int idPregunta) {
-        this.pregunta = pregunta;
-        this.respuesta = respuesta;
-        this.idPregunta = idPregunta;
-        this.comodin = "";
+    public String getQuestion() {
+        return question;
     }
 
-    public String getPregunta() {
-        return pregunta;
+    public void setQuestion(String question) {
+        this.question = question;
     }
 
-    public void setPregunta(String pregunta) {
-        this.pregunta = pregunta;
+    public int getIdQuestion() {
+        return idQuestion;
     }
 
-    public List<Respuesta> getRespuestas() {
-        return respuesta;
+    public void setIdQuestion(int idQuestion) {
+        this.idQuestion = idQuestion;
     }
 
-    public void setRespuestas(List<Respuesta> respuestas) {
-        this.respuesta = respuestas;
+    public List<Answer> getAnswers() {
+        return answers;
     }
 
-    public int getIdPregunta() {
-        return idPregunta;
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
     }
 
-    public void setIdPregunta(int idPregunta) {
-        this.idPregunta = idPregunta;
+    public String getWildCard() {
+        return wildCard;
     }
 
-    public List<Respuesta> getRespuesta() {
-        return respuesta;
+    public void setWildCard(String wildCard) {
+        this.wildCard = wildCard;
     }
 
-    public void setRespuesta(List<Respuesta> respuesta) {
-        this.respuesta = respuesta;
-    }
-
-    public String getComodin() {
-        return comodin;
-    }
-
-    public void setComodin(String comodin) {
-        this.comodin = comodin;
-    }
-
-    public static Respuesta parseJSON(String response) {
+    public static Answer parseJSON(String response) {
         Gson gson = new GsonBuilder().create();
-        Respuesta respuesta = gson.fromJson(response, Respuesta.class);
-        return respuesta;
+        Answer answer = gson.fromJson(response, Answer.class);
+        return answer;
     }
 }

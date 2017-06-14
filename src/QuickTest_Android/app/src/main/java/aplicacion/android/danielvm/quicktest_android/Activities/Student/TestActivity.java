@@ -22,10 +22,9 @@ import java.util.concurrent.ExecutionException;
 import aplicacion.android.danielvm.quicktest_android.API.APIRest;
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.RestService;
 import aplicacion.android.danielvm.quicktest_android.Adapters.Student.TestAdapter;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.APIResponse;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Mensaje;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Pregunta;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Message;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Question;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Answer;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Result;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.TestRequest;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.WildCard;
@@ -35,6 +34,7 @@ import aplicacion.android.danielvm.quicktest_android.R;
 import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.AmberWildCardRequest;
 import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.ContentTestRequest;
 import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.GreenWildCardRequest;
+import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.SingleApiResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -95,7 +95,7 @@ public class TestActivity extends AppCompatActivity {
         mAdapter = new TestAdapter(this.tests, R.layout.recycler_view_item_test, new TestAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Test test, int position) {
-                test.setComodin("bg-success");
+                test.setWildCard("bg-success");
                 // Almacenamos la informacion de en que pregunta se ha hecho uso de comodin
                 wildCardType.put(position, "bg-success");
                 mAdapter.notifyItemChanged(position);
@@ -103,7 +103,7 @@ public class TestActivity extends AppCompatActivity {
         }, new TestAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Test test, int position) {
-                test.setComodin("bg-warning");
+                test.setWildCard("bg-warning");
                 wildCardType.put(position, "bg-warning");
                 mAdapter.notifyItemChanged(position);
             }
@@ -152,15 +152,15 @@ public class TestActivity extends AppCompatActivity {
         Retrofit retrofit = APIRest.getApi();
         RestService service = retrofit.create(RestService.class);
 
-        Call<APIResponse> call = service.sendTest(testRequest);
+        Call<SingleApiResponse> call = service.sendTest(testRequest);
 
-        call.enqueue(new Callback<APIResponse>() {
+        call.enqueue(new Callback<SingleApiResponse>() {
             @Override
-            public void onResponse(Call<APIResponse> call, Response<APIResponse> response) {
+            public void onResponse(Call<SingleApiResponse> call, Response<SingleApiResponse> response) {
                 int statusCode = response.code();
 
-                APIResponse apiResponse = response.body();
-                double grade = Double.parseDouble(apiResponse.getMensaje());
+                SingleApiResponse singleApiResponse = response.body();
+                double grade = Double.parseDouble(singleApiResponse.getMessage());
                 if (grade > 0) {
                     Log.d("TestActivity", "onResponse: " + statusCode);
                     goToStudentActivity(idCourse);
@@ -170,7 +170,7 @@ public class TestActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<APIResponse> call, Throwable t) {
+            public void onFailure(Call<SingleApiResponse> call, Throwable t) {
                 Log.d("TestActivity", "onFailure: " + t.getMessage());
             }
         });
@@ -182,7 +182,7 @@ public class TestActivity extends AppCompatActivity {
     private void enforceIconBar() {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle(questionnaire.getDescripcion());
+        getSupportActionBar().setTitle(questionnaire.getDescription());
     }
 
     /**
@@ -234,10 +234,10 @@ public class TestActivity extends AppCompatActivity {
         ArrayList<Test> resultado = new ArrayList<>();
         ContentTestRequest contentTestRequest = new ContentTestRequest(APIRest.getApi(), idQuestionnaire);
         try {
-            List<Mensaje> messages = contentTestRequest.execute().get();
-            for (Mensaje mensaje : messages) {
-                Pregunta question = mensaje.getPregunta();
-                List<Respuesta> answers = mensaje.getRespuestas();
+            List<Message> messages = contentTestRequest.execute().get();
+            for (Message message : messages) {
+                Question question = message.getQuestion();
+                List<Answer> answers = message.getAnswers();
                 resultado.add(new Test(question.getTitulo(), answers, question.getIdPregunta()));
             }
         } catch (InterruptedException e) {
@@ -312,14 +312,14 @@ public class TestActivity extends AppCompatActivity {
         HashMap<Integer, HashSet<Integer>> aux = new HashMap<>();
         for (WildCard wildCard : amberWildCard) {
             // Si esta vacio
-            if (!aux.containsKey(wildCard.getPregunta_idPregunta())) {
+            if (!aux.containsKey(wildCard.getIdQuestion())) {
                 HashSet<Integer> lista = new HashSet<>();
-                lista.add(wildCard.getIdRespuesta());
-                aux.put(wildCard.getPregunta_idPregunta(), lista);
+                lista.add(wildCard.getIdAnswer());
+                aux.put(wildCard.getIdQuestion(), lista);
             } else {
-                HashSet<Integer> lista = aux.get(wildCard.getPregunta_idPregunta());
-                lista.add(wildCard.getIdRespuesta());
-                aux.put(wildCard.getPregunta_idPregunta(), lista);
+                HashSet<Integer> lista = aux.get(wildCard.getIdQuestion());
+                lista.add(wildCard.getIdAnswer());
+                aux.put(wildCard.getIdQuestion(), lista);
             }
         }
         return aux;

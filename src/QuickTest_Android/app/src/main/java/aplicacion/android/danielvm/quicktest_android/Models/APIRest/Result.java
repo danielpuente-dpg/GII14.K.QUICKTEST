@@ -1,7 +1,10 @@
 package aplicacion.android.danielvm.quicktest_android.Models.APIRest;
 
 /**
- * Created by Daniel on 10/05/2017.
+ * Clase Result encargada de encapsular el contenido de un cuestionario para poder
+ * enviarlo al API Rest.
+ *
+ * @author Daniel Puente Gabarri.
  */
 
 public class Result {

@@ -115,8 +115,8 @@ public class ResolvedExternalToolAdapter extends RecyclerView.Adapter<ResolvedEx
          * @param questionnaire
          */
         public void dataBind(final Questionnaire questionnaire) {
-            this.textViewName.setText(questionnaire.getDescripcion());
-            this.textViewDescription.setText(questionnaire.getCurso());
+            this.textViewName.setText(questionnaire.getDescription());
+            this.textViewDescription.setText(questionnaire.getCourseName());
             this.imgCuestionario.setImageResource(questionnaire.getImgIcon());
 
         }
@@ -153,14 +153,14 @@ public class ResolvedExternalToolAdapter extends RecyclerView.Adapter<ResolvedEx
             // Obtenemos el cuestionario actual
             Questionnaire currentQuestionnaire = questionnaires.get(this.getAdapterPosition());
             // Modificamos el nombre del cuestionario en función del seleccionado
-            String msg = "¿Desea revisar el " + currentQuestionnaire.getDescripcion() + "?";
+            String msg = "¿Desea revisar el " + currentQuestionnaire.getDescription() + "?";
             contextMenu.setHeaderTitle(msg);
             // Inflamos el menu de contexto
             MenuInflater inflater = activity.getMenuInflater();
-            inflater.inflate(R.menu.action_cuestionario_resolved, contextMenu);
+            inflater.inflate(R.menu.action_resolved_questionnaire, contextMenu);
 
             // Este bucle se encarga de añadir el listener para cada Item Clicked
-            // Es decir, a cada Item de /menu/action_cuestionario -> le asociamos el
+            // Es decir, a cada Item de /menu/action_un_resolved_questionnaire -> le asociamos el
             // metodo onMenuItemClick
             for (int i = 0; i < contextMenu.size(); i++)
                 contextMenu.getItem(i).setOnMenuItemClickListener(this);
@@ -178,16 +178,16 @@ public class ResolvedExternalToolAdapter extends RecyclerView.Adapter<ResolvedEx
         Questionnaire questionnaire = questionnaires.get(position);
 
         // Obtenemos el Id del questionnaire a resolver
-        int idQuestionnaire = questionnaire.getIdCuestionario();
+        int idQuestionnaire = questionnaire.getIdQuestionnaire();
         // Obtenemos la clave del ciente;
-        String idStudent = questionnaire.getClaveCliente();
+        String idStudent = questionnaire.getClientKey();
 
         // Vamos al activity encargado de resolver el Test
         Intent intent = new Intent(activity, GradeActivity.class);
 
         intent.putExtra("idQuestionnaire", idQuestionnaire);
         intent.putExtra("idStudent", idStudent);
-        intent.putExtra("nameQuestionnaire", questionnaire.getDescripcion());
+        intent.putExtra("nameQuestionnaire", questionnaire.getDescription());
 
         activity.startActivity(intent);
 

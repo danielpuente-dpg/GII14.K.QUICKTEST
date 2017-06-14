@@ -1,44 +1,46 @@
 package aplicacion.android.danielvm.quicktest_android.Models.Android;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by Daniel on 23/03/2017.
+ * Clase Questionnaire encargada encapsular el contenido de la respuesta JSON proporcionada
+ * por el Api Rest en un objeto Java.
+ *
+ * @author Daniel Puente Gabarri
  */
-
-
-
-public class Questionnaire implements Parcelable {
-
-    private int idCuestionario;
-    private String descripcion;
+public class Questionnaire {
+    @SerializedName("idCuestionario")
+    private int idQuestionnaire;
+    @SerializedName("descripcion")
+    private String description;
     private int imgIcon;
-    private String curso;
-    private String claveCliente;
+    @SerializedName("curso")
+    private String courseName;
+    @SerializedName("claveCliente")
+    private String clientKey;
 
-    public Questionnaire(int idCuestionario, String descripcion, int imgIcon, String curso, String claveCliente) {
-        this.idCuestionario = idCuestionario;
-        this.descripcion = descripcion;
+    public Questionnaire(int idQuestionnaire, String description, int imgIcon, String courseName, String clientKey) {
+        this.idQuestionnaire = idQuestionnaire;
+        this.description = description;
         this.imgIcon = imgIcon;
-        this.curso = curso;
-        this.claveCliente = claveCliente;
+        this.courseName = courseName;
+        this.clientKey = clientKey;
     }
 
-    public int getIdCuestionario() {
-        return idCuestionario;
+    public int getIdQuestionnaire() {
+        return idQuestionnaire;
     }
 
-    public void setIdCuestionario(int idCuestionario) {
-        this.idCuestionario = idCuestionario;
+    public void setIdQuestionnaire(int idQuestionnaire) {
+        this.idQuestionnaire = idQuestionnaire;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getImgIcon() {
@@ -49,54 +51,19 @@ public class Questionnaire implements Parcelable {
         this.imgIcon = imgIcon;
     }
 
-    public String getCurso() {
-        return curso;
+    public String getCourseName() {
+        return courseName;
     }
 
-    public void setCurso(String curso) {
-        this.curso = curso;
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
-    public String getClaveCliente() {
-        return claveCliente;
+    public String getClientKey() {
+        return clientKey;
     }
 
-    public void setClaveCliente(String claveCliente) {
-        this.claveCliente = claveCliente;
+    public void setClientKey(String clientKey) {
+        this.clientKey = clientKey;
     }
-
-    protected Questionnaire(Parcel in) {
-        idCuestionario = in.readInt();
-        descripcion = in.readString();
-        imgIcon = in.readInt();
-        curso = in.readString();
-        claveCliente = in.readString();
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(idCuestionario);
-        dest.writeString(descripcion);
-        dest.writeInt(imgIcon);
-        dest.writeString(curso);
-        dest.writeString(claveCliente);
-    }
-
-    @SuppressWarnings("unused")
-    public static final Parcelable.Creator<Questionnaire> CREATOR = new Parcelable.Creator<Questionnaire>() {
-        @Override
-        public Questionnaire createFromParcel(Parcel in) {
-            return new Questionnaire(in);
-        }
-
-        @Override
-        public Questionnaire[] newArray(int size) {
-            return new Questionnaire[size];
-        }
-    };
 }

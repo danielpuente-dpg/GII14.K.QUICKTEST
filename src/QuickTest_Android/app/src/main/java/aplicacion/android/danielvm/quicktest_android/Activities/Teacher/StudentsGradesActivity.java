@@ -19,7 +19,7 @@ import java.util.concurrent.ExecutionException;
 import aplicacion.android.danielvm.quicktest_android.API.APIMoodle;
 import aplicacion.android.danielvm.quicktest_android.API.APIRest;
 import aplicacion.android.danielvm.quicktest_android.Adapters.Teacher.StudentAdapter;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.EnrolCourse;
+import aplicacion.android.danielvm.quicktest_android.Models.Moodle.EnrolCourse;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnaire;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Student;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.UserEnrol;
@@ -56,7 +56,7 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_third_teacher);
+        setContentView(R.layout.activity_students_grades);
 
         getDataBundle();
         getOthersData();
@@ -92,7 +92,7 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(questionnaire.getDescripcion());
+        getSupportActionBar().setTitle(questionnaire.getDescription());
     }
 
     /**
@@ -101,7 +101,7 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
     private void getOthersData() {
         TeacherActivity activity = new TeacherActivity();
         questionnaire = activity.getQuestionaryByPosition(position);
-        idQuestionnarie = questionnaire.getIdCuestionario();
+        idQuestionnarie = questionnaire.getIdQuestionnaire();
         idCourse = activity.getIdCourse();
         tokenWebService = activity.getTokenWebService();
         usersEnrol = getUserEnrolsInCourse();
@@ -147,7 +147,7 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
      */
     private void setAllStudentsStates(List<Student> students) {
         for (Student student : students) {
-            String oauth_consumer_key = questionnaire.getClaveCliente() + ":" + student.getId();
+            String oauth_consumer_key = questionnaire.getClientKey() + ":" + student.getId();
             StatusQuestionnaireRequest statusQuestionnaireRequest =
                     new StatusQuestionnaireRequest(APIRest.getApi(), oauth_consumer_key, idQuestionnarie);
 
@@ -175,7 +175,7 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
      */
     public void setAllStudentsGrades(List<Student> students) {
         for (Student student : students) {
-            String idAlumno = questionnaire.getClaveCliente() + ":" + student.getId();
+            String idAlumno = questionnaire.getClientKey() + ":" + student.getId();
             UserGradeRequest userGradeRequest = new UserGradeRequest(APIRest.getApi(), idQuestionnarie, idAlumno);
             try {
                 Double grade = userGradeRequest.execute().get();

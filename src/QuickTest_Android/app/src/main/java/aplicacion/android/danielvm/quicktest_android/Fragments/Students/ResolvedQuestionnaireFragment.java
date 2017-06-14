@@ -18,11 +18,11 @@ import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnair
 import aplicacion.android.danielvm.quicktest_android.R;
 
 /**
- * Clase ResolvedQuestionnairesFragment encargada de mostrar los cuestionarios resueltos.
+ * Clase ResolvedQuestionnaireFragment encargada de mostrar los cuestionarios resueltos.
  *
  * @author Daniel Puente Gabarri.
  */
-public class ResolvedQuestionnairesFragment extends Fragment {
+public class ResolvedQuestionnaireFragment extends Fragment {
 
 
     // Elemento de la UI mediante RecyclerView
@@ -34,7 +34,7 @@ public class ResolvedQuestionnairesFragment extends Fragment {
     // Atributos
     private List<Questionnaire> resolvedQuestionnaires;
 
-    public ResolvedQuestionnairesFragment() {
+    public ResolvedQuestionnaireFragment() {
     }
 
     @Override
@@ -45,7 +45,7 @@ public class ResolvedQuestionnairesFragment extends Fragment {
         resolvedQuestionnaires = studentActivity.getDataExternalToolsResolved();
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_second, container, false);
+        View view = inflater.inflate(R.layout.fragment_resolved_questionnaire, container, false);
 
 
         // Instanciamos los elementos de la UI

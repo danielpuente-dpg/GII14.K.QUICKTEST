@@ -56,7 +56,7 @@ public class TeacherActivity extends AppCompatActivity implements AdapterView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second_teacher);
+        setContentView(R.layout.activity_teacher);
 
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
 
@@ -158,7 +158,7 @@ public class TeacherActivity extends AppCompatActivity implements AdapterView.On
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.d("TeacherActivity", "Questionnaire: id: " + this.questionnaries.get(position).getIdCuestionario());
+        Log.d("TeacherActivity", "Questionnaire: id: " + this.questionnaries.get(position).getIdQuestionnaire());
         goToStudentsGradesActivity(position);
     }
 

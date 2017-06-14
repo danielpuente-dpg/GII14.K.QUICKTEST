@@ -3,19 +3,22 @@ package aplicacion.android.danielvm.quicktest_android.Models.APIRest;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by Daniel on 26/04/2017.
+ * Clase Question encargada de encapsular la respuesta en formato JSON
+ * del API Rest.
+ *
+ * @author Daniel Puente Gabarri.
  */
 
-public class Pregunta {
+public class Question {
     private int idPregunta;
     @SerializedName("tituloPreg")
     private String titulo;
     @SerializedName("max_puntuacion")
     private int puntuacion;
 
-    public Pregunta(){};
+    public Question(){};
 
-    public Pregunta(int idPregunta, String titulo, int puntuacion) {
+    public Question(int idPregunta, String titulo, int puntuacion) {
         this.idPregunta = idPregunta;
         this.titulo = titulo;
         this.puntuacion = puntuacion;

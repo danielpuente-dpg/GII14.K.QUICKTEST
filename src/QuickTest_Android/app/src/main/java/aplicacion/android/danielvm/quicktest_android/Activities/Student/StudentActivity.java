@@ -24,8 +24,8 @@ import java.util.concurrent.ExecutionException;
 import aplicacion.android.danielvm.quicktest_android.API.APIRest;
 import aplicacion.android.danielvm.quicktest_android.Activities.LoginActivity;
 import aplicacion.android.danielvm.quicktest_android.Activities.MainActivity;
+import aplicacion.android.danielvm.quicktest_android.Fragments.Students.ResolvedQuestionnaireFragment;
 import aplicacion.android.danielvm.quicktest_android.Fragments.Students.UnResolvedQuestionnaireFragment;
-import aplicacion.android.danielvm.quicktest_android.Fragments.Students.ResolvedQuestionnairesFragment;
 import aplicacion.android.danielvm.quicktest_android.Fragments.Students.HelpFragment;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnaire;
 import aplicacion.android.danielvm.quicktest_android.Models.Moodle.User;
@@ -64,7 +64,7 @@ public class StudentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_student);
 
         // Recuperamos le identificador del curso seleccionado
         getDataBundle();
@@ -120,7 +120,7 @@ public class StudentActivity extends AppCompatActivity {
                 break;
 
             case R.id.menu_courses_end:
-                fragment = new ResolvedQuestionnairesFragment();
+                fragment = new ResolvedQuestionnaireFragment();
                 fragmentTransaction = true;
                 break;
 
@@ -171,8 +171,8 @@ public class StudentActivity extends AppCompatActivity {
         for (Questionnaire c : questionaries) {
 
             // Obtenemos la info de la streamQuery
-            String oauth_consumer_key = c.getClaveCliente() + ":" + user.getId();
-            int idCuestionario = c.getIdCuestionario();
+            String oauth_consumer_key = c.getClientKey() + ":" + user.getId();
+            int idCuestionario = c.getIdQuestionnaire();
 
             // Realizamos la peticion al APIRest
             StatusQuestionnaireRequest statusQuestionnaireRequest =

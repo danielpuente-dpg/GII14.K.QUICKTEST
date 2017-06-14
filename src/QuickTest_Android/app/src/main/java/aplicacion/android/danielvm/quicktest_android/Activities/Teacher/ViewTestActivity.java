@@ -13,9 +13,9 @@ import java.util.concurrent.ExecutionException;
 
 import aplicacion.android.danielvm.quicktest_android.API.APIRest;
 import aplicacion.android.danielvm.quicktest_android.Adapters.Teacher.TestAdapterViewTeacher;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Mensaje;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Pregunta;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Message;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Question;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Answer;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Questionnaire;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Test;
 import aplicacion.android.danielvm.quicktest_android.R;
@@ -71,7 +71,7 @@ public class ViewTestActivity extends AppCompatActivity {
     private void enforceIconBar() {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        String title = questionnaire.getDescripcion();
+        String title = questionnaire.getDescription();
         getSupportActionBar().setTitle(title);
     }
 
@@ -93,11 +93,11 @@ public class ViewTestActivity extends AppCompatActivity {
         ArrayList<Test> retorno = new ArrayList<>();
         ContentTestRequest contentTestRequest = new ContentTestRequest(APIRest.getApi(), idQuestionnarie);
         try {
-            List<Mensaje> messages = contentTestRequest.execute().get();
-            for (Mensaje msg : messages) {
-                Pregunta pregunta = msg.getPregunta();
-                List<Respuesta> answers = msg.getRespuestas();
-                retorno.add(new Test(pregunta.getTitulo(), answers, pregunta.getIdPregunta()));
+            List<Message> messages = contentTestRequest.execute().get();
+            for (Message msg : messages) {
+                Question question = msg.getQuestion();
+                List<Answer> answers = msg.getAnswers();
+                retorno.add(new Test(question.getTitulo(), answers, question.getIdPregunta()));
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

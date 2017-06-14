@@ -3,10 +3,12 @@ package aplicacion.android.danielvm.quicktest_android.Models.APIRest;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by Daniel on 23/04/2017.
+ * Clase Answer encargada de encapsular la respuesta en formato JSON
+ * del API Rest.
+ *
+ * @author Daniel Puente Gabarri.
  */
-
-public class Respuesta {
+public class Answer {
 
     private int idRespuesta;
     @SerializedName("tit_Respuesta")
@@ -17,10 +19,7 @@ public class Respuesta {
     private int idPregunta;
     private int contador;
 
-    public Respuesta() {
-    }
-
-    public Respuesta(int idRespuesta, String titulo, int esCorrecta, int idPregunta, int contador) {
+    public Answer(int idRespuesta, String titulo, int esCorrecta, int idPregunta, int contador) {
         this.idRespuesta = idRespuesta;
         this.titulo = titulo;
         this.esCorrecta = esCorrecta;

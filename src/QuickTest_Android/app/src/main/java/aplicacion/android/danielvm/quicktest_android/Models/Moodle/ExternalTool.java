@@ -6,7 +6,10 @@ import com.google.gson.GsonBuilder;
 import java.util.List;
 
 /**
- * Created by Daniel on 17/04/2017.
+ * Clase ExternalTool encargada de encapsular el contenido de la respuesta JSON proporcionada
+ * por el web service de Moodle en un objeto Java.
+ *
+ * @autor Daniel Puente Gabarri.
  */
 
 public class ExternalTool {

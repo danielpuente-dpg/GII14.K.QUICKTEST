@@ -6,7 +6,9 @@ import com.google.gson.GsonBuilder;
 import java.util.List;
 
 /**
- * Created by Daniel on 06/05/2017.
+ * Clase TestRequest encargada de enviar al API Rest el contenido de un cuestionario.
+ *
+ * @author Daniel Puente Gabarri.
  */
 
 public class TestRequest {

@@ -3,7 +3,8 @@ package aplicacion.android.danielvm.quicktest_android.Requests.APIRest;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Clase SingleApiResponse encargada encapsular el contenido de la respuesta JSON en un objeto.
+ * Clase SingleApiResponse encapsular el contenido de la respuesta JSON proporcionada
+ * por le Api Rest en un objeto Java.
  *
  * @author Daniel Puente Gabarri.
  */

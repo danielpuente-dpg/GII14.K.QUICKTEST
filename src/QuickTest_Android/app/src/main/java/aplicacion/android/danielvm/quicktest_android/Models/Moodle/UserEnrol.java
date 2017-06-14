@@ -1,16 +1,14 @@
 package aplicacion.android.danielvm.quicktest_android.Models.Moodle;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.EnrolCourse;
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
-
 /**
- * Created by Daniel on 11/06/2017.
+ * Clase UserEnrol encargada de encapsular el contenido de la respuesta JSON proporcionada
+ * por el web service de Moodle en un objeto Java.
+ *
+ * @autor Daniel Puente Gabarri.
  */
 
 public class UserEnrol {

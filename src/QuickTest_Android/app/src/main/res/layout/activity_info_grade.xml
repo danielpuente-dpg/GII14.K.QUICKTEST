@@ -31,7 +31,7 @@
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Modo respuesta"
+                        android:text="Modo answers"
                         android:textSize="8dp"
                         android:textStyle="bold" />
 

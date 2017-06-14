@@ -1,7 +1,10 @@
 package aplicacion.android.danielvm.quicktest_android.Models.APIRest;
 
 /**
- * Created by Daniel on 07/06/2017.
+ * Clase FeedBack encargada de encapsular la respuesta en formato JSON
+ * del API Rest.
+ *
+ * @autor Daniel Puente Gabarri.
  */
 
 public class FeedBack {

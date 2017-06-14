@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Respuesta;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Answer;
 import aplicacion.android.danielvm.quicktest_android.Models.Android.Test;
 import aplicacion.android.danielvm.quicktest_android.R;
 
@@ -107,8 +107,8 @@ public class TestAdapterViewTeacher extends RecyclerView.Adapter<TestAdapterView
             final Test test = tests.get(position);
 
             radioGroup.removeAllViews();
-            this.answer.setText((position + 1) + " - " + test.getPregunta());
-            for (Respuesta r : test.getRespuestas()) {
+            this.answer.setText((position + 1) + " - " + test.getQuestion());
+            for (Answer r : test.getAnswers()) {
                 RadioButton newRadio = createRadioButton(r.getTitulo(), r.getIdRespuesta());
                 radioGroup.addView(newRadio);
             }

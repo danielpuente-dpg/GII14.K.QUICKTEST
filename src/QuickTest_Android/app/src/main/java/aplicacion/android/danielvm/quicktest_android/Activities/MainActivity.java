@@ -347,7 +347,7 @@ public class MainActivity extends AppCompatActivity {
                     // Mapas de apoyo
                     createMaps(questionnaire, course, idCourse);
 
-                    Log.d("MainActivity", "addExternalTool: " + questionnaire.getDescripcion());
+                    Log.d("MainActivity", "addExternalTool: " + questionnaire.getDescription());
                     break;
                 }
             }
