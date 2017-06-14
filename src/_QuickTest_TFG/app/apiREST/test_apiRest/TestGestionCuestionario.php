@@ -16,7 +16,9 @@ require_once($URL_GLOBAL . '/_QuickTest_TFG/app/controller/Cuestionario_CrearNue
 
 /**
  * Class TestGestionCuestionario, Clase de Test encargada de comprobar el correcto funcionamiento del controlador.
- * Estos test se realizan sobre el controlador, ya que sobre este se basa el APIREST
+ * Estos test se realizan sobre el controlador, ya que sobre este se basa el APIREST.
+ *
+ * @autor Daniel Puente Gabarri.
  */
 class TestGestionCuestionario extends PHPUnit_Framework_TestCase
 {

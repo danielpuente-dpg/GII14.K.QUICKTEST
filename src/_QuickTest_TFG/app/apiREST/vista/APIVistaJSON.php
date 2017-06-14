@@ -10,7 +10,9 @@
 require_once "APIVista.php";
 
 /**
- * Class APIVistaJSON - encargada de proporcionar la salida en formato JSON
+ * Clase APIVistaJSON - encargada de proporcionar la salida en formato JSON.
+ *
+ * @autor Daniel Puente Gabarri.
  */
 class APIVistaJSON extends APIVista
 {

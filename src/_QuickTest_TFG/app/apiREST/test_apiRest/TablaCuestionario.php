@@ -6,6 +6,12 @@
  * Date: 21/03/2017
  * Time: 13:35
  */
+
+/**
+ * Clase TablaCuestionario encargada de abstraer los atributos de la tabla.
+ *
+ * @autor Daniel Puente Gabarii.
+ */
 abstract class TablaCuestionario
 {
     const NOMBRE_TABLA = "cuestionario";

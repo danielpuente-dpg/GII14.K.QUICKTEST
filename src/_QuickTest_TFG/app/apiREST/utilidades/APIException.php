@@ -2,8 +2,10 @@
 
 
 /**
- * Class APIException - Sera nuestra propia clase para manejar las posibles Excepciones
- * utilazando los códigos de estado correpondientes de HTTP
+ * Clase APIException - Sera nuestra propia clase para manejar las posibles Excepciones
+ * utilazando los códigos de estado correpondientes de HTTP.
+ *
+ * @autor Daniel Puente Gabarri.
  */
 class APIException extends Exception
 {

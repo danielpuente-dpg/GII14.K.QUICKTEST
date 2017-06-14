@@ -16,6 +16,12 @@ require_once($URL_GLOBAL . '/_QuickTest_TFG/app/model/Alumno_has_cuestionario_Mo
 require_once($URL_GLOBAL . '/_QuickTest_TFG/app/model/Alumno_has_respuesta_Model.php');
 require_once($URL_GLOBAL . '/_QuickTest_TFG/app/controller/Cuestionario_Resolver_Controller.php');
 
+/**
+ * Clase ObtenerCuestionario encargada de obtener toda la informacion necesaria para resolver un
+ * cuestionario y la tabla de retroalimentacion del mismo.
+ *
+ * @autor Daniel Puente Gabarri.
+ */
 class ObtenerCuestionario
 {
 
@@ -26,6 +32,12 @@ class ObtenerCuestionario
     const ESTADO_NO_ENCONTRADO = 2;
     const ESTADO_ERROR_PARAMETROS = 4;
 
+    /**
+     * Método encargado de tratar la lógica de un petición GET.
+     * @param $peticion , peticion.
+     * @return array, resto de campos que forman la peticion.
+     * @throws APIException
+     */
     public static function get($peticion)
     {
         if ($peticion[0] == 'obtener') {
@@ -49,8 +61,9 @@ class ObtenerCuestionario
     }
 
     /**
-     * @param $peticion
-     * @return array
+     * Metodo que permite obtener un cuestionario.
+     * @param $peticion , identificador del cuestionario.
+     * @return array, respuesta.
      */
     private static function getCuestionario($peticion)
     {
@@ -85,6 +98,12 @@ class ObtenerCuestionario
             ];
     }
 
+    /**
+     * Metodo que nos permite saber si el cuestionario se encuentra o no resuelto.
+     * @param $idUser , identificador de usuario.
+     * @param $idCuestionario , identificador de cuestionario.
+     * @return array, respuesta.
+     */
     private static function getEstadoCuestionario($idUser, $idCuestionario)
     {
 
@@ -107,10 +126,15 @@ class ObtenerCuestionario
             ];
     }
 
+    /**
+     * Metodo encargado de proporcionar para un cuestionario que preguntas tienen comodin verde.
+     * @param $idCuestionario , identificador del cuestionario.
+     * @return array, respuesta.
+     */
     private static function getComodinVerde($idCuestionario)
     {
         $preguntasVerde = self::getInfoComodinVerde($idCuestionario);
-        if(empty($preguntasVerde)){
+        if (empty($preguntasVerde)) {
             $preguntasVerde = array();
         }
         // Establecemos la respuesta
@@ -125,6 +149,12 @@ class ObtenerCuestionario
 
     }
 
+    /**
+     * Metodo encargado de obtener la informacion sobre las preguntas que tienen comodin
+     * verde dado un cuestionario.
+     * @param $idCuest , identificador del cuestionario.
+     * @return array|string, respuesta.
+     */
     private static function getInfoComodinVerde($idCuest)
     {
         $cuestionarioModel = new Cuestionario_Model();
@@ -212,11 +242,16 @@ class ObtenerCuestionario
 
     }
 
+    /**
+     * Metodo encargado de proporcionar para un cuestionario que preguntas tienen comodin ammabr.
+     * @param $idCuestionario , identificador del cuestionario.
+     * @return array, respuesta.
+     */
     private static function getComodinAmbar($idCuestionario)
     {
         $preguntasAmbar = self::getInfoComodinAbar($idCuestionario);
-        if(empty($preguntasAmbar)){
-            $preguntasAmbar =  array();
+        if (empty($preguntasAmbar)) {
+            $preguntasAmbar = array();
         }
         // Establecemos la respuesta
         http_response_code(APIEstados::ESTADO_OK);
@@ -229,6 +264,12 @@ class ObtenerCuestionario
             ];
     }
 
+    /**
+     * Metodo encargado de obtener la informacion sobre las preguntas que tienen comodin
+     * ambar dado un cuestionario.
+     * @param $idCuest , identificador del cuestionario.
+     * @return array|string, respuesta.
+     */
     private static function getInfoComodinAbar($idCuest)
     {
         $respuestasModel = new Respuestas_Model();
@@ -345,6 +386,13 @@ class ObtenerCuestionario
 
     }
 
+    /**
+     * Metodo encargado de obtener la informacion sobre cuestionario. Numero de preguntas contestadas,
+     * numero de comodines usador, etc.
+     * @param $idCuestionario , identificador del cuestionario.
+     * @param $idAlu , identificador del alumno.
+     * @return array, respuesta.
+     */
     private static function getFeedBack($idCuestionario, $idAlu)
     {
         $feedback = self::getInfoFeedBack($idCuestionario, $idAlu);
@@ -360,6 +408,12 @@ class ObtenerCuestionario
             ];
     }
 
+    /**
+     * Metodo encargado de obtener la informacion sobre un cuestionario.
+     * @param $idCuestionario , identificador del cuestionario.
+     * @param $idAlu , identificador del alumno.
+     * @return array, respuesta.
+     */
     private static function getInfoFeedBack($idCuestionario, $idAlu)
     {
         $alumno_has_respuesta_Model = new Alumno_has_respuesta_Model();

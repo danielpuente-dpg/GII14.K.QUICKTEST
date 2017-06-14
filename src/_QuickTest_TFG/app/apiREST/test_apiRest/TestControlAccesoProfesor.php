@@ -14,7 +14,9 @@ require_once($URL_GLOBAL . '/_QuickTest_TFG/app/apiREST/test_apiRest/TablaLTI_Ke
 
 /**
  * Class TestControlAccesoProfesor, Clase de Test encargada de comprobar el correcto funcionamiento del controlador.
- * Estos test se realizan sobre el controlador, ya que sobre este se basa el APIREST
+ * Estos test se realizan sobre el controlador, ya que sobre este se basa el APIREST.
+ *
+ * @autor Daniel Puente Gabarri.
  */
 class TestControlAccesoProfesor extends PHPUnit_Framework_TestCase
 {

@@ -23,7 +23,9 @@ require_once($URL_GLOBAL . '/_QuickTest_TFG/app/apiREST/test_apiRest/TablaNota.p
 
 /**
  *
- * Class Alumno
+ * Clase SolucionCuestionario encargada finalizar un cuestionario, insertar la nota y recuperarla.
+ *
+ * @autor Daniel Puente Gabarri.
  *
  */
 class SolucionCuestionario
@@ -38,7 +40,12 @@ class SolucionCuestionario
     const ESTADO_ERROR_PARAMETROS = 4;
     const ESTADO_SOY_PROFESOR = true;
 
-
+    /**
+     * Método encargado de tratar la lógica de un petición GET.
+     * @param $peticion , peticion.
+     * @return array, resto de campos que forman la peticion.
+     * @throws APIException.
+     */
     public static function get($peticion)
     {
         if ($peticion[0] == 'obtenerNota') {
@@ -51,17 +58,18 @@ class SolucionCuestionario
 
     }
 
+    /**
+     * Método encargado de tratar la lógica de un petición POST.
+     * @param $peticion , peticion.
+     * @return array, resto de campos que forman la peticion.
+     * @throws APIException
+     */
     public static function post($peticion)
     {
         // Si el alumno decide finalizar el cuestionario
         if ($peticion[0] == 'finalizar') {
             return self::finalizarCuestionario();
 
-        /*} else if ($peticion[0] == 'mostrar') {
-            return self::mostrarResultados();
-
-        } else if ($peticion[0] == 'resolver') {
-            return self::iniciarCuestionario();*/
         } else {
             throw new APIException(self::ESTADO_ERROR_PARAMETROS,
                 "Error al finalizar un cuestionario " . "<class> " . SolucionCuestionario::class . " </class>",
@@ -69,111 +77,11 @@ class SolucionCuestionario
         }
     }
 
-    /*private
-    static function iniciarCuestionario()
-    {
-        $cuerpo = file_get_contents('php://input');
-        $datos = json_decode($cuerpo, true);
-
-        $idCuestionario = $datos['data-idCuestVisualizar'];
-        $courseName = $datos['nombreAsig'];
-        $activityName = $datos['nombreCuest'];
-        $isProfesor = $datos['isProfesor'];
-        $idUser = $datos['idUser'];
-        $nombreAlu = $datos['nombreAlu'];
-        $apeAlu = $datos['apeAlu'];
-        $lang = $datos['lang'];
-        $idAsig = $datos['idAsig'];
-        $ltiConsumerURL = $datos['ltiConsumerURL'];
-
-        $alumno_has_cuestionarioModel = new Alumno_has_cuestionario_Model();
-        $cuestionarioResolverController = new Cuestionario_Resolver_Controller();
-        $preguntasModel = new Preguntas_Model();
-        $respuestasModel = new Respuestas_Model();
-        $preguntasVerde = null;
-        $preguntasAmarillo = null;
-
-        // Comprobar si es profesor
-        if ($isProfesor == 1) {
-            // Lógica a seguir si eres profesor
-            // Devolvemos la información
-            http_response_code(APIEstados::ESTADO_OK);
-            // Retornamos la informacion
-            return
-                [
-                    "estado" => self::ESTADO_EXITO,
-                    "mensaje" => self::ESTADO_SOY_PROFESOR,
-                    "datos" => null
-                ];
-
-        } else {
-            // Comprobar si ese cuestionario ha sido ya resuelto por ese alumno.
-            // Si no esta resuelto, registramos la conexión
-
-            if ($alumno_has_cuestionarioModel->estaResuelto($idUser, $idCuestionario) != 1) {
-                // Comprobamos si existe un estado previo de ese cuestionario para dicho alumno
-                $resultado = $cuestionarioResolverController->checkSegundoIntento($idUser, $idCuestionario);
-                if ($resultado == NULL) {
-
-                    // Registramos la conexión para incrementar el número de alumnos que resuelven
-                    // el cuestionario
-                    $cuestionarioResolverController->registrarConexion($idCuestionario);
-
-                    // Registramos tambien al usuario
-                    $cuestionarioResolverController->registrarAlumno($idUser, $nombreAlu, $apeAlu);
-
-                    // Si es la primera vez que intenta resolver el cuestionario se le permite el
-                    // uso de comodines
-                    $preguntasVerde = $cuestionarioResolverController->hasComodinVerde($idCuestionario);
-                    $preguntasAmarillo = $cuestionarioResolverController->hasComodinAmbar($idCuestionario);
-
-                    // Obtenemos las preguntas para dicho Custionario
-                    $preguntasModel->getIDPreguntaTitulo_Cuestionario($idCuestionario);
-                    // Para cada pregunta obtenemos sus posibles respuestas
-                    foreach ($preguntasModel as $p) {
-                        $respuestasPregunta[] = $respuestasModel->getRespuestas($p);
-                    }
-
-                    // Sino, devuelve un array con las preguntas ya contestadas
-                } else {
-
-                    // Obtenemos las preguntas para dicho Custionario
-                    $preguntasModel->getIDPreguntaTitulo_Cuestionario($idCuestionario);
-
-                    // Para cada pregunta obtenemos sus posibles respuestas
-                    foreach ($preguntasModel as $p) {
-                        $respuestasPregunta[] = $respuestasModel->getRespuestas($p);
-                    }
-
-                }
-
-            } else {
-                throw new APIException(self::ESTADO_CUESTIONARIO_FINALIZADA,
-                    "Error al iniciar un cuestionario " . "<class> " . SolucionCuestionario::class . " </class>
-                    el cuestionario ya esta resuelto", APIEstados::ESTADO_UNPROCESSABLE_ENTITY);
-
-            }
-
-            $datos = array(
-                "preguntas" => $preguntasModel,
-                "respuestas" => $respuestasModel,
-                "comodinVerde" => $preguntasVerde,
-                "comodinAmarillo" => $preguntasAmarillo
-            );
-
-            // Devolvemos la información
-            http_response_code(APIEstados::ESTADO_OK);
-            // Retornamos la informacion
-            return
-                [
-                    "estado" => self::ESTADO_EXITO,
-                    "mensaje" => !self::ESTADO_SOY_PROFESOR,
-                    "datos" => $datos
-                ];
-        }
-
-    }*/
-
+    /**
+     * Metodo ecnargado de finalizar un cuestionario almacenando las respuestas.
+     * @return array, respuesta a la peticion.
+     * @throws APIException
+     */
     private
     static function finalizarCuestionario()
     {
@@ -235,7 +143,13 @@ class SolucionCuestionario
 
     }
 
-    public
+    /**
+     * Metodo encargado de calcular la nota de un cuestionario en escala 0-10.
+     * @param $idCuestionario , identificador del cuestionario.
+     * @param $idAlumno , identificador del alumno.
+     * @return float|int, nota.
+     */
+    private
     static function calcularNotaMoodle($idCuestionario, $idAlumno)
     {
 
@@ -289,7 +203,15 @@ class SolucionCuestionario
 
     }
 
-    public
+    /**
+     * Metodo encargado de insertar la nota de un cuestionario resuelto desde
+     * la app Android en QuickTest.
+     * @param $idAlumno , identificador del alumno.
+     * @param $idCuestionario , identificador del cuestionario.
+     * @param $nota , nota
+     * @return bool, respuesta.
+     */
+    private
     static function insertarNota($idAlumno, $idCuestionario, $nota)
     {
         $db = new Database();
@@ -313,33 +235,16 @@ class SolucionCuestionario
 
     }
 
-    /*private
-    static function mostrarResultados()
-    {
-        // Obtenemos la informacion necesaria sobre el cuestionario ya resuelto
-        $body = file_get_contents('php://input');
-        $cuestionario = json_decode($body, true);
-
-        $idCuestionario = $cuestionario['idCuestionario'];
-        $idAlu = $cuestionario['idAlu'];
-        $idAsig = $cuestionario['idAsig'];
-
-        $cuestionarioResolverController = new Cuestionario_Resolver_Controller();
-        $datos = $cuestionarioResolverController->mostarResultados($idCuestionario, $idAlu, $idAsig);
-        // Devolvemos la información
-        http_response_code(APIEstados::ESTADO_OK);
-        // Retornamos la informacion
-        return
-            [
-                "estado" => self::ESTADO_EXITO,
-                "mensaje" => $datos
-            ];
-    }*/
-
+    /**
+     * Metodo encargado de obtener la nota de un cuestionario resuelto desde la App Android.
+     * @param $idAlumno , identificador del alumno.
+     * @param $idCuestionario , identificador del cuestionario.
+     * @return array, respuesta.
+     */
     private static function getGrade($idAlumno, $idCuestionario)
     {
         $retorno = self::obtenerNota($idAlumno, $idCuestionario);
-        if($retorno == null){
+        if ($retorno == null) {
             $retorno = -1;
         }
         // Establecemos la respuesta
@@ -354,6 +259,12 @@ class SolucionCuestionario
 
     }
 
+    /**
+     * Metodo encargado de obtener la nota de un cuestionario en la base de datos.
+     * @param $idAlumno , identificador del usuario.
+     * @param $idCuestionario , identificador del cuestionario.
+     * @return int, calificacion.
+     */
     public static function obtenerNota($idAlumno, $idCuestionario)
     {
         $db = new Database();

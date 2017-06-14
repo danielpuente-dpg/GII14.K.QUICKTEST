@@ -6,6 +6,13 @@
  * Date: 08/03/2017
  * Time: 10:25
  */
+
+/**
+ * Clase APIEstados encargada de abstaer todos los posibles codigos de respuesta frente
+ * a una peticion.
+ *
+ * @autor Daniel Puente Gabarri.
+ */
 class APIEstados
 {
     const ESTADO_OK = 200;

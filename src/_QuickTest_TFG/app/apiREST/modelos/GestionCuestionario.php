@@ -18,6 +18,8 @@ require_once($URL_GLOBAL . '/_QuickTest_TFG/app/controller/Cuestionario_Gestiona
  * Class GestionCuestionario, esta clase se comunica con el Controlador o con el
  * Modelo para el tratamiento de todas las lógicas relacionadas con un
  * cuestionario.
+ *
+ * @autor Daniel Puente Gabarri.
  */
 class GestionCuestionario
 {

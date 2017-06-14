@@ -2,7 +2,7 @@
 <project version="4">
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/app/views/cuestionarioView/cuestionario_CrearNuevo_View.php" />
-    <bookmark url="file://$PROJECT_DIR$/app/apiREST/test_apiRest/TestGestionCuestionario.php" line="128" mnemonic="7" />
+    <bookmark url="file://$PROJECT_DIR$/app/apiREST/test_apiRest/TestGestionCuestionario.php" line="130" mnemonic="7" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de5a4866-9f3a-428e-8ac2-842f78450af6" name="Default" comment="" />
@@ -37,57 +37,7 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="ObtenerCuestionario.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/apiREST/modelos/ObtenerCuestionario.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="109" column="60" lean-forward="false" selection-start-line="109" selection-start-column="60" selection-end-line="109" selection-end-column="60" />
-              <folding>
-                <element signature="n#get#0;n#ObtenerCuestionario#0;n#!!top" expanded="false" />
-                <element signature="n#getCuestionario#0;n#ObtenerCuestionario#0;n#!!top" expanded="false" />
-                <element signature="n#getEstadoCuestionario#0;n#ObtenerCuestionario#0;n#!!top" expanded="false" />
-                <element signature="n#getComodinVerde#0;n#ObtenerCuestionario#0;n#!!top" expanded="false" />
-                <element signature="n#getInfoComodinVerde#0;n#ObtenerCuestionario#0;n#!!top" expanded="false" />
-                <element signature="n#getComodinAmbar#0;n#ObtenerCuestionario#0;n#!!top" expanded="false" />
-                <element signature="n#getInfoComodinAbar#0;n#ObtenerCuestionario#0;n#!!top" expanded="false" />
-                <element signature="n#getFeedBack#0;n#ObtenerCuestionario#0;n#!!top" expanded="false" />
-                <element signature="n#getInfoFeedBack#0;n#ObtenerCuestionario#0;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SolucionCuestionario.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/apiREST/modelos/SolucionCuestionario.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-297">
-              <caret line="177" column="20" lean-forward="false" selection-start-line="177" selection-start-column="20" selection-end-line="177" selection-end-column="20" />
-              <folding>
-                <element signature="n#calcularNotaMoodle#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
-                <element signature="n#insertarNota#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
-                <element signature="n#obtenerNota#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
-                <marker date="1496687047894" expanded="false" signature="2367:6773" ph="{...}" />
-                <marker date="1496687047894" expanded="true" signature="11306:11318" ph="INSERT INTO ${TablaN}... " />
-                <marker date="1496687047894" expanded="true" signature="11306:11361" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-                <marker date="1496687047894" expanded="true" signature="11306:11363" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-                <marker date="1496687047894" expanded="true" signature="11306:11364" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-                <marker date="1496687047894" expanded="true" signature="11306:11393" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-                <marker date="1496687047894" expanded="true" signature="11306:11394" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-                <marker date="1496687047894" expanded="true" signature="11306:11395" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-                <marker date="1496687047894" expanded="true" signature="11306:11430" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-                <marker date="1496687047894" expanded="true" signature="11306:11431" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-                <marker date="1496687047894" expanded="true" signature="11306:11432" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-                <marker date="1496687047894" expanded="true" signature="11306:11476" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-                <marker date="1496687047894" expanded="true" signature="11306:11485" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-                <marker date="1496687047894" expanded="false" signature="11817:12591" ph="{...}" />
-                <marker date="1496687047894" expanded="true" signature="13239:13255" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -121,12 +71,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/apiAndroid/Zend/Http/Request.php" />
-        <option value="$PROJECT_DIR$/app/apiAndroid/Zend/XmlRpc/AbstractValue.php" />
-        <option value="$PROJECT_DIR$/app/apiAndroid/Zend/XmlRpc/Generator/XmlWriter.php" />
-        <option value="$PROJECT_DIR$/app/apiAndroid/Zend/XmlRpc/Generator/AbstractGenerator.php" />
-        <option value="$PROJECT_DIR$/app/apiAndroid/Zend/XmlRpc/Exception/InvalidArgumentException.php" />
-        <option value="$PROJECT_DIR$/app/apiAndroid/Zend/XmlRpc/Client/Exception/InvalidArgumentException.php" />
         <option value="$PROJECT_DIR$/app/apiAndroid/Zend/Http/Client.php" />
         <option value="$PROJECT_DIR$/app/apiAndroid/Zend/Http/Exception/InvalidArgumentException.php" />
         <option value="$PROJECT_DIR$/app/apiAndroid/Zend/Http/Client/Exception/InvalidArgumentException.php" />
@@ -147,15 +91,9 @@
         <option value="$PROJECT_DIR$/app/apiREST/test_apiRest/Defines.php" />
         <option value="$PROJECT_DIR$/test_PHPUnit/controller/Usuario_ControllerTest.php" />
         <option value="$PROJECT_DIR$/app/apiREST/utilidades/TablaCuestionario.php" />
-        <option value="$PROJECT_DIR$/app/apiREST/modelos/ControlAccesoProfesor.php" />
         <option value="$PROJECT_DIR$/app/controller/Cuestionario_CrearNuevo_Controller.php" />
         <option value="$PROJECT_DIR$/app/model/Respuestas_Model.php" />
-        <option value="$PROJECT_DIR$/app/apiREST/modelos/GestionCuestionario.php" />
         <option value="$PROJECT_DIR$/app/controller/Usuarios_Controller.php" />
-        <option value="$PROJECT_DIR$/app/apiREST/test_apiRest/TestGestionCuestionario.php" />
-        <option value="$PROJECT_DIR$/app/apiREST/test_apiRest/TestControlAccesoProfesor.php" />
-        <option value="$PROJECT_DIR$/app/apiREST/test_apiRest/TablaLTI_Keys_Users.php" />
-        <option value="$PROJECT_DIR$/app/apiREST/test_apiRest/TestSolucionCuestionario.php" />
         <option value="$PROJECT_DIR$/app/controller/Cuestionario_Gestionar_Controller.php" />
         <option value="$PROJECT_DIR$/app/apiREST/index.php" />
         <option value="$PROJECT_DIR$/app/model/Preguntas_Model.php" />
@@ -167,11 +105,23 @@
         <option value="$PROJECT_DIR$/../moodle/config.php" />
         <option value="$PROJECT_DIR$/app/model/Alumno_has_respuesta_Model.php" />
         <option value="$PROJECT_DIR$/app/apiREST/test_apiRest/Nota.php" />
-        <option value="$PROJECT_DIR$/app/apiREST/test_apiRest/TablaNota.php" />
-        <option value="$PROJECT_DIR$/app/apiREST/modelos/SolucionCuestionario.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/app/controller/Cuestionario_Resolver_Controller.php" />
+        <option value="$PROJECT_DIR$/app/apiREST/modelos/GestionCuestionario.php" />
+        <option value="$PROJECT_DIR$/app/apiREST/modelos/ControlAccesoProfesor.php" />
+        <option value="$PROJECT_DIR$/app/apiREST/modelos/SolucionCuestionario.php" />
         <option value="$PROJECT_DIR$/app/apiREST/modelos/ObtenerCuestionario.php" />
+        <option value="$PROJECT_DIR$/app/apiREST/test_apiRest/TablaCuestionario.php" />
+        <option value="$PROJECT_DIR$/app/apiREST/test_apiRest/TablaLTI_Keys_Users.php" />
+        <option value="$PROJECT_DIR$/app/apiREST/test_apiRest/TablaNota.php" />
+        <option value="$PROJECT_DIR$/app/apiREST/utilidades/APIEstados.php" />
+        <option value="$PROJECT_DIR$/app/apiREST/utilidades/APIException.php" />
+        <option value="$PROJECT_DIR$/app/apiREST/utilidades/Defines.php" />
+        <option value="$PROJECT_DIR$/app/apiREST/vista/APIVista.php" />
+        <option value="$PROJECT_DIR$/app/apiREST/vista/APIVistaJSON.php" />
+        <option value="$PROJECT_DIR$/app/apiREST/test_apiRest/TestControlAccesoProfesor.php" />
+        <option value="$PROJECT_DIR$/app/apiREST/test_apiRest/TestGestionCuestionario.php" />
+        <option value="$PROJECT_DIR$/app/apiREST/test_apiRest/TestSolucionCuestionario.php" />
       </list>
     </option>
   </component>
@@ -308,6 +258,50 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="apiREST" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="_QuickTest_TFG" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="_QuickTest_TFG" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apiREST" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vista" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="_QuickTest_TFG" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="_QuickTest_TFG" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apiREST" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utilidades" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -582,12 +576,12 @@
       <workItem from="1496913295861" duration="607000" />
       <workItem from="1497285324838" duration="1294000" />
       <workItem from="1497341101787" duration="605000" />
-      <workItem from="1497435342460" duration="66000" />
+      <workItem from="1497435342460" duration="2135000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="174204000" />
+    <option name="totallyTimeSpent" value="176273000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -610,10 +604,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1809" y="217" width="1818" height="1093" extended-state="7" />
-    <editor active="true" />
+    <frame x="-1809" y="217" width="1818" height="1093" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.165" sideWeight="0.86165047" order="0" side_tool="true" content_ui="combo" x="-1370" y="369" width="500" height="956" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.165" sideWeight="0.86165047" order="0" side_tool="true" content_ui="combo" x="-1370" y="369" width="500" height="956" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32692307" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282313" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1085,30 +1079,111 @@
             <element signature="n#finalizarCuestionario#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
             <element signature="n#calcularNotaMoodle#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
             <element signature="n#insertarNota#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
+            <element signature="n#getGrade#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
             <element signature="n#obtenerNota#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
-            <marker date="1496687047894" expanded="false" signature="2367:6773" ph="{...}" />
-            <marker date="1496687047894" expanded="true" signature="11306:11318" ph="INSERT INTO ${TablaN}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11361" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11363" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11364" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11393" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11394" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11395" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11430" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11431" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11432" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11476" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11485" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="false" signature="11817:12591" ph="{...}" />
-            <marker date="1496687047894" expanded="true" signature="13239:13255" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:7911" ph="INSERT INTO ${TablaN}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:7954" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:7956" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:7957" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:7986" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:7987" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:7988" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:8023" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:8024" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:8025" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:8069" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:8078" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="9511:9527" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiREST/test_apiRest/TablaCuestionario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="12" column="32" lean-forward="false" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiREST/test_apiRest/TablaLTI_Keys_Users.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="12" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiREST/test_apiRest/TablaNota.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="12" column="32" lean-forward="false" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiREST/utilidades/Defines.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="14" column="32" lean-forward="false" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiREST/utilidades/login_mysql.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiREST/vista/APIVista.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="12" column="32" lean-forward="false" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiREST/vista/APIVistaJSON.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="14" column="32" lean-forward="false" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiREST/utilidades/APIException.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiREST/utilidades/APIEstados.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="13" column="32" lean-forward="false" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiREST/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1177">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#103#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/apiREST/modelos/ObtenerCuestionario.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="109" column="60" lean-forward="false" selection-start-line="109" selection-start-column="60" selection-end-line="109" selection-end-column="60" />
+        <state relative-caret-position="2090">
+          <caret line="414" column="32" lean-forward="false" selection-start-line="414" selection-start-column="32" selection-end-line="414" selection-end-column="32" />
           <folding>
             <element signature="n#get#0;n#ObtenerCuestionario#0;n#!!top" expanded="false" />
             <element signature="n#getCuestionario#0;n#ObtenerCuestionario#0;n#!!top" expanded="false" />
@@ -1125,29 +1200,71 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/apiREST/modelos/SolucionCuestionario.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-297">
-          <caret line="177" column="20" lean-forward="false" selection-start-line="177" selection-start-column="20" selection-end-line="177" selection-end-column="20" />
+        <state relative-caret-position="572">
+          <caret line="43" column="7" lean-forward="false" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="63" />
           <folding>
             <element signature="n#finalizarCuestionario#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
             <element signature="n#calcularNotaMoodle#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
             <element signature="n#insertarNota#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
+            <element signature="n#getGrade#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
             <element signature="n#obtenerNota#0;n#SolucionCuestionario#0;n#!!top" expanded="false" />
-            <marker date="1496687047894" expanded="false" signature="2367:6773" ph="{...}" />
-            <marker date="1496687047894" expanded="true" signature="11306:11318" ph="INSERT INTO ${TablaN}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11361" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11363" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11364" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11393" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11394" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11395" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11430" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11431" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11432" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11476" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="true" signature="11306:11485" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
-            <marker date="1496687047894" expanded="false" signature="11817:12591" ph="{...}" />
-            <marker date="1496687047894" expanded="true" signature="13239:13255" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:7911" ph="INSERT INTO ${TablaN}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:7954" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:7956" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:7957" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:7986" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:7987" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:7988" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:8023" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:8024" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:8025" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:8069" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="7899:8078" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
+            <marker date="1497436910845" expanded="true" signature="9511:9527" ph="INSERT INTO ${TablaNota::NOMBRE_TABLA}... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiREST/modelos/ControlAccesoProfesor.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiREST/modelos/GestionCuestionario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="33" column="7" lean-forward="false" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiREST/test_apiRest/TestControlAccesoProfesor.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+          <folding>
+            <marker date="1497437489868" expanded="true" signature="1069:1185" ph="DELETE FROM " />
+            <marker date="1497437489868" expanded="true" signature="2565:2673" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiREST/test_apiRest/TestGestionCuestionario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="20" column="32" lean-forward="false" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/apiREST/test_apiRest/TestSolucionCuestionario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>

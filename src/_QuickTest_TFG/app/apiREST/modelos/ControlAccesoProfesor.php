@@ -13,9 +13,11 @@ if (!empty($_SERVER["DOCUMENT_ROOT"]))
 require_once($URL_GLOBAL . '/_QuickTest_TFG/app/controller/Usuarios_Controller.php');
 
 /**
- * ControlAcesoProfesor
- * Class Usuario, esta clase se comunica con el Controlador para el tratamiento de toda
- * la lógica del acceso y registro de QuickTest
+
+ * Clase ControlAcesoProfesor, esta clase se comunica con el Controlador para el tratamiento de toda
+ * la lógica del acceso y registro de QuickTest.
+ *
+ * @autor Daniel Puente Gabarri.
  */
 class ControlAccesoProfesor
 {

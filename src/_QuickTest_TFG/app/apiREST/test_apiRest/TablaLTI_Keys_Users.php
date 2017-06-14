@@ -6,6 +6,12 @@
  * Date: 22/03/2017
  * Time: 11:13
  */
+
+/**
+ * Clase TablaLTI_Keys_Users encargada de abstraer los atributos de la tabla.
+ *
+ * @autor Daniel Puente Gabarri.
+ */
 abstract class TablaLTI_Keys_Users
 {
     const NOMBRE_TABLA = "lti_keys_users";
