@@ -16,8 +16,6 @@ public class Question {
     @SerializedName("max_puntuacion")
     private int puntuacion;
 
-    public Question(){};
-
     public Question(int idPregunta, String titulo, int puntuacion) {
         this.idPregunta = idPregunta;
         this.titulo = titulo;

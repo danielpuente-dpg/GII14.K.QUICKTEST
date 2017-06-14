@@ -67,6 +67,12 @@ public class TestRequest {
         this.respuestas = respuestas;
     }
 
+    /**
+     * Metodo encargado de realizar la conversion del contenido de la respuesta result,
+     * implicitamente invoca a la clase Result y transforma el contenido a dicho objeto.
+     * @param response, response.
+     * @return Result, result.
+     */
     public static Result parseJSON(String response) {
         Gson gson = new GsonBuilder().create();
         Result result = gson.fromJson(response, Result.class);

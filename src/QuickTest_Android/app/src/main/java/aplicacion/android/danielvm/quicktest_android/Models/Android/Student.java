@@ -64,7 +64,7 @@ public class Student {
         this.email = email;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 

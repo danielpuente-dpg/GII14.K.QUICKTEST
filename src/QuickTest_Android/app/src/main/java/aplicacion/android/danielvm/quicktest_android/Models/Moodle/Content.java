@@ -17,9 +17,6 @@ public class Content {
     private String name;
     private List<Module> modules;
 
-    public Content() {
-    }
-
     public Content(int id, String name, List<Module> modules) {
         this.id = id;
         this.name = name;
@@ -50,6 +47,13 @@ public class Content {
         this.modules = modules;
     }
 
+    /**
+     * Metodo encargado de realizar la conversion del contenido de la respuesta module,
+     * implicitamente invoca a la clase Module y transforma el contenido a dicho objeto.
+     *
+     * @param response, response.
+     * @return Module, module.
+     */
     public static Module parseJSON(String response) {
         Gson gson = new GsonBuilder().create();
         Module module = gson.fromJson(response, Module.class);

@@ -60,6 +60,12 @@ public class Test {
         this.wildCard = wildCard;
     }
 
+    /**
+     * Metodo encargado de realizar la conversion del contenido de la respuesta answer,
+     * implicitamente invoca a la clase Answer y transforma el contenido a dicho objeto.
+     * @param response, response
+     * @return Answer, answer.
+     */
     public static Answer parseJSON(String response) {
         Gson gson = new GsonBuilder().create();
         Answer answer = gson.fromJson(response, Answer.class);

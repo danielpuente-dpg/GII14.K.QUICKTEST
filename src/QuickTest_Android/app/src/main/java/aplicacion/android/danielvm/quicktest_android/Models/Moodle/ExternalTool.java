@@ -17,8 +17,6 @@ public class ExternalTool {
     private String endpoint;
     private List<Parameter> parameters;
 
-    public ExternalTool(){}
-
     public ExternalTool(String endpoint, List<Parameter> parameters) {
         this.endpoint = endpoint;
         this.parameters = parameters;
@@ -40,6 +38,13 @@ public class ExternalTool {
         this.parameters = parameters;
     }
 
+    /**
+     * Metodo encargado de realizar la conversion del contenido de la respuesta parameter,
+     * implicitamente invoca a la clase Parameter y transforma el contenido a dicho objeto.
+     *
+     * @param response, response.
+     * @return Parameter, parameter.
+     */
     public static Parameter parseJSON(String response) {
         Gson gson = new GsonBuilder().create();
         Parameter parameter = gson.fromJson(response, Parameter.class);

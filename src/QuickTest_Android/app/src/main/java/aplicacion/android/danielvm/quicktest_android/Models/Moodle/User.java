@@ -16,8 +16,6 @@ public class User {
     private String fullname;
     private String email;
 
-    public User(){}
-
     public User(int id, String username, String firstname, String lastname, String fullname, String email) {
         this.id = id;
         this.username = username;

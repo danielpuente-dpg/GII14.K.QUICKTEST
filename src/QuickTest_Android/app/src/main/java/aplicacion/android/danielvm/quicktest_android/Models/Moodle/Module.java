@@ -12,8 +12,6 @@ public class Module {
     private String name;
     private String modname;
 
-    public Module(){}
-
     public Module(int id, String name, String modname) {
         this.id = id;
         this.name = name;
