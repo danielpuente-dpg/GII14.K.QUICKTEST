@@ -1,0 +1,16 @@
+aplicacion.android.danielvm.quicktestandroid
+aplicacion.android.danielvm.quicktestandroid.activities
+aplicacion.android.danielvm.quicktestandroid.activities.student
+aplicacion.android.danielvm.quicktestandroid.activities.teacher
+aplicacion.android.danielvm.quicktestandroid.adapters
+aplicacion.android.danielvm.quicktestandroid.adapters.Teacher
+aplicacion.android.danielvm.quicktestandroid.adapters.student
+aplicacion.android.danielvm.quicktestandroid.api
+aplicacion.android.danielvm.quicktestandroid.api.APIServices
+aplicacion.android.danielvm.quicktestandroid.fragments.students
+aplicacion.android.danielvm.quicktestandroid.models.android
+aplicacion.android.danielvm.quicktestandroid.models.apirest
+aplicacion.android.danielvm.quicktestandroid.models.moodle
+aplicacion.android.danielvm.quicktestandroid.requests.apimoodle
+aplicacion.android.danielvm.quicktestandroid.requests.apirest
+aplicacion.android.danielvm.quicktestandroid.utils

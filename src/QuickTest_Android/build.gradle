@@ -30,5 +30,6 @@ sonarqube {
     properties {
         property "sonar.projectName", "QuickTest_Android"
         property "sonar.projectKey", "danielpuente-dpg-github"
+        property "sonar.junit.reportsPath", "./build/test-results"
     }
 }

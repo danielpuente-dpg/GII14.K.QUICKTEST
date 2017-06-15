@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="aplicacion.android.danielvm.quicktest_android">
+    package="aplicacion.android.danielvm.quicktestandroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,31 +10,31 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.LoginActivity">
+        <activity android:name="aplicacion.android.danielvm.quicktestandroid.activities.LoginActivity">
 
         </activity>
         <activity
-            android:name=".Activities.Student.StudentActivity"
-            android:parentActivityName=".Activities.CourseActivity"
+            android:name="aplicacion.android.danielvm.quicktestandroid.activities.student.StudentActivity"
+            android:parentActivityName="aplicacion.android.danielvm.quicktestandroid.activities.CourseActivity"
             android:theme="@style/AppThemeNoActionBar" />
-        <activity android:name=".Activities.Student.TestActivity" />
+        <activity android:name="aplicacion.android.danielvm.quicktestandroid.activities.student.TestActivity" />
         <activity
-            android:name=".Activities.Student.InfoGradeActivity"
+            android:name="aplicacion.android.danielvm.quicktestandroid.activities.student.InfoGradeActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".Activities.Student.GradeActivity" />
-        <activity android:name=".Activities.MainActivity" />
+        <activity android:name="aplicacion.android.danielvm.quicktestandroid.activities.student.GradeActivity" />
+        <activity android:name="aplicacion.android.danielvm.quicktestandroid.activities.MainActivity" />
         <activity
-            android:name=".Activities.Teacher.TeacherActivity"
-            android:parentActivityName=".Activities.CourseActivity" />
+            android:name="aplicacion.android.danielvm.quicktestandroid.activities.teacher.TeacherActivity"
+            android:parentActivityName="aplicacion.android.danielvm.quicktestandroid.activities.CourseActivity" />
         <activity
-            android:name=".Activities.Teacher.StudentsGradesActivity"
-            android:parentActivityName=".Activities.Teacher.TeacherActivity" />
-        <activity android:name=".Activities.CourseActivity" />
+            android:name="aplicacion.android.danielvm.quicktestandroid.activities.teacher.StudentsGradesActivity"
+            android:parentActivityName="aplicacion.android.danielvm.quicktestandroid.activities.teacher.TeacherActivity" />
+        <activity android:name="aplicacion.android.danielvm.quicktestandroid.activities.CourseActivity" />
         <activity
-            android:name=".Activities.Teacher.ViewTestActivity"
-            android:parentActivityName=".Activities.Teacher.StudentsGradesActivity" />
+            android:name="aplicacion.android.danielvm.quicktestandroid.activities.teacher.ViewTestActivity"
+            android:parentActivityName="aplicacion.android.danielvm.quicktestandroid.activities.teacher.StudentsGradesActivity" />
         <activity
-            android:name=".Activities.SplashActivity"
+            android:name="aplicacion.android.danielvm.quicktestandroid.activities.SplashActivity"
             android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
