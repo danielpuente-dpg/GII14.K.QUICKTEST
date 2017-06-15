@@ -12,6 +12,10 @@ buildscript {
     }
 }
 
+plugins {
+    id "org.sonarqube" version "2.5"
+}
+
 allprojects {
     repositories {
         jcenter()
@@ -20,4 +24,11 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "QuickTest_Android"
+        property "sonar.projectKey", "danielpuente-dpg-github"
+    }
 }
