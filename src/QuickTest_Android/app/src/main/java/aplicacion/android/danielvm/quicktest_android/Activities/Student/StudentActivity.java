@@ -196,9 +196,11 @@ public class StudentActivity extends AppCompatActivity {
                     Log.d("StudentActivity", "calculateExternalToolsResolved: error en el resultado");
                 }
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Log.d("StudentActivity", e.getMessage());
+                Thread.currentThread().interrupt();
             } catch (ExecutionException e) {
-                e.printStackTrace();
+                Log.d("StudentActivity", e.getMessage());
+                Thread.currentThread().interrupt();
             }
         }
 

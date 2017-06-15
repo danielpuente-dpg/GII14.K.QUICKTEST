@@ -1,6 +1,7 @@
 package aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class ContentCourseRequest extends AsyncTask<Void, Void, List<Module>> {
             if (content != null)
                 addContentCourse(content);
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("ContentCourseRequest", e.getMessage());
         }
 
         return modules;

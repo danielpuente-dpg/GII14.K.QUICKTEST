@@ -1,11 +1,13 @@
 package aplicacion.android.danielvm.quicktest_android.Requests.APIRest;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.IOException;
 
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.RestService;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.FeedBack;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.FeedbackApiResponse;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
@@ -52,7 +54,7 @@ public class UserInfoGradeRequest extends AsyncTask<Void, Void, FeedBack> {
             FeedbackApiResponse feedbackApiResponse = call.execute().body();
             feedBack = feedbackApiResponse.getFeedBack();
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("UserInfoGradeRequest", e.getMessage());
         }
 
 

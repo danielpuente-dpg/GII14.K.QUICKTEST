@@ -1,12 +1,14 @@
 package aplicacion.android.danielvm.quicktest_android.Requests.APIRest;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.IOException;
 import java.util.List;
 
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.RestService;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.WildCard;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.WildcardApiResponse;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
@@ -49,7 +51,7 @@ public class GreenWildCardRequest extends AsyncTask<Void, Void, List<WildCard>> 
             WildcardApiResponse wildcardApiResponse = call.execute().body();
             retorno = wildcardApiResponse.getWildCards();
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("GreenWildCardRequest", e.getMessage());
         }
 
         return retorno;

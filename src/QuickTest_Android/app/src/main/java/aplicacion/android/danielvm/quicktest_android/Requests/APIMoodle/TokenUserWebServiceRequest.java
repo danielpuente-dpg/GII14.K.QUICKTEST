@@ -1,6 +1,7 @@
 package aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.IOException;
 
@@ -17,7 +18,7 @@ import retrofit2.Retrofit;
  * @author Daniel Puente Gabarri.
  */
 
-public class TokenUserWebServiceRequest extends AsyncTask<Void, Void, String> {
+public class TokenUserWebServiceRequest extends AsyncTask<Void, Void, Token> {
     private Retrofit retrofit;
     private String username;
     private String password;
@@ -40,7 +41,7 @@ public class TokenUserWebServiceRequest extends AsyncTask<Void, Void, String> {
      * @return String, token.
      */
     @Override
-    protected String doInBackground(Void... params) {
+    protected Token doInBackground(Void... params) {
         Token token = null;
 
         MoodleService service = retrofit.create(MoodleService.class);
@@ -50,10 +51,10 @@ public class TokenUserWebServiceRequest extends AsyncTask<Void, Void, String> {
         try {
             token = call.execute().body();
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("TokenUserWebService", "Request: " +  e.getMessage());
         }
 
 
-        return token.getToken();
+        return token;
     }
 }

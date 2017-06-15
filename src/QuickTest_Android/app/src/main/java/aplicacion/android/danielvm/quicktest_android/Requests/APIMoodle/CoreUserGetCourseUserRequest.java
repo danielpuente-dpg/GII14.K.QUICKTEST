@@ -1,6 +1,7 @@
 package aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.IOException;
 import java.util.List;
@@ -57,7 +58,7 @@ public class CoreUserGetCourseUserRequest extends AsyncTask<Void, Void, List<Rol
         try {
             roles = call.execute().body()[0].getRoles();
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("CoreUserGetCourseUser", "Request: " + e.getMessage());
         }
 
         return roles;

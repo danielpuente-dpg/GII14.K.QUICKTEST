@@ -37,8 +37,12 @@ public class APIMoodle {
 
     private static Retrofit retrofit = null;
 
+    private APIMoodle() {
+    }
+
     /**
      * Metodo encargado de proporcionarnos la instancia para comunicarnos con el web service.
+     *
      * @return Retrofit, retrofit.
      */
     public static Retrofit getApi() {

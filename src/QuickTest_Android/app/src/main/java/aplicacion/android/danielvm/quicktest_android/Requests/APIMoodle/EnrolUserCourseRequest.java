@@ -1,6 +1,7 @@
 package aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.IOException;
 
@@ -51,7 +52,7 @@ public class EnrolUserCourseRequest extends AsyncTask<Void, Void, Course[]> {
         try {
             course = call.execute().body();
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("EnrolUserCourseRequest", e.getMessage());
         }
 
         return course;

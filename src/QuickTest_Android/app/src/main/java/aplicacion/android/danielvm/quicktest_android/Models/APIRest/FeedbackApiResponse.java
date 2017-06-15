@@ -1,4 +1,4 @@
-package aplicacion.android.danielvm.quicktest_android.Requests.APIRest;
+package aplicacion.android.danielvm.quicktest_android.Models.APIRest;
 
 import com.google.gson.annotations.SerializedName;
 

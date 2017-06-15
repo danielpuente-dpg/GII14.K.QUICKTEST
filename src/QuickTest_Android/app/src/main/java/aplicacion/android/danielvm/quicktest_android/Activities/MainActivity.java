@@ -156,13 +156,14 @@ public class MainActivity extends AppCompatActivity {
         TokenUserWebServiceRequest tokenUserWSRequest =
                 new TokenUserWebServiceRequest(APIMoodle.getApi(), APIMoodle.USERNAME, APIMoodle.PASSWORD);
         try {
-            tokenWebService = tokenUserWSRequest.execute().get();
+            tokenWebService = tokenUserWSRequest.execute().get().getToken();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Log.d("MainActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         } catch (ExecutionException e) {
-            e.printStackTrace();
+            Log.d("MainActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         }
-        Log.d("MainActivity", "tokenWebService: " + tokenWebService);
         return tokenWebService;
     }
 
@@ -177,11 +178,12 @@ public class MainActivity extends AppCompatActivity {
         try {
             user = userFieldRequest.execute().get();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Log.d("MainActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         } catch (ExecutionException e) {
-            e.printStackTrace();
+            Log.d("MainActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         }
-        Log.d("MainActivity", "user: " + user.getFullname());
         return user;
     }
 
@@ -196,11 +198,12 @@ public class MainActivity extends AppCompatActivity {
         try {
             courses = enrolUserCourse.execute().get();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Log.d("MainActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         } catch (ExecutionException e) {
-            e.printStackTrace();
+            Log.d("MainActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         }
-        Log.d("MainActivity", "courses: " + courses.length + "");
         return courses;
     }
 
@@ -216,11 +219,12 @@ public class MainActivity extends AppCompatActivity {
             try {
                 List<Role> roles = coreUserGetCourseUserRequest.execute().get();
                 coursesByRol.put(course.getId(), roles.get(0));
-                Log.d("MainActivity", "coursesByRol: " + roles.get(0));
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Log.d("MainActivity", e.getMessage());
+                Thread.currentThread().interrupt();
             } catch (ExecutionException e) {
-                e.printStackTrace();
+                Log.d("MainActivity", e.getMessage());
+                Thread.currentThread().interrupt();
             }
         }
 
@@ -240,13 +244,14 @@ public class MainActivity extends AppCompatActivity {
                 List<Module> currentModules = contentCourseRequest.execute().get();
                 modules.addAll(currentModules);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Log.d("MainActivity", e.getMessage());
+                Thread.currentThread().interrupt();
             } catch (ExecutionException e) {
-                e.printStackTrace();
+                Log.d("MainActivity", e.getMessage());
+                Thread.currentThread().interrupt();
             }
 
         }
-        Log.d("MainActivity", "modules: " + modules.size());
         return modules;
     }
 
@@ -261,11 +266,12 @@ public class MainActivity extends AppCompatActivity {
         try {
             allCourses = courseRequest.execute().get();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Log.d("MainActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         } catch (ExecutionException e) {
-            e.printStackTrace();
+            Log.d("MainActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         }
-        Log.d("MainActivity", "allCourses: " + allCourses.size());
         return allCourses;
     }
 
@@ -282,13 +288,14 @@ public class MainActivity extends AppCompatActivity {
             try {
                 cont = contentCourseRequest.execute().get();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Log.d("MainActivity", e.getMessage());
+                Thread.currentThread().interrupt();
             } catch (ExecutionException e) {
-                e.printStackTrace();
+                Log.d("MainActivity", e.getMessage());
+                Thread.currentThread().interrupt();
             }
             num += cont;
         }
-        Log.d("MainActivity", "numExternalTools: " + num);
         return num;
     }
 
@@ -309,12 +316,13 @@ public class MainActivity extends AppCompatActivity {
                 ExternalTool externalTool = externalTollRequest.execute().get();
                 addExternalTool(retorno, externalTool);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Log.d("MainActivity", e.getMessage());
+                Thread.currentThread().interrupt();
             } catch (ExecutionException e) {
-                e.printStackTrace();
+                Log.d("MainActivity", e.getMessage());
+                Thread.currentThread().interrupt();
             }
         }
-        Log.d("MainActivity", "cuestionarios: " + retorno.size());
         return retorno;
     }
 
@@ -347,7 +355,6 @@ public class MainActivity extends AppCompatActivity {
                     // Mapas de apoyo
                     createMaps(questionnaire, course, idCourse);
 
-                    Log.d("MainActivity", "addExternalTool: " + questionnaire.getDescription());
                     break;
                 }
             }

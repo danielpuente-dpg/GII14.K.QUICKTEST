@@ -34,7 +34,7 @@ import aplicacion.android.danielvm.quicktest_android.R;
 import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.AmberWildCardRequest;
 import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.ContentTestRequest;
 import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.GreenWildCardRequest;
-import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.SingleApiResponse;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.SingleApiResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -241,11 +241,12 @@ public class TestActivity extends AppCompatActivity {
                 resultado.add(new Test(question.getTitulo(), answers, question.getIdPregunta()));
             }
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Log.d("TestActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         } catch (ExecutionException e) {
-            e.printStackTrace();
+            Log.d("TestActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         }
-        Log.d("TestActivity", "getContentTest:" + resultado.size());
         return resultado;
     }
 
@@ -272,9 +273,11 @@ public class TestActivity extends AppCompatActivity {
         try {
             greenWildCard = (ArrayList<WildCard>) greenWildCardRequest.execute().get();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Log.d("TestActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         } catch (ExecutionException e) {
-            e.printStackTrace();
+            Log.d("TestActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         }
         return greenWildCard;
     }
@@ -291,9 +294,11 @@ public class TestActivity extends AppCompatActivity {
         try {
             amberWildCard = (ArrayList<WildCard>) amberWildCardRequest.execute().get();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Log.d("TestActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         } catch (ExecutionException e) {
-            e.printStackTrace();
+            Log.d("TestActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         }
         HashMap<Integer, HashSet<Integer>> retorno = new HashMap<>();
         if (amberWildCard.size() > 0) {

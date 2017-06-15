@@ -1,10 +1,12 @@
 package aplicacion.android.danielvm.quicktest_android.Requests.APIRest;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.IOException;
 
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.RestService;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.SingleApiResponse;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
@@ -21,9 +23,10 @@ public class StatusQuestionnaireRequest extends AsyncTask<Void, Void, Integer> {
 
     /**
      * Constructor de la clase.
-     * @param retrofit, retrofit.
+     *
+     * @param retrofit,           retrofit.
      * @param oauth_consumer_key, clave del usuario.
-     * @param idQuestionnaire, identificador del usuario.
+     * @param idQuestionnaire,    identificador del usuario.
      */
     public StatusQuestionnaireRequest(Retrofit retrofit, String oauth_consumer_key, int idQuestionnaire) {
         this.retrofit = retrofit;
@@ -48,7 +51,7 @@ public class StatusQuestionnaireRequest extends AsyncTask<Void, Void, Integer> {
             status = Integer.parseInt(call.execute().body().getMessage());
             return status;
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("StatusQuestionnaire", "Request: " + e.getMessage());
         }
 
 

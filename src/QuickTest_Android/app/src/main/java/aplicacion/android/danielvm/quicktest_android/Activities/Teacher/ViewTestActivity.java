@@ -100,9 +100,11 @@ public class ViewTestActivity extends AppCompatActivity {
                 retorno.add(new Test(question.getTitulo(), answers, question.getIdPregunta()));
             }
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Log.d("ViewTestActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         } catch (ExecutionException e) {
-            e.printStackTrace();
+            Log.d("ViewTestActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         }
         return retorno;
     }

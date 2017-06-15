@@ -1,11 +1,13 @@
 package aplicacion.android.danielvm.quicktest_android.Requests.APIRest;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.IOException;
 import java.util.List;
 
 import aplicacion.android.danielvm.quicktest_android.API.APIServices.RestService;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.APIResponse;
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.Message;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -46,7 +48,8 @@ public class ContentTestRequest extends AsyncTask<Void, Void, List<Message>> {
         try {
             messages = call.execute().body().getMessages();
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("ContentTestRequest", e.getMessage());
+
         }
 
 

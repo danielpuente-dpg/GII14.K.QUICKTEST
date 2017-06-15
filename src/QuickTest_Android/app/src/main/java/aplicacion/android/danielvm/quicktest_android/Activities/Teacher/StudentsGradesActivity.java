@@ -119,16 +119,18 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
         try {
             usersEnrol = usersEnrolledInCourse.execute().get();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Log.d("StudentGradesActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         } catch (ExecutionException e) {
-            e.printStackTrace();
+            Log.d("StudentGradesActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         }
-        Log.d("StudentsGradesActivity", "usersEnrol: " + usersEnrol.length);
         return usersEnrol;
     }
 
     /**
      * Metododo encargado de obtener los alumnos.
+     *
      * @return ArrayList<Student>, students.
      */
     private ArrayList<Student> loadStudents() {
@@ -143,6 +145,7 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
 
     /**
      * Metodo encargado de actualizar el estado del cuestionario para cada alumno.
+     *
      * @param students, students.
      */
     private void setAllStudentsStates(List<Student> students) {
@@ -161,9 +164,11 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
                     Log.d("StudentsGradesActivity", "error in getStatus");
                 }
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Log.d("StudentGradesActivity", e.getMessage());
+                Thread.currentThread().interrupt();
             } catch (ExecutionException e) {
-                e.printStackTrace();
+                Log.d("StudentGradesActivity", e.getMessage());
+                Thread.currentThread().interrupt();
             }
 
         }
@@ -171,6 +176,7 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
 
     /**
      * Metodo encargado de obtener la calificacion del cuestionario para cada alumno.
+     *
      * @param students, students.
      */
     public void setAllStudentsGrades(List<Student> students) {
@@ -181,15 +187,18 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
                 Double grade = userGradeRequest.execute().get();
                 student.setGrade(grade);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Log.d("StudentGradesActivity", e.getMessage());
+                Thread.currentThread().interrupt();
             } catch (ExecutionException e) {
-                e.printStackTrace();
+                Log.d("StudentGradesActivity", e.getMessage());
+                Thread.currentThread().interrupt();
             }
         }
     }
 
     /**
      * Metodo encargado de obtener los alumnos.
+     *
      * @return ArrayList<Student>, students.
      */
     private ArrayList<Student> getStudents() {
@@ -227,6 +236,7 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
 
     /**
      * Metodo que devuelve el cuestionario.
+     *
      * @return Questionnaire, questionnaire.
      */
     public Questionnaire getQuestionnaire() {
@@ -236,10 +246,11 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
 
     /**
      * Metodo encargado de lanzar un mensaje en funcion del alumno seleccionado.
-     * @param parent, parent.
-     * @param view, parent.
+     *
+     * @param parent,   parent.
+     * @param view,     parent.
      * @param position, parent.
-     * @param id, parent.
+     * @param id,       parent.
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -249,6 +260,7 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
 
     /**
      * Metodo encargado de proporcionar el mensaje correspondiente en funcion del alumno.
+     *
      * @param position, position.
      * @return String, message.
      */
@@ -266,6 +278,7 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
 
     /**
      * Metodo encargado de inflar el action bar del activity.
+     *
      * @param menu, menu.
      * @return boolean, true.
      */
@@ -279,6 +292,7 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
 
     /**
      * Metodo encargado de proporcionar una vista del cuestionario al que se han enfrentado los alumnos.
+     *
      * @param item, item
      * @return boolean, true.
      */

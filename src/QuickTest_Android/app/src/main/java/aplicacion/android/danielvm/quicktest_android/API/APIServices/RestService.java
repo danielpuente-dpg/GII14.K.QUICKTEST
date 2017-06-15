@@ -1,10 +1,10 @@
 package aplicacion.android.danielvm.quicktest_android.API.APIServices;
 
 import aplicacion.android.danielvm.quicktest_android.Models.APIRest.TestRequest;
-import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.APIResponse;
-import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.FeedbackApiResponse;
-import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.SingleApiResponse;
-import aplicacion.android.danielvm.quicktest_android.Requests.APIRest.WildcardApiResponse;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.APIResponse;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.FeedbackApiResponse;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.SingleApiResponse;
+import aplicacion.android.danielvm.quicktest_android.Models.APIRest.WildcardApiResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;

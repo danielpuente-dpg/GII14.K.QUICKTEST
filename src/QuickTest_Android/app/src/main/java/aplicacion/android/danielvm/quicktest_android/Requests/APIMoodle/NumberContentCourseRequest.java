@@ -1,6 +1,7 @@
 package aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,8 +28,9 @@ public class NumberContentCourseRequest extends AsyncTask<Void, Void, Integer> {
 
     /**
      * Constructor de la clase.
+     *
      * @param retrofit, retrofit.
-     * @param token, token del web service.
+     * @param token,    token del web service.
      * @param idCourse, identificador del curso.
      */
     public NumberContentCourseRequest(Retrofit retrofit, String token, int idCourse) {
@@ -40,6 +42,7 @@ public class NumberContentCourseRequest extends AsyncTask<Void, Void, Integer> {
 
     /**
      * Metodo encargado de realizar la peticion de manera sincrona, bloqueando el hilo principal.
+     *
      * @param params, params.
      * @return Integer, numero de herramientas externas.
      */
@@ -53,7 +56,7 @@ public class NumberContentCourseRequest extends AsyncTask<Void, Void, Integer> {
             if (content != null)
                 addContentCourse(content);
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("NumberContentCourse", "Request " + e.getMessage());
         }
 
         return cont;
@@ -61,6 +64,7 @@ public class NumberContentCourseRequest extends AsyncTask<Void, Void, Integer> {
 
     /**
      * Metodo encargado de comprobar si es de tipo LTI.
+     *
      * @param content
      */
     private void addContentCourse(Content[] content) {

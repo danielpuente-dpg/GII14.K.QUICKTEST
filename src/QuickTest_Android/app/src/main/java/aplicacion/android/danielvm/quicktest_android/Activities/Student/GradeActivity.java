@@ -160,11 +160,12 @@ public class GradeActivity extends AppCompatActivity {
         try {
             retorno = userGradeRequest.execute().get();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Log.d("GradeActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         } catch (ExecutionException e) {
-            e.printStackTrace();
+            Log.d("GradeActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         }
-        Log.d("GradeActivity", "grade: " + retorno);
         return retorno;
     }
 
@@ -179,11 +180,12 @@ public class GradeActivity extends AppCompatActivity {
         try {
             retorno = userInfoGradeRequest.execute().get();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Log.d("GradeActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         } catch (ExecutionException e) {
-            e.printStackTrace();
+            Log.d("GradeActivity", e.getMessage());
+            Thread.currentThread().interrupt();
         }
-        Log.d("GradeActivity", "infoTable: " + retorno);
         return retorno;
     }
 

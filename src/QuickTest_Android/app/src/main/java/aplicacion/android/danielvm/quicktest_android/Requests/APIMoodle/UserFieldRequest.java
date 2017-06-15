@@ -1,6 +1,7 @@
 package aplicacion.android.danielvm.quicktest_android.Requests.APIMoodle;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.IOException;
 
@@ -49,7 +50,7 @@ public class UserFieldRequest extends AsyncTask<Void, Void, User> {
         try {
             user = call.execute().body()[0];
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("UserFieldRequest", e.getMessage());
         }
 
         return user;
