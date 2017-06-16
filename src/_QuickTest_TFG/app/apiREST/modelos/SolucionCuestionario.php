@@ -211,7 +211,7 @@ class SolucionCuestionario
      * @param $nota , nota
      * @return bool, respuesta.
      */
-    private
+    public
     static function insertarNota($idAlumno, $idCuestionario, $nota)
     {
         $db = new Database();
@@ -269,7 +269,6 @@ class SolucionCuestionario
     {
         $db = new Database();
         $db->conectar();
-
         $query = $db->consultaPreparada("SELECT " . TablaNota::NOTA . " FROM "
             . TablaNota::NOMBRE_TABLA . " WHERE "
             . TablaNota::ID_ALUMNO . "=?" . " AND "

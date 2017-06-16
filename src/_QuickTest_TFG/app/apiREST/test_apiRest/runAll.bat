@@ -1,0 +1,4 @@
+call runTestControlAccesoProfesor.bat
+call runTestGestionCuestionario.bat
+call runTestObtenerCuestionario.bat
+call runTestSolucionCuestionario.bat

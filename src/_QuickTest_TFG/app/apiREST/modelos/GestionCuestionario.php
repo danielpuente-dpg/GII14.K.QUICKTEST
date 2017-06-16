@@ -39,20 +39,7 @@ class GestionCuestionario
     public static function get($peticion)
     {
         if (!empty($peticion[0])) {
-
-            $cuestionarioModel = new Cuestionario_Model();
-            // Devuelve un array con los cuestionarios de esa Asignatura
-            $cuestionarios = $cuestionarioModel->getCuestionariosAsignatura($peticion[0]);
-
-            // Establecemos la respuesta
-            http_response_code(APIEstados::ESTADO_OK);
-            // Retornamos la informacion
-            return
-                [
-                    "estado" => self::ESTADO_EXITO,
-                    "mensaje" => $cuestionarios
-
-                ];
+            return self::obtenerCuestionarios($peticion[0]);
         } else {
             throw new APIException(self::ESTADO_ERROR_PARAMETROS,
                 "Error al obtener. Falta el ID de Asignatura " . "<class> " . GestionCuestionario::class . " </class>",
@@ -186,6 +173,27 @@ class GestionCuestionario
             throw new APIException(self::ESTADO_NO_ENCONTRADO,
                 "El cuestionario que se intenta eliminar no existe", APIEstados::ESTADO_NOT_FOUND);
         }
+    }
+
+    /**
+     * @param $peticion
+     * @return array
+     */
+    private static function obtenerCuestionarios($idAsignatura)
+    {
+        $cuestionarioModel = new Cuestionario_Model();
+        // Devuelve un array con los cuestionarios de esa Asignatura
+        $cuestionarios = $cuestionarioModel->getCuestionariosAsignatura($idAsignatura);
+
+        // Establecemos la respuesta
+        http_response_code(APIEstados::ESTADO_OK);
+        // Retornamos la informacion
+        return
+            [
+                "estado" => self::ESTADO_EXITO,
+                "mensaje" => $cuestionarios
+
+            ];
     }
 
 

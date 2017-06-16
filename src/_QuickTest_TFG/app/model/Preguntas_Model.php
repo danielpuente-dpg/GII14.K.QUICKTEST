@@ -37,7 +37,6 @@ class Preguntas_Model extends Database
         $ok = mysqli_stmt_bind_result($query, $idPregunta, $titulo, $max_puntuacion);
 
         if ($ok == FALSE) {
-
             echo "Error en la ejecucion de la consulta. <br />";
             echo "error : " . mysqli_stmt_error($query);
             $this->closeFreeStatement($query);
@@ -54,7 +53,6 @@ class Preguntas_Model extends Database
                     'tituloPreg' => $titulo,
                     'max_puntuacion'=>$max_puntuacion
                 );
-
 
             }
 

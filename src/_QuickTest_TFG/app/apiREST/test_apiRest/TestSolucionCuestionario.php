@@ -11,50 +11,52 @@ require_once('../utilidades/Defines.php');
 
 require_once($URL_GLOBAL . '/_QuickTest_TFG/app/model/Database.class.php');
 require_once($URL_GLOBAL . '/_QuickTest_TFG/app/controller/Cuestionario_Resolver_Controller.php');
+require_once($URL_GLOBAL . '/_QuickTest_TFG/app/apiREST/modelos/SolucionCuestionario.php');
 
 /**
- * Class TestSolucionCuestionario, Clase de Test encargada de comprobar el correcto funcionamiento del controlador.
- * Estos test se realizan sobre el controlador, ya que sobre este se basa el APIREST.
+ * Class TestSolucionCuestionario, Clase encargada de comprobar el correcto funcionamiento del almacenamiento
+ * de una nueva calificacion.
  *
  * @autor Daniel Puente Gabarri.
  */
 class TestSolucionCuestionario extends PHPUnit_Framework_TestCase
 {
-    /**
-     * Método encargado de realizar el test del método iniciar un cuestionario por parte de un alumno
-     */
-    public function testIniciarCuestionario(){}
 
     /**
-     * Método encargado de realizar el test del método finalizar un cuestionario por parte de un alumno
+     * Método encargado de comprobar la correcta insercion de la calificacion de un alumno en un cuestionario.
      */
-    public function testFinalizarCuestionario(){
+    public function testObtenerNota()
+    {
+        $idAlumno = "12345";
+        $idCuestionario = 2;
+        $retorno = SolucionCuestionario::obtenerNota($idAlumno, $idCuestionario);
 
-        /*$cuestionarioResolverController = new Cuestionario_Resolver_Controller();
+        $this->assertEquals($retorno, "0.78");
 
-        foreach ($cuestionario as $c) {
-            $idRespuesta = $cuestionario['idRespuesta'];
-            $tipoComUsado = $cuestionario['comodin'];
-            $idAlumno = $cuestionario['idAlumno'];
-            $pregResuelta = $cuestionario['pregunta'];
 
-            $cuestionarioResolverController->guardarCadaRespuesta($idRespuesta, $tipoComUsado, $idAlumno, $pregResuelta);
-        }*/
+        // Eliminamos esa nota
+        $db = new Database();
+        $db->conectar();
+
+        $query = $db->consultaPreparada("DELETE FROM notas WHERE idAlumno = $idAlumno AND idCuestionario = $idCuestionario;");
+
+        mysqli_stmt_execute($query);
+        $db->closeFreeStatement($query);
+
     }
 
     /**
-     * Método encargado de realizar el test del método mostrar los resultados de un cuestionario
-     * finalizado por parte de un alumno
+     * Metodo encargado de comprobar la correcta de insertar la calificacion del cuestionario resuelto.
      */
-    public function testMostrarResultados(){
+    public function testInsertarNota()
+    {
+        $idAlumno = "12345";
+        $idCuestionario = 2;
+        $grade = "0.78";
 
-        $idCuestionario = 'idCuestionarioTestApiRest';
-        $idAlu = 'idAluTestApiRest';
-        $idAsig = 'idAsigTestApiRest';
+        $retorno = SolucionCuestionario::insertarNota($idAlumno, $idCuestionario, $grade);
 
-        $cuestionarioResolverController = new Cuestionario_Resolver_Controller();
-        $datos = $cuestionarioResolverController->mostarResultados($idCuestionario, $idAlu, $idAsig);
-
-        $this->assertNotEquals(null, $datos);
+        $this->assertTrue($retorno);
     }
+
 }

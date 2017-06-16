@@ -65,7 +65,7 @@ class ObtenerCuestionario
      * @param $peticion , identificador del cuestionario.
      * @return array, respuesta.
      */
-    private static function getCuestionario($peticion)
+    public static function getCuestionario($peticion)
     {
         $preguntasModel = new Preguntas_Model();
         $respuestasModel = new Respuestas_Model();
@@ -104,7 +104,7 @@ class ObtenerCuestionario
      * @param $idCuestionario , identificador de cuestionario.
      * @return array, respuesta.
      */
-    private static function getEstadoCuestionario($idUser, $idCuestionario)
+    public static function getEstadoCuestionario($idUser, $idCuestionario)
     {
 
         $alumno_has_cuestionarioModel = new Alumno_has_cuestionario_Model();
@@ -131,7 +131,7 @@ class ObtenerCuestionario
      * @param $idCuestionario , identificador del cuestionario.
      * @return array, respuesta.
      */
-    private static function getComodinVerde($idCuestionario)
+    public static function getComodinVerde($idCuestionario)
     {
         $preguntasVerde = self::getInfoComodinVerde($idCuestionario);
         if (empty($preguntasVerde)) {
@@ -247,7 +247,7 @@ class ObtenerCuestionario
      * @param $idCuestionario , identificador del cuestionario.
      * @return array, respuesta.
      */
-    private static function getComodinAmbar($idCuestionario)
+    public static function getComodinAmbar($idCuestionario)
     {
         $preguntasAmbar = self::getInfoComodinAbar($idCuestionario);
         if (empty($preguntasAmbar)) {
@@ -393,7 +393,7 @@ class ObtenerCuestionario
      * @param $idAlu , identificador del alumno.
      * @return array, respuesta.
      */
-    private static function getFeedBack($idCuestionario, $idAlu)
+    public static function getFeedBack($idCuestionario, $idAlu)
     {
         $feedback = self::getInfoFeedBack($idCuestionario, $idAlu);
 
