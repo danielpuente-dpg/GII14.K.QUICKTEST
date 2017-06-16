@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Metodo encargado de proporcionar cuestionarios de un curso.
+     *
      * @return questionnairesInACourse.
      */
     public HashMap<Integer, List<Questionnaire>> getQuestionnairesInACourse() {
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
     private void getAllInfo() {
         coursesByRol = new HashMap<>();
         this.name = Util.getUserMailPrefs(prefs);
-        if(TextUtils.isEmpty(name))
+        if (TextUtils.isEmpty(name))
             this.name = getIntent().getExtras().getString("name");
         // Obtenemos el token del usuario con permisos al Web Service
         tokenWebService = getTokenWebService();
@@ -314,11 +315,18 @@ public class MainActivity extends AppCompatActivity {
         // Instanciamos los dic
         questionnairesInACourse = new HashMap<>();
         coursesById = new HashMap<>();
-        for (int i = 1; i <= numExternalTools; i++) {
+        int toolId = 1;
+        int i = 1;
+        while (toolId <= numExternalTools) {
             ExternalTollRequest externalTollRequest = new ExternalTollRequest(APIMoodle.getApi(), tokenWebService, i);
             try {
                 ExternalTool externalTool = externalTollRequest.execute().get();
-                addExternalTool(retorno, externalTool);
+                if (externalTool.getEndpoint() != null) {
+                    addExternalTool(retorno, externalTool);
+                    toolId++;
+                }
+                i++;
+
             } catch (InterruptedException e) {
                 Log.d(TAG, e.getMessage());
                 Thread.currentThread().interrupt();
