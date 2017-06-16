@@ -1,0 +1,1 @@
+adb shell monkey --ignore-crashes -p aplicacion.android.danielvm.quicktestandroid 500 > test_logs.txt

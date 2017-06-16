@@ -19,6 +19,11 @@ android {
     }
     productFlavors {
     }
+    buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
+    }
 }
 
 dependencies {
