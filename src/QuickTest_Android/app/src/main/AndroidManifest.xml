@@ -32,7 +32,7 @@
         <activity android:name="aplicacion.android.danielvm.quicktestandroid.activities.CourseActivity" />
         <activity
             android:name="aplicacion.android.danielvm.quicktestandroid.activities.teacher.ViewTestActivity"
-            android:parentActivityName="aplicacion.android.danielvm.quicktestandroid.activities.teacher.StudentsGradesActivity" />
+            android:parentActivityName="aplicacion.android.danielvm.quicktestandroid.activities.teacher.TeacherActivity" />
         <activity
             android:name="aplicacion.android.danielvm.quicktestandroid.activities.SplashActivity"
             android:theme="@style/SplashScreen">

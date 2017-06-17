@@ -67,7 +67,6 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
 
         // Obtenemos los estudiantes dado un curso y questionnaire
         this.students = loadStudents();
-        Log.d("StudentsGradesActivity", this.students.size() + "");
 
         // Instanciamos los elementos de la UI
         this.listView = (ListView) findViewById(R.id.listViewStudentGrade);
@@ -269,7 +268,7 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
         Student student = this.students.get(position);
         String message;
         if (student.getGrade() == NOT_INFO) {
-            message = "La calificación de este alumno se encuentra ya en Moodle o no ha resuelto aún el questionnaire";
+            message = "La calificación de este alumno se encuentra ya en Moodle o no ha resuelto aún el cuestionario";
         } else {
             message = "El alumno " + student.getFullname() + " ha obtenido una calificación de " +
                     (student.getGrade() * 10);

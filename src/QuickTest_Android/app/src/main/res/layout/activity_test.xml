@@ -22,7 +22,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="@color/colorAccent"
-        android:text="Enviar y finalizar questionnaire"
+        android:text="Enviar y finalizar cuestionario"
         android:textColor="@color/colorWhite" />
 
 </RelativeLayout>

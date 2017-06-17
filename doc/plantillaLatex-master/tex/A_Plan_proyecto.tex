@@ -35,7 +35,7 @@ A continuación, en la siguiente Ilustración se incluye un gráfico Burndown re
 
 \subsection{Sprint 2. Estudio de refactorización del servidor (16 Feb 2017 a 2 Mar 2017)}
 
-Al comienzo de esta iteración se realizó la revisión de las tareas a realizar en el Sprint anterior y una vez revisadas se dio por finalizado el Sprint 1. Inicio del proyecto (7 Feb 2017 a 16 Feb 2017). 
+Al comienzo de esta iteración se realizó la revisión de las tareas a realizar en el Sprint anterior y una vez revisadas se dio por finalizado el Sprint 1. 
 En esta iteración se decidió realizar las siguientes tareas:
 
 \begin{itemize}
@@ -57,7 +57,7 @@ En la siguiente Ilustración podemos observar el gráfico Burndown correspondien
 
 \subsection{Sprint 3. Diseño del BackEnd (2 Mar 2017 a 15 Mar 2017)}
 
-Al comienzo de esta iteración se realizó la revisión de las tareas a realizar en el Sprint anterior y una vez revisadas se dio por finalizado el Sprint 2. Estudio de refactorización del servidor (16 Feb 2017 a 2 Mar 2017).
+Al comienzo de esta iteración se realizó la revisión de las tareas a realizar en el Sprint anterior y una vez revisadas se dio por finalizado el Sprint 2. 
 En esta iteración se decidió realizar las siguientes tareas:
 
 \begin{itemize}
@@ -72,6 +72,112 @@ En esta iteración se decidió realizar las siguientes tareas:
 En la siguiente Ilustración podemos observar el gráfico Burndown correspondiente a esta iteración.
 
 \imagen{Sprint3}{Gráfico Burndown Sprint 3 - Diseño del BackEnd. }
+
+\subsection{Sprint 4. Interconexión FrontEnd-BackEnd (15 Mar 2017 a 29 Mar 2017)}
+
+Al comienzo de esta iteración se realizó la revisión de las tareas a realizar en el Sprint anterior y una vez revisadas se dio por finalizado el Sprint 3. 
+En esta iteración se decidió realizar las siguientes tareas:
+
+\begin{itemize}
+
+	\item \textbf{Test unitarios sobre el BackEnd}: en esta tarea se realizo una documentación sobre las pruebas unitarias en PHP. Posteriormente, se realizaron pruebas unitarias sobre las nuevas clases creadas en el APIREST.
+	\item \textbf{Leer documentación LTI}: en esta tarea se realizo una lectura sobre el funcionamiento de LTI para su posterior utilización en la aplicación
+	\item \textbf{Prueba conexión Android - Moodle}: esta tarea fue la mas complicada del Sprint y posiblemente una de las mas costosas del proyecto. Después de mucha lectura se decidió utilizar los Web service de Moodle para obtener la información de la plataforma desde Android.
+	\item \textbf{Documentacion, Anexo Diseño}: en esta tarea se incluyo en la memoria los diagramas de clases y paquetes del APIREST.
+	\item \textbf{Definir ProductBackLog}: en esta tarea se definió el conjunto de historias de usuario a desarrollar.
+
+\end{itemize}
+
+En la siguiente Ilustración podemos observar el gráfico Burndown correspondiente a esta iteración.
+
+\subsection{Sprint 5. Recuperación de datos desde el BackEnd (29 Mar 2017 a 20 Abr 2017)}
+
+Al comienzo de esta iteración se realizó la revisión de las tareas a realizar en el Sprint anterior y una vez revisadas se dio por finalizado el Sprint 4. 
+En esta iteración se decidió realizar las siguientes tareas:
+
+\begin{itemize}
+
+	\item \textbf{Implementar conexión LTI desde Android}: en esta tarea se realizó la obtención del token del usuario que ha iniciado sesión en la aplicación.
+	\item \textbf{MockUp del la App Android}: en esta tarea se realizo una construcción genérica de la app.
+
+
+\end{itemize}
+
+En la siguiente Ilustración podemos observar el gráfico Burndown correspondiente a esta iteración.
+
+\subsection{Sprint 6. Recuperación de Datos desde BackEnd (II) (20 Abr 2017 a 4 May 2017)}
+
+Al comienzo de esta iteración se realizó la revisión de las tareas a realizar en el Sprint anterior y una vez revisadas se dio por finalizado el Sprint 5. 
+En esta iteración se decidió realizar las siguientes tareas:
+
+\begin{itemize}
+
+	\item \textbf{Diseño de la arquitectura del FrontEnd}: en esta tarea se incluyó en la memoria el diagrama de clases y paquetes de la aplicación Android.
+	\item \textbf{Obtención datos, herramienta externa}: en esta tarea se realizó un estudio sobre los diferentes métodos del Web service de Moodle necesarios para la obtención de los cuestionarios de QuickTest.
+	\item \textbf{HU1 - Iniciar sesión}:en esta tarea se proporcionó un diseño al login más cercano al producto final.
+	\item \textbf{HU2 - Cuestionarios a resolver}: en esta tarea se obtuvieron los cuestionarios de QuickTest asociados al usuario logeado.
+	\item \textbf{Añadir aspectos relevantes hasta el momento en el manual del programador}: en esta tarea se completo esta sección en la memoria.
+	\item \textbf{Casos de Uso}: en esta tarea se completo esta sección en la memoria.
+	\item \textbf{Obtener datos desde QuickTest}: en esta se incluyó en el APIREST la funcionalidad de obtener un cuestionario por identificador, ya que esta funcionalidad no se encontraba desarrollada en el controlador,
+	\item \textbf{Incluir nuevas bibliotecas en Manual Programador}: en esta tarea se añadieron una explicación sobre las librerías Gson y Volley.
+
+
+\end{itemize}
+
+En la siguiente Ilustración podemos observar el gráfico Burndown correspondiente a esta iteración.
+
+\subsection{Sprint 7. Grabado de datos desde el BackEnd (4 May 2017 a 18 May 2017)}
+
+Al comienzo de esta iteración se realizó la revisión de las tareas a realizar en el Sprint anterior y una vez revisadas se dio por finalizado el Sprint 6. 
+En esta iteración se decidió realizar las siguientes tareas:
+
+\begin{itemize}
+
+	\item \textbf{HU3 - Resolver un cuestionario}: en esta tarea realizó el desarrollo de esta historia de usuario. Destacar que solamente se permitió que el alumno resolviera un cuestionario sin la posibilidad de los comodines.
+	\item \textbf{HU4 - Finalizar un cuestionario}: en esta tarea se permitió que el alumno pueda finalizar un cuestionario desde la aplicación.
+	\item \textbf{HU7 - Podrá cerrar sesión}: en esta tarea se realizó el desarrollo de esta historia de usuario en la aplicación.
+	\item \textbf{Completar Aspectos Relevantes (Memoria)}: en esta tarea se completo esta sección en la memoria.
+	\item \textbf{Envío de respuestas desde la app a Quicktest}: en esta tarea se permitió que al finalizar un cuestionario, estos datos sean enviados al APIREST para su almacenamiento.
+
+
+\end{itemize}
+
+En la siguiente Ilustración podemos observar el gráfico Burndown correspondiente a esta iteración.
+
+
+\subsection{Sprint 8. Ampliación del Front End. (18 May 2017 a 8 Jun 2017)}
+
+Al comienzo de esta iteración se realizó la revisión de las tareas a realizar en el Sprint anterior y una vez revisadas se dio por finalizado el Sprint 7. 
+En esta iteración se decidió realizar las siguientes tareas:
+
+\begin{itemize}
+
+	\item \textbf{HU5 - Calificación obtenida}: en esta tarea se incluyó en la aplicación una sección donde el usuario pudiera ver la calificación obtenida en un cuestionario ya resuelto.
+	\item \textbf{HU6 - Revisar un cuestionario}: en esta tarea se incluyó en la aplicación una sección donde el usuario pudiera ver una tabla con información sobre el cuestionario.
+	\item \textbf{Implementación de Funcionalidad de Comodines}: en esta tarea se completó la HU3 al permitir al alumno utilizar comodines.
+
+
+\end{itemize}
+
+En la siguiente Ilustración podemos observar el gráfico Burndown correspondiente a esta iteración.
+
+\imagen{Sprint8}{Gráfico Burndown Sprint 8 - Ampliación del Front End. }
+
+\subsection{Sprint 9. Finalizar FrontEnd y test. (8 Jun 2017 a 19 Jun 2017)}
+
+Al comienzo de esta iteración se realizó la revisión de las tareas a realizar en el Sprint anterior y una vez revisadas se dio por finalizado el Sprint 8. 
+En esta iteración se decidió realizar las siguientes tareas:
+
+\begin{itemize}
+
+	\item 
+
+
+\end{itemize}
+
+En la siguiente Ilustración podemos observar el gráfico Burndown correspondiente a esta iteración.
+
+\imagen{Sprint8}{Gráfico Burndown Sprint 8 - Ampliación del Front End. }
 
 
 
