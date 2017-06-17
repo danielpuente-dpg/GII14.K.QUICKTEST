@@ -30,7 +30,10 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.allOf;
 
 /**
- * Created by Daniel on 16/06/2017.
+ * Clase StudentsGradesActivityTest encargada de realizar las pruebas intrumentadas de UI
+ * sobre la actividad StudentsGradesActivity.
+ *
+ * @author Daniel Puente Gabarri.
  */
 
 @LargeTest

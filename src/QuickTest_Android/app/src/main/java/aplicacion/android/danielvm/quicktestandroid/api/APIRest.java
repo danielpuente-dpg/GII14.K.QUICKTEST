@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIRest {
 
-    public static final String BASE = "http://192.168.1.37/";
+    public static final String BASE = "http://192.168.1.33/";
     public static final String BASE_URL = BASE + "_QuickTest_TFG/app/apiRest/";
 
     private APIRest(){}

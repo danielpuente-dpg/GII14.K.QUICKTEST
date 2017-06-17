@@ -33,10 +33,13 @@ import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
-/**
- * Created by Daniel on 16/06/2017.
- */
 
+/**
+ * Clase StudentActivityTest encargada de realizar las pruebas intrumentadas de UI
+ * sobre la actividad StudentActivity.
+ *
+ * @author Daniel Puente Gabarri.
+ */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class StudentActivityTest {
@@ -104,22 +107,36 @@ public class StudentActivityTest {
         SystemClock.sleep(2000);
 
         ViewInteraction appCompatCheckedTextView2 = onView(
-                allOf(withId(R.id.design_menu_item_text), withText("Ayuda"), isDisplayed()));
+                allOf(withId(R.id.design_menu_item_text), withText("Tipos de comodines"), isDisplayed()));
         appCompatCheckedTextView2.perform(click());
 
         SystemClock.sleep(2000);
 
-        ViewInteraction appCompatImageButton3 = onView(
+        ViewInteraction appCompatImageButton4 = onView(
                 allOf(withContentDescription("Navigate up"),
                         withParent(withId(R.id.toolbar)),
                         isDisplayed()));
-        appCompatImageButton3.perform(click());
+        appCompatImageButton4.perform(click());
 
         SystemClock.sleep(2000);
 
-        ViewInteraction appCompatCheckedTextView3 = onView(
+        ViewInteraction appCompatCheckedTextView4 = onView(
+                allOf(withId(R.id.design_menu_item_text), withText("Rapidez en la respuesta"), isDisplayed()));
+        appCompatCheckedTextView4.perform(click());
+
+
+
+        ViewInteraction appCompatImageButton5 = onView(
+                allOf(withContentDescription("Navigate up"),
+                        withParent(withId(R.id.toolbar)),
+                        isDisplayed()));
+        appCompatImageButton5.perform(click());
+
+        SystemClock.sleep(2000);
+
+        ViewInteraction appCompatCheckedTextView5 = onView(
                 allOf(withId(R.id.design_menu_item_text), withText("Olvidar y cerrar sesión"), isDisplayed()));
-        appCompatCheckedTextView3.perform(click());
+        appCompatCheckedTextView5.perform(click());
 
 
     }

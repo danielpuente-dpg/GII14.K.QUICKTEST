@@ -24,9 +24,10 @@ import java.util.concurrent.ExecutionException;
 import aplicacion.android.danielvm.quicktestandroid.api.APIRest;
 import aplicacion.android.danielvm.quicktestandroid.activities.LoginActivity;
 import aplicacion.android.danielvm.quicktestandroid.activities.MainActivity;
+import aplicacion.android.danielvm.quicktestandroid.fragments.students.HelpVelocityFragment;
 import aplicacion.android.danielvm.quicktestandroid.fragments.students.ResolvedQuestionnaireFragment;
 import aplicacion.android.danielvm.quicktestandroid.fragments.students.UnResolvedQuestionnaireFragment;
-import aplicacion.android.danielvm.quicktestandroid.fragments.students.HelpFragment;
+import aplicacion.android.danielvm.quicktestandroid.fragments.students.HelpWildCardFragment;
 import aplicacion.android.danielvm.quicktestandroid.models.android.Questionnaire;
 import aplicacion.android.danielvm.quicktestandroid.models.moodle.User;
 import aplicacion.android.danielvm.quicktestandroid.R;
@@ -125,8 +126,13 @@ public class StudentActivity extends AppCompatActivity {
                 fragmentTransaction = true;
                 break;
 
-            case R.id.menu_info:
-                fragment = new HelpFragment();
+            case R.id.menu_info_wildcard:
+                fragment = new HelpWildCardFragment();
+                fragmentTransaction = true;
+                break;
+
+            case R.id.menu_info_velocity:
+                fragment = new HelpVelocityFragment();
                 fragmentTransaction = true;
                 break;
 
@@ -270,6 +276,7 @@ public class StudentActivity extends AppCompatActivity {
                 .commit();
         // Activamos el efecto de clickado
         item.setChecked(true);
+        item.setCheckable(true);
         getSupportActionBar().setTitle(item.getTitle());
     }
 

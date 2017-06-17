@@ -19,6 +19,13 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
+/**
+ * Clase CourseActivityTest encargada de realizar las pruebas intrumentadas de UI
+ * sobre la actividad CourseActivity.
+ *
+ * @author Daniel Puente Gabarri.
+ */
+
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class CourseActivityTest {

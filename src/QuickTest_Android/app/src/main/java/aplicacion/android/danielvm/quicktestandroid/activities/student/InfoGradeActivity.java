@@ -159,7 +159,7 @@ public class InfoGradeActivity extends AppCompatActivity {
         } else if (feedBack.getOrdenRespuesta().equals(SLOW)) {
             linearLayoutColorAIG.setBackgroundResource(R.color.colorSlow);
         } else {
-            linearLayoutColorAIG.setBackgroundResource(R.color.colorAmberWildCard);
+            linearLayoutColorAIG.setBackgroundResource(R.color.colorPrimary);
         }
 
         textViewClockMessageAIG.setText(feedBack.getMensaje());

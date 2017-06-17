@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <group android:checkableBehavior="single">
 
         <item
@@ -12,15 +12,25 @@
             android:id="@+id/menu_courses_end"
             android:icon="@android:drawable/ic_menu_agenda"
             android:title="Mis cuestionarios resueltos" />
+        <item android:title="Ayuda">
+            <menu>
+                <item
+                    android:id="@+id/menu_info_wildcard"
+                    android:icon="@android:drawable/ic_dialog_info"
+                    android:title="Tipos de comodines" />
 
-        <item
-            android:id="@+id/menu_info"
-            android:icon="@android:drawable/ic_dialog_info"
-            android:title="Ayuda" />
+                <item
+                    android:id="@+id/menu_info_velocity"
+                    android:icon="@android:drawable/ic_dialog_info"
+                    android:title="Rapidez en la respuesta" />
+
+            </menu>
+        </item>
+
 
     </group>
 
-    <item android:title="Otras Opciones" >
+    <item android:title="Otras Opciones">
         <menu>
             <item
                 android:id="@+id/menu_log_out"

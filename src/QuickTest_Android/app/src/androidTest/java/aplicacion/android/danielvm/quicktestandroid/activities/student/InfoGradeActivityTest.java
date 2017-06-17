@@ -36,6 +36,12 @@ import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
+/**
+ * Clase InfoGradeActivityTest encargada de realizar las pruebas intrumentadas de UI
+ * sobre la actividad InfoGradeActivity.
+ *
+ * @author Daniel Puente Gabarri.
+ */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class InfoGradeActivityTest {

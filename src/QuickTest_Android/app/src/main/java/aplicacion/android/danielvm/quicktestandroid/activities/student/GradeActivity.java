@@ -91,7 +91,7 @@ public class GradeActivity extends AppCompatActivity {
         } else if (feedBack.getOrdenRespuesta().equals(SLOW)) {
             linearLayoutColor.setBackgroundResource(R.color.colorSlow);
         } else {
-            linearLayoutColor.setBackgroundResource(R.color.colorAmberWildCard);
+            linearLayoutColor.setBackgroundResource(R.color.colorPrimary);
         }
     }
 

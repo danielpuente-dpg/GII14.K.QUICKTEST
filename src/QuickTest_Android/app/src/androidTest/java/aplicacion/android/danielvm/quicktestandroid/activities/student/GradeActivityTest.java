@@ -34,7 +34,10 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
 /**
- * Created by Daniel on 16/06/2017.
+ * Clase GradeActivityTest encargada de realizar las pruebas intrumentadas de UI
+ * sobre la actividad GradeActivity.
+ *
+ * @author Daniel Puente Gabarri.
  */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
