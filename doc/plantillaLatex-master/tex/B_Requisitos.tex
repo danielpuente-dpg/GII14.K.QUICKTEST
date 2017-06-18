@@ -2,7 +2,7 @@
 
 \section{Introducción}
 
-Como ya se ha comentado anteriormente, se va utilizar la metodología ágil SCRUM. Es por esto que no vamos a tratar las tareas a realizar como requisitos, sino como historias de usuario. Todas estas historias de usuarios formarán parte del Product Backlog y serán asignadas a determinadas iteraciones durante el desarrollo del proyecto.
+Como ya se ha comentado anteriormente, se va utilizar la metodología ágil SCRUM. Es por esto que no vamos a tratar las tareas a realizar como requisitos, sino como historias de usuario. Todas estas historias de usuario formarán parte del Product Backlog y serán asignadas a determinadas iteraciones durante el desarrollo del proyecto.
 A continuación, se incluye un listado sobre las historias de usuarios y sus correspondientes diagramas de casos de uso.
 
 
@@ -144,7 +144,7 @@ Precondiciones & - El usuario debe estar previamente registrado.\\\
 
 \tablaSmall{Historia de usuario 10}{l l}{coste-1}
 { \multicolumn{1}{l}{HU10}\\}{ 
-Título & Como un usuario autenticado, podrá ver los cuestionarios \\\ & a los que se enfrentan sus alumnos.\\
+Título & Como un usuario autenticado, podrá ver los cuestionarios \\\ & de un curso a los que se enfrentan sus alumnos.\\
 Rol & Profesor autenticado. \\
 Descripción & El sistema mostrará al profesor los cuestionarios a los \\\
 & que se enfrentan sus alumnos.\\
@@ -235,6 +235,9 @@ Precondiciones & - El usuario debe estar previamente registrado en Moodle. \\\ &
 Comentarios & Este caso de uso, CU4, corresponde a la historia de usuario 4. \\\ & \ref{subsec:HU4} \\
 }
 
+En esta ilustración podemos ver el diagrama de casos de uso de los casos de los anteriores casos de uso expuestos.
+\imagen{DiagramaCasosDeUsoCU1234}{Diagrama de casos de uso de CU1, CU2, CU3 y CU4.}
+
 
 \subsection{Caso de uso 5: Mostrar cuestionarios}
 
@@ -281,6 +284,41 @@ Precondiciones & - El usuario debe estar previamente registrado en Moodle.\\\
 Comentarios & Este caso de uso, CU7, corresponde a la historia de usuario 6. \\\ & \ref{subsec:HU7}\\
 }
 
+En esta ilustración podemos ver el diagrama de casos de uso de los casos de los anteriores casos de uso expuestos.
+\imagen{DiagramaCasosDeUsoCU567}{Diagrama de casos de uso de CU5, CU6 y CU7.}
+
+\subsection{Caso de uso 8: Mostrar calificación de los alumnos}
+
+\tablaSmall{Caso de uso 8: Mostrar calificación de los alumnos}{l l}{coste-1}
+{ \multicolumn{1}{l}{CU8}\\}{ 
+Título & Mostrar calificación de los alumnos.\\
+Descripción & El sistema permitirá al usuario ver la calificación de los   \\\
+& alumnos en un cuestionario.\\
+Secuencia & 1. El usuario seleccionará un cuestionario. H10 \ref{subsec:HU11}\\\
+& 2. Obtendrá la calificación de cada alumno en dicho\\\ &  cuestionario. HU11  \ref{subsec:HU11}\\
+Precondiciones & - El usuario debe estar previamente registrado en Moodle. \\\ & - El usuario debe estar logeado en la aplicación para poder  \\\
+& acceder a esta funcionalidad. \\\
+& - Deben existir cuestionarios de QuickTest en cursos en los que  \\\ & el usuario se encuentre matriculado.\\
+Comentarios & Este caso de uso, CU8, corresponde a la historia de usuario. \\\ & 10 y 11 \ref{subsec:HU10} \\
+}
+
+\subsection{Caso de uso 9: Ver cuestionarios}
+
+\tablaSmall{Caso de uso 9: Ver cuestionarios}{l l}{coste-1}
+{ \multicolumn{1}{l}{CU9}\\}{ 
+Título & Ver cuestionarios.\\
+Descripción & El sistema permitirá al usuario ver los cuestionarios, \\\
+& es decir, las preguntas y posibles respuestas de un cuestionario.\\
+Secuencia & 1. El sistema mostrará los cuestionarios. \\\
+& 2. El usuario seleccionara ver cuestionario. \\
+Precondiciones & - El usuario debe estar previamente registrado en Moodle. \\\ & - El usuario debe estar logeado en la aplicación para poder  \\\
+& acceder a esta funcionalidad. \\\
+& - Deben existir cuestionarios de QuickTest en cursos en los que  \\\ & el usuario se encuentre matriculado.\\
+Comentarios & Este caso de uso, CU9, corresponde a la historia de usuario 12. \\\ & \ref{subsec:HU12} \\
+}
+
+En esta ilustración podemos ver el diagrama de casos de uso de los casos de los anteriores casos de uso expuestos.
+\imagen{DiagramaCasosDeUsoCU89}{Diagrama de casos de uso de CU8 y CU9.}
 
 
 

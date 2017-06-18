@@ -16,7 +16,7 @@ En estos diagramas se ha decidido utilizar un criterio de color para diferenciar
 
 Este paquete será el encargado de comunicarse con el Controlador del proyecto de partida. A continuación, se mostrarán de manera fraccionada cada una de las clases que lo forman y con qué clases del controlador del proyecto de partida se comunican.
 
-\paragraph{Clase SolucionCuestionario}
+\paragraph{Clase ControlAccesoProfesor}
 
 Esta clase será la encargada de realizar el control de acceso por parte de los profesores a la web QuickTest. Esta web provee a los profesores de una clave privada dentro de la aplicación para poder utilizarla en la sincronización de sus cuestionarios con Moodle. Esta clase permite registrar a un nuevo profesor o comprobar si puede iniciar sesión. Ambas lógicas se controlan mediante una petición post. Para llevar a cabo este cometido se comunican con el controlador llamando al método registrarNuevoUsuario o login respectivamente.
 
@@ -46,15 +46,42 @@ Para ello se comunica con el controlador. Todas estas acciones se realizan media
 
 \paragraph{Clase SolucionCuestionario}
 
-Esta clase se encarga de la lógica a realizar durante la resolución de un cuestionario: iniciar, finalizar o mostrar resultado. Para ello se comunica con el controlador. Destacar que al tener que basarse en el proyecto de partida existen ciertas funcionalidades que no se encuentran en el controlador. Es por esto que será necesario comunicarse también con el modelo.
-Todas estas acciones se realizan mediante peticiones post y son las siguiente:
+Esta clase se encarga de la lógica a realizar durante la resolución de un cuestionario: \emph{finalizar o mostrar resultado}.
+Todas estas acciones se realizan mediante las siguientes peticiones:
 
 \begin{itemize}
 
-	\item \textbf{Post:} esta petición será la encargada de manejar toda la lógica de esta clase, es decir, iniciar un cuestionario, finalizar un cuestionario y mostrar la calificación. Para iniciar un cuestionario \url{http://localhost/_QuickTest_TFG/app/apiREST/solucionCuestionario/resolver}. Para finalizar un cuestionario \url{http://localhost/_QuickTest_TFG/app/apiREST/solucionCuestionario/finalizar}. \linebreak Para mostrar la calificación \url{http://localhost/_QuickTest_TFG/app/apiREST/solucionCuestionario/mostrar}
+	\item \textbf{Post:} esta petición será la encargada de manejar la lógica a seguir al finalizar un cuestionario. Para ello, obtendrá el contenido del cuestionario resuelto de la petición y almacenará las respuestas del alumno y la nota del mismo. \url{http://localhost/_QuickTest_TFG/app/apiREST/solucionCuestionario/finalizar}.
+	
+	\item \textbf{Get:} esta petición sera la encargada de obtener la calificación de un alumno que haya resuelto el cuestionario desde la aplicación Android. Para ello, será necesario incluir en la propia petición el identificador del alumno y del cuestionario respectivamente. \url{http://localhost/_QuickTest_TFG/app/apiREST/solucionCuestionario/obtenerNota/idAlumno/idCuestionario}
 \end{itemize}
 
 \imagen{SolucionCuestionario}{Clase SolucionCuestionario}
+
+\paragraph{Clase ObtenerCuestionario}
+
+Esta clase se encarga de: la obtención de las preguntas y respuestas que forman un cuestionario, así como que preguntas tienen o no comodín y al finalizar un cuestionario, obtener información acerca de como ha sido resuelto el mismo. Destacar que en el controlador no existe ningún método que permita obtener un cuestionario por identificador y el estado del mismo. Es por esto que esta funcionalidad ha sido incluida dentro del propio API. Además, ha sido necesario incluir dentro de este la funcionalidad de obtener los comodines verdes, ámbar y la información sobre como ha sido resuelto el cuestionario, ya que los métodos que se encuentran en el controlador corrompen la respuesta al incluir volcados del contenido.
+
+\begin{itemize}
+
+	\item \textbf{Get:} esta petición sera la encargada de manejar toda la lógica de la clase.
+	\begin{list}{-}
+		\item \emph{Obtener cuestionario:} para ello sera necesario incluir en la propia petición el identificador del cuestionario. La petición es la siguiente: \url{http://localhost/_QuickTest_TFG/app/apiREST/obtenerCuestionario/obtener/idCuestionario}.
+		
+		\item \emph{Obtener el estado de un cuestionario:} es decir, si el cuestionario se encuentra resuelto o no por dicho alumno. Para ello, sera necesarios incluir en la propia petición el identificador del alumno y el identificador de cuestionario. La petición es la siguiente:   \url{http://localhost/_QuickTest_TFG/app/apiREST/obtenerCuestionario/estado/idAlumno/idCuestionario}.
+		
+		\item \emph{Obtener comodín verde}: es decir, permite obtener aquella preguntas que tienen comodín verde, dado un cuestionario. Para ello es necesario incluir en la propia petición el identificador del cuestionario. La petición es la siguiente:\url{http://localhost/_QuickTest_TFG/app/apiREST/obtenerCuestionario/obtenerComodin/verde/idCuestionario}.
+		
+		\item \emph{Obtener comodín ámbar}: es decir, permite obtener aquella preguntas que tienen comodín ámbar, dado un cuestionario. Para ello es necesario incluir en la propia petición el identificador del cuestionario. La petición es la siguiente:\url{http://localhost/_QuickTest_TFG/app/apiREST/obtenerCuestionario/obtenerComodin/ambar/idCuestionario}.
+		
+		\item \emph{Obtener información sobre un cuestionario resuelto}: nos permite obtener información sobre somo ha sido resuelto un cuestionario, es decir, en que grupo se encuentra, cuantos comodines a utilizado, etc. Para ello es necesario incluir en la propia petición el identificador de cuestionario y alumno. La petición es la siguiente: \url{http://localhost/_QuickTest_TFG/app/apiREST/obtenerCuestionario/feedback/idCuestionario/idAlumno}.
+	
+	\end{list}
+
+\end{itemize}
+
+\imagen{ObtenerCuestionario}{Clase ObtenerCuestionario}
+
 
 \subsubsection{Android}
 
@@ -79,6 +106,28 @@ En este diagrama se muestra el desglose de todos los componentes que forman la a
 \section{Diseño procedimental}
 
 \subsection{Diagrama de secuencias}
+
+En esta sección se incluyen los diagramas de secuencias o de interacción, encargados de mostrar de una manera mas aproximada la interacción del sistema al realizar cada caso de uso.
+
+\subsubsection{Diagrama de secuencias que implementa CU1: Iniciar sesión}
+
+\imagen{DiagramaSecuenciaCU1}{Diagrama de secuencias caso de uso 1}
+
+\subsubsection{Diagrama de secuencias que implementa CU2: Olvidar campos}
+
+\subsubsection{Diagrama de secuencias que implementa CU3: Recordar campos}
+
+\subsubsection{Diagrama de secuencias que implementa CU4: Mostrar cursos}
+
+\subsubsection{Diagrama de secuencias que implementa CU5: Mostrar cuestionarios}
+
+\subsubsection{Diagrama de secuencias que implementa CU6: Resolver cuestionario}
+
+\subsubsection{Diagrama de secuencias que implementa CU7: Mostrar cuestionarios resueltos}
+
+\subsubsection{Diagrama de secuencias que implementa CU8: Mostrar calificación de los alumnos}
+
+\subsubsection{Diagrama de secuencias que implementa CU9: Ver cuestionarios}
 
 \section{Diseño arquitectónico}
 
