@@ -13,7 +13,7 @@ public class Student {
     private String lastname;
     private String fullname;
     private String email;
-    private boolean status;
+    private int status;
     private double grade;
 
     public Student(int id, String firstname, String lastname, String fullname, String email) {
@@ -64,11 +64,11 @@ public class Student {
         this.email = email;
     }
 
-    public boolean getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

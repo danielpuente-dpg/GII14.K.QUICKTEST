@@ -1,8 +1,10 @@
 package aplicacion.android.danielvm.quicktestandroid.activities.student;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -119,10 +121,46 @@ public class TestActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Obtenemoslas la informacion del questionnaire resuelto y lo enviamos
-                sendResolvedQuestionnaire();
+                launchAlertDialog();
             }
         });
+    }
+
+    /**
+     * Metodo encargado de lanzar el Alert Dialog al hacer click sobre el boton de
+     * enviar cuestionario. Este mensaje nos preguntara que queremos hacer,
+     * enviar el cuestionario o cancelar.
+     */
+    private void launchAlertDialog() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(TestActivity.this);
+
+        // cambiamos el titulo de la pregunta
+        alertDialogBuilder.setTitle("¿Finalizar el cuestionario y enviar respuestas?");
+
+        // Contenido del mensaje
+        alertDialogBuilder
+                .setMessage("Selecciona enviar para finalizar")
+                .setCancelable(false)
+                .setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Obtenemoslas la informacion del questionnaire resuelto y lo enviamos
+                        sendResolvedQuestionnaire();
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // cancelamos la accion
+                        dialog.cancel();
+                    }
+                });
+
+        // creamos el alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // mostramos el alert dialog
+        alertDialog.show();
     }
 
     /**

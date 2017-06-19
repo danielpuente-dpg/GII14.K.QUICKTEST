@@ -48,7 +48,7 @@ public class UserGradeRequest extends AsyncTask<Void, Void, Double> {
         RestService service = retrofit.create(RestService.class);
         Call<SingleApiResponse> call = service.getGrade(idStudent, idQuestionnaire);
 
-        double grade = 0;
+        double grade = -1;
         try {
             SingleApiResponse singleApiResponse = call.execute().body();
             grade = Double.parseDouble(singleApiResponse.getMessage());

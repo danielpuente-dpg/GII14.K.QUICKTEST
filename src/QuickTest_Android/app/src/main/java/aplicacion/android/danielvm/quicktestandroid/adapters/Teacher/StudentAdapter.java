@@ -29,10 +29,14 @@ public class StudentAdapter extends BaseAdapter {
     private int layout;
     private List<Student> students;
 
+    private static final int RESOLVED_IN_MOODLE = -1;
+    private static final int UNRESOLVED = 0;
+
     /**
      * Contructor de la clase.
-     * @param context, context.
-     * @param layout, layout.
+     *
+     * @param context,  context.
+     * @param layout,   layout.
      * @param students, students.
      */
     public StudentAdapter(Context context, int layout, List<Student> students) {
@@ -43,6 +47,7 @@ public class StudentAdapter extends BaseAdapter {
 
     /**
      * Metodo encargado de devolver el numero de alumnos.
+     *
      * @return int, numero de cursos.
      */
     @Override
@@ -52,6 +57,7 @@ public class StudentAdapter extends BaseAdapter {
 
     /**
      * Metodo encargado de obtener un alumno dado.
+     *
      * @param position, position
      * @return Student, student.
      */
@@ -62,6 +68,7 @@ public class StudentAdapter extends BaseAdapter {
 
     /**
      * Metodo que proporciona el id.
+     *
      * @param position, position.
      * @return long, position.
      */
@@ -72,9 +79,10 @@ public class StudentAdapter extends BaseAdapter {
 
     /**
      * Metodo encargado de para cada vista de inflarla y añadir la informacion.
-     * @param position, position.
+     *
+     * @param position,    position.
      * @param convertView, convertView.
-     * @param parent, parent.
+     * @param parent,      parent.
      * @return View, convertView.
      */
     @Override
@@ -93,6 +101,7 @@ public class StudentAdapter extends BaseAdapter {
             holder.textViewEmailName = (TextView) convertView.findViewById(R.id.textViewEmailName);
             holder.textViewGrade = (TextView) convertView.findViewById(R.id.textViewMoodleStudentGrade);
             holder.imageView = (ImageView) convertView.findViewById(R.id.imageViewMoodleStudentGrade);
+            holder.imageViewUnResolved = (ImageView) convertView.findViewById(R.id.imageViewUnResolved);
 
             // Actualizamos la vista
             convertView.setTag(holder);
@@ -107,15 +116,21 @@ public class StudentAdapter extends BaseAdapter {
         holder.textViewFullName.setText(currentStudent.getFullname());
         holder.textViewEmailName.setText(currentStudent.getEmail());
 
-        if(currentStudent.getGrade() == -1){
+        if (currentStudent.getStatus() == UNRESOLVED) {
+            holder.imageViewUnResolved.setVisibility(View.VISIBLE);
+            holder.imageView.setVisibility(View.INVISIBLE);
+            holder.textViewGrade.setVisibility(View.INVISIBLE);
+        } else if (currentStudent.getStatus() == RESOLVED_IN_MOODLE) {
             holder.imageView.setVisibility(View.VISIBLE);
             holder.textViewGrade.setVisibility(View.INVISIBLE);
-        }else{
+            holder.imageViewUnResolved.setVisibility(View.INVISIBLE);
+        } else {
             DecimalFormat df = new DecimalFormat("##.##");
             String grade = df.format(currentStudent.getGrade() * 10);
             holder.textViewGrade.setText(grade + "/10");
             holder.textViewGrade.setVisibility(View.VISIBLE);
             holder.imageView.setVisibility(View.INVISIBLE);
+            holder.imageViewUnResolved.setVisibility(View.INVISIBLE);
         }
 
         Log.d("StudentAdapter", position + "");
@@ -124,6 +139,7 @@ public class StudentAdapter extends BaseAdapter {
 
     /**
      * Clase ViewHolder interna encarga de abstraer los elementos que forman la UI.
+     *
      * @author Daniel Puente Gabarri.
      */
     static class ViewHolder {
@@ -131,6 +147,7 @@ public class StudentAdapter extends BaseAdapter {
         private TextView textViewEmailName;
         private TextView textViewGrade;
         private ImageView imageView;
+        private ImageView imageViewUnResolved;
 
     }
 }

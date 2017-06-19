@@ -19,7 +19,7 @@ public class StudentTest {
         String lastname = "Puente Gabarri";
         String fullname = "Daniel Puente Gabarri";
         String email = "dpg0029@alu.ubu.es";
-        boolean status = true;
+        int status = 0;
         double grade = 6.82;
 
         Student student = new Student(id, firstname, lastname, fullname, email);
@@ -32,7 +32,7 @@ public class StudentTest {
         assertEquals(email, student.getEmail());
         student.setStatus(status);
         student.setGrade(grade);
-        assertTrue(student.getStatus());
+        assertEquals(status, student.getStatus());
         assertEquals(grade, student.getGrade(), 0);
 
         // Cambiamos el contenido
@@ -41,7 +41,7 @@ public class StudentTest {
         String lastname2 = "Perez Perez";
         String fullname2 = "Pepe Perez Perez";
         String email2 = "ppp@alu.ubu.es";
-        boolean status2 = false;
+        int status2 = 1;
         double grade2 = 0.82;
 
 
@@ -60,7 +60,7 @@ public class StudentTest {
         assertNotEquals(lastname, student.getLastname());
         assertNotEquals(fullname, student.getFullname());
         assertNotEquals(email, student.getEmail());
-        assertFalse(student.getStatus());
+        assertNotEquals(status, student.getStatus());
         assertNotEquals(grade, student.getGrade());
 
         assertEquals(id2, student.getId());
@@ -68,7 +68,7 @@ public class StudentTest {
         assertEquals(lastname2, student.getLastname());
         assertEquals(fullname2, student.getFullname());
         assertEquals(email2, student.getEmail());
-        assertFalse(student.getStatus());
+        assertEquals(status2, student.getStatus());
         assertEquals(grade2, student.getGrade(), 0);
 
 

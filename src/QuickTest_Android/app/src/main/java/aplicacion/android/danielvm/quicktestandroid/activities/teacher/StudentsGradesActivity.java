@@ -48,9 +48,9 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
     private int idQuestionnarie;
     private int idCourse;
     private String tokenWebService;
-    private static final int RESOLVED = 1;
+    private static final int RESOLVED_IN_MOODLE = -1;
     private static final int UNRESOLVED = 0;
-    private static final int NOT_INFO = -1;
+    private static final int RESOLVED = 1;
     private UserEnrol[] usersEnrol;
     private List<Student> students;
 
@@ -156,10 +156,11 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
 
             try {
                 int status = statusQuestionnaireRequest.execute().get();
+                // Esta resuelto
                 if (status == RESOLVED) {
-                    student.setStatus(true);
+                    student.setStatus(RESOLVED);
                 } else if (status == UNRESOLVED) {
-                    student.setStatus(false);
+                    student.setStatus(UNRESOLVED);
                 } else {
                     Log.d(TAG, "error in getStatus");
                 }
@@ -181,18 +182,29 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
      */
     public void setAllStudentsGrades(List<Student> students) {
         for (Student student : students) {
-            String idAlumno = questionnaire.getClientKey() + ":" + student.getId();
-            UserGradeRequest userGradeRequest = new UserGradeRequest(APIRest.getApi(), idQuestionnarie, idAlumno);
-            try {
-                Double grade = userGradeRequest.execute().get();
-                student.setGrade(grade);
-            } catch (InterruptedException e) {
-                Log.d(TAG, e.getMessage());
-                Thread.currentThread().interrupt();
-            } catch (ExecutionException e) {
-                Log.d(TAG, e.getMessage());
-                Thread.currentThread().interrupt();
+            if (student.getStatus() == RESOLVED) {
+                String idStudent = questionnaire.getClientKey() + ":" + student.getId();
+                UserGradeRequest userGradeRequest = new UserGradeRequest(APIRest.getApi(), idQuestionnarie, idStudent);
+                try {
+                    Double grade = userGradeRequest.execute().get();
+                    // No hay nota
+                    if (grade == RESOLVED_IN_MOODLE) {
+                        // El cuestionario ha sido resuelto de Moodle
+                        student.setStatus(RESOLVED_IN_MOODLE);
+                    } else {
+                        // El cuestionario ha sido resuelto en Android
+                        student.setGrade(grade);
+                    }
+
+                } catch (InterruptedException e) {
+                    Log.d(TAG, e.getMessage());
+                    Thread.currentThread().interrupt();
+                } catch (ExecutionException e) {
+                    Log.d(TAG, e.getMessage());
+                    Thread.currentThread().interrupt();
+                }
             }
+
         }
     }
 
@@ -267,8 +279,10 @@ public class StudentsGradesActivity extends AppCompatActivity implements Adapter
     public String createMessage(int position) {
         Student student = this.students.get(position);
         String message;
-        if (student.getGrade() == NOT_INFO) {
-            message = "La calificación de este alumno se encuentra ya en Moodle o no ha resuelto aún el cuestionario";
+        if (student.getStatus() == UNRESOLVED) {
+            message = "El cuestionario aun no ha sido resuelto.";
+        } else if (student.getStatus() == RESOLVED_IN_MOODLE) {
+            message = "El cuestionario ha sido resuelto en Moodle";
         } else {
             message = "El alumno " + student.getFullname() + " ha obtenido una calificación de " +
                     (student.getGrade() * 10);
