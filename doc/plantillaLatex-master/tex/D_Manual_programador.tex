@@ -2,13 +2,39 @@
 
 \section{Introducción}
 
+Completar con la estructura final
+
 \section{Estructura de directorios}
 
+Completar con la estructura final
+
 \section{Manual del programador}
+
+\subsection{Entorno de desarrollo}
+
+Para el correcto funcionamiento del proyecto es necesario tener instalado las siguientes herramientas:
+
+\subsubsection{Java JDK}
+
+Java es un lenguaje de programación orientado a objetos y es el lenguaje mas popular para el desarrollo de aplicaciones Android. Para el desarrollo de este proyecto se ha utilizado la version 8. Esta versión se encuentra disponible en la web oficial de Java en el siguiente enlace: \url{http://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html}
+
+\subsubsection{Android Studio}
+
+Android Studio es el entorno de desarrollo más utilizado para el desarrollo de aplicaciones Android. Además, es el IDE oficial recomendado por la plataforma. Cabe destacar que soporta la construcción basada en Gradle, incluye un propio emulador Android, refactorizaciones propias de Android, entre otras. Se encuentra disponible en el siguiente enlace: \url{https://developer.android.com/studio/index.html?hl=es-419}
+
+\subsubsection{PhpStorm}
+
+PhpStorm es un entorno de desarrollo comercial para PHP de JetBrains IntelliJ IDEA. Este IDE ha sido el utilizado durante el desarrollo del BackEnd de la aplicación. Esta herramienta se encuentra disponible en el siguiente enlace: \url{https://www.jetbrains.com/phpstorm/download/#section=windows}.
+\subsubsection{XAMPP}
+
+XAMPP es un paquete de instalación de software libre utilizado como servidor de la aplicación. Este paquete contiene el servidor web Apache, base de datos MySQL, PHP y Perl. Se encuentra disponible en el siguiente enlace: \url{https://www.apachefriends.org/es/download.html}.
+
 
 \subsection{Instalación de las herramientas}
 
 \subsubsection{Sistema operativo}
+
+Completar.
 
 \subsubsection{Servidor}
 
@@ -115,8 +141,8 @@ Para poder utilizar QuickTest desde un LMS, en este caso Moodle, tendremos que e
          \item En el campo Email tendremos que usar el mismo que en Moodle.
          \item En el campo Contraseña podremos utilizar cualquiera siempre y cuando la contraseña este formada entre 5 y 10 caracteres.
     \end{itemize}
-    En la siguiente ilustración podemos observar un inicio de sesión. Este usuario se encuentra por defecto en la base de datos inicial por lo que si se desea podemos saltarnos el paso de registrar un usuario. La contraseña es 12345. \imagen{EntQT}{Entramos en QuickTest}
-    \item Una vez realizado el registro y su posterior inicio de sesión el sistema informará con una ventana de bienvenida. \imagen{PanFF}{Panel de primeros pasos}
+    En la siguiente ilustración podemos observar un inicio de sesión. Este usuario se encuentra por defecto en la base de datos inicial por lo que si se desea podemos saltarnos el paso de registrar un usuario. La contraseña es 12345. \imagenAncho{EntQT}{Entramos en QuickTest}{0.5}
+    \item Una vez realizado el registro y su posterior inicio de sesión el sistema informará con una ventana de bienvenida. \imagenAncho{PanFF}{Panel de primeros pasos}{0.5}
     
     \item Al pinchar sobre Publicar cuestionario se abrirá una ventana emergente. Es en esta ventana donde se encuentra los tres campos necesarios para poder publicar y enlazar nuestros cuestionarios con Moodle. La información necesarios es la siguiente. \imagen{WPubCues}{Ventana emergente de publicar un cuestionario}
     
@@ -227,10 +253,45 @@ La configuración del Web Service ha finalizado. Para poder comprobar el correct
 \end{itemize}
 
 
-
-
-
-
 \section{Compilación, instalación y ejecución del proyecto}
 
 \section{Pruebas del sistema}
+
+Para comprobar el correcto funcionamiento se han desarrollado un conjunto de pruebas.
+
+\subsection{APIREST}
+En esta sección se recogen el conjunto de pruebas utilizadas para comprobar el correcto funcionamiento del BackEnd de la aplicación. Destacar que solamente se han realizado pruebas unitarias sobre el APIREST, ya que el único cometido de este es el de obtener y añadir información.
+
+\subsubsection{Pruebas unitarias}
+
+Las pruebas unitarias comprueban el funcionamiento de una única función, independientemente del resto. Para la construcción de este tipo de pruebas se ha utilizado PHPUnit. Este framework se instala al instalar XAMPP.
+
+\subsubsection{Ejecución de las pruebas unitarias}
+
+Las pruebas unitarias se encuentran dentro del propio paquete que contiene al APIREST añadido al proyecto de partida dentro de la carpeta apiREST.test\_apiRest. 
+
+\imagenAncho{test-apiRest}{Contenido de la carpeta test\_apiRest}{0.5}
+
+Dentro de este se encuentran las cuatro pruebas creadas para comprobar el correcto funcionamiento de cada una de las clases. Para llevar cabo la ejecución de dichas podemos ejecutarlas de manera individual utilizando el respectivo archivo .bat de la clase a probar o ejecutar todos mediante el archivo runAll.bat
+
+\subsection{Android}
+
+En esta sección se recogen el conjunto de pruebas utilizadas para comprobar el correcto funcionamiento del FrontEnd de la aplicación.
+
+\subsubsection{Pruebas unitarias}
+
+Como ya hemos comentado anteriormente, las pruebas unitarias comprueban el correcto funcionamiento de un método o funcionalidad independientemente del resto. Es por esto que se ha decidido realizar pruebas sobre todas aquellas estructuras encargadas de contener la información proporciona por el web services de Moodle, el propio APIREST o las propias estructuras de la aplicación.
+
+\imagenAncho{pruebasunitariasAndroid}{Conjunto de pruebas unitarias del FrontEnd.}{0.5}
+
+Para llevar a cabo la ejecución de dichas pruebas tendremos que utilizar Android Studio, situarnos en la carpeta en la se encuentra dichas pruebas, botón derecho y Run Test.
+
+\imagen{pruebasunitarias-android-salida}{Ejecución y resultado de las pruebas unitarias sobre el FrontEnd.}
+
+
+
+
+
+\subsubsection{Pruebas automatizadas de UI}
+
+\subsubsection{Pruebas Monkey}
