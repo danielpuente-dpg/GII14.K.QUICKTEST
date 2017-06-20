@@ -22,7 +22,13 @@ Esta clase será la encargada de realizar el control de acceso por parte de los 
 
 \begin{itemize}
 
-	\item \textbf{Post:} petición que permitirá logearse o registrarse en QuickTest. Para logearse \url{http://localhost/_QuickTest_TFG/app/apiREST/controlAccesoProfesor/login}. Para registrarse \url{http://localhost/_QuickTest_TFG/app/apiREST/controlAccesoProfesor/registro}.
+	\item \textbf{Post:} esta petición será la encargada de manejar la lógica de toda la clase.
+	
+	\begin{list}{-}
+		\item \emph{Registrarse en QuickTest:} para ello es necesario incluir dentro del propio cuerpo de la petición el email y contraseña del usuario. La petición es la siguiente: \url{http://localhost/_QuickTest_TFG/app/apiREST/controlAccesoProfesor/registro}.
+				
+		\item \emph{Iniciar sesión en QuickTest:} para ello es necesario incluir en el cuerpo de la petición el email y la constraseña de usuario. La petición es la siguiente: \url{http://localhost/_QuickTest_TFG/app/apiREST/controlAccesoProfesor/login}. 
+	\end{list}
 	
 \end{itemize}
 
@@ -30,19 +36,24 @@ Esta clase será la encargada de realizar el control de acceso por parte de los 
 
 \paragraph{Clase GestionCuestionario}
 
-La lógica de esta clase será toda aquella que se encuentre relacionada con la gestión sobre los Cuestionarios: insertar, obtener, duplicar o borrar. Cabe destacar, que en el controlador del proyecto de partida se ha incluido un método para poder duplicar un cuestionario existente, de esta manera evitamos comunicarnos con el modelo.
-Para ello se comunica con el controlador. Todas estas acciones se realizan mediante diferentes peticiones:
+La lógica de esta clase será toda aquella que se encuentre relacionada con la gestión sobre los Cuestionarios: \emph{insertar, obtener, duplicar o borrar}. Cabe destacar, que en el controlador del proyecto de partida se ha incluido un método para poder duplicar un cuestionario existente, de esta manera evitamos comunicarnos con el modelo. Todas estas acciones se realizan mediante diferentes peticiones:
 
 \begin{itemize}
 
-	\item \textbf{Get:} esta petición será la encargada de mostrar aquellos cuestionarios dada un identificador de asignatura. \url{http://localhost/_QuickTest_TFG/app/apiREST/gestionCuestionario/id}
-	\item \textbf{Post:} esta petición maneja dos lógicas: duplicar o insertar/editar un cuestionario. Para duplicar un cuestionario basta con indicar el identificador de cuestionario y para insertar o editar será necesario incluir en esta petición el resto de información propia de un cuestionario. Cabe destacar que el método insertar manejará la lógica de insertar o editar un cuestionario en función de si un campo se encuentra a verdadero o falso. Esta lógica venia dado por el proyecto de partida. Para duplicar un cuestionario \url{http://localhost/_QuickTest_TFG/app/apiREST/gestionCuestionario/duplicar/id}. \linebreak Para insertar/editar un cuestionario \url{http://localhost/_QuickTest_TFG/app/apiREST/gestionCuestionario/insertar}.
+	\item \textbf{Get:} esta petición será la encargada de mostrar aquellos cuestionarios dado un identificador de asignatura. \url{http://localhost/_QuickTest_TFG/app/apiREST/gestionCuestionario/id}
+	\item \textbf{Post:} esta petición será la encargada de manejar dos lógicas.
+		\begin{list}{-}
+			\item \emph{Duplicar un cuestionario:} para ello es necesario indicar el identificador del cuestionario. La petición es la siguiente: \url{http://localhost/_QuickTest_TFG/app/apiREST/gestionCuestionario/duplicar/id}.
+			\item \emph{Insertar/Editar un cuestionario:} para ello es necesario incluir en el propio cuerpo de la petición si la petición es de insertar o de duplicar. La petición es la siguiente: \url{http://localhost/_QuickTest_TFG/app/apiREST/gestionCuestionario/insertar}.
+		\end{list}
 	
-	\item \textbf{Delete:} esta petición se encarga de eliminar un determinado cuestionario dado un identificador. \url{http://localhost/_QuickTest_TFG/app/apiREST/gestionCuestionario/id}.
+	\item \textbf{Delete:} esta petición se encarga de eliminar un determinado cuestionario dado un identificador. La petición es la siguiente\url{http://localhost/_QuickTest_TFG/app/apiREST/gestionCuestionario/id}.
 
 \end{itemize}
 
 \imagen{GestionCuestionario}{Clase GestionCuestionario}
+
+Cabe destacar que estas dos clases explicadas anteriormente no han sido utilizadas finalmente en la aplicación, al no ser necesarias para su correcto funcionamiento. Estas clases fueron desarrolladas durante las primeras fases del proyecto. Estas primeras fases, se dedicaron a la creación del APIREST que posteriormente se utilizaría en la aplicación Android.
 
 \paragraph{Clase SolucionCuestionario}
 
@@ -82,8 +93,12 @@ Esta clase se encarga de: la obtención de las preguntas y respuestas que forman
 
 \imagen{ObtenerCuestionario}{Clase ObtenerCuestionario}
 
-
 \subsubsection{Android}
+
+\begin{landscape}
+\imagenAncho{DiagramaClasesAndroid}{Diagrama de clases de la aplicación.}{1.5}
+\end{landscape}
+
 
 
 \section{Diagrama de paquetes}
@@ -92,14 +107,37 @@ Para estos diagramas se ha decido utilizar el mismo criterio de color empleando 
 
 \subsection{APIREST}
 
-Este diagrama muestra un desglose de todos los componentes que entran en contacto en el API, como ya se ha comentado en color amarillo corresponde a la lógica dada en el proyecto de partida y en azul el APIREST desarrollado para interactuar con el controlador.
+Este diagrama muestra un desglose de todos los componentes que entran en contacto en el API, como ya se ha comentado en color amarillo corresponde a la lógica dada en el proyecto de partida y en azul el APIREST desarrollado para interactuar con el controlador. Destacar que en color azul representa la estructura que forma el BackEnd de la aplicación. Toda esta estructura se encuentra en  
+\_QuickTest\_TFG\_.app.apiREST y esta formada por:
+
+\begin{itemize}
+
+	\item \textbf{modelos:} en este paquete se encuentran todas aquellas clases que se comunican con el controlador del proyecto de partida.
+	\item \textbf{test\_apiRest:} en este paquete se encuentran las pruebas unitarias creadas para probar comprobar el correcto funcionamiento del APIREST.
+	\item \textbf{utilidades:} en este paquete se encuentran ciertas clases y ficheros de utilidad.
+	\item \textbf{vista:} en este paquete se encuentran aquellas aquellas clases encargadas de gestionar la lógica de la vista de los datos.
+
+\end{itemize}
 
 \imagen{DiagramPaqRest}{Diagrama de paquetes del APIRest}
 
 \subsection{Aplicación Android}
 
-En este diagrama se muestra el desglose de todos los componentes que forman la arquitectura del FrontEnd de la aplicación.
+En este diagrama se muestra el desglose de todos los componentes que forman la arquitectura del FrontEnd de la aplicación. Toda esta estructura se encuentra dentro de QuickTest\_Android.app.src y esta formada por:
 
+\begin{itemize}
+
+	\item \textbf{main.activities:} en este paquete se encuentran todas las actividades necesarias para la construcción de la aplicación.
+	\item \textbf{main.adapters:} en este paquete se encuentran todas los adaptadores creados para modificar el layout de las diferentes actividades y fragmentos.
+	\item \textbf{main.api:} en esta paquete se encuentran todas clases encargadas de gestionar la correcta conexión de la aplicación con el APIREST y con el web services de Moodle.
+	\item \textbf{main.fragments.students:} en este paquete se encuentran todos los fragmentos utilizados para la construcción de la aplicación.
+	\item \textbf{main.models:} en este paquete se encuentran todas las clases necesarias para el tratamiento de los datos proporcionados por las diferentes peticiones tanto al APIREST como al web services de Moodle. Es decir, estas clases son las encargadas de realizar la conversión de los datos en formato JSON a objetos Java o viceversa.
+	\item \textbf{main.request:} en este paquete se encuentran todas aquellas clases encargadas de realizar una petición síncrona al APIREST o al web services de Moodle.
+	\item \textbf{main.utils:} en este paquete se encuentra una clases encargada de la gestión de las SharedPreferences utilizadas para el correcto funcionamiento del login.
+	\item \textbf{test:} en este paquete se encuentran las pruebas unitarias sobre el paquete main.models.
+	\item \textbf{androidTest:} en este paquete se encuentra las pruebas automatizadas de interfaz de usuario sobre la aplicación.
+
+\end{itemize}
 
 \imagen{DiagramPaqAndroid}{Diagrama de paquetes de la aplicación Android}
 
