@@ -248,12 +248,7 @@ Por último, estos pasos omitidos se encuentran explicados en el siguiente enlac
 La configuración del Web Service ha finalizado. Para poder comprobar el correcto funcionamiento del mismo, vamos a pedir a este, el token del administrador. Para ello abrimos un nuevo navegador e introducimos la siguiente url: \url{http://localhost/moodle/login/token.php?username=admin&password=Asdf1234!&service=moodle_mobile_app}. Si todo ha ido correctamente la respuesta será la siguiente:
 \imagen{ResTokAdmin}{Obtención del token del administador}
 	
-	
-
 \end{itemize}
-
-
-\section{Compilación, instalación y ejecución del proyecto}
 
 \section{Pruebas del sistema}
 
@@ -288,10 +283,61 @@ Para llevar a cabo la ejecución de dichas pruebas tendremos que utilizar Androi
 
 \imagen{pruebasunitarias-android-salida}{Ejecución y resultado de las pruebas unitarias sobre el FrontEnd.}
 
-
-
-
-
 \subsubsection{Pruebas automatizadas de UI}
 
-\subsubsection{Pruebas Monkey}
+Este tipo de pruebas consiste en crear una batería de pruebas automatizada, que comprueben el correcto funcionamiento de la interfaz de usuario y valide los controles de la misma. 
+
+\imagenAncho{pruebasui}{Conjunto de interfaz de usuario del FrontEnd.}{0.5}
+
+Como podemos observar se ha decidido crear un caso de prueba por caso de uso. Al igual que en las pruebas unitarias tendremos que utilizar Android Studio para ejecutar dichas pruebas. Para ello nos situamos en la carpeta en la que se encuentran dichas pruebas, botón derecho sobre la prueba a ejecutar y Run Test.
+
+\subsubsection{Pruebas de estrés}
+
+Las pruebas de estrés se utilizan para comprobar el funcionamiento de la aplicación bajo grandes cargas de trabajo. Es por esto que se ha decidido realizar estas pruebas en la aplicación para localizar posibles perdidas de información.
+
+Para ello se ha utilizado la herramienta Monkey de Android. Esta herramienta lanza en un emulador o dispositivo un conjunto de flujos o eventos pseudo-aleatorias sobre la propia interfaz de la aplicación.
+
+Para llevar a cabo la ejecución de esta prueba tendremos que:
+
+\begin{enumerate}
+		\item Tener iniciado el emulador de Android Studio.
+	
+	\item Ejecutar el archivo testMonkey.bat, situado en la raiz del proyecto Android.
+
+\end{enumerate}
+
+\subsubsection{Pruebas de cobertura}
+
+Las pruebas de cobertura son las encargadas de medir la cantidad de código de un programa que nuestras pruebas cubren. En nuestro caso al realizar únicamente pruebas sobre las estructuras de almacenamiento de datos el nivel de código cubierto será pequeño.
+Para realizar este tipo de pruebas se ha utilizado el propio entorno de Android Studio.
+
+\begin{enumerate}
+
+	\item Añadir al build.gradle de la aplicación. \imagenAncho{pruebascoberturaGradle}{Habilitamos las pruebas de cobertura.}{0.5}
+	De esta manera permitimos la ejecución de este tipo de pruebas desde el propio IDE.
+	\item Nos situamos en la carpeta que contiene los fuentes, botón derecho, Run Test Coverage.
+	\imagenAncho{pruebascobertura}{Ejecución de las pruebas de cobertura sobre el paquete models.}{0.5}
+
+
+\end{enumerate}
+
+
+\subsubsection{Pruebas de integración continua}
+
+Las pruebas de integración continua permite durante el desarrollo de una aplicación detectar posibles fallos cuantos antes. Para ello se ha decidido utilizar la herramienta sonarqube en su distribución online.
+Para ello es necesario incluir en el proyecto:
+
+\begin{enumerate}
+	\item Seguir las indicaciones del vídeo proporcionado por el tribunal para la creación de una cuenta, generar el token, etc.
+	\item Dentro del proyecto tendremos que añadir:
+		\begin{enumerate}
+			\item Añadir al build.gradle del proyecto. \imagenAncho{DependenciaSonarQube}{Añadimos la dependencia de sonarQube.}{0.5}
+			\item Añadir al gradle.properties los parametros necesarios para su funcionamiento.\imagenAncho{confSonarQ}{Configuración de SonarQube.}{0.8}
+		\end{enumerate}
+	\item Para ejecutar esta prueba dentro de Android Studio bastará con introducir el siguiente comando. \imagenAncho{EjecSQ}{Ejecución de SonarQube}{0.5}
+	
+	\item El resultado de la prueba podrá visualizarse dentro de la distribución online de la herramienta.
+\end{enumerate}
+
+
+
