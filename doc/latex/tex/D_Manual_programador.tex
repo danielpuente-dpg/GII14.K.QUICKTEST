@@ -2,15 +2,45 @@
 
 \section{Introducción}
 
-Completar con la estructura final
+En esta sección se describen los requisitos mínimos para el funcionamiento de la aplicación, la configuración y las pruebas realizadas.
 
 \section{Estructura de directorios}
 
-Completar con la estructura final
+La estructura es la siguiente:
+
+\begin{itemize}
+	\item \textbackslash{}: contiene el proyecto completo incluyendo la aplicación Android, la documentación, el proyecto de partida y el archivo README.
+	\item \textbackslash{}doc\textbackslash{}latex\textbackslash{}: contiene la documentación del proyecto en formato \LaTeX.
+	
+	\item \textbackslash{}doc\textbackslash{}docs\textbackslash{}: contiene la documentación del proyecto en formato PDF.
+	
+	\item \textbackslash{}src\textbackslash{}\_QuickTest\_TFG\textbackslash{}: contiene el proyecto de partida junto con el APIREST creado y las pruebas.
+	
+	\item \textbackslash{}src\textbackslash{}\_QuickTest\_TFG\textbackslash{}app\textbackslash{}apiREST\textbackslash{}: contiene toda la lógica del BackEnd.
+	
+	\item \textbackslash{}src\textbackslash{}\_QuickTest\_TFG\textbackslash{}app\textbackslash{}apiREST\textbackslash{}test\_apiRest\textbackslash{}: contiene las pruebas unitarias para comprobar el correcto funcionamiento del BackEnd.
+	
+	\item \textbackslash{}src\textbackslash{}InstalarBaseDeDatos\textbackslash{}: contiene la base de datos a importar.
+	
+	\item \textbackslash{}src\textbackslash{}QuickTest\_Android		\textbackslash{}: contiene toda la lógica del FrontEnd.
+	
+	\item \textbackslash{}src\textbackslash{}QuickTest\_Android		\textbackslash{}doc\textbackslash{}: contiene el javadoc de la aplicación.
+	
+	\item \textbackslash{}src\textbackslash{}QuickTest\_Android		\textbackslash{}app\textbackslash{}src\textbackslash{}main\textbackslash{}: contiene todas las clases, layouts y imagenes que forman la aplicación.
+	
+	\item \textbackslash{}src\textbackslash{}QuickTest\_Android		\textbackslash{}app\textbackslash{}src\textbackslash{}test\textbackslash{}: contiene las pruebas unitarias sobre el FrontEnd.
+	
+	\item \textbackslash{}src\textbackslash{}QuickTest\_Android		\textbackslash{}app\textbackslash{}src\textbackslash{}androidTest\textbackslash{}: contiene las pruebas automatizadas de UI sobre el FrontEnd.
+	
+	\item \textbackslash{}tst\textbackslash{}:contiene los test del proyecto de partida.
+	
+	
+	
+\end{itemize}
 
 \section{Manual del programador}
 
-\subsection{Entorno de desarrollo}
+\subsection{Entorno de desarrollo}\label{subsec:RequisitosMinimos}
 
 Para el correcto funcionamiento del proyecto es necesario tener instalado las siguientes herramientas:
 
@@ -29,12 +59,12 @@ PhpStorm es un entorno de desarrollo comercial para PHP de JetBrains IntelliJ ID
 
 XAMPP es un paquete de instalación de software libre utilizado como servidor de la aplicación. Este paquete contiene el servidor web Apache, base de datos MySQL, PHP y Perl. Se encuentra disponible en el siguiente enlace: \url{https://www.apachefriends.org/es/download.html}.
 
+\subsubsection{Moodle}
 
-\subsection{Instalación de las herramientas}
+Moodle es un software orientado a la educación, cuyo principal objetivo es el de facilitar un entorno de calidad para proporcionar cursos. Esta herramienta se encuentra disponible en el siguiente enlace: \url{https://download.moodle.org/}
 
-\subsubsection{Sistema operativo}
+\subsection{Instalación de las herramientas}\label{subsubsec:InstHerramientas}
 
-Completar.
 
 \subsubsection{Servidor}
 
@@ -45,7 +75,7 @@ Completar.
 
 	\item Seleccionar la versión 5.6.30/PHP 5.6.30. Cabe destacar que es necesario instalar esta versión de XAMPP o inferiores, debido a que el proyecto de partida utiliza ciertas funcionalidades que se encuentran sin soporte en versiones superiores. Y comenzamos a descargar el instalador. \imagen{InstXammp}{Instalador de XAMMP}
 	
-	\item Una vez descargado, procedemos a la instalación de esta herramienta. Para procedemos a realizar la típica instalación de Siguiente – Siguiente y seleccionamos donde ubicar los archivos a instalar.
+	\item Una vez descargado, procedemos a la instalación de esta herramienta. A continuación, procedemos a realizar la típica instalación de Siguiente – Siguiente y seleccionamos donde ubicar los archivos a instalar.
 	
 	\item Al finalizar la instalación se lanzará una alerta del firewall de Windows indicando que se necesita conceder acceso a Apache. Marcamos todas las opciones y finalizamos. \imagen{AlertFirApache}{Alerta del firewall de Apache}
 	\item Una vez instalado, ya tendremos instalado y disponible nuestro servidor XAMPP. Para el correcto funcionamiento del proyecto de partida y de QuickTest en Android es necesario arrancar Apache y MySQL al iniciar esta herramienta como podemos ver en la siguiente ilustración. \imagen{PanelXammp}{Panel de XAMPP}
@@ -80,7 +110,7 @@ No obstante, en esta ocasión la versión de Moodle empleada es la más actual h
 	
 	\item Antes de pulsar en el botón de siguiente tendremos que abrir una nueva pestaña en nuestro navegador e introducir el siguiente enlace localhost/phpmyadmin. \imagen{urlMysql}{url de MySql}
 	
-	\item Una vez nos encontremos en la página tendremos que cambiar el cotejamiento de la conexión al servidor como podemos ver en la siguiente ilustración.\imagen{CambForBD}{Cambiamos el formato de la base de datos}
+	\item Una vez nos encontremos en la página, tendremos que cambiar el cotejamiento de la conexión al servidor como podemos ver en la siguiente ilustración.\imagen{CambForBD}{Cambiamos el formato de la base de datos}
 	
 	\item Una vez realizada la creación de la base de datos de manera manual, podemos volver a la pestaña de instalación de Moodle y proseguir con la instalación.
 
@@ -98,11 +128,11 @@ No obstante, en esta ocasión la versión de Moodle empleada es la más actual h
 
 \subsubsection{Instalar base de datos}
 
-A continuación, vamos a importar la base de datos que utiliza QuickTest. Esta base de datos es la misma proporcionada por el proyecto de partida. Para llevar a cabo esta tarea tendremos que seguir los siguientes pasos:
+A continuación, vamos a importar la base de datos que utiliza QuickTest. Esta base de datos es la misma proporcionada por el proyecto de partida, pero se ha incluido una nueva tabla para el almacenamiento de las notas de los cuestionarios resueltos desde la aplicación móvil. Para llevar a cabo esta tarea tendremos que seguir los siguientes pasos:
 
 \begin{itemize}
 
-	\item Dentro del proyecto de partida nos situamos en la ruta src/InstalarBaseDeDatos.
+	\item Dentro del proyecto nos situamos en la ruta src/InstalarBaseDeDatos.
 	
 	\item En esta carpeta tendremos un único archivo llamado: instalar\_BaseDatosQuickTest.sql
 	
@@ -144,7 +174,7 @@ Para poder utilizar QuickTest desde un LMS, en este caso Moodle, tendremos que e
     En la siguiente ilustración podemos observar un inicio de sesión. Este usuario se encuentra por defecto en la base de datos inicial por lo que si se desea podemos saltarnos el paso de registrar un usuario. La contraseña es 12345. \imagenAncho{EntQT}{Entramos en QuickTest}{0.5}
     \item Una vez realizado el registro y su posterior inicio de sesión el sistema informará con una ventana de bienvenida. \imagenAncho{PanFF}{Panel de primeros pasos}{0.5}
     
-    \item Al pinchar sobre Publicar cuestionario se abrirá una ventana emergente. Es en esta ventana donde se encuentra los tres campos necesarios para poder publicar y enlazar nuestros cuestionarios con Moodle. La información necesarios es la siguiente. \imagen{WPubCues}{Ventana emergente de publicar un cuestionario}
+    \item Al pinchar sobre Publicar cuestionario se abrirá una ventana emergente. Es, en esta ventana, donde se encuentra los tres campos necesarios para poder publicar y enlazar nuestros cuestionarios con Moodle. La información necesarios es la siguiente. \imagen{WPubCues}{Ventana emergente de publicar un cuestionario}
     
 	
 \end{itemize}
@@ -184,7 +214,7 @@ En esta sección vamos a configurar Moodle para poder utilizar QuickTest. Para l
 		\item A continuación, tendremos que crear dos usuarios como podemos ver en las siguientes ilustraciones. \imagen{RelCmps}{Rellenamos los campos del primer usuario} \imagen{RelCmps2}{Rellenamos los campos del segundo usuario}
 	\end{itemize}
 	
-	\item Una vez los usuarios tendremos que matricular dichos usuarios en el curso creado para ello tendremos que entrar en Administración del sitio, una vez allí tendremos que ir a la categoría de Cursos y dentro de allí a la sección Administrar cursos y categorías.
+	\item Una vez creados los usuarios, tendremos que matricular dichos usuarios en el curso creado para ello tendremos que entrar en Administración del sitio, una vez allí tendremos que ir a la categoría de Cursos y dentro de allí a la sección Administrar cursos y categorías.
 	
 	\item Allí seleccionamos el nuevo curso creado y pinchamos en Usuarios matriculados.
 	
@@ -200,11 +230,9 @@ Para llevar a cabo la publicación de un cuestionario tendremos que:
 
 \begin{itemize}
 
-	\item Tendremos que entrar en Administración del sitio, una vez allí tendremos que ir a la categoría de Cursos y dentro de allí a la sección Administrar cursos y categorías.
+	\item Tendremos que iniciar sesión con algún usuario con rol de profesor.
 	
-	\item Una vez allí, seleccionamos el curso creado y en Vista.
-	
-	\item A continuación, activamos la edición y añadimos una herramienta externa.
+	\item Una vez allí, seleccionamos un curso, activamos la edición y añadimos una herramienta externa.
 	
 	\begin{itemize}
 	
@@ -225,7 +253,7 @@ Antes de comenzar a la explicación de los distintos pasos a realizar, tendremos
 
 \begin{itemize}
 
-	\item Una vez logeado nos dirigimos a Administración del sitio. Allí nos seleccionamos la categoría Extensiones y dentro de esta categoría en Servicios Web.
+	\item Una vez logeado nos dirigimos a Administración del sitio. Allí seleccionamos la categoría Extensiones y dentro de esta categoría en Servicios Web.
 	\item Si hemos realizado el punto anterior de manera correcta, nos encontramos en panel central de la configuración del Web Service. Este entorno de configuración se puede observar en la siguiente ilustración.
 	\imagen{PanelConfWSM}{Panel de configuración del Web Service de Moodle}
 	
@@ -236,7 +264,7 @@ Antes de comenzar a la explicación de los distintos pasos a realizar, tendremos
 		
 		\item \textbf{Administrar protocolos:} para poder interactuar con el Web Service tendremos que habilitar al menos uno de ellos. En nuestro caso utilizaremos REST al ser el mas común utilizado en la comunidad de los Web Service de Moodle. Además, permite mostrar el contenido de retorno en formato JSON, el cual es muy ventajoso para el el tratamiento de los datos en la aplicación Android. Por último, es aconsejable habilitar la documentación al ser un gran material de apoyo y guardamos los cambios.
 		
-		\item Como se ha comentado anteriormente, vamos a realizar la configuración de manera ordenada. No obstante, en el este ejemplo vamos a ignorar los pasos 3, 4, 5 y 6. En estos pasos, se crea un usuario especifico para interactuar con el Web Service, este usuario debe de tener ciertos privilegios para poder desempeñar esta funcionalidad, se crea un servicio y se agregan las funcionalidades de interés a dicho servicio. Estos pasos son ignorados, ya que se va ha utilizar el propio usuario administrador del sitio al tener todos los privilegios necesarios y de esta manera no limitaremos las funcionalidades del Web Service al incluir todas ellas. Destacar que no es recomendable utilizar el mismo usuario administrador de Moodle por motivos de seguridad, para interactuar con el Web Service. Al ser un trabajo meramente didáctico, utilizaremos este mismo usuario para evitar complicaciones.
+		\item Como se ha comentado anteriormente, vamos a realizar la configuración de manera ordenada. No obstante, en el este ejemplo vamos a ignorar los pasos 3, 4, 5 y 6. En estos pasos, se crea un usuario especifico para interactuar con el Web Service, este usuario debe de tener ciertos privilegios para poder desempeñar esta funcionalidad, se crea un servicio y se agregan las funcionalidades de interés a dicho servicio. Estos pasos son ignorados, ya que se va ha utilizar el propio usuario administrador del sitio, al tener todos los privilegios necesarios y de esta manera no limitaremos las funcionalidades del Web Service al incluir todas ellas. Destacar, que no es recomendable utilizar el mismo usuario administrador de Moodle por motivos de seguridad, para interactuar con el Web Service. Al ser un trabajo meramente didáctico, utilizaremos este mismo usuario para evitar complicaciones.
 Por último, estos pasos omitidos se encuentran explicados en el siguiente enlace:
 \url{http://www.vitalinnova.com/servicios-web-en-moodle-2-0/}
 		
@@ -267,7 +295,7 @@ Las pruebas unitarias se encuentran dentro del propio paquete que contiene al AP
 
 \imagenAncho{test-apiRest}{Contenido de la carpeta test\_apiRest}{0.5}
 
-Dentro de este se encuentran las cuatro pruebas creadas para comprobar el correcto funcionamiento de cada una de las clases. Para llevar cabo la ejecución de dichas podemos ejecutarlas de manera individual utilizando el respectivo archivo .bat de la clase a probar o ejecutar todos mediante el archivo runAll.bat
+Dentro de este se encuentran las cuatro pruebas creadas para comprobar el correcto funcionamiento de cada una de las clases. Para llevar cabo la ejecución de dichas pruebas, podemos ejecutarlas de manera individual utilizando el respectivo archivo .bat de la clase  o ejecutar todos mediante el archivo runAll.bat
 
 \subsection{Android}
 
@@ -275,7 +303,7 @@ En esta sección se recogen el conjunto de pruebas utilizadas para comprobar el 
 
 \subsubsection{Pruebas unitarias}
 
-Como ya hemos comentado anteriormente, las pruebas unitarias comprueban el correcto funcionamiento de un método o funcionalidad independientemente del resto. Es por esto que se ha decidido realizar pruebas sobre todas aquellas estructuras encargadas de contener la información proporciona por el web services de Moodle, el propio APIREST o las propias estructuras de la aplicación.
+Como ya hemos comentado anteriormente, las pruebas unitarias comprueban el correcto funcionamiento de un método o funcionalidad independientemente del resto. Es por esto, que se ha decidido realizar pruebas sobre todas aquellas estructuras encargadas de contener la información proporciona por el web services de Moodle, el propio APIREST o las propias estructuras de la aplicación.
 
 \imagenAncho{pruebasunitariasAndroid}{Conjunto de pruebas unitarias del FrontEnd.}{0.5}
 
@@ -289,13 +317,13 @@ Este tipo de pruebas consiste en crear una batería de pruebas automatizada, que
 
 \imagenAncho{pruebasui}{Conjunto de interfaz de usuario del FrontEnd.}{0.5}
 
-Como podemos observar se ha decidido crear un caso de prueba por caso de uso. Al igual que en las pruebas unitarias tendremos que utilizar Android Studio para ejecutar dichas pruebas. Para ello nos situamos en la carpeta en la que se encuentran dichas pruebas, botón derecho sobre la prueba a ejecutar y Run Test.
+Como podemos observar se ha decidido crear un caso de prueba por caso de uso. Al igual que en las pruebas unitarias, tendremos que utilizar Android Studio para ejecutar dichas pruebas. Para ello,  nos situamos en la carpeta en la que se encuentran dichas pruebas, botón derecho sobre la prueba a ejecutar y Run Test.
 
 \subsubsection{Pruebas de estrés}
 
-Las pruebas de estrés se utilizan para comprobar el funcionamiento de la aplicación bajo grandes cargas de trabajo. Es por esto que se ha decidido realizar estas pruebas en la aplicación para localizar posibles perdidas de información.
+Las pruebas de estrés se utilizan para comprobar el funcionamiento de la aplicación bajo grandes cargas de trabajo. Es por esto, que se ha decidido realizar estas pruebas en la aplicación para localizar posibles perdidas de información.
 
-Para ello se ha utilizado la herramienta Monkey de Android. Esta herramienta lanza en un emulador o dispositivo un conjunto de flujos o eventos pseudo-aleatorias sobre la propia interfaz de la aplicación.
+Para ello se ha utilizado la herramienta Monkey de Android. Esta herramienta lanza en un emulador o dispositivo, un conjunto de flujos o eventos pseudo-aleatorias sobre la propia interfaz de la aplicación.
 
 Para llevar a cabo la ejecución de esta prueba tendremos que:
 
@@ -324,7 +352,7 @@ Para realizar este tipo de pruebas se ha utilizado el propio entorno de Android 
 
 \subsubsection{Pruebas de integración continua}
 
-Las pruebas de integración continua permite durante el desarrollo de una aplicación detectar posibles fallos cuantos antes. Para ello se ha decidido utilizar la herramienta sonarqube en su distribución online.
+Las pruebas de integración continua permite durante el desarrollo de una aplicación detectar posibles fallos cuantos antes. Para ello se ha decidido utilizar la herramienta sonarQube en su distribución online.
 Para ello es necesario incluir en el proyecto:
 
 \begin{enumerate}

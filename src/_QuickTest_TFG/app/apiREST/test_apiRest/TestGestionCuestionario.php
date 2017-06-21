@@ -10,7 +10,7 @@
 require_once('../utilidades/Defines.php');
 
 require_once($URL_GLOBAL . '/_QuickTest_TFG/app/model/Database.class.php');
-require_once($URL_GLOBAL . '/_QuickTest_TFG/app/apiREST/test_apiRest/TablaCuestionario.php');
+require_once($URL_GLOBAL . '/_QuickTest_TFG/app/apiREST/utilidades/TablaCuestionario.php');
 require_once($URL_GLOBAL . '/_QuickTest_TFG/app/model/Cuestionario_Model.php');
 require_once($URL_GLOBAL . '/_QuickTest_TFG/app/controller/Cuestionario_CrearNuevo_Controller.php');
 

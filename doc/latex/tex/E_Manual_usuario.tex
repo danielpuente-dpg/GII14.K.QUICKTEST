@@ -1,0 +1,158 @@
+\apendice{Documentación de usuario}
+
+\section{Introducción}
+
+Este manual se presentan y explican los requisitos necesarios para utilizar la aplicación, como instalar en el un dispositivo físico y otras pautas de configuración para su correcto funcionamiento.
+
+\section{Requisitos de usuarios}
+
+Para poder utilizar la aplicación es necesario cumplir una serie de requisitos mínimos:
+
+\begin{itemize}
+
+	\item Tener instalado  las herramientas explicadas en \ref{subsec:RequisitosMinimos}.
+	\item Configurar las herramientas como se encuentran explicadas en \ref{subsubsec:InstHerramientas}.
+
+\end{itemize}
+
+\section{Instalación}
+
+\subsection{Configuración}\label{subsec:ConfiguracionMaquina}
+
+La aplicación ha sido desarrollada para dispositivos Android 4.1 (Jelly Bean) o superiores. Antes de iniciar la aplicación es necesario realizar unos pequeños cambios en la configuración.
+
+\begin{enumerate}
+	
+	\item Modificar la dirección ip predeterminada del archivo de configuración de Moodle. Para ello tendremos que:
+	\begin{enumerate}
+		\item Situarnos dentro de la propia carpeta de la herramienta: 
+
+D:\textbackslash{}xampp\textbackslash{}htdocs\textbackslash{}moodle
+		\item Una vez situados en dicha ruta tendremos que modificar la dirección del host: \emph{localhost} por la dirección ip de la propia máquina del archivo config.php como podemos ver en la siguiente ilustración.
+		\imagen{archivoConfig}{Archivo config.php de Moodle.}
+	\end{enumerate}		
+	
+	\item Al haber modificado el host de Moodle tendremos que modificar la dirección de inicio de todas nuestras herramientas externas QuickTest por la dirección ip de la maquina. \imagenAncho{modUrlInicio}{Modificando la URL de inicio de las herramientas externas.}{1}
+	
+	\item A continuación, tendremos que abrir nuestro proyecto en Android Studio y modificar los siguientes archivos dentro del paquete api. \imagenAncho{ModificarapiAndroid}{Archivos a modificar dentro del paquete api.}{0.8}
+	
+	\begin{enumerate}
+		
+		\item \emph{APIMoodle:} tendremos que modificar la variable \emph{BASE} por la dirección de la máquina y las variables \emph{USERNAME, PASSWORD} por el nombre y contraseña del usuario encargado de manejar el web services de Moodle, ya que el es el único con privilegios para realizar las peticiones de información. \imagen{ModAPIMoodle}{Modificamos las variables de la clase APIMoodle}
+		
+		\item \emph{APIRest:} tendremos que modificar la variable \emph{BASE} por la dirección de la máquina. \imagen{ModAPIRest}{Modificamos la variable de la clase APIRest.}
+		
+	\end{enumerate}
+	 
+\end{enumerate}
+
+Una vez realizada esta breve modificación en la configuración, la aplicación Android se encuentra completamente operativa para su ejecución desde el propio emulador de Android Studio o desde nuestro propio dispositivo Android.
+
+\subsection{Instalación en un dispositivo Android físico}
+
+Para llevar cabo la instalación de la aplicación en nuestro propio dispositivo Android es necesario:
+
+\begin{itemize}
+	\item Haber realizado la breve configuración previa del punto anterior. \ref{subsec:ConfiguracionMaquina}.
+	
+	\item Conectar nuestro dispositivo al ordenador.
+	
+	\item Nuestro dispositivo pertenezca a la misma red que nuestro equipo.
+\end{itemize}
+
+Una vez realizado estos pasos tendremos que:
+
+\begin{enumerate}
+	\item Arrancar el proyecto en Android Studio.
+	\item Ejecutar la aplicación y seleccionar como dispositivo de destino, nuestro móvil.\imagen{InstApp}{Instalación de la aplicación en un dispositivo físico.}
+\end{enumerate}
+
+Una vez realizados estos pasos podremos utilizar nuestra aplicación desde nuestro propio dispositivo Android.
+
+\section{Manual del usuario}
+
+En esta sección se describen el funcionamiento de las funcionalidades desarrolladas de la aplicación.
+
+\subsection{Iniciar Sesión}
+
+Al iniciar la aplicación por primera vez nos aparecerá la ventana de \emph{inicio de sesión.} Una vez allí tendremos que:
+
+\begin{enumerate}
+	\item Introducir nuestro nombre de usuario y contraseña de Moodle.
+	\item Si se quiere recordar estas credenciales para que en futuros acceso esta ventana no se active, bastará con activar la opción \emph{Recordar campos.}
+	\item Click en \emph{Iniciar Sesión.}
+\end{enumerate}
+
+Una vez iniciada sesión la aplicación nos mostrará los cursos en los que el usuario se encuentra matriculado independientemente de su rol en los mismos.
+
+\imagen{IniciarSesion}{Iniciar sesión en la aplicación.}
+
+
+
+\subsection{Obtener la calificación de los alumnos}
+
+Para poder comprobar la calificación de los alumnos de un profesor simplemente tendremos que:
+
+\begin{enumerate}
+	\item Entrar en el curso.
+	\item Seleccionar el cuestionario a comprobar.
+	\item Comprobar la calificación de cada alumno.
+\end{enumerate}
+
+\imagen{ObtenerCalAlumnos}{Obtener la calificación de los alumnos matriculados en un curso.}
+
+\subsection{Mostrar cuestionario}
+
+Para obtener el cuestionario al que se han enfrentado los alumnos tendremos que:
+
+\begin{enumerate}
+	\item Entrar en el curso.
+	\item Seleccionar el cuestionario a comprobar.
+	\item Seleccionar, \emph{Ver cuestionario}.
+\end{enumerate}
+
+\imagen{VerCuestionario}{Obtenemos el cuestionario al que se han enfrentado los alumnos.}
+
+\subsection{Resolver un cuestionario}
+
+Para resolver un cuestionario tendremos que:
+\begin{enumerate}
+	\item Entrar en el curso.
+	\item Posicionarnos en \emph{Mis cuestionarios sin resolver} en el \emph{Burger Menu}.
+	\item Click largo sobre el cuestionario a resolver y seleccionamos \emph{Resolver}.
+	\item Una vez resueltas las preguntas, click en \emph{Enviar y finalizar cuestionario} y \emph{Enviar.}
+\end{enumerate}
+
+\imagen{ResolverCuestionario}{Resolvemos un cuestionario.}
+
+
+\subsection{Revisar un cuestionario}
+
+Para revisar un cuestionario resuelto tendremos que:
+\begin{enumerate}
+	\item Entrar en el curso.
+	\item Posicionarnos en \emph{Mis cuestionarios resueltos} en el \emph{Burger Menu.}
+	\item Click largo sobre el cuestionario a revisar y seleccionamos \emph{Revisar.}
+	\item Si deseamos obtener información adicional sobre como ha sido resuelto el cuestionario, hacer click en \emph{Ver resultados}
+\end{enumerate}
+
+\imagen{RevisarCuestionario}{Resolvemos un cuestionario.}
+
+\subsection{Cerrar sesión}
+
+Para cerrar sesión u olvidar y cerrar sesión tendremos que:
+
+\begin{itemize}
+	\item \emph{Rol alumno:}
+	\begin{enumerate}
+		\item Entrar en el curso.
+		\item Abrir en \emph{Burger Menu} y seleccionar \emph{Cerrar sesión u Olvidar y cerrar sesión.}
+	\end{enumerate}
+	\item \emph{Rol Profesor:}
+		\begin{enumerate}
+			\item Entrar en el curso.
+			\item Abrir el botón de ajustes y seleccionar \emph{Cerrar sesión u Olvidar y cerrar sesión.}
+		\end{enumerate}
+\end{itemize}
+
+\imagen{CerrarSesion}{Cerrar sesión desde ambos roles.}

@@ -2,7 +2,7 @@
 
 \section{Introducción}
 
-A continuación, se incluye una explicación/descripción del diseño de la aplicación Android. Para ello se dividirán los diagramas en dos enfoques: el APIREST utilizado para comunicarse con el proyecto de partida y la propia app Android que se comunicará con dicho API para la obtención y volcado de los datos.
+A continuación, se incluye una explicación/descripción del diseño de la aplicación Android. Para ello, se dividirán los diagramas en dos enfoques: el APIREST utilizado para comunicarse con el proyecto de partida y la propia app Android que se comunicará con dicho API para la obtención y volcado de los datos.
 
 \section{Diseño de datos}
 
@@ -53,7 +53,7 @@ La lógica de esta clase será toda aquella que se encuentre relacionada con la 
 
 \imagen{GestionCuestionario}{Clase GestionCuestionario}
 
-Cabe destacar que estas dos clases explicadas anteriormente no han sido utilizadas finalmente en la aplicación, al no ser necesarias para su correcto funcionamiento. Estas clases fueron desarrolladas durante las primeras fases del proyecto. Estas primeras fases, se dedicaron a la creación del APIREST que posteriormente se utilizaría en la aplicación Android.
+Cabe destacar, que estas dos clases explicadas anteriormente no han sido utilizadas finalmente en la aplicación, al no ser necesarias para su correcto funcionamiento. Estas clases fueron desarrolladas durante las primeras fases del proyecto. Estas primeras fases, se dedicaron a la creación del APIREST que posteriormente se utilizaría en la aplicación Android.
 
 \paragraph{Clase SolucionCuestionario}
 
@@ -62,7 +62,7 @@ Todas estas acciones se realizan mediante las siguientes peticiones:
 
 \begin{itemize}
 
-	\item \textbf{Post:} esta petición será la encargada de manejar la lógica a seguir al finalizar un cuestionario. Para ello, obtendrá el contenido del cuestionario resuelto de la petición y almacenará las respuestas del alumno y la nota del mismo. \url{http://localhost/_QuickTest_TFG/app/apiREST/solucionCuestionario/finalizar}.
+	\item \textbf{Post:} esta petición será la encargada de manejar la lógica a seguir al finalizar un cuestionario. Para ello, obtendrá el contenido del cuestionario resuelto de la petición, almacenará las respuestas del alumno y la nota del mismo. \url{http://localhost/_QuickTest_TFG/app/apiREST/solucionCuestionario/finalizar}.
 	
 	\item \textbf{Get:} esta petición sera la encargada de obtener la calificación de un alumno que haya resuelto el cuestionario desde la aplicación Android. Para ello, será necesario incluir en la propia petición el identificador del alumno y del cuestionario respectivamente. \url{http://localhost/_QuickTest_TFG/app/apiREST/solucionCuestionario/obtenerNota/idAlumno/idCuestionario}
 \end{itemize}
@@ -71,15 +71,15 @@ Todas estas acciones se realizan mediante las siguientes peticiones:
 
 \paragraph{Clase ObtenerCuestionario}
 
-Esta clase se encarga de: la obtención de las preguntas y respuestas que forman un cuestionario, así como que preguntas tienen o no comodín y al finalizar un cuestionario, obtener información acerca de como ha sido resuelto el mismo. Destacar que en el controlador no existe ningún método que permita obtener un cuestionario por identificador y el estado del mismo. Es por esto que esta funcionalidad ha sido incluida dentro del propio API. Además, ha sido necesario incluir dentro de este la funcionalidad de obtener los comodines verdes, ámbar y la información sobre como ha sido resuelto el cuestionario, ya que los métodos que se encuentran en el controlador corrompen la respuesta al incluir volcados del contenido.
+Esta clase se encarga de la obtención de las preguntas y respuestas que forman un cuestionario, así como que preguntas tienen o no comodín y al finalizar un cuestionario, obtener información acerca de como ha sido resuelto el mismo. Destacar,  que en el controlador no existe ningún método que permita obtener un cuestionario por identificador y el estado del mismo. Es por esto que esta funcionalidad ha sido incluida dentro del propio API. Además, ha sido necesario incluir dentro de este la funcionalidad de obtener los comodines verdes, ámbar y la información sobre como ha sido resuelto el cuestionario, ya que los métodos que se encuentran en el controlador corrompen la respuesta al incluir volcados del contenido.
 
 \begin{itemize}
 
-	\item \textbf{Get:} esta petición sera la encargada de manejar toda la lógica de la clase.
+	\item \textbf{Get:} esta petición será la encargada de manejar toda la lógica de la clase.
 	\begin{list}{-}
 		\item \emph{Obtener cuestionario:} para ello sera necesario incluir en la propia petición el identificador del cuestionario. La petición es la siguiente: \url{http://localhost/_QuickTest_TFG/app/apiREST/obtenerCuestionario/obtener/idCuestionario}.
 		
-		\item \emph{Obtener el estado de un cuestionario:} es decir, si el cuestionario se encuentra resuelto o no por dicho alumno. Para ello, sera necesarios incluir en la propia petición el identificador del alumno y el identificador de cuestionario. La petición es la siguiente:   \url{http://localhost/_QuickTest_TFG/app/apiREST/obtenerCuestionario/estado/idAlumno/idCuestionario}.
+		\item \emph{Obtener el estado de un cuestionario:} es decir, si el cuestionario se encuentra resuelto o no por dicho alumno. Para ello, será necesarios incluir en la propia petición el identificador del alumno y el identificador de cuestionario. La petición es la siguiente:   \url{http://localhost/_QuickTest_TFG/app/apiREST/obtenerCuestionario/estado/idAlumno/idCuestionario}.
 		
 		\item \emph{Obtener comodín verde}: es decir, permite obtener aquella preguntas que tienen comodín verde, dado un cuestionario. Para ello es necesario incluir en la propia petición el identificador del cuestionario. La petición es la siguiente:\url{http://localhost/_QuickTest_TFG/app/apiREST/obtenerCuestionario/obtenerComodin/verde/idCuestionario}.
 		
@@ -114,7 +114,7 @@ Este diagrama muestra un desglose de todos los componentes que entran en contact
 	\item \textbf{modelos:} en este paquete se encuentran todas aquellas clases que se comunican con el controlador del proyecto de partida.
 	\item \textbf{test\_apiRest:} en este paquete se encuentran las pruebas unitarias creadas para probar comprobar el correcto funcionamiento del APIREST.
 	\item \textbf{utilidades:} en este paquete se encuentran ciertas clases y ficheros de utilidad.
-	\item \textbf{vista:} en este paquete se encuentran aquellas aquellas clases encargadas de gestionar la lógica de la vista de los datos.
+	\item \textbf{vista:} en este paquete se encuentran aquellas clases encargadas de gestionar la lógica de la vista de los datos.
 
 \end{itemize}
 
@@ -130,8 +130,8 @@ En este diagrama se muestra el desglose de todos los componentes que forman la a
 	\item \textbf{main.adapters:} en este paquete se encuentran todas los adaptadores creados para modificar el layout de las diferentes actividades y fragmentos.
 	\item \textbf{main.api:} en esta paquete se encuentran todas clases encargadas de gestionar la correcta conexión de la aplicación con el APIREST y con el web services de Moodle.
 	\item \textbf{main.fragments.students:} en este paquete se encuentran todos los fragmentos utilizados para la construcción de la aplicación.
-	\item \textbf{main.models:} en este paquete se encuentran todas las clases necesarias para el tratamiento de los datos proporcionados por las diferentes peticiones tanto al APIREST como al web services de Moodle. Es decir, estas clases son las encargadas de realizar la conversión de los datos en formato JSON a objetos Java o viceversa.
-	\item \textbf{main.request:} en este paquete se encuentran todas aquellas clases encargadas de realizar una petición síncrona al APIREST o al web services de Moodle.
+	\item \textbf{main.models:} en este paquete se encuentran todas las clases necesarias para el tratamiento de los datos proporcionados por las diferentes peticiones, tanto al APIREST como al web services de Moodle. Es decir, estas clases son las encargadas de realizar la conversión de los datos en formato JSON a objetos Java o viceversa.
+	\item \textbf{main.request:} en este paquete se encuentran todas aquellas clases encargadas de realizar una petición síncrona al APIREST o al web service de Moodle.
 	\item \textbf{main.utils:} en este paquete se encuentra una clases encargada de la gestión de las SharedPreferences utilizadas para el correcto funcionamiento del login.
 	\item \textbf{test:} en este paquete se encuentran las pruebas unitarias sobre el paquete main.models.
 	\item \textbf{androidTest:} en este paquete se encuentra las pruebas automatizadas de interfaz de usuario sobre la aplicación.

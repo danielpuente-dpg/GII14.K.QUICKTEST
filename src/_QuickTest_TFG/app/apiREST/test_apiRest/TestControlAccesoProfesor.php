@@ -10,7 +10,7 @@
 require_once('../utilidades/Defines.php');
 
 require_once($URL_GLOBAL . '/_QuickTest_TFG/app/controller/Usuarios_Controller.php');
-require_once($URL_GLOBAL . '/_QuickTest_TFG/app/apiREST/test_apiRest/TablaLTI_Keys_Users.php');
+require_once($URL_GLOBAL . '/_QuickTest_TFG/app/apiREST/utilidades/TablaLTI_Keys_Users.php');
 
 /**
  * Class TestControlAccesoProfesor, Clase de Test encargada de comprobar el correcto funcionamiento del controlador.

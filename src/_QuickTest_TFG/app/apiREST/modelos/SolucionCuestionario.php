@@ -18,7 +18,7 @@ require_once($URL_GLOBAL . '/_QuickTest_TFG/app/model/Respuestas_Model.php');
 require_once($URL_GLOBAL . '/_QuickTest_TFG/app/controller/LTI_Controller.php');
 //Importamos la librería de seguridad OAuth
 require_once($URL_GLOBAL . "/_QuickTest_TFG/lib/ims-blti/OAuthBody.php");
-require_once($URL_GLOBAL . '/_QuickTest_TFG/app/apiREST/test_apiRest/TablaNota.php');
+require_once($URL_GLOBAL . '/_QuickTest_TFG/app/apiREST/utilidades/TablaNota.php');
 
 
 /**

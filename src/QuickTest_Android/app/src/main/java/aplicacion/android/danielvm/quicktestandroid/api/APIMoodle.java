@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIMoodle {
 
-    public static final String BASE = "http://192.168.1.33/";
+    public static final String BASE = "http://192.168.1.36/";
     public static final String BASE_URL = BASE + "moodle/";
     public static final String APP = "moodle_mobile_app";
 
