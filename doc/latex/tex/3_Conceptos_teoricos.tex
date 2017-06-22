@@ -19,16 +19,16 @@ Es decir, permite la comunicación entre distintos componentes software. La mayo
 
 \subsection{Web API}
 
-En este caso y relacionado con lo anteriormente explicado la lógica de un Web API es la misma que un API salvo que en este caso esta comunicación, es decir, el intercambio de información se realiza entre un servicio web y una aplicación mediante una URL. Para llevar a cabo esta comunicación se utilizan peticiones HTTP o HTTPS y toda esta información se encuentra encapsulada generalmente en XML o JSON.
+En este caso y relacionado con lo anteriormente explicado, la lógica de un Web API es la misma que un API salvo que en este caso esta comunicación, es decir, el intercambio de información se realiza entre un servicio web y una aplicación mediante una URL. Para llevar a cabo esta comunicación, se utilizan peticiones HTTP o HTTPS y toda esta información se encuentra encapsulada generalmente en XML o JSON.
 Existen principalmente cuatro tipos de Web API.
 
 \subsubsection{SOAP}
 
-Es un protocolo estándar de intercambio de información y datos en XML entre dos objetos cuyas siglas son las siguientes Simple Object Access Protocol. Posteriormente en esta misma sección se dedicará un apartado donde se explicará en mayor.
+Es un protocolo estándar de intercambio de información y datos en XML entre dos objetos, cuyas siglas son: \emph{Simple Object Access Protocol}. Posteriormente, en esta misma sección se dedicará un apartado donde se profundizará más en este protocolo.  \ref{sec:Soap}.
 
 \subsection{XML-RPC}
 
-Es un protocolo que llama a un procedimiento remoto que utiliza XML para encapsular los datos y llamadas HTTP para llevar a cabo la comunicación.
+Es un protocolo que llama a un procedimiento remoto, que utiliza XML para encapsular los datos y llamadas HTTP para llevar a cabo la comunicación.
 
 \subsubsection{JSON-RPC}
 
@@ -36,22 +36,58 @@ Es un protocolo cuya lógica es igual que el protocolo explicado anteriormente, 
 
 \subsubsection{REST}
 
-En este caso es una arquitectura software para sistemas hipermedia en la World Wide Web. Además, esta arquitectura utiliza el protocolo HTTP para llevar a cabo la comunicación. No obstante, en esta misma sección se dedicará un apartado para llevar a cabo una explicación en mayor detalle. \cite{wiki:rest}
+Es una arquitectura software para sistemas hipermedia en la World Wide Web. Además, esta arquitectura utiliza el protocolo HTTP para llevar a cabo la comunicación. No obstante, en esta misma sección se dedicará un apartado donde se profundizará más en este protocolo \cite{wiki:rest}. \ref{sec:Rest}
 
 
 \section{LTI}
 
-\section{SOAP}
+\emph{Learning Tools Interoperability} es un estándar desarrollado por \emph{IMS Global Learning Consortium} que permite utilizar un framework o marco para la integración de aplicaciones educativas con un entorno de aprendizaje.
+Un ejemplo podría ser el siguiente:
 
-Anteriormente se ha llevado a cabo una pequeña explicación sobre este protocolo de comunicación. Relacionado con esto definíamos SOAP como un protocolo que posibilita el intercambio de información, es decir, la comunicación mediante internet entre aplicaciones. Para llevar a cabo este intercambio de datos se utiliza el formato XML, gracias a este el intercambio de datos se puede realizar independientemente de la plataforma o lenguaje utilizado.
-Hoy en día, estos mensajes de tipo SOAP se envían generalmente mediante el protocolo HTTP, aunque también se pueden utilizar otros como SMTP, TCP o JMS entre otros. Otro aspecto importante es que es un pilar fundamental para los Web Services, ya que estos utilizan también el formato XML para describir los servicios. Además, permite el intercambio de datos o llamadas a procedimientos remotos mediante RPC.
+\begin{itemize}
+	\item \textbf{Entorno de aprendizaje} Moodle.
+	\item \textbf{Marco:} LTI.
+	\item \textbf{Aplicación educativa:} Proyecto de partida.
+\end{itemize}
+
+\subsection{Términos}
+
+A continuación, se enumeran y describen los términos involucrados en el funcionamiento.
+
+\begin{itemize}
+
+	\item \textbf{Consumer:} este será el consumidor de aplicaciones y enviará la información necesaria al proveedor para realizar la comunicación entre ambas. Un ejemplo de consumer sería: \emph{Moodle o UbuVirtual.}
+	
+	\item \textbf{Provider:} este será el encargado de proporcionar la aplicación al consumidor. Para ello, será necesario establecer un canal de comunicación para que el consumidor le proporcione cierta información vital para su correcto funcionamiento. Un ejemplo de provider sería: el proyecto de partida, QuickTest.
+	
+	\item \textbf{Learning Management System:} es un software alojado en el servidor utilizado para realizar toda las tareas de gestión de las actividades de formación no presencial. \cite{wiki:lms}.
+	
+	\item \textbf{Consumer Key:} clave generada por el proveedor, la cual permite al consumidor identificar al proveedor autorizado cuando este realice peticiones al consumidor.
+	
+	\item \textbf{Shared secret:} clave o contraseña común al proveedor y consumidor.
+	
+	\item \textbf{Context:} conjunto de información proporcionada por el consumidor, al realizar una petición al proveedor. Un ejemplo sería: \emph{Click en una herramienta externa en Moodle}.
+	
+	\item \textbf{Resource link:} enlace asociado a un determinado recurso en el proveedor, al que el sistema nos redirecciona al seleccionar una herramienta externa en el consumidor.
+	
+\end{itemize}
+
+
+\section{SOAP}\label{sec:Soap}
+
+Anteriormente, se ha llevado a cabo una pequeña explicación sobre este protocolo de comunicación. Relacionado con esto, definíamos SOAP como: \emph{un protocolo que posibilita el intercambio de información, es decir, la comunicación mediante internet entre aplicaciones}.
+
+Para llevar a cabo este intercambio de datos se utiliza el formato XML, gracias a este el intercambio de datos se puede realizar independientemente de la plataforma o lenguaje utilizado.
+
+Hoy en día, estos mensajes de tipo SOAP se envían generalmente mediante el protocolo HTTP, aunque también se pueden utilizar otros como SMTP, TCP o JMS entre otros. Otro aspecto importante,  es que es un pilar fundamental para los Web Services, ya que estos, utilizan también el formato XML para describir los servicios. Además, permite el intercambio de datos o llamadas a procedimientos remotos mediante RPC.
+
 Para poder llevar a cabo la correcta lectura de un mensaje SOAP el documento XML debe de tener una determinada estructura. Dicha estructura debe estar formada por las siguientes partes:
 
 \begin{itemize}
 
 	\item \textbf{Envelope:} esta parte de la estructura del mensaje es obligatoria, ya que identifica el mensaje.
 	
-	\item \textbf{Header:} esta parte de la estructura permite enviar información adicional sobre cómo debe de procesarse el mensaje. Es por esto por lo que esta parte no es obligatoria, debido a que únicamente aporta cierta información relacionada con la lectura del mismo.
+	\item \textbf{Header:} esta parte de la estructura permite enviar información adicional sobre cómo debe de procesarse el mensaje. Es por esto, que esta parte no es obligatoria, debido a que únicamente aporta cierta información relacionada con la lectura del mismo.
 	
 	\item \textbf{Body:} esta parte de la estructura es la encargada de almacenar toda la información del mensaje.
 	
@@ -62,19 +98,20 @@ Para poder llevar a cabo la correcta lectura de un mensaje SOAP el documento XML
 
 \imagen{EstructuraSoap}{Estructura de un mensaje SOAP \cite{wiki:soap} \cite{wiki:soap2}}
 
-\section{REST}
+\section{REST}\label{sec:Rest}
 
-Como ya hemos explicado anteriormente, es un estilo de arquitectura software para sistemas hipermedia distribuidos como la World Wide Web. \cite{wiki:rest2} cuyas siglas son las siguientes REpresentational State Transfer o en castellano Transferencia de Estado Representacional.
-En la actualidad, el termino REST se utiliza para aquellas interfaces que utilicen HTTP para el intercambio de información entre sistemas pudiendo utilizar cualquier formato para encapsular los datos, aunque generalmente los más utilizados son XML y JSON. Además, actualmente los sistemas que siguen las pautas o principios REST también se les suelen denominar RESTful.
+Como ya hemos explicado anteriormente, \emph{es un estilo de arquitectura software para sistemas hipermedia distribuidos como la World Wide Web} \cite{wiki:rest2}, cuyas siglas son las siguientes \textbf{REpresentational State Transfe}r o en castellano, Transferencia de Estado Representacional.
+
+En la actualidad, el termino REST se utiliza para aquellas interfaces que utilicen HTTP para el intercambio de información entre sistemas, pudiendo utilizar cualquier formato para encapsular los datos, aunque generalmente los más utilizados son XML y JSON. Además, actualmente, los sistemas que siguen las pautas o principios REST también se les suelen denominar RESTful.
 Para que un sistema se considere RESTful debe de cumplir con las siguientes pautas o principios.
 
 \begin{itemize}
 
-	\item \textbf{Protocolo cliente/servidor sin estado:} de manera que cada petición HTTP debe contener toda aquella información necesaria para poder ejecutarse, es decir, de esta forma evitamos que tanto el cliente como el servidor tengan que almacenar información sobre el estado previo de la misma para poder llevarla a cabo.
+	\item \textbf{Protocolo cliente/servidor sin estado:} de manera que cada petición HTTP debe contener toda aquella información necesaria para poder ejecutarse. De esta forma,  evitamos que tanto el cliente como el servidor tengan que almacenar información sobre el estado previo de la misma para poder llevarla a cabo.
 	
-	\item \textbf{Operaciones:} un sistema REST debe poder llevar cabo las siguientes operaciones: POST (crear), GET (leer o consultar), PUT (editar) y DELETE (borrar). Estas operaciones como podemos observar se asemejan en gran parte a las operaciones CRUD en bases de datos.
+	\item \textbf{Operaciones:} un sistema REST debe poder llevar cabo las siguientes operaciones: \emph{POST (crear), GET (leer o consultar), PUT (editar) y DELETE (borrar)}. Estas operaciones, como podemos observar, se asemejan en gran parte a las operaciones CRUD en bases de datos.
 	
-	\item \textbf{Sistema de capas:} el sistema deberá de utilizar una arquitectura jerárquica entre los distintos componentes que la formen, de esta manera garantizamos que cada una de estas capas se encargue de llevar a cabo una única funcionalidad.
+	\item \textbf{Sistema de capas:} el sistema deberá de utilizar una arquitectura jerárquica entre los distintos componentes que la formen, de esta manera, garantizamos que cada una de estas capas se encargue de llevar a cabo una única funcionalidad.
 	
 	\item \textbf{Manipulación de recursos:} para realizar la manipulación de los objetos se lleva a cabo mediante la URI. Dicha URI se utiliza como el identificador único para cada recurso, un recurso es un elemento de información. De esta manera se simplifica el acceso a la información para su posterior manipulación.
 	
