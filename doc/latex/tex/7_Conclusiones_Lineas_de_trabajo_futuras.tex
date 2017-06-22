@@ -1,4 +1,48 @@
 \capitulo{7}{Conclusiones y Líneas de trabajo futuras}
 
-Todo proyecto debe incluir las conclusiones que se derivan de su desarrollo. Éstas pueden ser de diferente índole, dependiendo de la tipología del proyecto, pero normalmente van a estar presentes un conjunto de conclusiones relacionadas con los resultados del proyecto y un conjunto de conclusiones técnicas. 
-Además, resulta muy útil realizar un informe crítico indicando cómo se puede mejorar el proyecto, o cómo se puede continuar trabajando en la línea del proyecto realizado. 
+En esta sección se incluyen todas las conclusiones derivadas del desarrollo del proyecto y las posibles lineas de trabajo futuras.
+
+\section{Conclusiones}
+
+\begin{itemize}
+	\item Desde mi punto de vista, considero que los objetivos principales del proyecto han sido superados durante el desarrollo del mismo.
+	
+	\item Al haber tenido que basarse en un proyecto ya desarrollado, he tenido que enfrentarme al inconveniente de que al crear nuevas funcionalidades, no corromper el funcionamiento inicial.
+	
+	\item La creación de un API sobre un proyecto web ha aportado no solamente nuevos conocimientos sobre: \emph{PHP, lado del servidor, JavaScript, etc}. Sino, que me ha permitido comprender que prácticamente todas las aplicaciones Android de productos que anteriormente habían sido desarrollados para la web, han tenido que crear un API para manejar esta lógica.
+	
+	\item Se ha obtenido un nuevo conocimiento sobre la programación en Android, PHP o los web service de Moodle que hasta la realización de este se desconocían.
+	
+	\item Se ha comprendido el verdadero potencial de la utilización de herramientas para: \emph{el control de versiones, la utilización de una metodología ágil, utilización de sistemas de construcción basado en dependencias como Gradle, herramienta de integración continua como SonarQube, etc}.
+	
+	\item Se ha comprendido como puede ser la dinámica en el mundo laboral en un futuro, es decir la asignación de un proyecto, su gestión, nuevos conocimientos a adquirir, metodología de trabajo, etc.
+\end{itemize}
+
+
+
+\section{Lineas de trabajo futuras}
+
+\begin{itemize}
+	\item \textbf{Proyecto de partida:}
+	\begin{list}{-}
+		\item Modificar la clase encargada de manejar la conexión a la base de datos implementando un patrón Singletón. De esta forma, limitaremos a que exista un único hilo para acceder a la misma.
+		\item Modificar todas aquellas consultas a la base de datos que no se realicen mediante sentencias preparadas. De esta manera, evitaremos posibles problemas de seguridad y mejoraremos el mantenimiento.
+		\item Mejorar la forma de crear un cuestionario, ya que el método encargado de esta lógica se ocupa de tareas: \emph{crear y editar un cuestionario.}
+	\end{list}
+	
+	\item \textbf{Aplicación Android:}
+	\begin{list}{-}
+		\item Permita que la calificación de los alumnos pueda ser almacenada en el apartado de calificaciones del curso.
+		
+		\item Posibilite al usuario una retroalimentación sobre las respuestas realizadas y la respuesta correcta.
+		
+		\item Permita la creación de cuestionarios multirespuesta o que las preguntas puedan adjuntar una imagen.
+		
+		\item Nuevas formas de enfrentarse a un cuestionario.
+		
+		\item Los docentes puedan obtener ciertos gráficos sobre: \emph{las respuestas más contestadas, aquellas preguntas con derecho a comodín, entre otras.}
+		\item Permita que los docentes puedan crear, modificar, duplicar o eliminar sus cuestionarios. Destacar que los métodos principales para desarrollar esta lógica, se encuentran implementados en el propio API.
+		\item Realizar una internacionalización de la aplicación.
+		\item La aplicación incluya soporte para personas con dificultades como: \emph{problemas de vista o auditivas.} Algunos ejemplos podrían ser: \emph{asistente de lectura de voz o paleta de colores propia para personas con problemas visuales.}
+	\end{list}
+\end{itemize}
