@@ -43,7 +43,7 @@ La realización de este proyecto requería una serie de conocimientos que al com
 		
 		\item Curso de aprendizaje de PHP. \cite{wiki:phpcourse}
 		
-		\item Lectura sobre el funcionamiento de PHPUnit.
+		\item Aprendizaje sobre el funcionamiento de PHPUnit. \cite{wiki:phpunit2}
 		
 	\end{itemize}
 	
@@ -110,8 +110,20 @@ Para llevar a cabo esta comunicación se han tenido que realizar previamente la 
 Una vez desarrolladas las principales funcionalidades del API en las primeras iteraciones, se comenzó con el desarrollo de la aplicación Android.
 La versión utilizada en el proyecto es Android 4.1 (Jelly Bean) al ser actualmente la que mayor soporte cubre, con un 95,2 \% al inicio del desarrollo de la app.
 
-La primera problemática que surgió fue la del tratamiento de las peticiones desde la app. Para ello y después de mucha investigación y pruebas se decidio utilizar la libreria Retrofit de Square \cite{wiki:retrofit} entre otras alternativas como Volley \cite{wiki:volley} de Google, al permitir esta la utilización de peticiones síncronas y la libreria Gson de Google \cite{wiki:gson} para facilitarla la transformación de los datos en formato JSON proporcionados por el propio API o el Web Service de Moodle, a objetos en Java.
+La primera problemática que surgió fue la del tratamiento de las peticiones desde la app. Para ello y después de mucha investigación y pruebas se decidio utilizar la libreria Retrofit de Square \cite{wiki:retrofit} entre otras alternativas como Volley \cite{wiki:volley} de Google, al permitir esta la utilización de peticiones síncronas y la libreria Gson de Google \cite{wiki:gson} para facilitarl la transformación de los datos en formato JSON proporcionados por el propio API o el Web Service de Moodle, a objetos en Java.
 
-Durante las últimas fases de construcción de la aplicación el proyecto se encontró frente a una gran problemática que no se ha podido solucionar. No se ha encontrado ninguna forma de realizar el almacenamiento de la calificación del alumno que esta resolviendo un cuestionario desde la aplicación Android en el apartado de calificaciones de Moodle, pero si en la propia base de datos de QuickTest.
+Durante las últimas fases de construcción de la aplicación, el proyecto se encontró frente a una gran problemática que no se ha podido solucionar: no se ha encontrado ninguna forma de realizar el almacenamiento de la calificación del alumno que esta resolviendo un cuestionario desde la aplicación Android en el apartado de calificaciones de Moodle, pero si en la propia base de datos de QuickTest.
 
-Debido a esta problemática, se ha decidido que la aplicación permita el acceso a usuario con rol de profesor. De esta manera, los docentes podrán conocer la calificación de aquellos alumnos que hayan resuelto el cuestionario desde la aplicación Android y incluirla de manera manual en el apartado de calificaciones del propio alumno.
+Esta problemática esta causada al no existir bibliotecas en Android que permitan encapsular el envió de los datos a Moodle cumpliendo el estándar LTI.
+
+Debido a esto y como solución intermedia, la calificación solamente se puede conocer desde la propia aplicación Android. De esta manera, los docentes podrán conocer la calificación de aquellos alumnos que hayan resuelto el cuestionario desde la aplicación Android e incluirla de manera manual en el apartado de calificaciones del propio alumno.
+
+\section{Pruebas software}
+
+A lo largo del desarrollo del proyecto se realizaron diferentes tipos de pruebas para comprobar el correcto funcionamiento de la aplicación.
+
+\begin{itemize}
+	\item \emph{API Rest:} una vez desarrolladas las funcionalidades necesarias se realizaron pruebas unitarias sobre las mismas.
+	\item \emph{Aplicación Android:} al finalizar el desarrollo de la misma se realizaron: pruebas unitarias sobre el modelo, pruebas automatizadas sobre la interfaz de usuario, pruebas de cobertura y pruebas de estrés.
+\end{itemize}
+

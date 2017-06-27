@@ -16,6 +16,15 @@ Java es un lenguaje de programación orientado a objetos, diseñado para disminu
 
 Además, es el lenguaje más utilizado para el desarrollo de aplicaciones Android y el lenguaje oficial recomendado. Por todo esto, se ha decidido utilizar este lenguaje para la creación de la aplicación para dispositivos Android.
 
+\subsection{JSON}\label{json}
+
+JSON es un formato ligero de intercambio de datos cuyas siglas es un acrónimo de JavaScript Object Notation, es decir, Notación de Objetos de JavaScript \cite{wiki:json}. 
+
+JSON es un formato de texto independientemente del lenguaje y se le considera una gran alternativa frente al formato de intercambio de datos XML, al ser mucho más sencillo de parsear por un analizador sintáctico \cite{wiki:json2}.
+
+Se ha decidido utilizar para la captación y devolución de los diferentes datos al proyecto de partida y a la aplicación Android respectivamente. De esta forma, la comunicación de la aplicación
+con el proyecto se simplifica, gracias a la utilización de ciertas librerías que facilitan el tratamiento de los datos en Android, como es \emph{Gson}.
+
 
 \section{Herramientas}
 
@@ -29,7 +38,7 @@ Se ha decidido utilizar esta herramienta como servidor, al ser utilizada en el p
 
 GitHub es una plataforma de desarrollo colaborativo para alojar proyectos utilizando un sistema de control de versiones Git \cite{wiki:github}.
 
-Se ha decidido optar por esta herramienta, al haber sido anteriormente, al ser una de las más utilizadas para el desarrollo colaborativo y al existir el plugin ZenHub para la gestión desde el propio repositorio de las distintas tareas a realizar en un panel de trabajo.
+Se ha decidido optar por esta herramienta, al haber sido anteriormente utilizada, ser una de las más utilizadas para el desarrollo colaborativo y al existir el plugin ZenHub para la gestión desde el propio repositorio de las distintas tareas a realizar en un panel de trabajo.
  
 Además, cabe destacar que el repositorio permite dos tipos de formato para el repositorio: público y privado. En nuestro caso se encuentra público. \url{https://github.com/danielpuente-dpg/GII14.K.QUICKTEST}
 
@@ -37,18 +46,10 @@ Además, cabe destacar que el repositorio permite dos tipos de formato para el r
 
 ZenHub es la herramienta utilizada para la gestión del proyecto.  Esta herramienta, permite su integración en la gestión de proyectos en GitHub, proporciona un tablero kanban para gestión de las tareas y automatiza la creación de los gráficos brundown para cada iteración. Gracias a este plugin gratuito, se facilita la gestión del proyecto de manera ágil. \cite{wiki:zenhub}
 
-\subsection{TortoiseSVN}
+\subsection{TortoiseGit}
 
-TortoiseSVN es un software libre utilizado para llevar a cabo el control de versiones del proyecto sobre GitHub \cite{wiki:tortoisesvn}. Implementa una extensión del shell de Windows, por lo que el control de versiones no tiene por qué realizarse mediante línea de comandos, sino que se puede realizar mediante la interfaz gráfica que proporciona esta herramienta, la cual es muy fácil de utilizar.
+TortoiseGit es un software libre utilizado para llevar a cabo el control de versiones del proyecto sobre GitHub \cite{wiki:tortoisegit}. Implementa una extensión del shell de Windows, por lo que el control de versiones no tiene por qué realizarse mediante línea de comandos, sino que se puede realizar mediante la interfaz gráfica que proporciona esta herramienta, la cual es muy fácil de utilizar.
 
-\subsection{JSON}\label{json}
-
-JSON es un formato ligero de intercambio de datos cuyas siglas es un acrónimo de JavaScript Object Notation, es decir, Notación de Objetos de JavaScript \cite{wiki:json}. 
-
-JSON es un formato de texto independientemente del lenguaje y se le considera una gran alternativa frente al formato de intercambio de datos XML, al ser mucho más sencillo de parsear por un analizador sintáctico \cite{wiki:json2}.
-
-Se ha decidido utilizar para la captación y devolución de los diferentes datos al proyecto de partida y a la aplicación Android respectivamente. De esta forma, la comunicación de la aplicación
-con el proyecto se simplifica, gracias a la utilización de ciertas librerías que facilitan el tratamiento de los datos en Android, como es \emph{Gson}.
 
 \subsection{Android}
 
@@ -65,7 +66,7 @@ Se ha decidido utilizar este software al ser utilizado por el proyecto de partid
 
 \subsection{PhpStorm}
 
-PhpStorm es el entorno de desarrollo comercial para PHP, HTML y JavaScript de JetBarins IntelliJ IDEA utilizado para el desarrollo del API. \cite{wiki:phpStorm}
+PhpStorm es el entorno de desarrollo comercial para PHP, HTML y JavaScript de JetBrains IntelliJ IDEA utilizado para el desarrollo del API. \cite{wiki:phpStorm}
 
 Se ha decidido utilizar este IDE frente a otras alternativas como \textbf{Notepad++} \cite{wiki:notepad++} al ser un entorno propio para el desarrollo en PHP, poseer refactorizaciones más potentes, atajos de teclado propios de un entorno de desarrollo, entre otras.
 
@@ -79,7 +80,7 @@ Se ha decidido utilizar este framework de pruebas al venir integrado en la propi
 
 SonarQube es una plataforma libre que permite realizar una  integración continua de nuestro desarrollo software. Informa sobre la duplicidad de código, errores en el no cumplimiento de estándares de configuración, errores en el diseño del software, pruebas unitarias, etc. \cite{wiki:sonarqube}
 
-Se ha decidido utilizar esta herramienta al ser propuesta por el propio tribunal.
+Se ha decidido utilizar esta herramienta al ser propuesta por los tutores debido a la gran funcionalidad que aporta.
 
 \subsection{Advanced REST Client}
 
@@ -99,14 +100,14 @@ A continuación, se incluye una pequeña explicación sobre las librerías utili
 
 \subsubsection{Consumir peticiones}
 
-Durante el desarrollo de la aplicación se han barajado ambas librerías para en consumo de las peticiones al propio API y al webservice de Moodle. Finalmente, se ha decido optar por la librería Retrofit al ser más fácil de utilizar, más intuitiva a la hora de crear y configurar las distintas peticiones, más flexible y suele tener mejores resultados que Volley
+Durante el desarrollo de la aplicación se han barajado ambas librerías para el consumo de las peticiones al propio API y al webservice de Moodle. Finalmente, se ha decido optar por la librería Retrofit al ser más fácil de utilizar, más intuitiva a la hora de crear y configurar las distintas peticiones, más flexible y porque suele aportar mejores resultados que Volley.
 
 \begin{itemize}
 
 	\item \textbf{Retrofit:} Retrofit proporciona un framework para poder interactuar con APIs y enviar peticiones HTTP de forma fiable desde aplicaciones Android. Para ello proporciona un cliente HTTP encargado de interactuar con APIs y de gestionar las peticiones de manera transparente.
 Esta librería es utilizada para el tratamiento de las peticiones desde la aplicación android. Además, permite consumir peticiones de manera síncrona y asíncrona. \cite{wiki:retrofit}
 	
-	\item \textbf{Volley:} Al igual que la librería anterior, Volley es una librería desarrollada por Google para enviar peticiones HTTP desde aplicaciones Android. \cite{wiki:volley}
+	\item \textbf{Volley:} Al igual que la librería anterior, Volley es una librería desarrollada por Google para enviar peticiones HTTP desde aplicaciones Android. \cite{wiki:book} \cite{wiki:volley} 
 	
 	\item \textbf{Gson:} Esta librería proporcionada por Google, permite trabajar con JSON a la hora de serializar y deserializar los objetos. Es utilizada para convertir las respuestas JSON de las APIs en objetos Java de manera muy sencilla, eliminado toda esta carga de conversión al programador. Además, también permite el paso contrario a la hora de enviar objetos a las APIs, al encargarse de transformar estos objetos en respuestas en formato JSON. \cite{wiki:gson}
 
@@ -133,16 +134,15 @@ Los roles principales son:
 
 \begin{itemize}
 
-	\item \textbf{Scrum Master:} se encarga de gestionar los cambios y procura facilitar la aplicación de esta metodología.
+	\item \textbf{Scrum Master:} se encarga de gestionar los cambios y procura facilitar la aplicación de esta metodología. En este proyecto este rol lo han desempeñado los tutores.
 	
-	\item \textbf{Product Owner:} en este grupo se encontrarán el personal interno o externo que representa al cliente. Este grupo se encargará de que el trabajo se realice de forma acorde con las necesidades y peticiones del cliente.
+	\item \textbf{Product Owner:} en este grupo se encontrarán el personal interno o externo que representa al cliente. Este grupo se encargará de que el trabajo se realice de forma acorde con las necesidades y peticiones del cliente. Este rol también ha sido desempeñado por los tutores.
 	
-	\item \textbf{Team:} representa al equipo de desarrollo encargados de ejecutar el desarrollo y de entregar el producto deseado.
+	\item \textbf{Team:} representa al equipo de desarrollo encargado de ejecutar el desarrollo y de entregar el producto deseado. Este rol ha sido desempeñado por el propio alumno al ser el único integrante del equipo.
 	
-	\item \textbf{Product Owner:} en este grupo se encontrarán el personal interno o externo que representa al cliente. Este grupo se encargará de que el trabajo se realice de forma acorde con las necesidades y peticiones del cliente.	
+	\item \textbf{Team Lider:} es el responsable del funcionamiento de Scrum en el proyecto. Este rol también es desempeñado por el alumno.
 
 \end{itemize}
-\cite{wiki:scrum}
  
 Para realizar el desarrollo del producto se deben de definir un Product Backlog, el cual contendrá todas las historias de usuario a realizar. Dichas historias de usuario se asignarán a los distintos Sprints o iteraciones que se realicen a lo largo del desarrollo del producto hasta finalizar con todas las historias de usuario. 
 

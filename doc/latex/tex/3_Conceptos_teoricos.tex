@@ -9,7 +9,7 @@ Antes de hablar de que es un Web API tendremos que explicar que es un API, ya qu
 
 \subsection{API}
 
-Una posible definición podría ser la siguiente: \emph{Un API (siglas de Application Programming Interface) es un conjunto de reglas (código) y especificaciones que las aplicaciones pueden seguir para comunicarse entre ellas: sirviendo de interfaz entre programas diferentes de la misma manera en que la interfaz de usuario facilita la interacción humano-software"} \cite{wiki:api}.
+Una posible definición podría ser la siguiente: \emph{Un API (siglas de Application Programming Interface) es un conjunto de subrutinas, funciones y procedimientos que ofrece cierta biblioteca para ser utilizado por otro software como una capa de abstracción.} \cite{wiki:api}.
 
 
 
@@ -24,7 +24,7 @@ Existen principalmente cuatro tipos de Web API.
 
 \subsubsection{SOAP}
 
-Es un protocolo estándar de intercambio de información y datos en XML entre dos objetos, cuyas siglas son: \emph{Simple Object Access Protocol}. Posteriormente, en esta misma sección se dedicará un apartado donde se profundizará más en este protocolo.  \ref{sec:Soap}.
+Es un protocolo estándar de intercambio de información y datos en XML entre dos objetos, cuyas siglas son: \emph{Simple Object Access Protocol}. \cite{wiki:soap} \cite{wiki:soap2}
 
 \subsection{XML-RPC}
 
@@ -41,7 +41,7 @@ Es una arquitectura software para sistemas hipermedia en la World Wide Web. Adem
 
 \section{LTI}\label{subsec:LTI}
 
-\emph{Learning Tools Interoperability} es un estándar desarrollado por \emph{IMS Global Learning Consortium} que permite utilizar un framework o marco para la integración de aplicaciones educativas con un entorno de aprendizaje.
+\emph{Learning Tools Interoperability} es un estándar desarrollado por \emph{IMS Global Learning Consortium} que permite utilizar un framework o marco para la integración de aplicaciones educativas con un entorno de aprendizaje. \cite{wiki:lti}
 Un ejemplo podría ser el siguiente:
 
 \begin{itemize}
@@ -60,7 +60,7 @@ A continuación, se enumeran y describen los términos involucrados en el funcio
 	
 	\item \textbf{Provider:} este será el encargado de proporcionar la aplicación al consumidor. Para ello, será necesario establecer un canal de comunicación para que el consumidor le proporcione cierta información vital para su correcto funcionamiento. Un ejemplo de provider sería: el proyecto de partida, QuickTest.
 	
-	\item \textbf{Learning Management System:} es un software alojado en el servidor utilizado para realizar toda las tareas de gestión de las actividades de formación no presencial. \cite{wiki:lms}.
+	\item \textbf{Learning Management System:} es un software alojado en el servidor utilizado para realizar toda las tareas de gestión de las actividades de formación no presencial. Un ejemplo sería: \emph{Moodle o UbuVirtual.} \cite{wiki:lms}.
 	
 	\item \textbf{Consumer Key:} clave generada por el proveedor, la cual permite al consumidor identificar al proveedor autorizado cuando este realice peticiones al consumidor.
 	
@@ -73,37 +73,12 @@ A continuación, se enumeran y describen los términos involucrados en el funcio
 \end{itemize}
 
 
-\section{SOAP}\label{sec:Soap}
-
-Anteriormente, se ha llevado a cabo una pequeña explicación sobre este protocolo de comunicación. Relacionado con esto, definíamos SOAP como: \emph{un protocolo que posibilita el intercambio de información, es decir, la comunicación mediante internet entre aplicaciones}.
-
-Para llevar a cabo este intercambio de datos se utiliza el formato XML, gracias a este el intercambio de datos se puede realizar independientemente de la plataforma o lenguaje utilizado.
-
-Hoy en día, estos mensajes de tipo SOAP se envían generalmente mediante el protocolo HTTP, aunque también se pueden utilizar otros como SMTP, TCP o JMS entre otros. Otro aspecto importante,  es que es un pilar fundamental para los Web Services, ya que estos, utilizan también el formato XML para describir los servicios. Además, permite el intercambio de datos o llamadas a procedimientos remotos mediante RPC.
-
-Para poder llevar a cabo la correcta lectura de un mensaje SOAP el documento XML debe de tener una determinada estructura. Dicha estructura debe estar formada por las siguientes partes:
-
-\begin{itemize}
-
-	\item \textbf{Envelope:} esta parte de la estructura del mensaje es obligatoria, ya que identifica el mensaje.
-	
-	\item \textbf{Header:} esta parte de la estructura permite enviar información adicional sobre cómo debe de procesarse el mensaje. Es por esto, que esta parte no es obligatoria, debido a que únicamente aporta cierta información relacionada con la lectura del mismo.
-	
-	\item \textbf{Body:} esta parte de la estructura es la encargada de almacenar toda la información del mensaje.
-	
-	\item \textbf{Fault:} esta parte de la estructura al igual que el Header es opcional, ya que aporte información relacionada con ciertos errores producidos durante el procesado del mensaje.
-	
-\end{itemize}
-
-
-\imagen{EstructuraSoap}{Estructura de un mensaje SOAP \cite{wiki:soap} \cite{wiki:soap2}}
-
 \section{REST}\label{sec:Rest}
 
 Como ya hemos explicado anteriormente, \emph{es un estilo de arquitectura software para sistemas hipermedia distribuidos como la World Wide Web} \cite{wiki:rest2}, cuyas siglas son las siguientes \textbf{REpresentational State Transfe}r o en castellano, Transferencia de Estado Representacional.
 
 En la actualidad, el termino REST se utiliza para aquellas interfaces que utilicen HTTP para el intercambio de información entre sistemas, pudiendo utilizar cualquier formato para encapsular los datos, aunque generalmente los más utilizados son XML y JSON. Además, actualmente, los sistemas que siguen las pautas o principios REST también se les suelen denominar RESTful.
-Para que un sistema se considere RESTful debe de cumplir con las siguientes pautas o principios.
+Para que un sistema se considere RESTful debe de cumplir con las siguientes pautas o principios. \cite{wiki:rest}
 
 \begin{itemize}
 
@@ -118,6 +93,4 @@ Para que un sistema se considere RESTful debe de cumplir con las siguientes paut
 	\item \textbf{Uso de hipermedios:} para las transiciones entre los distintos estados de la aplicación y para la información de la misma.
 	
 \end{itemize}
-
-\cite{wiki:rest}
  
