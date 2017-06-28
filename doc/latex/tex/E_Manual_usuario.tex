@@ -32,7 +32,7 @@ D:\textbackslash{}xampp\textbackslash{}htdocs\textbackslash{}moodle
 		\imagen{archivoConfig}{Archivo config.php de Moodle.}
 	\end{enumerate}		
 	
-	\item Al haber modificado el host de Moodle tendremos que modificar la dirección de inicio de todas nuestras herramientas externas QuickTest por la dirección ip de la maquina. \imagenAncho{modUrlInicio}{Modificando la URL de inicio de las herramientas externas.}{1}
+	\item Al haber modificado el host de Moodle tendremos que modificar la dirección de inicio de todas nuestras herramientas externas QuickTest por la dirección ip de la maquina. Esto es porque tenemos QuickTest y Moodle en la misma máquina, sino no seria necesario. \imagenAncho{modUrlInicio}{Modificando la URL de inicio de las herramientas externas.}{1}
 	
 	\item A continuación, tendremos que abrir nuestro proyecto en Android Studio y modificar los siguientes archivos dentro del paquete api. \imagenAncho{ModificarapiAndroid}{Archivos a modificar dentro del paquete api.}{0.8}
 	
@@ -101,9 +101,19 @@ Para poder comprobar la calificación de los alumnos de un profesor simplemente 
 
 \imagen{ObtenerCalAlumnos}{Obtener la calificación de los alumnos matriculados en un curso.}
 
+Como podemos observar en la anterior ilustración, se utiliza el siguiente criterio para determinar que cuestionarios han sido resueltos de la aplicación web, desde la aplicación Android o aun no han sido resueltos.
+
+\begin{itemize}
+	\item \emph{Icono de Moodle:} cuestionario resuelto desde la aplicación web.
+	
+	\item \emph{Icono de información:} cuestionario sin resolver.
+	
+	\item \emph{Calificación:} cuestionario resuelto desde la aplicación Android.
+\end{itemize}
+
 \subsection{Mostrar cuestionario}
 
-Para obtener el cuestionario al que se han enfrentado los alumnos tendremos que:
+Para obtener el cuestionario ya completado por los alumnos tendremos que:
 
 \begin{enumerate}
 	\item Entrar en el curso.
@@ -120,7 +130,7 @@ Para resolver un cuestionario tendremos que:
 	\item Entrar en el curso.
 	\item Posicionarnos en \emph{Mis cuestionarios sin resolver} en el \emph{Burger Menu}.
 	\item Click largo sobre el cuestionario a resolver y seleccionamos \emph{Resolver}.
-	\item Una vez resueltas las preguntas, click en \emph{Enviar y finalizar cuestionario} y \emph{Enviar.}
+	\item Una vez resueltas las preguntas, click en \emph{Enviar y finalizar cuestionario} y en la ventana emergente seleccionar  \emph{Enviar.}
 \end{enumerate}
 
 \imagen{ResolverCuestionario}{Resolvemos un cuestionario.}
@@ -136,7 +146,7 @@ Para revisar un cuestionario resuelto tendremos que:
 	\item Si deseamos obtener información adicional sobre como ha sido resuelto el cuestionario, hacer click en \emph{Ver resultados}
 \end{enumerate}
 
-\imagen{RevisarCuestionario}{Resolvemos un cuestionario.}
+\imagen{RevisarCuestionario}{Revisar un cuestionario.}
 
 \subsection{Cerrar sesión}
 

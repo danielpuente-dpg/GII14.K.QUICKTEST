@@ -14,9 +14,9 @@ La estructura es la siguiente:
 	
 	\item \textbackslash{}doc\textbackslash{}docs\textbackslash{}: contiene la documentación del proyecto en formato PDF.
 	
-	\item \textbackslash{}src\textbackslash{}\_QuickTest\_TFG\textbackslash{}: contiene el proyecto de partida junto con el APIREST creado y las pruebas.
+	\item \textbackslash{}src\textbackslash{}\_QuickTest\_TFG\textbackslash{}: contiene el proyecto de partida junto con el APIREST creado, las pruebas de dicho API y las pruebas correspondientes al proyecto inicial.
 	
-	\item \textbackslash{}src\textbackslash{}\_QuickTest\_TFG\textbackslash{}app\textbackslash{}apiREST\textbackslash{}: contiene toda la lógica del BackEnd.
+	\item \textbackslash{}src\textbackslash{}\_QuickTest\_TFG\textbackslash{}app\textbackslash{}apiREST\textbackslash{}: contiene toda la lógica del APIREST.
 	
 	\item \textbackslash{}src\textbackslash{}\_QuickTest\_TFG\textbackslash{}app\textbackslash{}apiREST\textbackslash{}test\_apiRest\textbackslash{}: contiene las pruebas unitarias para comprobar el correcto funcionamiento del BackEnd.
 	
@@ -52,9 +52,6 @@ Java es un lenguaje de programación orientado a objetos y es el lenguaje mas po
 
 Android Studio es el entorno de desarrollo más utilizado para el desarrollo de aplicaciones Android. Además, es el IDE oficial recomendado por la plataforma. Cabe destacar que soporta la construcción basada en Gradle, incluye un propio emulador Android, refactorizaciones propias de Android, entre otras. Se encuentra disponible en el siguiente enlace: \url{https://developer.android.com/studio/index.html?hl=es-419}
 
-\subsubsection{PhpStorm}
-
-PhpStorm es un entorno de desarrollo comercial para PHP de JetBrains IntelliJ IDEA. Este IDE ha sido el utilizado durante el desarrollo del BackEnd de la aplicación. Esta herramienta se encuentra disponible en el siguiente enlace: \url{https://www.jetbrains.com/phpstorm/download/#section=windows}.
 \subsubsection{XAMPP}
 
 XAMPP es un paquete de instalación de software libre utilizado como servidor de la aplicación. Este paquete contiene el servidor web Apache, base de datos MySQL, PHP y Perl. Se encuentra disponible en el siguiente enlace: \url{https://www.apachefriends.org/es/download.html}.
@@ -112,11 +109,11 @@ No obstante, en esta ocasión la versión de Moodle empleada es la más actual h
 	
 	\item Una vez nos encontremos en la página, tendremos que cambiar el cotejamiento de la conexión al servidor como podemos ver en la siguiente ilustración.\imagen{CambForBD}{Cambiamos el formato de la base de datos}
 	
+	\item En esa misma página seleccionamos en Base de datos. Dentro de esta sección en el apartado Crear base de datos introducimos la siguiente información y la creamos. \imagen{CrecTabMoodle}{Creación de la tabla Moodle con el formato deseado}
+	
 	\item Una vez realizada la creación de la base de datos de manera manual, podemos volver a la pestaña de instalación de Moodle y proseguir con la instalación.
 
 	\item Si hemos realizado los anteriores pasos de forma correcta el sistema nos comunicará que el entorno cumple todos los requerimientos mínimos y continuamos con la instalación. Este proceso puede durar varios minutos dependiendo de la conexión a Internet.
-	
-	\item En esa misma página seleccionamos en Base de datos. Dentro de esta sección en el apartado Crear base de datos introducimos la siguiente información y la creamos. \imagen{CrecTabMoodle}{Creación de la tabla Moodle con el formato deseado}
 	
 	\item Una vez realizada la instalación de Moodle, es necesario la configuración de la plataforma. Para ello es necesario establecer un administrador de la misma. En nuestro caso la configuración es la que se puede ver en la siguiente ilustración. \imagen{ConfDatAdminMoodle}{Configuramos los datos del administrador de Moodle}
 	
@@ -124,6 +121,37 @@ No obstante, en esta ocasión la versión de Moodle empleada es la más actual h
 	
 	\item Una vez realizamos de forma correcta todos los anteriores pasos, la instalación y configuración de Moodle ha finalizado
 
+\end{itemize}
+
+\subsubsection{Configuración del Webservice Moodle}
+
+Antes de comenzar a la explicación de los distintos pasos a realizar, tendremos que encontrarnos logeado con los credenciales del administrador del sitio.
+
+\begin{itemize}
+
+	\item Una vez logeado nos dirigimos a Administración del sitio. Allí seleccionamos la categoría Extensiones y dentro de esta categoría en Servicios Web.
+	\item Si hemos realizado el punto anterior de manera correcta, nos encontramos en panel central de la configuración del Web Service. Este entorno de configuración se puede observar en la siguiente ilustración.
+	\imagen{PanelConfWSM}{Panel de configuración del Web Service de Moodle}
+	
+	\item Para llevar a cabo la correcta configuración vamos a realizar los pasos de manera ordenada de menor a mayor como se puede ver en la anterior ilustración. 
+	\begin{itemize}
+	
+		\item \textbf{Habilitar los Servicios Web:} para ello entramos en el paso 1, y activamos el checkbox y guardamos los cambios.
+		
+		\item \textbf{Administrar protocolos:} para poder interactuar con el Web Service tendremos que habilitar al menos uno de ellos. En nuestro caso utilizaremos REST al ser el mas común utilizado en la comunidad de los Web Service de Moodle. Además, permite mostrar el contenido de retorno en formato JSON, el cual es muy ventajoso para el el tratamiento de los datos en la aplicación Android. Por último, es aconsejable habilitar la documentación al ser un gran material de apoyo y guardamos los cambios.
+		
+		\item Como se ha comentado anteriormente, vamos a realizar la configuración de manera ordenada. No obstante, en el este ejemplo vamos a ignorar los pasos 3, 4, 5 y 6. En estos pasos, se crea un usuario especifico para interactuar con el Web Service, este usuario debe de tener ciertos privilegios para poder desempeñar esta funcionalidad, se crea un servicio y se agregan las funcionalidades de interés a dicho servicio. Estos pasos son ignorados, ya que se va ha utilizar el propio usuario administrador del sitio, al tener todos los privilegios necesarios y de esta manera no limitaremos las funcionalidades del Web Service al incluir todas ellas. Destacar, que no es recomendable utilizar el mismo usuario administrador de Moodle por motivos de seguridad, para interactuar con el Web Service. Al ser un trabajo meramente didáctico, utilizaremos este mismo usuario para evitar complicaciones.
+Por último, estos pasos omitidos se encuentran explicados en el siguiente enlace:
+\url{http://www.vitalinnova.com/servicios-web-en-moodle-2-0/}
+		
+		\item \textbf{Seleccione un servicio:} para poder habilitar el servicio externo tendremos que seleccionar el paso 5. Una vez allí, click sobre editar en servicio \emph{Moodle mobile web service} y activamos el checkbox.
+		
+	
+	\end{itemize}
+	
+La configuración del Web Service ha finalizado. Para poder comprobar el correcto funcionamiento del mismo, vamos a pedir a este, el token del administrador. Para ello abrimos un nuevo navegador e introducimos la siguiente url: \url{http://localhost/moodle/login/token.php?username=admin&password=Asdf1234!&service=moodle_mobile_app}. Si todo ha ido correctamente la respuesta será la siguiente:
+\imagen{ResTokAdmin}{Obtención del token del administador}
+	
 \end{itemize}
 
 \subsubsection{Instalar base de datos}
@@ -247,37 +275,6 @@ Para llevar a cabo la publicación de un cuestionario tendremos que:
 
 \end{itemize}
 
-\subsubsection{Configuración del Webservice Moodle}
-
-Antes de comenzar a la explicación de los distintos pasos a realizar, tendremos que encontrarnos logeado con los credenciales del administrador del sitio.
-
-\begin{itemize}
-
-	\item Una vez logeado nos dirigimos a Administración del sitio. Allí seleccionamos la categoría Extensiones y dentro de esta categoría en Servicios Web.
-	\item Si hemos realizado el punto anterior de manera correcta, nos encontramos en panel central de la configuración del Web Service. Este entorno de configuración se puede observar en la siguiente ilustración.
-	\imagen{PanelConfWSM}{Panel de configuración del Web Service de Moodle}
-	
-	\item Para llevar a cabo la correcta configuración vamos a realizar los pasos de manera ordenada de menor a mayor como se puede ver en la anterior ilustración. 
-	\begin{itemize}
-	
-		\item \textbf{Habilitar los Servicios Web:} para ello entramos en el paso 1, y activamos el checkbox y guardamos los cambios.
-		
-		\item \textbf{Administrar protocolos:} para poder interactuar con el Web Service tendremos que habilitar al menos uno de ellos. En nuestro caso utilizaremos REST al ser el mas común utilizado en la comunidad de los Web Service de Moodle. Además, permite mostrar el contenido de retorno en formato JSON, el cual es muy ventajoso para el el tratamiento de los datos en la aplicación Android. Por último, es aconsejable habilitar la documentación al ser un gran material de apoyo y guardamos los cambios.
-		
-		\item Como se ha comentado anteriormente, vamos a realizar la configuración de manera ordenada. No obstante, en el este ejemplo vamos a ignorar los pasos 3, 4, 5 y 6. En estos pasos, se crea un usuario especifico para interactuar con el Web Service, este usuario debe de tener ciertos privilegios para poder desempeñar esta funcionalidad, se crea un servicio y se agregan las funcionalidades de interés a dicho servicio. Estos pasos son ignorados, ya que se va ha utilizar el propio usuario administrador del sitio, al tener todos los privilegios necesarios y de esta manera no limitaremos las funcionalidades del Web Service al incluir todas ellas. Destacar, que no es recomendable utilizar el mismo usuario administrador de Moodle por motivos de seguridad, para interactuar con el Web Service. Al ser un trabajo meramente didáctico, utilizaremos este mismo usuario para evitar complicaciones.
-Por último, estos pasos omitidos se encuentran explicados en el siguiente enlace:
-\url{http://www.vitalinnova.com/servicios-web-en-moodle-2-0/}
-		
-		\item \textbf{Seleccione un servicio:} para poder habilitar el servicio externo tendremos que seleccionar el paso 5. Una vez allí, click sobre editar en servicio \emph{Moodle mobile web service} y activamos el checkbox.
-		
-	
-	\end{itemize}
-	
-La configuración del Web Service ha finalizado. Para poder comprobar el correcto funcionamiento del mismo, vamos a pedir a este, el token del administrador. Para ello abrimos un nuevo navegador e introducimos la siguiente url: \url{http://localhost/moodle/login/token.php?username=admin&password=Asdf1234!&service=moodle_mobile_app}. Si todo ha ido correctamente la respuesta será la siguiente:
-\imagen{ResTokAdmin}{Obtención del token del administador}
-	
-\end{itemize}
-
 \section{Pruebas del sistema}
 
 Para comprobar el correcto funcionamiento se han desarrollado un conjunto de pruebas.
@@ -307,9 +304,22 @@ Como ya hemos comentado anteriormente, las pruebas unitarias comprueban el corre
 
 \imagenAncho{pruebasunitariasAndroid}{Conjunto de pruebas unitarias del FrontEnd.}{0.5}
 
-Para llevar a cabo la ejecución de dichas pruebas tendremos que utilizar Android Studio, situarnos en la carpeta en la se encuentra dichas pruebas, botón derecho y Run Test.
+Estas pruebas podrán ejecutarse de dos maneras distintas:
 
-\imagen{pruebasunitarias-android-salida}{Ejecución y resultado de las pruebas unitarias sobre el FrontEnd.}
+\begin{itemize}
+	\item \emph{Desde la propia consola de Windows:}
+		\begin{list}{-}{}
+			\item Situarnos en la raíz del proyecto QuickTest\_Android.
+			\item Ejecutar: gradlew.bat testReleaseUnitTest
+			
+			\item Para visualizar los resultados abrir el archivo index.html en: QuickTest\_Android.app.build.reports.tests.testReleaseUnitTest
+		\end{list}
+	\item \emph{Desde Android Studio:} para ello tendremos que utilizar Android Studio, situarnos en la carpeta en la se encuentra dichas pruebas, botón derecho y Run Test.
+	
+\end{itemize}
+
+
+\imagen{pruebasunitarias-android-salida}{Ejecución y resultado de las pruebas unitarias sobre el FrontEnd desde Android Studio.}
 
 \subsubsection{Pruebas automatizadas de UI}
 
@@ -317,7 +327,7 @@ Este tipo de pruebas consiste en crear una batería de pruebas automatizada, que
 
 \imagenAncho{pruebasui}{Conjunto de interfaz de usuario del FrontEnd.}{0.5}
 
-Como podemos observar se ha decidido crear un caso de prueba por caso de uso. Al igual que en las pruebas unitarias, tendremos que utilizar Android Studio para ejecutar dichas pruebas. Para ello,  nos situamos en la carpeta en la que se encuentran dichas pruebas, botón derecho sobre la prueba a ejecutar y Run Test.
+Como podemos observar se ha decidido crear un caso de prueba por caso de uso. Al necesitar un emulador o un dispositivo conectado para poder ejecutar estas pruebas, tendremos que utilizar Android Studio. Para ello,  nos situamos en la carpeta en la que se encuentran dichas pruebas, botón derecho sobre la prueba a ejecutar y Run Test.
 
 \subsubsection{Pruebas de estrés}
 

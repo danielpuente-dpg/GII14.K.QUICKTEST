@@ -18,7 +18,7 @@ Este paquete será el encargado de comunicarse con el Controlador del proyecto d
 
 \paragraph{Clase ControlAccesoProfesor}
 
-Esta clase será la encargada de realizar el control de acceso por parte de los profesores a la web QuickTest. Esta web provee a los profesores de una clave privada dentro de la aplicación para poder utilizarla en la sincronización de sus cuestionarios con Moodle. Esta clase permite registrar a un nuevo profesor o comprobar si puede iniciar sesión. Ambas lógicas se controlan mediante una petición post. Para llevar a cabo este cometido se comunican con el controlador llamando al método registrarNuevoUsuario o login respectivamente.
+Esta clase será la encargada de realizar el control de acceso por parte de los profesores a la aplicación web. Esta web provee a los profesores de una clave privada dentro de la aplicación para poder utilizarla en la sincronización de sus cuestionarios con Moodle. Esta clase permite registrar a un nuevo profesor o comprobar si puede iniciar sesión. Ambas lógicas se controlan mediante una petición post. Para llevar a cabo este cometido se comunican con el controlador llamando al método registrarNuevoUsuario o login respectivamente.
 
 \begin{itemize}
 
@@ -93,8 +93,10 @@ Esta clase se encarga de la obtención de las preguntas y respuestas que forman 
 
 \imagen{ObtenerCuestionario}{Clase ObtenerCuestionario}
 
-\begin{landscape}
 \subsubsection{Android}
+En la siguiente ilustración podemos ver el diagrama de clases completo de la aplicación Android. Para ello, se ha decidido utilizar el color verde para representar dichas clases.
+
+\begin{landscape}
 \imagenAncho{DiagramaClasesAndroid}{Diagrama de clases de la aplicación.}{1.5}
 \end{landscape}
 
@@ -118,7 +120,7 @@ Este diagrama muestra un desglose de todos los componentes que entran en contact
 
 \end{itemize}
 
-\imagen{DiagramPaqRest}{Diagrama de paquetes del APIRest}
+\imagen{DiagramPaqRest}{Diagrama de paquetes del APIREST}
 
 \subsection{Aplicación Android}
 
