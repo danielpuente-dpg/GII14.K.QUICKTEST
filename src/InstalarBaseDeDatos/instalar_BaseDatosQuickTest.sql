@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.11
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-07-2015 a las 02:45:48
--- Versión del servidor: 5.6.24
--- Versión de PHP: 5.6.8
+-- Tiempo de generación: 28-06-2017 a las 21:38:08
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,11 +14,12 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de datos: `quicktest_tfg`
 --
+
 CREATE DATABASE IF NOT EXISTS `quicktest_tfg` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 USE `quicktest_tfg`;
 
@@ -31,7 +32,8 @@ USE `quicktest_tfg`;
 CREATE TABLE IF NOT EXISTS `alumno` (
   `idAlumno` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `nombre` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `apellidos` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL
+  `apellidos` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`idAlumno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -93,7 +95,10 @@ INSERT INTO `alumno` (`idAlumno`, `nombre`, `apellidos`) VALUES
 CREATE TABLE IF NOT EXISTS `alumno_has_cuestionario` (
   `alumno_idAlumno` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `cuestionario_idCuestionario` int(11) NOT NULL,
-  `orden` int(11) NOT NULL
+  `orden` int(11) NOT NULL,
+  PRIMARY KEY (`alumno_idAlumno`,`cuestionario_idCuestionario`),
+  KEY `fk_alumno_has_cuestionario_cuestionario1_idx` (`cuestionario_idCuestionario`),
+  KEY `fk_alumno_has_cuestionario_alumno1_idx` (`alumno_idAlumno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -125,7 +130,10 @@ CREATE TABLE IF NOT EXISTS `alumno_has_respuesta` (
   `pregunta` int(11) NOT NULL,
   `puntuacion` decimal(5,2) DEFAULT NULL,
   `comodinUsado` varchar(8) COLLATE utf8_spanish_ci NOT NULL,
-  `correcta` int(1) NOT NULL
+  `correcta` int(1) NOT NULL,
+  PRIMARY KEY (`alumno_idAlumno`,`respuesta_idRespuesta`),
+  KEY `fk_alumno_has_respuesta_respuesta1_idx` (`respuesta_idRespuesta`),
+  KEY `fk_alumno_has_respuesta_alumno1_idx` (`alumno_idAlumno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -135,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `alumno_has_respuesta` (
 --
 
 CREATE TABLE IF NOT EXISTS `cuestionario` (
-  `idCuestionario` int(11) NOT NULL,
+  `idCuestionario` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(256) COLLATE utf8_spanish_ci DEFAULT NULL,
   `duracion` time DEFAULT NULL,
   `contadorAlumnos` int(11) DEFAULT '0',
@@ -144,7 +152,8 @@ CREATE TABLE IF NOT EXISTS `cuestionario` (
   `correctorVerdeTrue` decimal(5,2) DEFAULT NULL,
   `correctorVerdeFalse` decimal(5,2) DEFAULT NULL,
   `correctorAmarilloTrue` decimal(5,2) DEFAULT NULL,
-  `correctorAmarilloFalse` decimal(5,2) DEFAULT NULL
+  `correctorAmarilloFalse` decimal(5,2) DEFAULT NULL,
+  PRIMARY KEY (`idCuestionario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -177,13 +186,14 @@ INSERT INTO `cuestionario` (`idCuestionario`, `titulo`, `duracion`, `contadorAlu
 --
 
 CREATE TABLE IF NOT EXISTS `lti_keys_users` (
-  `id_lti_keys` int(11) NOT NULL,
+  `id_lti_keys` int(11) NOT NULL AUTO_INCREMENT,
   `emailUsuario` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `oauth_consumer_key` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `secret` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `resource_link` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
   `created_at` date DEFAULT NULL,
-  `updated_at` date DEFAULT NULL
+  `updated_at` date DEFAULT NULL,
+  PRIMARY KEY (`id_lti_keys`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -200,15 +210,30 @@ INSERT INTO `lti_keys_users` (`id_lti_keys`, `emailUsuario`, `oauth_consumer_key
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `notas`
+--
+
+CREATE TABLE IF NOT EXISTS `notas` (
+  `idAlumno` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  `idCuestionario` int(11) NOT NULL,
+  `nota` float NOT NULL,
+  PRIMARY KEY (`idAlumno`,`idCuestionario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `pregunta`
 --
 
 CREATE TABLE IF NOT EXISTS `pregunta` (
-  `idPregunta` int(11) NOT NULL,
+  `idPregunta` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(800) COLLATE utf8_spanish_ci DEFAULT NULL,
   `max_puntuacion` int(3) DEFAULT NULL,
   `feedBack` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `cuestionario_idCuestionario` int(11) NOT NULL
+  `cuestionario_idCuestionario` int(11) NOT NULL,
+  PRIMARY KEY (`idPregunta`),
+  KEY `fk_pregunta_cuestionario1_idx` (`cuestionario_idCuestionario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=730 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -219,7 +244,7 @@ INSERT INTO `pregunta` (`idPregunta`, `titulo`, `max_puntuacion`, `feedBack`, `c
 (105, 'Pregunta sin comodÃ­n.  Â¿QuÃ© sistema operativo pertenece a Microsoft?', 1, NULL, 1),
 (106, 'Pregunta sin comodÃ­n. Â¿QuiÃ©n inventÃ³ Facebook?', 2, NULL, 1),
 (107, 'Pregunta sin comodÃ­n. Java es lenguaje de programaciÃ³n orientado a:', 2, NULL, 1),
-(108, 'Pregunta con comodÃ­n Ã¡mbar. Bootstrap permite hacer "responsive design". Verdadero o Falso:', 4, NULL, 1),
+(108, 'Pregunta con comodÃ­n Ã¡mbar. Bootstrap permite hacer \"responsive design\". Verdadero o Falso:', 4, NULL, 1),
 (109, 'Pregunta con comodÃ­n verde. En HTML, podemos hacer un formulario usando la tÃ©cnica de POST. Verdadero o Falso.', 5, NULL, 1),
 (110, 'Pregunta con comodÃ­n verde.  Â¿QuiÃ©n inventÃ³ el lenguaje de programaciÃ³n C?', 4, NULL, 1),
 (111, 'Pregunta con comodÃ­n verde.  Â¿QuÃ© operaciÃ³n NO esta permitida en JAVA?', 2, NULL, 1),
@@ -410,11 +435,13 @@ INSERT INTO `pregunta` (`idPregunta`, `titulo`, `max_puntuacion`, `feedBack`, `c
 --
 
 CREATE TABLE IF NOT EXISTS `respuesta` (
-  `idRespuesta` int(11) NOT NULL,
+  `idRespuesta` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
   `correcta` tinyint(1) DEFAULT '0',
   `contador` int(11) DEFAULT '0',
-  `pregunta_idPregunta` int(11) NOT NULL
+  `pregunta_idPregunta` int(11) NOT NULL,
+  PRIMARY KEY (`idRespuesta`),
+  KEY `fk_respuesta_pregunta1_idx` (`pregunta_idPregunta`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1347 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -591,7 +618,7 @@ INSERT INTO `respuesta` (`idRespuesta`, `titulo`, `correcta`, `contador`, `pregu
 (1001, 'EOF', 1, 0, 571),
 (1002, 'Un conjunto de variables', 1, 0, 572),
 (1003, 'Un conjunto de funciones.', 0, 0, 572),
-(1004, 'Cualquier expresiÃ³n aritmÃ©tica acabada en ";"', 0, 0, 572),
+(1004, 'Cualquier expresiÃ³n aritmÃ©tica acabada en \";\"', 0, 0, 572),
 (1005, 'Un literal Ãºnicamente.', 0, 0, 573),
 (1006, 'El valor de un identifcador de constante Ãºnicamente.', 0, 0, 573),
 (1007, 'El valor que devuelva una funciÃ³n', 0, 0, 573),
@@ -673,7 +700,7 @@ INSERT INTO `respuesta` (`idRespuesta`, `titulo`, `correcta`, `contador`, `pregu
 (1127, 'EOF', 1, 0, 622),
 (1128, 'Un conjunto de variables', 1, 0, 623),
 (1129, 'Un conjunto de funciones.', 0, 0, 623),
-(1130, 'Cualquier expresiÃ³n aritmÃ©tica acabada en ";"', 0, 0, 623),
+(1130, 'Cualquier expresiÃ³n aritmÃ©tica acabada en \";\"', 0, 0, 623),
 (1131, 'Un literal Ãºnicamente.', 0, 0, 624),
 (1132, 'El valor de un identifcador de constante Ãºnicamente.', 0, 0, 624),
 (1133, 'El valor que devuelva una funciÃ³n', 0, 0, 624),
@@ -836,76 +863,6 @@ INSERT INTO `respuesta` (`idRespuesta`, `titulo`, `correcta`, `contador`, `pregu
 (1346, 'Devuelve el nÃºmero de caracteres escritos o un valor negativo si hay algÃºn error.', 0, 0, 713);
 
 --
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `alumno`
---
-ALTER TABLE `alumno`
-  ADD PRIMARY KEY (`idAlumno`);
-
---
--- Indices de la tabla `alumno_has_cuestionario`
---
-ALTER TABLE `alumno_has_cuestionario`
-  ADD PRIMARY KEY (`alumno_idAlumno`,`cuestionario_idCuestionario`), ADD KEY `fk_alumno_has_cuestionario_cuestionario1_idx` (`cuestionario_idCuestionario`), ADD KEY `fk_alumno_has_cuestionario_alumno1_idx` (`alumno_idAlumno`);
-
---
--- Indices de la tabla `alumno_has_respuesta`
---
-ALTER TABLE `alumno_has_respuesta`
-  ADD PRIMARY KEY (`alumno_idAlumno`,`respuesta_idRespuesta`), ADD KEY `fk_alumno_has_respuesta_respuesta1_idx` (`respuesta_idRespuesta`), ADD KEY `fk_alumno_has_respuesta_alumno1_idx` (`alumno_idAlumno`);
-
---
--- Indices de la tabla `cuestionario`
---
-ALTER TABLE `cuestionario`
-  ADD PRIMARY KEY (`idCuestionario`);
-
---
--- Indices de la tabla `lti_keys_users`
---
-ALTER TABLE `lti_keys_users`
-  ADD PRIMARY KEY (`id_lti_keys`);
-
---
--- Indices de la tabla `pregunta`
---
-ALTER TABLE `pregunta`
-  ADD PRIMARY KEY (`idPregunta`), ADD KEY `fk_pregunta_cuestionario1_idx` (`cuestionario_idCuestionario`);
-
---
--- Indices de la tabla `respuesta`
---
-ALTER TABLE `respuesta`
-  ADD PRIMARY KEY (`idRespuesta`), ADD KEY `fk_respuesta_pregunta1_idx` (`pregunta_idPregunta`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `cuestionario`
---
-ALTER TABLE `cuestionario`
-  MODIFY `idCuestionario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
---
--- AUTO_INCREMENT de la tabla `lti_keys_users`
---
-ALTER TABLE `lti_keys_users`
-  MODIFY `id_lti_keys` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT de la tabla `pregunta`
---
-ALTER TABLE `pregunta`
-  MODIFY `idPregunta` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=730;
---
--- AUTO_INCREMENT de la tabla `respuesta`
---
-ALTER TABLE `respuesta`
-  MODIFY `idRespuesta` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1347;
---
 -- Restricciones para tablas volcadas
 --
 
@@ -913,27 +870,27 @@ ALTER TABLE `respuesta`
 -- Filtros para la tabla `alumno_has_cuestionario`
 --
 ALTER TABLE `alumno_has_cuestionario`
-ADD CONSTRAINT `fk_alumno_has_cuestionario_alumno1` FOREIGN KEY (`alumno_idAlumno`) REFERENCES `alumno` (`idAlumno`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `fk_alumno_has_cuestionario_cuestionario1` FOREIGN KEY (`cuestionario_idCuestionario`) REFERENCES `cuestionario` (`idCuestionario`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_alumno_has_cuestionario_alumno1` FOREIGN KEY (`alumno_idAlumno`) REFERENCES `alumno` (`idAlumno`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_alumno_has_cuestionario_cuestionario1` FOREIGN KEY (`cuestionario_idCuestionario`) REFERENCES `cuestionario` (`idCuestionario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `alumno_has_respuesta`
 --
 ALTER TABLE `alumno_has_respuesta`
-ADD CONSTRAINT `fk_alumno_has_respuesta_alumno1` FOREIGN KEY (`alumno_idAlumno`) REFERENCES `alumno` (`idAlumno`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `fk_alumno_has_respuesta_respuesta1` FOREIGN KEY (`respuesta_idRespuesta`) REFERENCES `respuesta` (`idRespuesta`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_alumno_has_respuesta_alumno1` FOREIGN KEY (`alumno_idAlumno`) REFERENCES `alumno` (`idAlumno`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_alumno_has_respuesta_respuesta1` FOREIGN KEY (`respuesta_idRespuesta`) REFERENCES `respuesta` (`idRespuesta`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
-ADD CONSTRAINT `fk_pregunta_cuestionario1` FOREIGN KEY (`cuestionario_idCuestionario`) REFERENCES `cuestionario` (`idCuestionario`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_pregunta_cuestionario1` FOREIGN KEY (`cuestionario_idCuestionario`) REFERENCES `cuestionario` (`idCuestionario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `respuesta`
 --
 ALTER TABLE `respuesta`
-ADD CONSTRAINT `fk_respuesta_pregunta1` FOREIGN KEY (`pregunta_idPregunta`) REFERENCES `pregunta` (`idPregunta`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_respuesta_pregunta1` FOREIGN KEY (`pregunta_idPregunta`) REFERENCES `pregunta` (`idPregunta`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
