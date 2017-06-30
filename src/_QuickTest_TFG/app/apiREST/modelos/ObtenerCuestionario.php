@@ -134,9 +134,7 @@ class ObtenerCuestionario
     public static function getComodinVerde($idCuestionario)
     {
         $preguntasVerde = self::getInfoComodinVerde($idCuestionario);
-        if (empty($preguntasVerde)) {
-            $preguntasVerde = array();
-        }
+
         // Establecemos la respuesta
         http_response_code(APIEstados::ESTADO_OK);
         // Retornamos la informacion
@@ -166,7 +164,7 @@ class ObtenerCuestionario
         $cuestionario_Resolver_Controller = new Cuestionario_Resolver_Controller();
         $tasa = $cuestionario_Resolver_Controller->getTasaFiabilidad($idCuest);
 
-        $preguntasVerde = "";
+        $preguntasVerde = array();
 
         foreach ($preguntas as $p) {
 
@@ -250,9 +248,7 @@ class ObtenerCuestionario
     public static function getComodinAmbar($idCuestionario)
     {
         $preguntasAmbar = self::getInfoComodinAbar($idCuestionario);
-        if (empty($preguntasAmbar)) {
-            $preguntasAmbar = array();
-        }
+
         // Establecemos la respuesta
         http_response_code(APIEstados::ESTADO_OK);
         // Retornamos la informacion
@@ -275,7 +271,7 @@ class ObtenerCuestionario
         $respuestasModel = new Respuestas_Model();
         $preguntasModel = new Preguntas_Model();
 
-        $preguntasAmbar = "";
+        $preguntasAmbar = array();
         $pos = 0;
         $preguntas = $preguntasModel->getIDPreguntaTitulo_Cuestionario($idCuest);
 
