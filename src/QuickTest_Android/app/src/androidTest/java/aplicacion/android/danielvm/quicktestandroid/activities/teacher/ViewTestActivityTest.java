@@ -118,12 +118,6 @@ public class ViewTestActivityTest {
                 allOf(withId(R.id.title), withText("Ver cuestionario"), isDisplayed()));
         appCompatTextView.perform(click());
 
-        ViewInteraction appCompatImageButton = onView(
-                allOf(withContentDescription("Navigate up"),
-                        withParent(allOf(withId(R.id.action_bar),
-                                withParent(withId(R.id.action_bar_container)))),
-                        isDisplayed()));
-        appCompatImageButton.perform(click());
 
         ViewInteraction appCompatImageButton2 = onView(
                 allOf(withContentDescription("Navigate up"),

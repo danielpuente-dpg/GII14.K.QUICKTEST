@@ -132,12 +132,6 @@ public class StudentActivityTest {
                         isDisplayed()));
         appCompatImageButton5.perform(click());
 
-        SystemClock.sleep(2000);
-
-        ViewInteraction appCompatCheckedTextView5 = onView(
-                allOf(withId(R.id.design_menu_item_text), withText("Olvidar y cerrar sesión"), isDisplayed()));
-        appCompatCheckedTextView5.perform(click());
-
 
     }
 

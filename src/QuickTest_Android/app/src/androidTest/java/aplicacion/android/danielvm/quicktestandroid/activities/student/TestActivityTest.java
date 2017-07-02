@@ -107,10 +107,6 @@ public class TestActivityTest {
                         isDisplayed()));
         appCompatImageButton.perform(click());
 
-        ViewInteraction appCompatCheckedTextView = onView(
-                allOf(withId(R.id.design_menu_item_text), withText("Olvidar y cerrar sesión"), isDisplayed()));
-        appCompatCheckedTextView.perform(click());
-
     }
 
     private static Matcher<View> childAtPosition(

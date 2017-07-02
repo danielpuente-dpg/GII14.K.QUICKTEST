@@ -127,12 +127,6 @@ public class InfoGradeActivityTest {
                         isDisplayed()));
         appCompatImageButton2.perform(click());
 
-        SystemClock.sleep(2000);
-
-        ViewInteraction appCompatCheckedTextView2 = onView(
-                allOf(withId(R.id.design_menu_item_text), withText("Olvidar y cerrar sesión"), isDisplayed()));
-        appCompatCheckedTextView2.perform(click());
-
     }
 
     private static Matcher<View> childAtPosition(
