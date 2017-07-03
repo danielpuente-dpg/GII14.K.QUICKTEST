@@ -13,6 +13,8 @@ El proyecto parte de la base de un proyecto anterior para completar la funcional
 
 Para más información sobre la correcta instalación y configuración de estas herramientas ver [Documentación técnica de programación](https://github.com/danielpuente-dpg/GII14.K.QUICKTEST/blob/master/doc/docs/anexos.pdf)
 
+La máquina virtual se encuentra disponible en el siguiente [enlace](https://universidaddeburgos-my.sharepoint.com/personal/dpg0029_alu_ubu_es/_layouts/15/guestaccess.aspx?folderid=069872a6267b349b191cf91848918b4e5&authkey=AbKHqe1OzPtG2nFUgH5vuPk)
+
 ## Autores
 + Daniel Puente Gabarri
 ### Tutores:
