@@ -15,6 +15,8 @@ Para más información sobre la correcta instalación y configuración de estas 
 
 La máquina virtual se encuentra disponible en el siguiente [enlace](https://universidaddeburgos-my.sharepoint.com/personal/dpg0029_alu_ubu_es/_layouts/15/guestaccess.aspx?folderid=069872a6267b349b191cf91848918b4e5&authkey=AbKHqe1OzPtG2nFUgH5vuPk)
 
+Se incluye un video explicativo del funcionamiento global de la aplicación en el siguiente [enlace](https://github.com/danielpuente-dpg/GII14.K.QUICKTEST/blob/master/doc/docs/video.mp4)
+
 ## Autores
 + Daniel Puente Gabarri
 ### Tutores:
